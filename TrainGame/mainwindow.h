@@ -16,8 +16,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_valikkoButton_clicked();
-    void on_kauppaButton_clicked();
+    void vaihda_valikkoon();
+    void vaihda_peliin();
+    void vaihda_kauppaan();
 
 private:
     Ui::MainWindow *ui;

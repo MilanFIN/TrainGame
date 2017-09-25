@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(ui->valikkoButton, &QPushButton::clicked, this, &MainWindow::vaihda_valikkoon);
+    connect(ui->peliButton, &QPushButton::clicked, this, &MainWindow::vaihda_peliin);
+    connect(ui->kauppaButton, &QPushButton::clicked, this, &MainWindow::vaihda_kauppaan);
 }
 
 MainWindow::~MainWindow()
@@ -13,12 +16,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_valikkoButton_clicked()
-{
-    //hide();
+void MainWindow::vaihda_valikkoon() {
+
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::on_kauppaButton_clicked()
-{
-    //hide();
+void MainWindow::vaihda_peliin() {
+
+    ui->stackedWidget->setCurrentIndex(1);
 }
+
+void MainWindow::vaihda_kauppaan() {
+
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+
