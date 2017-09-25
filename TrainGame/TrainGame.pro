@@ -26,11 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    aloitus.cpp
+    aloitus.cpp \
+    game.cpp \
+    railgraphicsitem.cpp \
+    traingraphicsitem.cpp
 
 HEADERS += \
         mainwindow.h \
-    aloitus.h
+    aloitus.h \
+    game.h \
+    railgraphicsitem.h \
+    traingraphicsitem.h
 
 FORMS += \
         mainwindow.ui \

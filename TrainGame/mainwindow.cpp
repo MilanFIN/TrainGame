@@ -15,10 +15,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_valikkoButton_clicked()
 {
-    hide();
+    //hide();
 }
 
 void MainWindow::on_kauppaButton_clicked()
 {
-    hide();
+    //hide();
 }
