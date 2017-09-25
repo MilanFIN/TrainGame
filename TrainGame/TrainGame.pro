@@ -26,18 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    aloitus.cpp \
-    kauppa.cpp \
-    valikko.cpp
+    aloitus.cpp
 
 HEADERS += \
         mainwindow.h \
-    aloitus.h \
-    kauppa.h \
-    valikko.h
+    aloitus.h
 
 FORMS += \
         mainwindow.ui \
-    aloitus.ui \
-    kauppa.ui \
-    valikko.ui
+    aloitus.ui

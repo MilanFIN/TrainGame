@@ -2,7 +2,7 @@
 #define ALOITUS_H
 
 #include <QDialog>
-#include "kauppa.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class Aloitus;
@@ -22,7 +22,7 @@ private slots:
 
 private:
     Ui::Aloitus *ui;
-    Kauppa *kauppa;
+    MainWindow *peli;
 
 };
 

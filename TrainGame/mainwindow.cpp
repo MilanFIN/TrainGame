@@ -15,14 +15,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_valikkoButton_clicked()
 {
-    close();
-    valikko = new Valikko();
-    valikko->show();
+    hide();
 }
 
 void MainWindow::on_kauppaButton_clicked()
 {
-    close();
-    kauppa = new Kauppa();
-    kauppa->show();
+    hide();
 }

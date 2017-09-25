@@ -16,8 +16,8 @@ Aloitus::~Aloitus()
 void Aloitus::on_jatkaButton_clicked()
 {
     close();
-    kauppa = new Kauppa();
-    kauppa->show();
+    peli = new MainWindow();
+    peli->show();
 }
 
 void Aloitus::on_lopetaButton_clicked()

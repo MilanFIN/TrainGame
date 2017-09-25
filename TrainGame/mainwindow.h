@@ -2,8 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "kauppa.h"
-#include "valikko.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,8 +21,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Kauppa *kauppa;
-    Valikko *valikko;
 };
 
 #endif // MAINWINDOW_H
