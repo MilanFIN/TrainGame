@@ -1,9 +1,10 @@
 #ifndef TRAINGRAPHICSITEM_H
 #define TRAINGRAPHICSITEM_H
 
+#include <QGraphicsPixmapItem>
 
-//defines the player model and oncoming trains
-class TrainGraphicsItem : public qgraphicspixmapitem
+//määrittelee junan grafiikkaobjektin pelaajaa ja
+class TrainGraphicsItem : public QGraphicsPixmapItem
 {
 public:
     TrainGraphicsItem();
