@@ -7,9 +7,9 @@
 class RailGraphicsItem : public QGraphicsPixmapItem
 {
 public:
-    RailGraphicsItem();
+    RailGraphicsItem(int x, int y);
     //siirtää raidetta näytöllä
-    void move();
+    void move(int speed);
 };
 
 #endif // RAILGRAPHICSITEM_H

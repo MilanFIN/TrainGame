@@ -1,11 +1,12 @@
 #include "railgraphicsitem.h"
 
-RailGraphicsItem::RailGraphicsItem()
+RailGraphicsItem::RailGraphicsItem(int x, int y)
 {
-
+    setPixmap(QPixmap("./img/rail.png"));
+    setPos(x-15,y);
 }
 
-void RailGraphicsItem::move()
+void RailGraphicsItem::move(int speed)
 {
-
+    setPos(x(), y()+speed);
 }

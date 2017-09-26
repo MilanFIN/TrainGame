@@ -23,6 +23,7 @@ private slots:
     void vaihda_valikkoon();
     void vaihda_peliin();
     void vaihda_kauppaan();
+    void muuta_nopeus();
 
 private:
     Ui::MainWindow *ui;

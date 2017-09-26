@@ -11,16 +11,13 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(ui->valikkoButton, &QPushButton::clicked, this, &MainWindow::vaihda_valikkoon);
     connect(ui->peliButton, &QPushButton::clicked, this, &MainWindow::vaihda_peliin);
     connect(ui->kauppaButton, &QPushButton::clicked, this, &MainWindow::vaihda_kauppaan);
-
+    connect(ui->kaasuSlider, &QSlider::valueChanged, this, &MainWindow::muuta_nopeus);
 
     ui->peliView->setScene(scene_.get());
 
-    scene_->setSceneRect(-250, -240, 508, 275);
+    scene_->setSceneRect(-250, -240, 508, 475);
     scene_->setBackgroundBrush(QBrush(QColor(0, 255, 0)));
 
-    auto item_ = new QGraphicsPixmapItem(QPixmap("./img/rail.png"));
-    item_->setPos(100,100);
-    scene_->addItem(item_);
 
 }
 
@@ -42,6 +39,11 @@ void MainWindow::vaihda_peliin() {
 void MainWindow::vaihda_kauppaan() {
 
     ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::muuta_nopeus()
+{
+    game_->setSpeed(ui->kaasuSlider->value()/10);
 }
 
 
