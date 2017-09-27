@@ -29,14 +29,16 @@ SOURCES += \
     aloitus.cpp \
     game.cpp \
     railgraphicsitem.cpp \
-    traingraphicsitem.cpp
+    traingraphicsitem.cpp \
+    obstacle.cpp
 
 HEADERS += \
         mainwindow.h \
     aloitus.h \
     game.h \
     railgraphicsitem.h \
-    traingraphicsitem.h
+    traingraphicsitem.h \
+    obstacle.h
 
 FORMS += \
         mainwindow.ui \

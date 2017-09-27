@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\aloitus.o
+./debug\game.o
+./debug\railgraphicsitem.o
+./debug\traingraphicsitem.o
+./debug\obstacle.o
+./debug\moc_mainwindow.o
+./debug\moc_aloitus.o
+./debug\moc_game.o
+);

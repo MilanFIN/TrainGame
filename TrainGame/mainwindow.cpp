@@ -1,5 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QKeyEvent>
+
+
+
 
 MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene, QWidget *parent) :
     QMainWindow(parent),
@@ -24,6 +28,13 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *pEvent)
+{
+    if (pEvent->key() == Qt::Key_Space){
+        game_->removeBlockage();
+    }
 }
 
 void MainWindow::vaihda_valikkoon() {

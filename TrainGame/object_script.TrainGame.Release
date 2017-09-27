@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\aloitus.o
+./release\game.o
+./release\railgraphicsitem.o
+./release\traingraphicsitem.o
+./release\obstacle.o
+./release\moc_mainwindow.o
+./release\moc_aloitus.o
+./release\moc_game.o
+);

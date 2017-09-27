@@ -18,6 +18,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene, QWidget *parent = 0);
     ~MainWindow();
+    void keyPressEvent( QKeyEvent* pEvent );
+
 
 private slots:
     void vaihda_valikkoon();
