@@ -47,6 +47,68 @@
        </rect>
       </property>
      </widget>
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>60</y>
+        <width>112</width>
+        <height>30</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>30</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>pelattava päivä</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>470</y>
+        <width>111</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton:pressed {
+	background-color: #222222;
+	border: 1px solid #333333;
+}
+QPushButton:hover {
+	background-color: #66db57;
+}
+QPushButton {
+font: 75 12pt &quot;Caladea&quot;;
+border: 1px solid #199909;
+border-radius: 6px;
+background-color: #116a06;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, 
+            stop: 0 #22c70d, stop: 1 #116a06);
+}</string>
+      </property>
+      <property name="text">
+       <string>junakorjausBtn</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="pelaaPage">
      <widget class="QGraphicsView" name="peliView">
@@ -292,7 +354,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
         <x>20</x>
         <y>40</y>
         <width>301</width>
-        <height>441</height>
+        <height>261</height>
        </rect>
       </property>
      </widget>
@@ -302,7 +364,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
         <x>795</x>
         <y>40</y>
         <width>321</width>
-        <height>451</height>
+        <height>261</height>
        </rect>
       </property>
      </widget>
@@ -401,6 +463,28 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <string>Kauppa</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Kupongit/raha</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -408,7 +492,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <x>0</x>
      <y>0</y>
      <width>1154</width>
-     <height>25</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>
