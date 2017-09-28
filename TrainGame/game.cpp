@@ -21,15 +21,27 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent) : QObject(par
 
     scene_->addItem(&train);
 
-    speed_ = 0;
+    goalSpeed_ = 0;
+    previousSpeed_ = 0;
     movementSinceLastSpawn = 0;
 
 }
 
 void Game::setSpeed(int newSpeed)
 {
-    speed_ = newSpeed;
+    if (forward_){
+        goalSpeed_ = newSpeed;
+    }
+    else{
+        goalSpeed_ = -newSpeed;
+    }
 
+}
+
+void Game::changeDirection()
+{
+    forward_ = !forward_;
+    goalSpeed_ = -goalSpeed_;
 }
 
 void Game::removeBlockage()
@@ -50,19 +62,43 @@ void Game::removeBlockage()
 
 void Game::move()
 {
+
+    if (forward_){
+        if (speed_ > goalSpeed_){
+            speed_ -= accel_;
+        }
+        else if (speed_ < goalSpeed_){
+            speed_ += accel_;
+        }
+    }
+    if (!forward_){
+        if (speed_ < goalSpeed_){
+            speed_ += accel_;
+        }
+        else if (speed_ > goalSpeed_){
+            speed_ -= accel_;
+        }
+    }
     //siirretään raiteenpätkiä
     for (auto i = railTiles.begin(); i != railTiles.end(); ++i){
-        (*i).get()->move(speed_);
+        (*i).get()->move((int)speed_);
     }
 
     //siirretään esteitä
     for (auto i = obstacles.begin(); i != obstacles.end(); ++i){
-        (*i).get()->move(speed_);
+        (*i).get()->move((int)speed_);
     }
 
 
+    //tarkistetaan, onko kulkusuunta ehtinyt vaihtua edellisen päiviyksen jälkeen
+
+    if ((previousSpeed_ > 0 && speed_ < 0) || (previousSpeed_ < 0 && speed_ > 0)){
+        movementSinceLastSpawn = 0;
+    }
+
     movementSinceLastSpawn += speed_;
-    std::cout << movementSinceLastSpawn << std::endl;
+    previousSpeed_ = speed_;
+
 
 
     //luodaan uusi pätkä, jos on liikuttu tarpeeksi
@@ -71,13 +107,22 @@ void Game::move()
         scene_->addItem(railTile.get());
         railTiles.push_back(railTile);
         movementSinceLastSpawn -= 30;
-
+    }
+    else if (movementSinceLastSpawn <= -30){
+        std::shared_ptr<RailGraphicsItem> railTile = std::make_shared<RailGraphicsItem>(0,240);
+        scene_->addItem(railTile.get());
+        railTiles.push_back(railTile);
+        movementSinceLastSpawn += 30;
     }
 
 
     //poistetaan näkyvistä hävinneet raiteenpätkät
     for (auto i = railTiles.begin(); i != railTiles.end();){
-        if ((*i).get()->y() > 240){
+        if ((*i).get()->y() > 241){
+            scene_->removeItem((*i).get());
+            i = railTiles.erase(i);
+        }
+        else if ((*i).get()->y() < -276){
             scene_->removeItem((*i).get());
             i = railTiles.erase(i);
         }
@@ -104,6 +149,7 @@ void Game::move()
 
 
     }
+
 
 
 }

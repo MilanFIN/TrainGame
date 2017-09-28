@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="valikkoPage">
      <widget class="QListView" name="listView_3">
@@ -246,6 +246,52 @@ QSlider::handle:horizontal
       </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="suuntaButton">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>390</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton:pressed {
+	background-color: #222222;
+	border: 1px solid #333333;
+}
+QPushButton:hover {
+	background-color: #ccc5c7;
+}
+QPushButton {
+font: 75 12pt &quot;Caladea&quot;;
+border: 1px solid #72595e;
+border-radius: 6px;
+background-color: #605053;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, 
+            stop: 0 #bdbabb, stop: 1 #605053);
+}</string>
+      </property>
+      <property name="text">
+       <string>Suunta</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="suuntaLabel">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>430</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Eteen</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -492,7 +538,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <x>0</x>
      <y>0</y>
      <width>1154</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

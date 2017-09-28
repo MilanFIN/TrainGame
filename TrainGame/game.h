@@ -19,6 +19,7 @@ class Game : public QObject
 public:
     explicit Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent = nullptr);
     void setSpeed(int newSpeed);
+    void changeDirection();
     void removeBlockage();
 
 signals:
@@ -27,12 +28,16 @@ public slots:
     void move();
     void spawnObstacle();
 private:
-    int speed_;
+    float speed_;
+    float goalSpeed_;
+    bool forward_ = true;
+    float previousSpeed_;
     std::shared_ptr<QGraphicsScene> scene_;
     std::vector<std::shared_ptr<RailGraphicsItem>> railTiles;
     std::vector<std::shared_ptr<Obstacle>> obstacles;
     int movementSinceLastSpawn;
     TrainGraphicsItem train;
+    float accel_ = 0.1;
 };
 
 #endif // GAME_H

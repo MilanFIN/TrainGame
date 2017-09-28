@@ -16,6 +16,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(ui->peliButton, &QPushButton::clicked, this, &MainWindow::vaihda_peliin);
     connect(ui->kauppaButton, &QPushButton::clicked, this, &MainWindow::vaihda_kauppaan);
     connect(ui->kaasuSlider, &QSlider::valueChanged, this, &MainWindow::muuta_nopeus);
+    connect(ui->suuntaButton, &QPushButton::clicked, this, &MainWindow::vaihda_suunta);
 
     ui->peliView->setScene(scene_.get());
 
@@ -55,6 +56,17 @@ void MainWindow::vaihda_kauppaan() {
 void MainWindow::muuta_nopeus()
 {
     game_->setSpeed(ui->kaasuSlider->value()/10);
+}
+
+void MainWindow::vaihda_suunta()
+{
+    game_->changeDirection();
+    if (ui->suuntaLabel->text() == "Eteen"){
+        ui->suuntaLabel->setText("Taakse");
+    }
+    else {
+        ui->suuntaLabel->setText("Eteen");
+    }
 }
 
 
