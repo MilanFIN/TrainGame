@@ -290,6 +290,55 @@ public:
         valikkoButton = new QPushButton(centralWidget);
         valikkoButton->setObjectName(QStringLiteral("valikkoButton"));
         valikkoButton->setGeometry(QRect(370, 10, 93, 28));
+        QPalette palette;
+        QBrush brush(QColor(113, 113, 113, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Button, brush);
+        QLinearGradient gradient(0, 0, 0, 0.67);
+        gradient.setSpread(QGradient::PadSpread);
+        gradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+        gradient.setColorAt(0, QColor(34, 199, 13, 255));
+        gradient.setColorAt(1, QColor(17, 106, 6, 255));
+        QBrush brush1(gradient);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush1);
+        QLinearGradient gradient1(0, 0, 0, 0.67);
+        gradient1.setSpread(QGradient::PadSpread);
+        gradient1.setCoordinateMode(QGradient::ObjectBoundingMode);
+        gradient1.setColorAt(0, QColor(34, 199, 13, 255));
+        gradient1.setColorAt(1, QColor(17, 106, 6, 255));
+        QBrush brush2(gradient1);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush2);
+        palette.setBrush(QPalette::Inactive, QPalette::Button, brush);
+        QLinearGradient gradient2(0, 0, 0, 0.67);
+        gradient2.setSpread(QGradient::PadSpread);
+        gradient2.setCoordinateMode(QGradient::ObjectBoundingMode);
+        gradient2.setColorAt(0, QColor(34, 199, 13, 255));
+        gradient2.setColorAt(1, QColor(17, 106, 6, 255));
+        QBrush brush3(gradient2);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush3);
+        QLinearGradient gradient3(0, 0, 0, 0.67);
+        gradient3.setSpread(QGradient::PadSpread);
+        gradient3.setCoordinateMode(QGradient::ObjectBoundingMode);
+        gradient3.setColorAt(0, QColor(34, 199, 13, 255));
+        gradient3.setColorAt(1, QColor(17, 106, 6, 255));
+        QBrush brush4(gradient3);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush4);
+        palette.setBrush(QPalette::Disabled, QPalette::Button, brush);
+        QLinearGradient gradient4(0, 0, 0, 0.67);
+        gradient4.setSpread(QGradient::PadSpread);
+        gradient4.setCoordinateMode(QGradient::ObjectBoundingMode);
+        gradient4.setColorAt(0, QColor(34, 199, 13, 255));
+        gradient4.setColorAt(1, QColor(17, 106, 6, 255));
+        QBrush brush5(gradient4);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush5);
+        QLinearGradient gradient5(0, 0, 0, 0.67);
+        gradient5.setSpread(QGradient::PadSpread);
+        gradient5.setCoordinateMode(QGradient::ObjectBoundingMode);
+        gradient5.setColorAt(0, QColor(34, 199, 13, 255));
+        gradient5.setColorAt(1, QColor(17, 106, 6, 255));
+        QBrush brush6(gradient5);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush6);
+        valikkoButton->setPalette(palette);
         valikkoButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
@@ -331,7 +380,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1154, 21));
+        menuBar->setGeometry(QRect(0, 0, 1154, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -353,8 +402,8 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "TrainGame", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "pelattava p\303\244iv\303\244", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("MainWindow", "junakorjausBtn", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MainWindow", "Vasen", Q_NULLPTR));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Oikea", Q_NULLPTR));
         suuntaButton->setText(QApplication::translate("MainWindow", "Suunta", Q_NULLPTR));
         suuntaLabel->setText(QApplication::translate("MainWindow", "Eteen", Q_NULLPTR));
         ostaButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
@@ -364,7 +413,7 @@ public:
         peliButton->setText(QApplication::translate("MainWindow", "Pelaa", Q_NULLPTR));
         valikkoButton->setText(QApplication::translate("MainWindow", "Valikko", Q_NULLPTR));
         kauppaButton->setText(QApplication::translate("MainWindow", "Kauppa", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindow", "Kupongit/raha", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "Fame/raha:", Q_NULLPTR));
     } // retranslateUi
 
 };
