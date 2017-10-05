@@ -178,7 +178,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
 }</string>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Vasen</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_2">
@@ -208,7 +208,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
 }</string>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Oikea</string>
       </property>
      </widget>
      <widget class="QSlider" name="kaasuSlider">
@@ -538,7 +538,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <x>0</x>
      <y>0</y>
      <width>1154</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
