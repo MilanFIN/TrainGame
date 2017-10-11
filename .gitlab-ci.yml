@@ -24,15 +24,11 @@ buildJob1:
   
 
 unitTest1:
-  only: 
-    - none
   stage: test
   script: ./unitTest1
 
 
 unitTest2:
-  only: 
-    - none
   stage: test
   script: ./unitTest2
 
