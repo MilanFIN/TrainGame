@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/kuvat">
+        <file>rail.png</file>
+        <file>train.png</file>
+        <file>leafs.png</file>
+    </qresource>
+</RCC>

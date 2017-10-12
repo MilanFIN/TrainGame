@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "aloitus.h"
 #include <QGraphicsScene>
 #include "game.h"
 #include "memory"

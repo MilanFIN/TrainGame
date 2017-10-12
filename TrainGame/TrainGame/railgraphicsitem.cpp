@@ -2,7 +2,8 @@
 
 RailGraphicsItem::RailGraphicsItem(int x, int y)
 {
-    setPixmap(QPixmap("./img/rail.png"));
+    QImage kuva(":/kuvat/rail.png");
+    setPixmap(QPixmap::fromImage(kuva));
     setPos(x-15,y);
 }
 
