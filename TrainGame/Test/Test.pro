@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += testlib
-
+QT       += widgets
 TARGET = tst_testgame
 CONFIG   += console
 CONFIG   -= app_bundle
@@ -40,9 +40,6 @@ HEADERS += \
         ../TrainGame/railgraphicsitem.h \
         ../TrainGame/traingraphicsitem.h \
         ../TrainGame/obstacle.h \
-
-FORMS += \
-        ../TrainGame/mainwindow.ui
 
 RESOURCES += \
         ../TrainGame/res.qrc

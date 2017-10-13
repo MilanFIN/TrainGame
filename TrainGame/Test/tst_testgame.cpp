@@ -1,6 +1,6 @@
 #include <QString>
 #include <QtTest>
-
+#include "game.h"
 
 
 class TestGame : public QObject
@@ -30,8 +30,8 @@ void TestGame::cleanupTestCase()
 
 void TestGame::testGame()
 {
-    //Game* game;
-    //QVERIFY(game != NULL);
+    Game* game;
+    QVERIFY(game != NULL);
 }
 
 QTEST_APPLESS_MAIN(TestGame)
