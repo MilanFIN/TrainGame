@@ -10,11 +10,6 @@ Qt Creator
 Qt 5.9
 ```
 
-### Installing
-```
-Set build directory to TrainGame folder
-```
-
 ## Deployment
 ### Built With
 * [Qt Creator](https://www1.qt.io/fi/)
