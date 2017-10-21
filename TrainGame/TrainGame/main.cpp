@@ -22,8 +22,6 @@ int main(int argc, char *argv[])
     MainWindow w(game, scene);
     w.show();
 
-    //Aloitus aloitus;
-    //aloitus.show();
 
 
     return a.exec();
