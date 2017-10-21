@@ -1,10 +1,12 @@
 #include "obstacle.h"
+#include <QString>
 
 
 
 Obstacle::Obstacle(int size, int y)
 {
-    setPixmap(QPixmap("./img/leafs.png"));
+    QImage kuva(":/kuvat/leafs.png");
+    setPixmap(QPixmap::fromImage(kuva));
     setPos(-50, y);
     setZValue(1);
 

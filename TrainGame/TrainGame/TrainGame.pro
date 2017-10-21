@@ -1,4 +1,8 @@
-TEMPLATE = subdirs
+#-------------------------------------------------
+#
+# Project created by QtCreator 2017-09-25T12:37:27
+#
+#-------------------------------------------------
 
 QT       += core gui
 CONFIG += c++11
@@ -18,33 +22,33 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    aloitus.cpp \
     game.cpp \
-    railgraphicsitem.cpp \
-    traingraphicsitem.cpp \
-    obstacle.cpp
+    obstacle.cpp \
+    raillogic.cpp \
+    railtileinterface.cpp \
+    onesiderailtile.cpp \
+    playerlogic.cpp \
+    traininterface.cpp \
+    playertrain.cpp
+
 
 HEADERS += \
         mainwindow.h \
-    aloitus.h \
     game.h \
-    railgraphicsitem.h \
-    traingraphicsitem.h \
-    obstacle.h
+    obstacle.h \
+    raillogic.h \
+    railtileinterface.h \
+    onesiderailtile.h \
+    playerlogic.h \
+    traininterface.h \
+    playertrain.h
+
 
 FORMS += \
-        mainwindow.ui \
-    aloitus.ui
+        mainwindow.ui
 
-DISTFILES += \
-    img/leafs.png \
-    img/rail.png \
-    img/train.png
-
-SUBDIRS += \
-    TrainGame \
-    Test
+RESOURCES += \
+    res.qrc

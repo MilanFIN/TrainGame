@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -38,8 +37,6 @@ public:
     QWidget *valikkoPage;
     QListView *listView_3;
     QTextEdit *textEdit;
-    QDateEdit *dateEdit;
-    QLabel *label_2;
     QPushButton *pushButton_3;
     QWidget *pelaaPage;
     QGraphicsView *peliView;
@@ -84,17 +81,6 @@ public:
         textEdit = new QTextEdit(valikkoPage);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setGeometry(QRect(773, 30, 321, 461));
-        dateEdit = new QDateEdit(valikkoPage);
-        dateEdit->setObjectName(QStringLiteral("dateEdit"));
-        dateEdit->setGeometry(QRect(510, 60, 112, 30));
-        label_2 = new QLabel(valikkoPage);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(510, 30, 111, 20));
-        QFont font;
-        font.setBold(true);
-        font.setWeight(75);
-        label_2->setFont(font);
-        label_2->setAlignment(Qt::AlignCenter);
         pushButton_3 = new QPushButton(valikkoPage);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(360, 470, 111, 28));
@@ -291,53 +277,69 @@ public:
         valikkoButton->setObjectName(QStringLiteral("valikkoButton"));
         valikkoButton->setGeometry(QRect(370, 10, 93, 28));
         QPalette palette;
-        QBrush brush(QColor(113, 113, 113, 255));
-        brush.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Active, QPalette::Button, brush);
         QLinearGradient gradient(0, 0, 0, 0.67);
         gradient.setSpread(QGradient::PadSpread);
         gradient.setCoordinateMode(QGradient::ObjectBoundingMode);
         gradient.setColorAt(0, QColor(34, 199, 13, 255));
         gradient.setColorAt(1, QColor(17, 106, 6, 255));
-        QBrush brush1(gradient);
-        palette.setBrush(QPalette::Active, QPalette::Base, brush1);
+        QBrush brush(gradient);
+        palette.setBrush(QPalette::Active, QPalette::Button, brush);
         QLinearGradient gradient1(0, 0, 0, 0.67);
         gradient1.setSpread(QGradient::PadSpread);
         gradient1.setCoordinateMode(QGradient::ObjectBoundingMode);
         gradient1.setColorAt(0, QColor(34, 199, 13, 255));
         gradient1.setColorAt(1, QColor(17, 106, 6, 255));
-        QBrush brush2(gradient1);
-        palette.setBrush(QPalette::Active, QPalette::Window, brush2);
-        palette.setBrush(QPalette::Inactive, QPalette::Button, brush);
+        QBrush brush1(gradient1);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush1);
         QLinearGradient gradient2(0, 0, 0, 0.67);
         gradient2.setSpread(QGradient::PadSpread);
         gradient2.setCoordinateMode(QGradient::ObjectBoundingMode);
         gradient2.setColorAt(0, QColor(34, 199, 13, 255));
         gradient2.setColorAt(1, QColor(17, 106, 6, 255));
-        QBrush brush3(gradient2);
-        palette.setBrush(QPalette::Inactive, QPalette::Base, brush3);
+        QBrush brush2(gradient2);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush2);
         QLinearGradient gradient3(0, 0, 0, 0.67);
         gradient3.setSpread(QGradient::PadSpread);
         gradient3.setCoordinateMode(QGradient::ObjectBoundingMode);
         gradient3.setColorAt(0, QColor(34, 199, 13, 255));
         gradient3.setColorAt(1, QColor(17, 106, 6, 255));
-        QBrush brush4(gradient3);
-        palette.setBrush(QPalette::Inactive, QPalette::Window, brush4);
-        palette.setBrush(QPalette::Disabled, QPalette::Button, brush);
+        QBrush brush3(gradient3);
+        palette.setBrush(QPalette::Inactive, QPalette::Button, brush3);
         QLinearGradient gradient4(0, 0, 0, 0.67);
         gradient4.setSpread(QGradient::PadSpread);
         gradient4.setCoordinateMode(QGradient::ObjectBoundingMode);
         gradient4.setColorAt(0, QColor(34, 199, 13, 255));
         gradient4.setColorAt(1, QColor(17, 106, 6, 255));
-        QBrush brush5(gradient4);
-        palette.setBrush(QPalette::Disabled, QPalette::Base, brush5);
+        QBrush brush4(gradient4);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush4);
         QLinearGradient gradient5(0, 0, 0, 0.67);
         gradient5.setSpread(QGradient::PadSpread);
         gradient5.setCoordinateMode(QGradient::ObjectBoundingMode);
         gradient5.setColorAt(0, QColor(34, 199, 13, 255));
         gradient5.setColorAt(1, QColor(17, 106, 6, 255));
-        QBrush brush6(gradient5);
-        palette.setBrush(QPalette::Disabled, QPalette::Window, brush6);
+        QBrush brush5(gradient5);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush5);
+        QLinearGradient gradient6(0, 0, 0, 0.67);
+        gradient6.setSpread(QGradient::PadSpread);
+        gradient6.setCoordinateMode(QGradient::ObjectBoundingMode);
+        gradient6.setColorAt(0, QColor(34, 199, 13, 255));
+        gradient6.setColorAt(1, QColor(17, 106, 6, 255));
+        QBrush brush6(gradient6);
+        palette.setBrush(QPalette::Disabled, QPalette::Button, brush6);
+        QLinearGradient gradient7(0, 0, 0, 0.67);
+        gradient7.setSpread(QGradient::PadSpread);
+        gradient7.setCoordinateMode(QGradient::ObjectBoundingMode);
+        gradient7.setColorAt(0, QColor(34, 199, 13, 255));
+        gradient7.setColorAt(1, QColor(17, 106, 6, 255));
+        QBrush brush7(gradient7);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush7);
+        QLinearGradient gradient8(0, 0, 0, 0.67);
+        gradient8.setSpread(QGradient::PadSpread);
+        gradient8.setCoordinateMode(QGradient::ObjectBoundingMode);
+        gradient8.setColorAt(0, QColor(34, 199, 13, 255));
+        gradient8.setColorAt(1, QColor(17, 106, 6, 255));
+        QBrush brush8(gradient8);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush8);
         valikkoButton->setPalette(palette);
         valikkoButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
@@ -375,6 +377,9 @@ public:
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 10, 101, 20));
+        QFont font;
+        font.setBold(true);
+        font.setWeight(75);
         label->setFont(font);
         label->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralWidget);
@@ -391,7 +396,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -400,8 +405,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "TrainGame", Q_NULLPTR));
-        label_2->setText(QApplication::translate("MainWindow", "pelattava p\303\244iv\303\244", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("MainWindow", "junakorjausBtn", Q_NULLPTR));
+        pushButton_3->setText(QApplication::translate("MainWindow", "Korjaa", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Vasen", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("MainWindow", "Oikea", Q_NULLPTR));
         suuntaButton->setText(QApplication::translate("MainWindow", "Suunta", Q_NULLPTR));

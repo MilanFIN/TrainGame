@@ -6,13 +6,14 @@
 #include <memory>
 #include <vector>
 #include <QTimer>
-#include "railgraphicsitem.h"
 #include "traingraphicsitem.h"
 #include "obstacle.h"
+#include "raillogic.h"
+#include "playerlogic.h"
 
 
 
-//sisältää pelilogiikan
+//sisältää kontrollerin
 class Game : public QObject
 {
     Q_OBJECT
@@ -28,15 +29,17 @@ public slots:
     void move();
     void spawnObstacle();
 private:
+
+    RailLogic* railLogic_;
+    PlayerLogic* playerLogic_;
+
     float speed_;
     float goalSpeed_;
     bool forward_ = true;
     float previousSpeed_;
     std::shared_ptr<QGraphicsScene> scene_;
-    std::vector<std::shared_ptr<RailGraphicsItem>> railTiles;
     std::vector<std::shared_ptr<Obstacle>> obstacles;
     int movementSinceLastSpawn;
-    TrainGraphicsItem train;
     float accel_ = 0.1;
 };
 

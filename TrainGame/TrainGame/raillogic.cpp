@@ -1,25 +1,12 @@
-#include "game.h"
-#include <iostream>
+#include "raillogic.h"
 
-
-Game::Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent) : QObject(parent),
-  scene_(scene)
+RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
+    scene_(scene)
 {
-
-    QTimer *moveTimer = new QTimer(this);
-    connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
-    moveTimer->start(66);
-
-    QTimer *obstacleSpawner = new QTimer(this);
-    connect(obstacleSpawner, SIGNAL(timeout()), this, SLOT(spawnObstacle()));
-    obstacleSpawner->start(5000);
-
-
-
-    railTiles.push_back(std::make_shared<RailGraphicsItem>(0,-275));
+    railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275)); //-275
     scene_->addItem(railTiles.at(0).get());
 
-    scene_->addItem(&train);
+
 
     goalSpeed_ = 0;
     previousSpeed_ = 0;
@@ -27,42 +14,8 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent) : QObject(par
 
 }
 
-void Game::setSpeed(int newSpeed)
+void RailLogic::move()
 {
-    if (forward_){
-        goalSpeed_ = newSpeed;
-    }
-    else{
-        goalSpeed_ = -newSpeed;
-    }
-
-}
-
-void Game::changeDirection()
-{
-    forward_ = !forward_;
-    goalSpeed_ = -goalSpeed_;
-}
-
-void Game::removeBlockage()
-{
-
-    //poistetaan kaikki esteet, jotka ovat tarpeeksi lähellä pelaajaa
-    for (auto i = obstacles.begin(); i != obstacles.end();){
-        if ((*i).get()->y() > -250 && (*i).get()->y() < 0){
-            scene_->removeItem((*i).get());
-            i = obstacles.erase(i);
-        }
-        else {
-            ++i;
-        }
-    }
-
-}
-
-void Game::move()
-{
-
     if (forward_){
         if (speed_ > goalSpeed_){
             speed_ -= accel_;
@@ -84,10 +37,13 @@ void Game::move()
         (*i).get()->move((int)speed_);
     }
 
+
+    /*
     //siirretään esteitä
     for (auto i = obstacles.begin(); i != obstacles.end(); ++i){
         (*i).get()->move((int)speed_);
     }
+    */
 
 
     //tarkistetaan, onko kulkusuunta ehtinyt vaihtua edellisen päiviyksen jälkeen
@@ -101,19 +57,22 @@ void Game::move()
 
 
 
+
     //luodaan uusi pätkä, jos on liikuttu tarpeeksi
     if (movementSinceLastSpawn >= 30){
-        std::shared_ptr<RailGraphicsItem> railTile = std::make_shared<RailGraphicsItem>(0,-275);
+        std::shared_ptr<OneSideRailTile> railTile = std::make_shared<OneSideRailTile>(0,-275);
         scene_->addItem(railTile.get());
         railTiles.push_back(railTile);
         movementSinceLastSpawn -= 30;
     }
+
     else if (movementSinceLastSpawn <= -30){
-        std::shared_ptr<RailGraphicsItem> railTile = std::make_shared<RailGraphicsItem>(0,240);
+        std::shared_ptr<OneSideRailTile> railTile = std::make_shared<OneSideRailTile>(0,240);
         scene_->addItem(railTile.get());
         railTiles.push_back(railTile);
         movementSinceLastSpawn += 30;
     }
+
 
 
     //poistetaan näkyvistä hävinneet raiteenpätkät
@@ -131,6 +90,8 @@ void Game::move()
         }
     }
 
+
+    /*
     //pelaajan junan ja esteen törmäys
     for (auto i = obstacles.begin(); i != obstacles.end();){
         if (train.collidesWithItem((*i).get())){
@@ -149,15 +110,23 @@ void Game::move()
 
 
     }
-
-
+    */
 
 }
 
-void Game::spawnObstacle()
+void RailLogic::setSpeed(int newSpeed)
 {
-    //koko ja etäisyys asetetaan myöhemmin satunnaisesti
-    std::shared_ptr<Obstacle> obstacle = std::make_shared<Obstacle>(1, train.y()-1000);
-    scene_->addItem(obstacle.get());
-    obstacles.push_back(obstacle);
+    if (forward_){
+        goalSpeed_ = newSpeed;
+    }
+    else{
+        goalSpeed_ = -newSpeed;
+    }
 }
+
+void RailLogic::changeDirection()
+{
+    forward_ = !forward_;
+    goalSpeed_ = -goalSpeed_;
+}
+
