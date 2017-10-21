@@ -43,3 +43,8 @@ HEADERS += \
 FORMS += \
         mainwindow.ui \
     aloitus.ui
+
+DISTFILES += \
+    img/leafs.png \
+    img/rail.png \
+    img/train.png
