@@ -1,12 +1,17 @@
 #include "raillogic.h"
+#include "datareader.h"
+#include <iostream>
 
 RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
 {
     railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275)); //-275
     scene_->addItem(railTiles.at(0).get());
+    std::shared_ptr<RailLogic> logic = std::make_shared<RailLogic>(*this);
 
 
+    dataReader::READER.loadTracksFromFile(QString(":/data/ratadata.json"), logic);
+    dataReader::READER.loadStationsFromFile(QString(":/data/asemadata.json"),  logic);
 
     goalSpeed_ = 0;
     previousSpeed_ = 0;
@@ -100,5 +105,24 @@ void RailLogic::changeDirection()
 {
     forward_ = !forward_;
     goalSpeed_ = -goalSpeed_;
+}
+
+void RailLogic::addTrack(QString trackCode, QList<QString> stations)
+{
+    tracks_.insert(trackCode, stations);
+
+}
+
+void RailLogic::addStations(QString shortCode, QString fullName, QString type,
+                            double lat, double lng, bool passengerStation)
+{
+    StationInfo stationInfo = {};
+    stationInfo.fullName = fullName;
+    stationInfo.type = type;
+    stationInfo.lat = lat;
+    stationInfo.lng = lng;
+    stationInfo.passengerTrafic = passengerStation;
+
+    stations_.insert(shortCode, stationInfo);
 }
 

@@ -3,6 +3,7 @@
 #include <QString>
 #include <QJsonObject>
 #include <memory>
+#include "raillogic.h"
 
 class dataReader
 {
@@ -18,7 +19,8 @@ public:
      * @brief loadTracksFromFile lukee junaverkkodatan tiedostosta
      * @param filepath polku ratadata tiedostoon.
      */
-    void loadTracksFromFile(const QString &filepath);
+    void loadTracksFromFile(const QString &filepath, std::shared_ptr<RailLogic> &logic);
+    void loadStationsFromFile(const QString &filepath, std::shared_ptr<RailLogic> &logic);
 
 
 

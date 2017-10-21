@@ -9,6 +9,7 @@
 #include "onesiderailtile.h"
 
 
+
 class RailLogic
 {
 
@@ -18,6 +19,9 @@ public:
     void setSpeed(int newSpeed);
     void changeDirection();
 
+    void addTrack(QString trackCode, QList<QString> stations);
+    void addStations(QString shortCode, QString fullName, QString type,
+                     double lat, double lng, bool passengerStation);
 
 private:
     //movement related
@@ -32,6 +36,23 @@ private:
     //other
     std::shared_ptr<QGraphicsScene> scene_;
     std::vector<std::shared_ptr<RailTileInterface>> railTiles;
+
+
+    // station info
+    struct StationInfo {
+        QString fullName;
+        QString type;
+        double lat;
+        double lng;
+        bool passengerTrafic = false;
+    };
+
+
+    // key : shortcode , value: particular station
+    QHash<QString, StationInfo> stations_;
+
+    // key: trackcode , value: Qlist of tracks(shortcodes) under current trackcode
+    QMap<QString, QList<QString>> tracks_;
 
 };
 

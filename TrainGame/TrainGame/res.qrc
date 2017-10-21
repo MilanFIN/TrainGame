@@ -4,4 +4,8 @@
         <file>train.png</file>
         <file>leafs.png</file>
     </qresource>
+    <qresource prefix="/data">
+        <file>asemadata.json</file>
+        <file>ratadata.json</file>
+    </qresource>
 </RCC>
