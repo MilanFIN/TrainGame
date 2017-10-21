@@ -21,7 +21,7 @@ public:
 
 private:
     //movement related
-    float speed_;
+    float speed_ = 0;
     float goalSpeed_;
     bool forward_ = true;
     float previousSpeed_;

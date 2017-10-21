@@ -26,25 +26,29 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     game.cpp \
-    obstacle.cpp \
     raillogic.cpp \
     railtileinterface.cpp \
     onesiderailtile.cpp \
     playerlogic.cpp \
     traininterface.cpp \
-    playertrain.cpp
+    playertrain.cpp \
+    obstaclelogic.cpp \
+    obstacleinterface.cpp \
+    boulder.cpp
 
 
 HEADERS += \
         mainwindow.h \
     game.h \
-    obstacle.h \
     raillogic.h \
     railtileinterface.h \
     onesiderailtile.h \
     playerlogic.h \
     traininterface.h \
-    playertrain.h
+    playertrain.h \
+    obstaclelogic.h \
+    obstacleinterface.h \
+    boulder.h
 
 
 FORMS += \

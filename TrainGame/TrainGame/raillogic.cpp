@@ -38,13 +38,6 @@ void RailLogic::move()
     }
 
 
-    /*
-    //siirretään esteitä
-    for (auto i = obstacles.begin(); i != obstacles.end(); ++i){
-        (*i).get()->move((int)speed_);
-    }
-    */
-
 
     //tarkistetaan, onko kulkusuunta ehtinyt vaihtua edellisen päiviyksen jälkeen
 
@@ -90,27 +83,6 @@ void RailLogic::move()
         }
     }
 
-
-    /*
-    //pelaajan junan ja esteen törmäys
-    for (auto i = obstacles.begin(); i != obstacles.end();){
-        if (train.collidesWithItem((*i).get())){
-            scene_->removeItem((*i).get());
-            i = obstacles.erase(i);
-
-            //damage triggeri tulee tänne
-        }
-        else if ((*i).get()->y() > 10000 || (*i).get()->y() < -10000){
-            scene_->removeItem((*i).get());
-            i = obstacles.erase(i);
-        }
-        else {
-            ++i;
-        }
-
-
-    }
-    */
 
 }
 
