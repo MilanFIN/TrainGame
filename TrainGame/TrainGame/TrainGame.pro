@@ -34,7 +34,8 @@ SOURCES += \
     playertrain.cpp \
     obstaclelogic.cpp \
     obstacleinterface.cpp \
-    boulder.cpp
+    boulder.cpp \
+    datareader.cpp
 
 
 HEADERS += \
@@ -48,7 +49,8 @@ HEADERS += \
     playertrain.h \
     obstaclelogic.h \
     obstacleinterface.h \
-    boulder.h
+    boulder.h \
+    datareader.h
 
 
 FORMS += \
