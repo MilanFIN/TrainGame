@@ -1,6 +1,6 @@
-#include "traingraphicsitem.h"
+#include "playertrain.h"
 
-TrainGraphicsItem::TrainGraphicsItem()
+PlayerTrain::PlayerTrain()
 {
     QImage kuva(":/kuvat/train.png");
     setPixmap(QPixmap::fromImage(kuva));
@@ -8,3 +8,4 @@ TrainGraphicsItem::TrainGraphicsItem()
     //asetetaan raiteiden päälle
     setZValue(2);
 }
+

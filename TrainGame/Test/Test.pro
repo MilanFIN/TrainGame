@@ -28,18 +28,29 @@ SOURCES += \
         tst_testgame.cpp \
         ../TrainGame/mainwindow.cpp \
         ../TrainGame/game.cpp \
-        ../TrainGame/railgraphicsitem.cpp \
-        ../TrainGame/traingraphicsitem.cpp \
         ../TrainGame/obstacle.cpp \
+        ../TrainGame/raillogic.cpp \
+        ../TrainGame/railtileinterface.cpp \
+        ../TrainGame/onesiderailtile.cpp \
+        ../TrainGame/playerlogic.cpp \
+        ../TrainGame/traininterface.cpp \
+        ../TrainGame/playertrain.cpp \
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 HEADERS += \
         ../TrainGame/mainwindow.h \
         ../TrainGame/game.h \
-        ../TrainGame/railgraphicsitem.h \
-        ../TrainGame/traingraphicsitem.h \
         ../TrainGame/obstacle.h \
+        ../TrainGame/raillogic.h \
+        ../TrainGame/railtileinterface.h \
+        ../TrainGame/onesiderailtile.h \
+        ../TrainGame/playerlogic.h \
+        ../TrainGame/traininterface.h \
+        ../TrainGame/playertrain.h \
+
+
+
 
 RESOURCES += \
         ../TrainGame/res.qrc

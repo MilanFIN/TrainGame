@@ -26,17 +26,25 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     game.cpp \
-    railgraphicsitem.cpp \
-    traingraphicsitem.cpp \
     obstacle.cpp \
+    raillogic.cpp \
+    railtileinterface.cpp \
+    onesiderailtile.cpp \
+    playerlogic.cpp \
+    traininterface.cpp \
+    playertrain.cpp
 
 
 HEADERS += \
         mainwindow.h \
     game.h \
-    railgraphicsitem.h \
-    traingraphicsitem.h \
     obstacle.h \
+    raillogic.h \
+    railtileinterface.h \
+    onesiderailtile.h \
+    playerlogic.h \
+    traininterface.h \
+    playertrain.h
 
 
 FORMS += \
