@@ -1,16 +1,17 @@
 # TrainGame
 A coursework of TIE-20200
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 ### Prerequisites
 ```
 Qt Creator
 Qt 5.9
+MinGW
 ```
 
 ## Deployment
 ### Built With
-* [Qt Creator](https://www1.qt.io/fi/)
+* [C++](http://www.cplusplus.com/)
 * [Qt](https://www1.qt.io/fi/)
+* [JSON](http://www.json.org/)
+* [GitLab CI](https://about.gitlab.com/features/gitlab-ci-cd/)
+
