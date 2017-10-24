@@ -67,7 +67,7 @@ void dataReader::loadStationsFromFile(const QString &filepath, std::shared_ptr<R
         throw std::runtime_error("Failed to parse json" + error.errorString().toStdString());
     }
     if (!doc.isArray()) {
-        throw std::runtime_error("Cards json file to contain a json object");
+        throw std::runtime_error("Document does not contain array of stations");
     }
 
 
