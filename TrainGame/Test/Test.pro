@@ -37,6 +37,7 @@ SOURCES += \
         ../TrainGame/obstaclelogic.cpp \
         ../TrainGame/obstacleinterface.cpp \
         ../TrainGame/boulder.cpp \
+        ../TrainGame/datareader.cpp \
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
@@ -52,7 +53,7 @@ HEADERS += \
         ../TrainGame/obstaclelogic.h \
         ../TrainGame/obstacleinterface.h \
         ../TrainGame/boulder.h \
-
+        ../TrainGame/datareader.h \
 
 RESOURCES += \
         ../TrainGame/res.qrc
