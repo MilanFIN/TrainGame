@@ -5,7 +5,7 @@ CONFIG += c++11
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = TrainGame
-TEMPLATE = app
+#TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -18,32 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
-SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    aloitus.cpp \
-    game.cpp \
-    railgraphicsitem.cpp \
-    traingraphicsitem.cpp \
-    obstacle.cpp
-
-HEADERS += \
-        mainwindow.h \
-    aloitus.h \
-    game.h \
-    railgraphicsitem.h \
-    traingraphicsitem.h \
-    obstacle.h
-
-FORMS += \
-        mainwindow.ui \
-    aloitus.ui
-
-DISTFILES += \
-    img/leafs.png \
-    img/rail.png \
-    img/train.png
 
 SUBDIRS += \
     TrainGame \
