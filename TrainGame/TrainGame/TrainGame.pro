@@ -35,7 +35,8 @@ SOURCES += \
     obstaclelogic.cpp \
     obstacleinterface.cpp \
     boulder.cpp \
-    datareader.cpp
+    datareader.cpp \
+    shop.cpp
 
 
 HEADERS += \
@@ -50,7 +51,8 @@ HEADERS += \
     obstaclelogic.h \
     obstacleinterface.h \
     boulder.h \
-    datareader.h
+    datareader.h \
+    shop.h
 
 
 FORMS += \

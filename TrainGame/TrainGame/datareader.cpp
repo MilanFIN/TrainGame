@@ -50,6 +50,7 @@ void dataReader::loadTracksFromFile(const QString &filepath, std::shared_ptr<Rai
 
 
     }
+    file.close();
 }
 
 void dataReader::loadStationsFromFile(const QString &filepath, std::shared_ptr<RailLogic> &logic)
@@ -89,6 +90,31 @@ void dataReader::loadStationsFromFile(const QString &filepath, std::shared_ptr<R
         logic->addStations(shortCode, name, type, lat, lng, passengerTrafic);
 
     }
+    f.close();
+}
+
+void dataReader::loadTrains(const QString &filepath)
+{
+    QFile f(filepath);
+
+    if (!f.open(QFile::ReadOnly)) {
+        throw std::runtime_error("Can't open file" + filepath.toStdString());
+    }
+
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(f.readAll(), &error);
+
+    if (doc.isNull()) {
+        throw std::runtime_error("Failed to parse json" + error.errorString().toStdString());
+    }
+    if (!doc.isArray()) {
+        throw std::runtime_error("Document does not contain array of trains");
+    }
+
+    QJsonArray arr = doc.array();
+
+
+
 }
 
 dataReader::dataReader(){}

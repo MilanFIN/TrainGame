@@ -1,4 +1,5 @@
 #include "playerlogic.h"
+#include "shop.h"
 
 PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
@@ -7,6 +8,9 @@ PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
 
     activeTrain_ = playableTrains_.at(0);
     scene_->addItem(activeTrain_.get());
+
+    shop_ = std::make_shared<Shop>();
+
 }
 
 int PlayerLogic::location()
