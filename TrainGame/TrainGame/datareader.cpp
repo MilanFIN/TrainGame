@@ -9,7 +9,7 @@
 
 dataReader dataReader::READER;
 
-void dataReader::loadTracksFromFile(const QString &filepath, std::shared_ptr<RailLogic>& logic)
+void dataReader::loadTracksFromFile(const QString &filepath, RailLogic &locig)
 {
     QFile file(filepath);
     if (!file.open(QFile::ReadOnly)) {
@@ -44,16 +44,13 @@ void dataReader::loadTracksFromFile(const QString &filepath, std::shared_ptr<Rai
             QString stationName = stationObj["name"].toString();
             stationList.push_back(stationName);
         }
-
-
-    logic->addTrack(trackCode, stationList);
-
+    locig.addTrack(trackCode, stationList);
 
     }
     file.close();
 }
 
-void dataReader::loadStationsFromFile(const QString &filepath, std::shared_ptr<RailLogic> &logic)
+void dataReader::loadStationsFromFile(const QString &filepath, RailLogic& logic)
 {
     QFile f(filepath);
 
@@ -87,7 +84,7 @@ void dataReader::loadStationsFromFile(const QString &filepath, std::shared_ptr<R
         double lng = obj["longitude"].toDouble();
 
 
-        logic->addStations(shortCode, name, type, lat, lng, passengerTrafic);
+        logic.addStations(shortCode, name, type, lat, lng, passengerTrafic);
 
     }
     f.close();

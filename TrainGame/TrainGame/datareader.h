@@ -19,8 +19,8 @@ public:
      * @brief loadTracksFromFile lukee junaverkkodatan tiedostosta
      * @param filepath polku ratadata tiedostoon.
      */
-    void loadTracksFromFile(const QString &filepath, std::shared_ptr<RailLogic> &logic);
-    void loadStationsFromFile(const QString &filepath, std::shared_ptr<RailLogic> &logic);
+    void loadTracksFromFile(const QString &filepath, RailLogic &logic);
+    void loadStationsFromFile(const QString &filepath, RailLogic &logic);
     void loadTrains(const QString &filepath);
 
 

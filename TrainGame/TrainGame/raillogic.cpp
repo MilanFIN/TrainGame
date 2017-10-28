@@ -7,11 +7,11 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
 {
     railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275)); //-275
     scene_->addItem(railTiles.at(0).get());
-    std::shared_ptr<RailLogic> logic = std::make_shared<RailLogic>(*this);
 
 
-    dataReader::READER.loadTracksFromFile(QString(":/data/ratadata.json"), logic);
-    dataReader::READER.loadStationsFromFile(QString(":/data/asemadata.json"),  logic);
+
+    dataReader::READER.loadTracksFromFile(QString(":/data/ratadata.json"), *this);
+    dataReader::READER.loadStationsFromFile(QString(":/data/asemadata.json"), *this);
 
     goalSpeed_ = 0;
     previousSpeed_ = 0;
