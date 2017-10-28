@@ -90,7 +90,7 @@ int ObstacleLogic::checkCollision(std::shared_ptr<TrainInterface> train)
     int damageDone = 0;
     //check collision between all obstacles and the train
     for (auto i = obstacles.begin(); i != obstacles.end();){
-        if (false){ //train.get()->collidesWithItem((*i).get()) //doesn work yet
+        if (train.get()->collidesWithItem((*i).get())) {//doesn work yet
             scene_->removeItem((*i).get());
             i = obstacles.erase(i);
 

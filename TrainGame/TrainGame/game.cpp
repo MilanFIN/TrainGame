@@ -16,6 +16,10 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent) : QObject(par
     moveTimer->start(66);
 
 
+    QTimer *CollisionTimer = new QTimer(this);
+    connect(CollisionTimer, SIGNAL(timeout()), this, SLOT(checkCollisions()));
+    CollisionTimer->start(300);
+
     QTimer *obstacleSpawner = new QTimer(this);
     connect(obstacleSpawner, SIGNAL(timeout()), this, SLOT(spawn()));
     obstacleSpawner->start(5000);
@@ -33,7 +37,6 @@ void Game::setSpeed(int newSpeed)
     railLogic_->setSpeed(newSpeed);
     obstacleLogic_->setSpeed(newSpeed);
 
-    int recievedDamage = obstacleLogic_->checkCollision(playerLogic_->activeTrain());
 }
 
 void Game::changeDirection()
@@ -51,10 +54,20 @@ void Game::move()
 {
     railLogic_->move();
     obstacleLogic_->move();
+
+
 }
 
 void Game::spawn()
 {
     obstacleLogic_->spawnObstacle();
+}
+
+void Game::checkCollisions()
+{
+    //check if obstacles hit the player
+    int recievedDamage = obstacleLogic_->checkCollision(playerLogic_->activeTrain());
+    //check if player has arrived to a station
+    railLogic_->checkCollisionWithStations(playerLogic_->activeTrain());
 }
 

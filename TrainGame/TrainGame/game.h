@@ -27,6 +27,7 @@ signals:
 public slots:
     void move();
     void spawn();
+    void checkCollisions();
 private:
 
     RailLogic* railLogic_;

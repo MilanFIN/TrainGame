@@ -5,7 +5,7 @@
 RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
 {
-    railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275)); //-275
+    railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275));
     scene_->addItem(railTiles.at(0).get());
 
 
@@ -24,14 +24,61 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     destinationStationCode_ = "PSL";
 
 
-    //figure out where to go from pasila
-    destinationCandidates_.clear();
-    auto asd = tracks_;
-    std::cout << "asd" << std::endl;
+    //figure out where can go from pasila
+    destinationStationCandidates_.clear();
+    destinationTrackCandidates_.clear();
+    foreach(QList<QString> i, tracks_){
+        for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
+            if (*j == destinationStationCode_){
+                //found a rail that stops at our destination,
+                //add possible next destination as the next stop on that track
+                destinationTrackCandidates_.append(tracks_.key(i));
+                destinationStationCandidates_.append(*(j+1));
 
-    //figure out where to go if we went back to helsinki
+
+            }
+        }
+        for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
+            if (*j == destinationStationCode_){
+                //also add the previous stop on that track.
+                destinationTrackCandidates_.append(tracks_.key(i));
+                destinationStationCandidates_.append(*(j-1));
+            }
+        }
+    }
 
 
+    //figure out where we can go if we reversed back to helsinki
+    backtrackStationCandidates_.clear();
+    backtrackTrackCandidates_.clear();
+    foreach(QList<QString> i, tracks_){
+        for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
+            if (*j == startStationCode_){
+                //found a rail that stops at our start station,
+                //add possible next backtrack point as the next stop on that track
+                backtrackTrackCandidates_.append(tracks_.key(i));
+                backtrackStationCandidates_.append(*(j+1));
+
+
+            }
+        }
+        for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
+            if (*j == startStationCode_){
+                //also add the previous stop on that track.
+                backtrackTrackCandidates_.append(tracks_.key(i));
+                backtrackStationCandidates_.append(*(j-1));
+            }
+        }
+    }
+
+
+    //spawn the next station to the game scene
+    nextStation_ = std::make_shared<Station>(-1000);
+    scene->addItem(nextStation_.get());
+
+    //spawn the previous station closer by as we just started there
+    previousStation_ = std::make_shared<Station>(300);
+    scene->addItem(previousStation_.get());
 }
 
 void RailLogic::move()
@@ -104,6 +151,10 @@ void RailLogic::move()
     }
 
 
+    //siirretään seuraavaa asemaa
+    nextStation_->move((int)speed_);
+    previousStation_->move((int)speed_);
+
 }
 
 void RailLogic::setSpeed(int newSpeed)
@@ -139,5 +190,96 @@ void RailLogic::addStations(QString shortCode, QString fullName, QString type,
     stationInfo.passengerTrafic = passengerStation;
 
     stations_.insert(shortCode, stationInfo);
+}
+
+void RailLogic::checkCollisionWithStations(std::shared_ptr<TrainInterface> train)
+{
+    if (train.get()->collidesWithItem(nextStation_.get())){
+        startStationCode_ = destinationStationCode_;
+        //destination options are now the ones for backtracking
+        backtrackStationCandidates_ = destinationStationCandidates_;
+        backtrackTrackCandidates_ = destinationTrackCandidates_;
+
+
+        destinationStationCode_ = destinationStationCandidates_.at(0);//placeholder, go toward the first destination in the list
+        currentTrackCode_ = destinationTrackCandidates_.at(0);//also placeholder,going to the first rail in the destination list
+
+        std::cout << "passed " << startStationCode_.toStdString() << " on track " << currentTrackCode_.toStdString() << std::endl;
+
+        //figure out possible directions after reaching destination
+        destinationStationCandidates_.clear();
+        destinationTrackCandidates_.clear();
+        foreach(QList<QString> i, tracks_){
+            for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
+                if (*j == destinationStationCode_){
+                    //found a rail that stops at our destination,
+                    //add possible next destination as the next stop on that track
+                    destinationTrackCandidates_.append(tracks_.key(i));
+                    destinationStationCandidates_.append(*(j+1));
+
+
+                }
+            }
+            for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
+                if (*j == destinationStationCode_){
+                    //also add the previous stop on that track.
+                    destinationTrackCandidates_.append(tracks_.key(i));
+                    destinationStationCandidates_.append(*(j-1));
+                }
+            }
+        }
+
+        //delete the station we passed from the scene
+        scene_->removeItem(nextStation_.get());
+        //add the next station to the scene
+        nextStation_ = std::make_shared<Station>(-1000);
+        scene_->addItem(nextStation_.get());
+
+
+
+
+    }
+
+    if (train.get()->collidesWithItem(previousStation_.get())){
+
+        destinationStationCode_ = backtrackStationCandidates_.at(0);//placeholder, go toward the first destination in the list
+        currentTrackCode_ = backtrackTrackCandidates_.at(0);//also placeholder,going to the first rail in the destination list
+
+        std::cout << "passed " << startStationCode_.toStdString() << " on track " << currentTrackCode_.toStdString() << std::endl;
+
+        //figure out possible directions after reaching destination
+        destinationStationCandidates_.clear();
+        destinationTrackCandidates_.clear();
+        foreach(QList<QString> i, tracks_){
+            for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
+                if (*j == destinationStationCode_){
+                    //found a rail that stops at our destination,
+                    //add possible next destination as the next stop on that track
+                    destinationTrackCandidates_.append(tracks_.key(i));
+                    destinationStationCandidates_.append(*(j+1));
+
+
+                }
+            }
+            for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
+                if (*j == destinationStationCode_){
+                    //also add the previous stop on that track.
+                    destinationTrackCandidates_.append(tracks_.key(i));
+                    destinationStationCandidates_.append(*(j-1));
+                }
+            }
+        }
+
+        //delete the station we passed from the scene
+        scene_->removeItem(previousStation_.get());
+        //add the next station to the scene
+        previousStation_ = std::make_shared<Station>(300);
+        scene_->addItem(previousStation_.get());
+
+
+
+
+    }
+
 }
 

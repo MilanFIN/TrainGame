@@ -5,15 +5,20 @@
 #include <QGraphicsScene>
 #include <memory>
 #include <vector>
-#include "railtileinterface.h"
-#include "onesiderailtile.h"
-
 
 
 #include "QList"
 #include "QString"
 #include "QMap"
 #include "QHash"
+
+
+#include "railtileinterface.h"
+#include "onesiderailtile.h"
+#include "station.h"
+#include "traininterface.h"
+
+
 
 
 class RailLogic
@@ -29,6 +34,9 @@ public:
     void addStations(QString shortCode, QString fullName, QString type,
                      double lat, double lng, bool passengerStation);
 
+    void checkCollisionWithStations(std::shared_ptr<TrainInterface> train);
+
+
 private:
     //movement related
     float speed_ = 0;
@@ -43,6 +51,8 @@ private:
     std::shared_ptr<QGraphicsScene> scene_;
     std::vector<std::shared_ptr<RailTileInterface>> railTiles;
 
+    std::shared_ptr<Station> nextStation_;
+    std::shared_ptr<Station> previousStation_;
 
     // station info
     struct StationInfo {
@@ -64,8 +74,10 @@ private:
     QString startStationCode_; //previous station
     QString destinationStationCode_; //next station on the track
     QString currentTrackCode_; //current track
-    QList<QString> destinationCandidates_; //stationcodes for possible destinations after the current one is reached
-    QList<QString> backtrackCandidates; //stationcodes for possible destinations after
+    QList<QString> destinationStationCandidates_; //stationcodes for possible destinations after the current one is reached
+    QList<QString> destinationTrackCandidates_; //trackcodes that correspond to the above destinations
+    QList<QString> backtrackStationCandidates_; //stationcodes for possible destinations after reversing to previous station
+    QList<QString> backtrackTrackCandidates_; //trackcodes for the above
 
 };
 

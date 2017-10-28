@@ -3,6 +3,7 @@
         <file>rail.png</file>
         <file>train.png</file>
         <file>leafs.png</file>
+        <file>station.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>asemadata.json</file>
