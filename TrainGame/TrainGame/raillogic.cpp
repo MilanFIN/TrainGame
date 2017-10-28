@@ -17,6 +17,21 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     previousSpeed_ = 0;
     movementSinceLastSpawn = 0;
 
+
+    //start from helsinki on track 001 towards pasila
+    startStationCode_ = "HKI";
+    currentTrackCode_ = "001";
+    destinationStationCode_ = "PSL";
+
+
+    //figure out where to go from pasila
+    destinationCandidates_.clear();
+    auto asd = tracks_;
+    std::cout << "asd" << std::endl;
+
+    //figure out where to go if we went back to helsinki
+
+
 }
 
 void RailLogic::move()

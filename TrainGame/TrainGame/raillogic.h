@@ -10,6 +10,12 @@
 
 
 
+#include "QList"
+#include "QString"
+#include "QMap"
+#include "QHash"
+
+
 class RailLogic
 {
 
@@ -53,6 +59,13 @@ private:
 
     // key: trackcode , value: Qlist of tracks(shortcodes) under current trackcode
     QMap<QString, QList<QString>> tracks_;
+
+    //variables to store location in the railway system during gameplay
+    QString startStationCode_; //previous station
+    QString destinationStationCode_; //next station on the track
+    QString currentTrackCode_; //current track
+    QList<QString> destinationCandidates_; //stationcodes for possible destinations after the current one is reached
+    QList<QString> backtrackCandidates; //stationcodes for possible destinations after
 
 };
 
