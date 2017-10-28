@@ -21,6 +21,7 @@ public:
      */
     void loadTracksFromFile(const QString &filepath, std::shared_ptr<RailLogic> &logic);
     void loadStationsFromFile(const QString &filepath, std::shared_ptr<RailLogic> &logic);
+    void loadTrains(const QString &filepath);
 
 
 

@@ -7,6 +7,7 @@
 #include <vector>
 #include "playertrain.h"
 #include "traininterface.h"
+#include "shop.h"
 
 class PlayerLogic
 {
@@ -19,10 +20,8 @@ private:
     std::vector<std::shared_ptr<PlayerTrain>> playableTrains_;
     std::shared_ptr<PlayerTrain> activeTrain_;
 
-    // vector to storage traind that player owns.
-    // could be map or something else so trains can be indentified
-    // by id
-    // std::vector<std::shared_ptr<PlayerTrain> ownedTrains_;
+    // player owns the shop and manages it trough this pointer
+    std::shared_ptr<Shop> shop_;
 };
 
 #endif // PLAYERLOGIC_H
