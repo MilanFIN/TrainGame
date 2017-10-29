@@ -105,10 +105,19 @@ void dataReader::loadTrains(const QString &filepath)
         throw std::runtime_error("Failed to parse json" + error.errorString().toStdString());
     }
     if (!doc.isArray()) {
-        throw std::runtime_error("Document does not contain array of trains");
+        throw std::runtime_error("Document does not contain array of trainobjects");
     }
 
     QJsonArray arr = doc.array();
+
+    for (QJsonValue val : arr) {
+        QJsonObject obj = val.toObject();
+
+        // TODO: playertrain luokka pitää olla valmis, jotta
+        // erilisista junista voidaan tehdä kustakin oma objecti
+        // jotka tallennetaan Shop olioon.
+
+    }
 
 
 
