@@ -192,7 +192,7 @@ void RailLogic::addStations(QString shortCode, QString fullName, QString type,
     stations_.insert(shortCode, stationInfo);
 }
 
-void RailLogic::checkCollisionWithStations(std::shared_ptr<TrainInterface> train)
+void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
 {
     if (train.get()->collidesWithItem(nextStation_.get())){
         startStationCode_ = destinationStationCode_;

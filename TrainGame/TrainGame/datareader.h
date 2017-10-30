@@ -4,6 +4,9 @@
 #include <QJsonObject>
 #include <memory>
 #include "raillogic.h"
+#include "shop.h"
+#include "playerlogic.h"
+
 
 class dataReader
 {
@@ -22,7 +25,7 @@ public:
     void loadTracksFromFile(const QString &filepath, RailLogic &logic);
     void loadStationsFromFile(const QString &filepath, RailLogic &logic);
     // Todo: return vectori, jossa junat valmiina.
-    void loadTrains(const QString &filepath);
+    void loadTrains(const QString &filepath, std::shared_ptr<Shop> shop, PlayerLogic &logic);
 
 
 
@@ -32,7 +35,6 @@ private:
 
     dataReader(dataReader const&) = delete;
     dataReader& operator=(dataReader const&) = delete;
-
     static QJsonObject verifyIsObject(const QJsonValue &jsonValue);
 };
 

@@ -17,6 +17,7 @@
 #include "onesiderailtile.h"
 #include "station.h"
 #include "traininterface.h"
+#include "playertrain.h"
 
 
 
@@ -34,7 +35,7 @@ public:
     void addStations(QString shortCode, QString fullName, QString type,
                      double lat, double lng, bool passengerStation);
 
-    void checkCollisionWithStations(std::shared_ptr<TrainInterface> train);
+    void checkCollisionWithStations(std::shared_ptr<PlayerTrain> train);
 
 
 private:

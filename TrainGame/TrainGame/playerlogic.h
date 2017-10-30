@@ -14,7 +14,9 @@ class PlayerLogic
 public:
     PlayerLogic(std::shared_ptr<QGraphicsScene> scene);
     int location();
-    std::shared_ptr<TrainInterface> activeTrain();
+    std::shared_ptr<PlayerTrain> activeTrain();
+
+    void addNewTrain(std::shared_ptr<PlayerTrain> newTrain);
 private:
     std::shared_ptr<QGraphicsScene> scene_;
     std::vector<std::shared_ptr<PlayerTrain>> playableTrains_;

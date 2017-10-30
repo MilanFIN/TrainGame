@@ -6,6 +6,9 @@
 #include <QJsonValue>
 #include <QMap>
 #include <QList>
+#include <iostream>
+#include "shop.h"
+#include "playertrain.h"
 
 dataReader dataReader::READER;
 
@@ -90,7 +93,7 @@ void dataReader::loadStationsFromFile(const QString &filepath, RailLogic& logic)
     f.close();
 }
 
-void dataReader::loadTrains(const QString &filepath)
+void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop, PlayerLogic &logic)
 {
     QFile f(filepath);
 
@@ -113,11 +116,26 @@ void dataReader::loadTrains(const QString &filepath)
     for (QJsonValue val : arr) {
         QJsonObject obj = val.toObject();
 
-        // TODO: playertrain luokka pitää olla valmis, jotta
-        // erilisista junista voidaan tehdä kustakin oma objecti
-        // jotka tallennetaan Shop olioon.
+        QString trainName = obj["name"].toString();
+
+        double speed = obj["speed"].toDouble();
+        unsigned short price = short(obj["price"].toInt());
+        unsigned short repairCost = short(obj["repairCost"].toInt());
+        unsigned short shape = short(obj["shape"].toInt());
+
+        std::shared_ptr<PlayerTrain> train = std::make_shared<PlayerTrain>(trainName, shape, price, speed, repairCost);
+
+        if (trainName == QString("Pomppuresiina")) {
+            logic.addNewTrain(train);
+        } else {
+            shop->addTrain(train);
+        }
 
     }
+
+    // todo poista
+    std::vector<std::shared_ptr<PlayerTrain>> trains = shop->buyableTrains();
+    std::cout <<"Kaupassa on näin monta junaa: "<<trains.size() << std::endl;
 
 
 

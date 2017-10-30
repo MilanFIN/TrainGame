@@ -1,4 +1,5 @@
 #include "obstaclelogic.h"
+#include "playertrain.h"
 #include <iostream>
 
 ObstacleLogic::ObstacleLogic(std::shared_ptr<QGraphicsScene> scene):
@@ -84,7 +85,7 @@ void ObstacleLogic::removeNearbyObjects(int location)
 
 }
 
-int ObstacleLogic::checkCollision(std::shared_ptr<TrainInterface> train)
+int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
 {
 
     int damageDone = 0;

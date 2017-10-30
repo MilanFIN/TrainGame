@@ -8,6 +8,7 @@
 #include "obstacleinterface.h"
 #include "boulder.h"
 #include "traininterface.h"
+#include "playertrain.h"
 
 class ObstacleLogic
 {
@@ -19,7 +20,7 @@ public:
     void changeDirection();
     void spawnObstacle();
     void removeNearbyObjects(int location);
-    int checkCollision(std::shared_ptr<TrainInterface> train); //returns amount of damage
+    int checkCollision(std::shared_ptr<PlayerTrain> train); //returns amount of damage
 private:
 
     //movement related
