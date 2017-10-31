@@ -20,13 +20,16 @@ public:
     ~MainWindow();
     void keyPressEvent( QKeyEvent* pEvent );
 
+    //void updateBuyOrSellText(String operation, int count);
 
 private slots:
     void goToDepot();
     void goToGame();
     void goToShop();
+
     void changeSpeed();
     void changeDirection();
+
     void updateMinimap();
     void updateNextStations();
     void updatePassedStations();
@@ -40,6 +43,8 @@ private slots:
     void sellTrain();
     void fixTrain();
     void setPlayerTrain();
+
+    void on_setTrainButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -51,13 +51,14 @@ bool PlayerTrain::isAbleToPlay() const
 
 unsigned short PlayerTrain::takeDamage(int dmgAmount)
 {
-    if (shape_ * dmgAmount <= 0) {
+    if (shape_ - dmgAmount <= 0) {
         isPlayable_ = false;
         shape_ = 0;
 
     }
 
-    shape_ *= dmgAmount;
+    //because damage is always minus we use shape = shape + dmgAmount
+    shape_ += dmgAmount;
     return shape_;
 }
 

@@ -27,6 +27,32 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     scene_->setSceneRect(-250, -240, 508, 475);
     scene_->setBackgroundBrush(QBrush(QColor(0, 255, 0)));
 
+    ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Pomppuresiina")));
+    ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Lättähattujuna")));
+    ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Höyryveturi")));
+    ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Luotijuna")));
+
+    ui->ownedListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
+    ui->ownedListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
+
+    ui->ownedDetailsListWidget->addItem(new QListWidgetItem(QString("Nopeus: 100, kunto: 100 jne")));
+    ui->buyableDetailsListWidget->addItem(new QListWidgetItem(QString("Nopeus: 100, kunto: 100 jne")));
+
+    ui->nextStationsListWidget->addItem(new QListWidgetItem(QString("TURKU")));
+    ui->nextStationsListWidget->addItem(new QListWidgetItem(QString("JNE")));
+
+    ui->passedStationsListWidget->addItem(new QListWidgetItem(QString("PASILA")));
+    ui->passedStationsListWidget->addItem(new QListWidgetItem(QString("JNE")));
+
+
+
+    QImage kuva(":/kuvat/rautatiet.png");
+    QImage kuvaScaled = kuva.scaled(400,400,Qt::KeepAspectRatio);
+    QGraphicsScene* minimapScene = new QGraphicsScene();
+    ui->minimapView->setScene(minimapScene);
+    QGraphicsPixmapItem* rautatiet = new QGraphicsPixmapItem(QPixmap::fromImage(kuvaScaled));
+    minimapScene->addItem(rautatiet);
+    ui->minimapView->show();
 
 }
 
@@ -134,3 +160,8 @@ void MainWindow::setPlayerTrain()
 
 }
 
+
+void MainWindow::on_setTrainButton_clicked()
+{
+
+}

@@ -17,13 +17,13 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -35,26 +35,30 @@ public:
     QWidget *centralWidget;
     QStackedWidget *stackedWidget;
     QWidget *depotPage;
-    QTextEdit *textEdit;
     QPushButton *fixButton;
+    QListView *ownedToFixListView;
     QWidget *gamePage;
     QGraphicsView *gameView;
     QGraphicsView *minimapView;
     QSlider *gasSlider;
     QPushButton *directionButton;
     QLabel *directionLabel;
-    QListView *nextStations;
-    QListView *passedStations;
     QLabel *comingLabel;
     QLabel *passedLabel;
+    QListWidget *nextStationsListWidget;
+    QListWidget *passedStationsListWidget;
     QWidget *shopPage;
     QPushButton *buyButton;
     QPushButton *sellButton;
     QLabel *playerTrainsLabel;
     QLabel *buyableTrainsLabel;
-    QListView *listView;
-    QListView *listView_2;
     QPushButton *setTrainButton;
+    QListWidget *buyableTrainsListWidget;
+    QListWidget *buyableDetailsListWidget;
+    QListWidget *ownedDetailsListWidget;
+    QListWidget *ownedListWidget;
+    QLabel *valitseJunaLabel;
+    QLabel *label_2;
     QPushButton *gameButton;
     QPushButton *depotButton;
     QPushButton *shopButton;
@@ -75,12 +79,9 @@ public:
         stackedWidget->setGeometry(QRect(20, 60, 1131, 511));
         depotPage = new QWidget();
         depotPage->setObjectName(QStringLiteral("depotPage"));
-        textEdit = new QTextEdit(depotPage);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setGeometry(QRect(510, 40, 321, 461));
         fixButton = new QPushButton(depotPage);
         fixButton->setObjectName(QStringLiteral("fixButton"));
-        fixButton->setGeometry(QRect(350, 230, 111, 28));
+        fixButton->setGeometry(QRect(880, 250, 111, 28));
         fixButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
@@ -96,6 +97,9 @@ public:
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
 "            stop: 0 #22c70d, stop: 1 #116a06);\n"
 "}"));
+        ownedToFixListView = new QListView(depotPage);
+        ownedToFixListView->setObjectName(QStringLiteral("ownedToFixListView"));
+        ownedToFixListView->setGeometry(QRect(40, 30, 781, 471));
         stackedWidget->addWidget(depotPage);
         gamePage = new QWidget();
         gamePage->setObjectName(QStringLiteral("gamePage"));
@@ -107,7 +111,7 @@ public:
         minimapView->setGeometry(QRect(10, 40, 281, 421));
         gasSlider = new QSlider(gamePage);
         gasSlider->setObjectName(QStringLiteral("gasSlider"));
-        gasSlider->setGeometry(QRect(1047, 300, 41, 191));
+        gasSlider->setGeometry(QRect(1070, 300, 41, 191));
         gasSlider->setStyleSheet(QLatin1String("QSlider  \n"
 "{  \n"
 "    background-color: #ddd;   \n"
@@ -136,7 +140,7 @@ public:
         gasSlider->setOrientation(Qt::Vertical);
         directionButton = new QPushButton(gamePage);
         directionButton->setObjectName(QStringLiteral("directionButton"));
-        directionButton->setGeometry(QRect(1032, 220, 81, 31));
+        directionButton->setGeometry(QRect(1050, 230, 71, 31));
         directionButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
@@ -154,26 +158,26 @@ public:
 "}"));
         directionLabel = new QLabel(gamePage);
         directionLabel->setObjectName(QStringLiteral("directionLabel"));
-        directionLabel->setGeometry(QRect(1020, 260, 101, 31));
+        directionLabel->setGeometry(QRect(1060, 270, 61, 21));
         directionLabel->setAlignment(Qt::AlignCenter);
-        nextStations = new QListView(gamePage);
-        nextStations->setObjectName(QStringLiteral("nextStations"));
-        nextStations->setGeometry(QRect(850, 120, 61, 371));
-        passedStations = new QListView(gamePage);
-        passedStations->setObjectName(QStringLiteral("passedStations"));
-        passedStations->setGeometry(QRect(930, 120, 61, 371));
         comingLabel = new QLabel(gamePage);
         comingLabel->setObjectName(QStringLiteral("comingLabel"));
-        comingLabel->setGeometry(QRect(850, 80, 55, 16));
+        comingLabel->setGeometry(QRect(860, 80, 55, 16));
         passedLabel = new QLabel(gamePage);
         passedLabel->setObjectName(QStringLiteral("passedLabel"));
-        passedLabel->setGeometry(QRect(930, 80, 55, 16));
+        passedLabel->setGeometry(QRect(960, 80, 55, 16));
+        nextStationsListWidget = new QListWidget(gamePage);
+        nextStationsListWidget->setObjectName(QStringLiteral("nextStationsListWidget"));
+        nextStationsListWidget->setGeometry(QRect(850, 110, 81, 371));
+        passedStationsListWidget = new QListWidget(gamePage);
+        passedStationsListWidget->setObjectName(QStringLiteral("passedStationsListWidget"));
+        passedStationsListWidget->setGeometry(QRect(950, 110, 81, 371));
         stackedWidget->addWidget(gamePage);
         shopPage = new QWidget();
         shopPage->setObjectName(QStringLiteral("shopPage"));
         buyButton = new QPushButton(shopPage);
         buyButton->setObjectName(QStringLiteral("buyButton"));
-        buyButton->setGeometry(QRect(500, 120, 141, 51));
+        buyButton->setGeometry(QRect(600, 250, 141, 51));
         buyButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
@@ -191,7 +195,7 @@ public:
 "}"));
         sellButton = new QPushButton(shopPage);
         sellButton->setObjectName(QStringLiteral("sellButton"));
-        sellButton->setGeometry(QRect(500, 220, 141, 51));
+        sellButton->setGeometry(QRect(370, 250, 141, 51));
         sellButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
@@ -209,23 +213,54 @@ public:
 "}"));
         playerTrainsLabel = new QLabel(shopPage);
         playerTrainsLabel->setObjectName(QStringLiteral("playerTrainsLabel"));
-        playerTrainsLabel->setGeometry(QRect(24, 0, 301, 20));
+        playerTrainsLabel->setGeometry(QRect(24, 0, 301, 31));
         playerTrainsLabel->setStyleSheet(QStringLiteral("font: 75 14pt \"Caladea\";"));
         playerTrainsLabel->setAlignment(Qt::AlignCenter);
         buyableTrainsLabel = new QLabel(shopPage);
         buyableTrainsLabel->setObjectName(QStringLiteral("buyableTrainsLabel"));
-        buyableTrainsLabel->setGeometry(QRect(794, 0, 321, 20));
+        buyableTrainsLabel->setGeometry(QRect(794, 0, 321, 31));
         buyableTrainsLabel->setStyleSheet(QStringLiteral("font: 75 14pt \"Caladea\";"));
         buyableTrainsLabel->setAlignment(Qt::AlignCenter);
-        listView = new QListView(shopPage);
-        listView->setObjectName(QStringLiteral("listView"));
-        listView->setGeometry(QRect(20, 40, 301, 261));
-        listView_2 = new QListView(shopPage);
-        listView_2->setObjectName(QStringLiteral("listView_2"));
-        listView_2->setGeometry(QRect(795, 40, 321, 261));
         setTrainButton = new QPushButton(shopPage);
         setTrainButton->setObjectName(QStringLiteral("setTrainButton"));
-        setTrainButton->setGeometry(QRect(512, 380, 131, 61));
+        setTrainButton->setGeometry(QRect(490, 100, 131, 61));
+        setTrainButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
+"	background-color: #000080;\n"
+"	border: 1px solid #333333;\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: #add8e6;\n"
+"}\n"
+"QPushButton {\n"
+"font: 75 15pt \"Caladea\";\n"
+"border: 1px solid #199909;\n"
+"border-radius: 6px;\n"
+"background-color: #0000ff;\n"
+"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
+"            stop: 0 #0000ff, stop: 1 #0000ff);\n"
+"}"));
+        buyableTrainsListWidget = new QListWidget(shopPage);
+        buyableTrainsListWidget->setObjectName(QStringLiteral("buyableTrainsListWidget"));
+        buyableTrainsListWidget->setGeometry(QRect(785, 60, 321, 231));
+        buyableDetailsListWidget = new QListWidget(shopPage);
+        buyableDetailsListWidget->setObjectName(QStringLiteral("buyableDetailsListWidget"));
+        buyableDetailsListWidget->setGeometry(QRect(810, 310, 256, 192));
+        ownedDetailsListWidget = new QListWidget(shopPage);
+        ownedDetailsListWidget->setObjectName(QStringLiteral("ownedDetailsListWidget"));
+        ownedDetailsListWidget->setGeometry(QRect(30, 310, 256, 192));
+        ownedListWidget = new QListWidget(shopPage);
+        ownedListWidget->setObjectName(QStringLiteral("ownedListWidget"));
+        ownedListWidget->setGeometry(QRect(30, 70, 291, 221));
+        valitseJunaLabel = new QLabel(shopPage);
+        valitseJunaLabel->setObjectName(QStringLiteral("valitseJunaLabel"));
+        valitseJunaLabel->setGeometry(QRect(460, 60, 191, 20));
+        label_2 = new QLabel(shopPage);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(440, 370, 231, 61));
+        QFont font;
+        font.setFamily(QStringLiteral("Microsoft YaHei UI"));
+        font.setPointSize(15);
+        label_2->setFont(font);
         stackedWidget->addWidget(shopPage);
         gameButton = new QPushButton(centralWidget);
         gameButton->setObjectName(QStringLiteral("gameButton"));
@@ -350,10 +385,10 @@ public:
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 10, 101, 20));
-        QFont font;
-        font.setBold(true);
-        font.setWeight(75);
-        label->setFont(font);
+        QFont font1;
+        font1.setBold(true);
+        font1.setWeight(75);
+        label->setFont(font1);
         label->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -369,7 +404,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -378,7 +413,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "TrainGame", Q_NULLPTR));
-        textEdit->setPlaceholderText(QApplication::translate("MainWindow", "-mit\303\244 korjataan?? hinta???", Q_NULLPTR));
         fixButton->setText(QApplication::translate("MainWindow", "Korjaa", Q_NULLPTR));
         directionButton->setText(QApplication::translate("MainWindow", "Suunta", Q_NULLPTR));
         directionLabel->setText(QApplication::translate("MainWindow", "Eteen", Q_NULLPTR));
@@ -388,7 +422,9 @@ public:
         sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
         playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));
         buyableTrainsLabel->setText(QApplication::translate("MainWindow", "Ostettavat junat", Q_NULLPTR));
-        setTrainButton->setText(QApplication::translate("MainWindow", "Valitse juna", Q_NULLPTR));
+        setTrainButton->setText(QApplication::translate("MainWindow", "Hyv\303\244ksy", Q_NULLPTR));
+        valitseJunaLabel->setText(QApplication::translate("MainWindow", "Valitse tai vaihda pelattava juna", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainWindow", "Saat / Maksaa: 99e", Q_NULLPTR));
         gameButton->setText(QApplication::translate("MainWindow", "Pelaa", Q_NULLPTR));
         depotButton->setText(QApplication::translate("MainWindow", "Varikko", Q_NULLPTR));
         shopButton->setText(QApplication::translate("MainWindow", "Kauppa", Q_NULLPTR));
