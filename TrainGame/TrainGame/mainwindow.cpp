@@ -12,13 +12,17 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     scene_(scene)
 {
     ui->setupUi(this);
-    connect(ui->valikkoButton, &QPushButton::clicked, this, &MainWindow::vaihda_valikkoon);
-    connect(ui->peliButton, &QPushButton::clicked, this, &MainWindow::vaihda_peliin);
-    connect(ui->kauppaButton, &QPushButton::clicked, this, &MainWindow::vaihda_kauppaan);
-    connect(ui->kaasuSlider, &QSlider::valueChanged, this, &MainWindow::muuta_nopeus);
-    connect(ui->suuntaButton, &QPushButton::clicked, this, &MainWindow::vaihda_suunta);
+    connect(ui->depotButton, &QPushButton::clicked, this, &MainWindow::goToDepot);
+    connect(ui->gameButton, &QPushButton::clicked, this, &MainWindow::goToGame);
+    connect(ui->shopButton, &QPushButton::clicked, this, &MainWindow::goToShop);
+    connect(ui->gasSlider, &QSlider::valueChanged, this, &MainWindow::changeSpeed);
+    connect(ui->directionButton, &QPushButton::clicked, this, &MainWindow::changeDirection);
+    connect(ui->buyButton, &QPushButton::clicked, this, &MainWindow::buyTrain);
+    connect(ui->sellButton, &QPushButton::clicked, this, &MainWindow::sellTrain);
+    connect(ui->setTrainButton, &QPushButton::clicked, this, &MainWindow::setPlayerTrain);
+    connect(ui->fixButton, &QPushButton::clicked, this, &MainWindow::fixTrain);
 
-    ui->peliView->setScene(scene_.get());
+    ui->gameView->setScene(scene_.get());
 
     scene_->setSceneRect(-250, -240, 508, 475);
     scene_->setBackgroundBrush(QBrush(QColor(0, 255, 0)));
@@ -38,35 +42,95 @@ void MainWindow::keyPressEvent(QKeyEvent *pEvent)
     }
 }
 
-void MainWindow::vaihda_valikkoon() {
+void MainWindow::goToDepot() {
 
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::vaihda_peliin() {
+void MainWindow::goToGame() {
 
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void MainWindow::vaihda_kauppaan() {
+void MainWindow::goToShop() {
 
     ui->stackedWidget->setCurrentIndex(2);
 }
 
-void MainWindow::muuta_nopeus()
+void MainWindow::changeSpeed()
 {
-    game_->setSpeed(ui->kaasuSlider->value()/10);
+    game_->setSpeed(ui->gasSlider->value()/10);
 }
 
-void MainWindow::vaihda_suunta()
+void MainWindow::changeDirection()
 {
     game_->changeDirection();
-    if (ui->suuntaLabel->text() == "Eteen"){
-        ui->suuntaLabel->setText("Taakse");
+
+    if (ui->directionLabel->text() == "Eteen"){
+        ui->directionLabel->setText("Taakse");
     }
     else {
-        ui->suuntaLabel->setText("Eteen");
+        ui->directionLabel->setText("Eteen");
     }
 }
 
+void MainWindow::updateMinimap()
+{
+
+}
+
+void MainWindow::updateNextStations()
+{
+
+}
+
+void MainWindow::updatePassedStations()
+{
+
+}
+
+void MainWindow::updatePlayerTrains()
+{
+
+}
+
+void MainWindow::updateBuyableTrains()
+{
+
+}
+
+void MainWindow::updateMoney()
+{
+
+}
+
+void MainWindow::updateFame()
+{
+
+}
+
+void MainWindow::updatePartsToBeRepaired()
+{
+
+}
+
+void MainWindow::buyTrain()
+{
+
+}
+
+void MainWindow::sellTrain()
+{
+
+}
+
+void MainWindow::fixTrain()
+{
+
+}
+
+void MainWindow::setPlayerTrain()
+{
+
+}
 

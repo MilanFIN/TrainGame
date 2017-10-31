@@ -22,11 +22,24 @@ public:
 
 
 private slots:
-    void vaihda_valikkoon();
-    void vaihda_peliin();
-    void vaihda_kauppaan();
-    void muuta_nopeus();
-    void vaihda_suunta();
+    void goToDepot();
+    void goToGame();
+    void goToShop();
+    void changeSpeed();
+    void changeDirection();
+    void updateMinimap();
+    void updateNextStations();
+    void updatePassedStations();
+    void updatePlayerTrains();
+    void updateBuyableTrains();
+    void updateMoney();
+    void updateFame();
+    void updatePartsToBeRepaired();
+
+    void buyTrain();
+    void sellTrain();
+    void fixTrain();
+    void setPlayerTrain();
 
 private:
     Ui::MainWindow *ui;

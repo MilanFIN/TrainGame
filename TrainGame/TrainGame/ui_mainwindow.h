@@ -34,30 +34,30 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QStackedWidget *stackedWidget;
-    QWidget *valikkoPage;
-    QListView *listView_3;
+    QWidget *depotPage;
     QTextEdit *textEdit;
-    QPushButton *pushButton_3;
-    QWidget *pelaaPage;
-    QGraphicsView *peliView;
-    QGraphicsView *rautaTieKarttaView;
-    QTextEdit *esteTextEdit;
-    QTextEdit *infoTextEdit;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QSlider *kaasuSlider;
-    QPushButton *suuntaButton;
-    QLabel *suuntaLabel;
-    QWidget *kauppaPage;
-    QPushButton *ostaButton;
-    QPushButton *myyButton;
-    QLabel *label_4;
-    QLabel *label_5;
+    QPushButton *fixButton;
+    QWidget *gamePage;
+    QGraphicsView *gameView;
+    QGraphicsView *minimapView;
+    QSlider *gasSlider;
+    QPushButton *directionButton;
+    QLabel *directionLabel;
+    QListView *nextStations;
+    QListView *passedStations;
+    QLabel *comingLabel;
+    QLabel *passedLabel;
+    QWidget *shopPage;
+    QPushButton *buyButton;
+    QPushButton *sellButton;
+    QLabel *playerTrainsLabel;
+    QLabel *buyableTrainsLabel;
     QListView *listView;
     QListView *listView_2;
-    QPushButton *peliButton;
-    QPushButton *valikkoButton;
-    QPushButton *kauppaButton;
+    QPushButton *setTrainButton;
+    QPushButton *gameButton;
+    QPushButton *depotButton;
+    QPushButton *shopButton;
     QLabel *label;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -72,19 +72,16 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(11, 55, 1131, 511));
-        valikkoPage = new QWidget();
-        valikkoPage->setObjectName(QStringLiteral("valikkoPage"));
-        listView_3 = new QListView(valikkoPage);
-        listView_3->setObjectName(QStringLiteral("listView_3"));
-        listView_3->setGeometry(QRect(20, 20, 331, 481));
-        textEdit = new QTextEdit(valikkoPage);
+        stackedWidget->setGeometry(QRect(20, 60, 1131, 511));
+        depotPage = new QWidget();
+        depotPage->setObjectName(QStringLiteral("depotPage"));
+        textEdit = new QTextEdit(depotPage);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setGeometry(QRect(773, 30, 321, 461));
-        pushButton_3 = new QPushButton(valikkoPage);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(360, 470, 111, 28));
-        pushButton_3->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
+        textEdit->setGeometry(QRect(510, 40, 321, 461));
+        fixButton = new QPushButton(depotPage);
+        fixButton->setObjectName(QStringLiteral("fixButton"));
+        fixButton->setGeometry(QRect(350, 230, 111, 28));
+        fixButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
 "}\n"
@@ -99,61 +96,19 @@ public:
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
 "            stop: 0 #22c70d, stop: 1 #116a06);\n"
 "}"));
-        stackedWidget->addWidget(valikkoPage);
-        pelaaPage = new QWidget();
-        pelaaPage->setObjectName(QStringLiteral("pelaaPage"));
-        peliView = new QGraphicsView(pelaaPage);
-        peliView->setObjectName(QStringLiteral("peliView"));
-        peliView->setGeometry(QRect(315, 20, 511, 481));
-        rautaTieKarttaView = new QGraphicsView(pelaaPage);
-        rautaTieKarttaView->setObjectName(QStringLiteral("rautaTieKarttaView"));
-        rautaTieKarttaView->setGeometry(QRect(850, 20, 256, 261));
-        esteTextEdit = new QTextEdit(pelaaPage);
-        esteTextEdit->setObjectName(QStringLiteral("esteTextEdit"));
-        esteTextEdit->setGeometry(QRect(30, 50, 221, 191));
-        infoTextEdit = new QTextEdit(pelaaPage);
-        infoTextEdit->setObjectName(QStringLiteral("infoTextEdit"));
-        infoTextEdit->setGeometry(QRect(30, 260, 221, 211));
-        pushButton = new QPushButton(pelaaPage);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(850, 330, 93, 28));
-        pushButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
-"	background-color: #222222;\n"
-"	border: 1px solid #333333;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: #ccc5c7;\n"
-"}\n"
-"QPushButton {\n"
-"font: 75 12pt \"Caladea\";\n"
-"border: 1px solid #72595e;\n"
-"border-radius: 6px;\n"
-"background-color: #605053;\n"
-"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
-"            stop: 0 #bdbabb, stop: 1 #605053);\n"
-"}"));
-        pushButton_2 = new QPushButton(pelaaPage);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(1010, 330, 93, 28));
-        pushButton_2->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
-"	background-color: #222222;\n"
-"	border: 1px solid #333333;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: #ccc5c7;\n"
-"}\n"
-"QPushButton {\n"
-"font: 75 12pt \"Caladea\";\n"
-"border: 1px solid #72595e;\n"
-"border-radius: 6px;\n"
-"background-color: #605053;\n"
-"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
-"            stop: 0 #bdbabb, stop: 1 #605053);\n"
-"}"));
-        kaasuSlider = new QSlider(pelaaPage);
-        kaasuSlider->setObjectName(QStringLiteral("kaasuSlider"));
-        kaasuSlider->setGeometry(QRect(1050, 390, 22, 101));
-        kaasuSlider->setStyleSheet(QLatin1String("QSlider  \n"
+        stackedWidget->addWidget(depotPage);
+        gamePage = new QWidget();
+        gamePage->setObjectName(QStringLiteral("gamePage"));
+        gameView = new QGraphicsView(gamePage);
+        gameView->setObjectName(QStringLiteral("gameView"));
+        gameView->setGeometry(QRect(310, 10, 511, 481));
+        minimapView = new QGraphicsView(gamePage);
+        minimapView->setObjectName(QStringLiteral("minimapView"));
+        minimapView->setGeometry(QRect(10, 40, 281, 421));
+        gasSlider = new QSlider(gamePage);
+        gasSlider->setObjectName(QStringLiteral("gasSlider"));
+        gasSlider->setGeometry(QRect(1047, 300, 41, 191));
+        gasSlider->setStyleSheet(QLatin1String("QSlider  \n"
 "{  \n"
 "    background-color: #ddd;   \n"
 "    border-style: outset;   \n"
@@ -175,11 +130,14 @@ public:
 "    border: 3px solid #ffffff;  \n"
 "}  \n"
 ""));
-        kaasuSlider->setOrientation(Qt::Vertical);
-        suuntaButton = new QPushButton(pelaaPage);
-        suuntaButton->setObjectName(QStringLiteral("suuntaButton"));
-        suuntaButton->setGeometry(QRect(940, 390, 93, 28));
-        suuntaButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
+        gasSlider->setMinimum(0);
+        gasSlider->setMaximum(99);
+        gasSlider->setSliderPosition(0);
+        gasSlider->setOrientation(Qt::Vertical);
+        directionButton = new QPushButton(gamePage);
+        directionButton->setObjectName(QStringLiteral("directionButton"));
+        directionButton->setGeometry(QRect(1032, 220, 81, 31));
+        directionButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
 "}\n"
@@ -194,17 +152,29 @@ public:
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
 "            stop: 0 #bdbabb, stop: 1 #605053);\n"
 "}"));
-        suuntaLabel = new QLabel(pelaaPage);
-        suuntaLabel->setObjectName(QStringLiteral("suuntaLabel"));
-        suuntaLabel->setGeometry(QRect(940, 430, 101, 31));
-        suuntaLabel->setAlignment(Qt::AlignCenter);
-        stackedWidget->addWidget(pelaaPage);
-        kauppaPage = new QWidget();
-        kauppaPage->setObjectName(QStringLiteral("kauppaPage"));
-        ostaButton = new QPushButton(kauppaPage);
-        ostaButton->setObjectName(QStringLiteral("ostaButton"));
-        ostaButton->setGeometry(QRect(500, 120, 141, 51));
-        ostaButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
+        directionLabel = new QLabel(gamePage);
+        directionLabel->setObjectName(QStringLiteral("directionLabel"));
+        directionLabel->setGeometry(QRect(1020, 260, 101, 31));
+        directionLabel->setAlignment(Qt::AlignCenter);
+        nextStations = new QListView(gamePage);
+        nextStations->setObjectName(QStringLiteral("nextStations"));
+        nextStations->setGeometry(QRect(850, 120, 61, 371));
+        passedStations = new QListView(gamePage);
+        passedStations->setObjectName(QStringLiteral("passedStations"));
+        passedStations->setGeometry(QRect(930, 120, 61, 371));
+        comingLabel = new QLabel(gamePage);
+        comingLabel->setObjectName(QStringLiteral("comingLabel"));
+        comingLabel->setGeometry(QRect(850, 80, 55, 16));
+        passedLabel = new QLabel(gamePage);
+        passedLabel->setObjectName(QStringLiteral("passedLabel"));
+        passedLabel->setGeometry(QRect(930, 80, 55, 16));
+        stackedWidget->addWidget(gamePage);
+        shopPage = new QWidget();
+        shopPage->setObjectName(QStringLiteral("shopPage"));
+        buyButton = new QPushButton(shopPage);
+        buyButton->setObjectName(QStringLiteral("buyButton"));
+        buyButton->setGeometry(QRect(500, 120, 141, 51));
+        buyButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
 "}\n"
@@ -219,10 +189,10 @@ public:
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
 "            stop: 0 #22c70d, stop: 1 #116a06);\n"
 "}"));
-        myyButton = new QPushButton(kauppaPage);
-        myyButton->setObjectName(QStringLiteral("myyButton"));
-        myyButton->setGeometry(QRect(500, 220, 141, 51));
-        myyButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
+        sellButton = new QPushButton(shopPage);
+        sellButton->setObjectName(QStringLiteral("sellButton"));
+        sellButton->setGeometry(QRect(500, 220, 141, 51));
+        sellButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
 "}\n"
@@ -237,28 +207,31 @@ public:
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
 "            stop: 0 #fb2953, stop: 1 #c90029);\n"
 "}"));
-        label_4 = new QLabel(kauppaPage);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(24, 0, 301, 20));
-        label_4->setStyleSheet(QStringLiteral("font: 75 14pt \"Caladea\";"));
-        label_4->setAlignment(Qt::AlignCenter);
-        label_5 = new QLabel(kauppaPage);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(794, 0, 321, 20));
-        label_5->setStyleSheet(QStringLiteral("font: 75 14pt \"Caladea\";"));
-        label_5->setAlignment(Qt::AlignCenter);
-        listView = new QListView(kauppaPage);
+        playerTrainsLabel = new QLabel(shopPage);
+        playerTrainsLabel->setObjectName(QStringLiteral("playerTrainsLabel"));
+        playerTrainsLabel->setGeometry(QRect(24, 0, 301, 20));
+        playerTrainsLabel->setStyleSheet(QStringLiteral("font: 75 14pt \"Caladea\";"));
+        playerTrainsLabel->setAlignment(Qt::AlignCenter);
+        buyableTrainsLabel = new QLabel(shopPage);
+        buyableTrainsLabel->setObjectName(QStringLiteral("buyableTrainsLabel"));
+        buyableTrainsLabel->setGeometry(QRect(794, 0, 321, 20));
+        buyableTrainsLabel->setStyleSheet(QStringLiteral("font: 75 14pt \"Caladea\";"));
+        buyableTrainsLabel->setAlignment(Qt::AlignCenter);
+        listView = new QListView(shopPage);
         listView->setObjectName(QStringLiteral("listView"));
         listView->setGeometry(QRect(20, 40, 301, 261));
-        listView_2 = new QListView(kauppaPage);
+        listView_2 = new QListView(shopPage);
         listView_2->setObjectName(QStringLiteral("listView_2"));
         listView_2->setGeometry(QRect(795, 40, 321, 261));
-        stackedWidget->addWidget(kauppaPage);
-        peliButton = new QPushButton(centralWidget);
-        peliButton->setObjectName(QStringLiteral("peliButton"));
-        peliButton->setGeometry(QRect(530, 10, 93, 28));
-        peliButton->setMouseTracking(false);
-        peliButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
+        setTrainButton = new QPushButton(shopPage);
+        setTrainButton->setObjectName(QStringLiteral("setTrainButton"));
+        setTrainButton->setGeometry(QRect(512, 380, 131, 61));
+        stackedWidget->addWidget(shopPage);
+        gameButton = new QPushButton(centralWidget);
+        gameButton->setObjectName(QStringLiteral("gameButton"));
+        gameButton->setGeometry(QRect(530, 10, 93, 28));
+        gameButton->setMouseTracking(false);
+        gameButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
 "}\n"
@@ -273,9 +246,9 @@ public:
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
 "            stop: 0 #22c70d, stop: 1 #116a06);\n"
 "}"));
-        valikkoButton = new QPushButton(centralWidget);
-        valikkoButton->setObjectName(QStringLiteral("valikkoButton"));
-        valikkoButton->setGeometry(QRect(370, 10, 93, 28));
+        depotButton = new QPushButton(centralWidget);
+        depotButton->setObjectName(QStringLiteral("depotButton"));
+        depotButton->setGeometry(QRect(370, 10, 93, 28));
         QPalette palette;
         QLinearGradient gradient(0, 0, 0, 0.67);
         gradient.setSpread(QGradient::PadSpread);
@@ -340,8 +313,8 @@ public:
         gradient8.setColorAt(1, QColor(17, 106, 6, 255));
         QBrush brush8(gradient8);
         palette.setBrush(QPalette::Disabled, QPalette::Window, brush8);
-        valikkoButton->setPalette(palette);
-        valikkoButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
+        depotButton->setPalette(palette);
+        depotButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
 "}\n"
@@ -356,10 +329,10 @@ public:
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
 "            stop: 0 #22c70d, stop: 1 #116a06);\n"
 "}"));
-        kauppaButton = new QPushButton(centralWidget);
-        kauppaButton->setObjectName(QStringLiteral("kauppaButton"));
-        kauppaButton->setGeometry(QRect(690, 10, 93, 28));
-        kauppaButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
+        shopButton = new QPushButton(centralWidget);
+        shopButton->setObjectName(QStringLiteral("shopButton"));
+        shopButton->setGeometry(QRect(690, 10, 93, 28));
+        shopButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
 "}\n"
@@ -405,18 +378,20 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "TrainGame", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("MainWindow", "Korjaa", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "Vasen", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Oikea", Q_NULLPTR));
-        suuntaButton->setText(QApplication::translate("MainWindow", "Suunta", Q_NULLPTR));
-        suuntaLabel->setText(QApplication::translate("MainWindow", "Eteen", Q_NULLPTR));
-        ostaButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
-        myyButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
-        label_4->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));
-        label_5->setText(QApplication::translate("MainWindow", "Ostettavat junat", Q_NULLPTR));
-        peliButton->setText(QApplication::translate("MainWindow", "Pelaa", Q_NULLPTR));
-        valikkoButton->setText(QApplication::translate("MainWindow", "Valikko", Q_NULLPTR));
-        kauppaButton->setText(QApplication::translate("MainWindow", "Kauppa", Q_NULLPTR));
+        textEdit->setPlaceholderText(QApplication::translate("MainWindow", "-mit\303\244 korjataan?? hinta???", Q_NULLPTR));
+        fixButton->setText(QApplication::translate("MainWindow", "Korjaa", Q_NULLPTR));
+        directionButton->setText(QApplication::translate("MainWindow", "Suunta", Q_NULLPTR));
+        directionLabel->setText(QApplication::translate("MainWindow", "Eteen", Q_NULLPTR));
+        comingLabel->setText(QApplication::translate("MainWindow", "Tulevat", Q_NULLPTR));
+        passedLabel->setText(QApplication::translate("MainWindow", "Menneet", Q_NULLPTR));
+        buyButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
+        sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
+        playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));
+        buyableTrainsLabel->setText(QApplication::translate("MainWindow", "Ostettavat junat", Q_NULLPTR));
+        setTrainButton->setText(QApplication::translate("MainWindow", "Valitse juna", Q_NULLPTR));
+        gameButton->setText(QApplication::translate("MainWindow", "Pelaa", Q_NULLPTR));
+        depotButton->setText(QApplication::translate("MainWindow", "Varikko", Q_NULLPTR));
+        shopButton->setText(QApplication::translate("MainWindow", "Kauppa", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Fame/raha:", Q_NULLPTR));
     } // retranslateUi
 
