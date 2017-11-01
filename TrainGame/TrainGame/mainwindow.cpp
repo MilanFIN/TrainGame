@@ -135,15 +135,18 @@ void MainWindow::updatePartsToBeRepaired()
 void MainWindow::on_sellButton_clicked()
 {
     QString myy = "myy: ";
+    if (ui->buyableTrainsListWidget->currentItem() != nullptr){
 
-    qInfo() << myy + ui->ownedTrainsListWidget->currentItem()->text();
+        qInfo() << myy + ui->ownedTrainsListWidget->currentItem()->text();
+    }
 }
 
 void MainWindow::on_buyButton_clicked()
 {
     QString osta = "osta: ";
-
-    qInfo() << osta + ui->buyableTrainsListWidget->currentItem()->text();
+    if (ui->buyableTrainsListWidget->currentItem() != nullptr){
+        qInfo() << osta + ui->buyableTrainsListWidget->currentItem()->text();
+    }
 }
 
 void MainWindow::on_fixButton_clicked()
