@@ -72,6 +72,8 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     }
 
 
+
+
     //spawn the next station to the game scene
     nextStation_ = std::make_shared<Station>(-1000);
     scene->addItem(nextStation_.get());
@@ -79,6 +81,14 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     //spawn the previous station closer by as we just started there
     previousStation_ = std::make_shared<Station>(300);
     scene->addItem(previousStation_.get());
+
+
+
+}
+
+RailLogic::~RailLogic()
+{
+
 }
 
 void RailLogic::move()
@@ -237,7 +247,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
 
 
 
-
     }
 
     if (train.get()->collidesWithItem(previousStation_.get())){
@@ -281,5 +290,24 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
 
     }
 
+    emit destinationCandidatesChanged(CombineStationTrackInfo( destinationStationCandidates_, destinationTrackCandidates_));
+    emit backttrackCandidatesChanged(CombineStationTrackInfo(backtrackStationCandidates_, backtrackTrackCandidates_));
+
+}
+
+QList<QString> RailLogic::CombineStationTrackInfo(QList<QString> &stationCodes, QList<QString> &trackCodes)
+{
+    QList<QString> tempList;
+    QList<QString> nameList;
+
+    for (auto i = stationCodes.begin(); i != stationCodes.end(); ++i){
+        tempList.append( stations_.value(*i).fullName);
+    }
+
+    for (int i = 0; i < trackCodes.size(); ++i){
+        nameList.append(trackCodes.at(i) + ", " + tempList.at(i));
+    }
+
+    return nameList;
 }
 

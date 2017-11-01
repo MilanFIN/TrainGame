@@ -13,6 +13,12 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 {
     ui->setupUi(this);
 
+
+    connect(game_->getRailModel(), &RailLogic::destinationCandidatesChanged, this, &MainWindow::updateNextStations);
+    connect(game_->getRailModel(), &RailLogic::backttrackCandidatesChanged, this, &MainWindow::updatePassedStations);
+
+
+
     connect(ui->gasSlider, &QSlider::valueChanged, this, &MainWindow::changeSpeed);
     connect(ui->directionButton, &QPushButton::clicked, this, &MainWindow::changeDirection);
 
@@ -28,12 +34,6 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     ui->ownedTrainsListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
     ui->ownedTrainsListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
-
-    ui->nextStationsListWidget->addItem(new QListWidgetItem(QString("TURKU")));
-    ui->nextStationsListWidget->addItem(new QListWidgetItem(QString("JNE")));
-
-    ui->passedStationsListWidget->addItem(new QListWidgetItem(QString("PASILA")));
-    ui->passedStationsListWidget->addItem(new QListWidgetItem(QString("JNE")));
 
 
 
@@ -96,14 +96,21 @@ void MainWindow::updateMinimap()
 
 }
 
-void MainWindow::updateNextStations()
+void MainWindow::updateNextStations(QList<QString> stations)
 {
+    ui->nextStationsListWidget->clear();
+    for (auto i = stations.begin(); i != stations.end(); ++i){
+        ui->nextStationsListWidget->addItem(*i);
+    }
 
 }
 
-void MainWindow::updatePassedStations()
+void MainWindow::updatePassedStations(QList<QString> stations)
 {
-
+    ui->passedStationsListWidget->clear();
+    for (auto i = stations.begin(); i != stations.end(); ++i){
+        ui->passedStationsListWidget->addItem(*i);
+    }
 }
 
 void MainWindow::updatePlayerTrains()

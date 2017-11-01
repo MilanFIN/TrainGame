@@ -4,14 +4,16 @@
 #include <QGraphicsScene>
 #include <memory>
 #include <vector>
+#include <QObject>
 
 #include "obstacleinterface.h"
 #include "boulder.h"
 #include "traininterface.h"
 #include "playertrain.h"
 
-class ObstacleLogic
+class ObstacleLogic: public QObject
 {
+    Q_OBJECT
 public:
     ObstacleLogic(std::shared_ptr<QGraphicsScene> scene);
 

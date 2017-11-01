@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="depotPage">
      <widget class="QPushButton" name="fixButton">
@@ -184,35 +184,35 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QLabel" name="comingLabel">
       <property name="geometry">
        <rect>
-        <x>860</x>
+        <x>830</x>
         <y>80</y>
-        <width>55</width>
+        <width>81</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>Tulevat</string>
+       <string>Seuraavalta</string>
       </property>
      </widget>
      <widget class="QLabel" name="passedLabel">
       <property name="geometry">
        <rect>
-        <x>960</x>
+        <x>940</x>
         <y>80</y>
-        <width>55</width>
+        <width>71</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>Menneet</string>
+       <string>Edelliseltä</string>
       </property>
      </widget>
      <widget class="QListWidget" name="nextStationsListWidget">
       <property name="geometry">
        <rect>
-        <x>850</x>
+        <x>830</x>
         <y>110</y>
-        <width>81</width>
+        <width>101</width>
         <height>371</height>
        </rect>
       </property>
@@ -220,9 +220,9 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QListWidget" name="passedStationsListWidget">
       <property name="geometry">
        <rect>
-        <x>950</x>
+        <x>940</x>
         <y>110</y>
-        <width>81</width>
+        <width>101</width>
         <height>371</height>
        </rect>
       </property>
@@ -794,7 +794,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <x>0</x>
      <y>0</y>
      <width>1154</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

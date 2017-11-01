@@ -22,11 +22,12 @@
 
 
 
-class RailLogic
+class RailLogic : public QObject
 {
-
+    Q_OBJECT
 public:
-    RailLogic(std::shared_ptr<QGraphicsScene> scene);
+    explicit RailLogic(std::shared_ptr<QGraphicsScene> scene);
+    ~RailLogic();
     void move();
     void setSpeed(int newSpeed);
     void changeDirection();
@@ -36,6 +37,11 @@ public:
                      double lat, double lng, bool passengerStation);
 
     void checkCollisionWithStations(std::shared_ptr<PlayerTrain> train);
+    QList<QString> CombineStationTrackInfo(QList<QString> &stationCodes, QList<QString> &trackCodes);
+
+signals:
+    void destinationCandidatesChanged(QList<QString> stations);
+    void backttrackCandidatesChanged(QList<QString> stations);
 
 
 private:

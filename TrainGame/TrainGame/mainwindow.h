@@ -7,6 +7,10 @@
 #include <memory>
 #include <QGraphicsPixmapItem>
 #include <QListWidgetItem>
+#include <QList>
+#include <QString>
+#include "raillogic.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -23,7 +27,7 @@ public:
 
     //void updateBuyOrSellText(String operation, int count);
 
-private slots:
+public slots:
     void on_shopButton_clicked();
     void on_gameButton_clicked();
     void on_depotButton_clicked();
@@ -32,8 +36,8 @@ private slots:
     void changeDirection();
 
     void updateMinimap();
-    void updateNextStations();
-    void updatePassedStations();
+    void updateNextStations(QList<QString> stations);
+    void updatePassedStations(QList<QString> stations);
     void updatePlayerTrains();
     void updateBuyableTrains();
     void updateMoney();
@@ -49,6 +53,7 @@ private slots:
 
     void on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item);
 
+signals:
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<Game> game_;

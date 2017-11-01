@@ -6,9 +6,11 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent) : QObject(par
   scene_(scene)
 {
 
-    railLogic_ = new RailLogic(scene);
-    playerLogic_ = new PlayerLogic(scene);
-    obstacleLogic_ = new ObstacleLogic(scene);
+    railLogic_ = std::make_shared<RailLogic>(scene);
+    playerLogic_ = std::make_shared<PlayerLogic>(scene);
+    obstacleLogic_ = std::make_shared<ObstacleLogic>(scene);
+
+
 
 
     QTimer *moveTimer = new QTimer(this);
@@ -34,40 +36,45 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent) : QObject(par
 
 void Game::setSpeed(int newSpeed)
 {
-    railLogic_->setSpeed(newSpeed);
-    obstacleLogic_->setSpeed(newSpeed);
+    railLogic_.get()->setSpeed(newSpeed);
+    obstacleLogic_.get()->setSpeed(newSpeed);
 
 }
 
 void Game::changeDirection()
 {
-    railLogic_->changeDirection();
-    obstacleLogic_->changeDirection();
+    railLogic_.get()->changeDirection();
+    obstacleLogic_.get()->changeDirection();
 }
 
 void Game::removeBlockage()
 {
-    obstacleLogic_->removeNearbyObjects(playerLogic_->location());
+    obstacleLogic_.get()->removeNearbyObjects(playerLogic_.get()->location());
+}
+
+RailLogic* Game::getRailModel()
+{
+    return railLogic_.get();
 }
 
 void Game::move()
 {
-    railLogic_->move();
-    obstacleLogic_->move();
+    railLogic_.get()->move();
+    obstacleLogic_.get()->move();
 
 
 }
 
 void Game::spawn()
 {
-    obstacleLogic_->spawnObstacle();
+    obstacleLogic_.get()->spawnObstacle();
 }
 
 void Game::checkCollisions()
 {
     //check if obstacles hit the player
-    int recievedDamage = obstacleLogic_->checkCollision(playerLogic_->activeTrain());
+    int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
     //check if player has arrived to a station
-    railLogic_->checkCollisionWithStations(playerLogic_->activeTrain());
+    railLogic_.get()->checkCollisionWithStations(playerLogic_.get()->activeTrain());
 }
 

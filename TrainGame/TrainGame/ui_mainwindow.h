@@ -432,8 +432,8 @@ public:
         fixButton->setText(QApplication::translate("MainWindow", "Korjaa", Q_NULLPTR));
         directionButton->setText(QApplication::translate("MainWindow", "Suunta", Q_NULLPTR));
         directionLabel->setText(QApplication::translate("MainWindow", "Eteen", Q_NULLPTR));
-        comingLabel->setText(QApplication::translate("MainWindow", "Tulevat", Q_NULLPTR));
-        passedLabel->setText(QApplication::translate("MainWindow", "Menneet", Q_NULLPTR));
+        comingLabel->setText(QApplication::translate("MainWindow", "Seuraavalta", Q_NULLPTR));
+        passedLabel->setText(QApplication::translate("MainWindow", "Edelliseltä", Q_NULLPTR));
         buyButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
         sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
         playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));

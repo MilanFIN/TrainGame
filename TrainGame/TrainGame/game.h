@@ -22,6 +22,7 @@ public:
     void changeDirection();
     void removeBlockage();
 
+    RailLogic* getRailModel();
 signals:
 
 public slots:
@@ -30,9 +31,10 @@ public slots:
     void checkCollisions();
 private:
 
-    RailLogic* railLogic_;
-    PlayerLogic* playerLogic_;
-    ObstacleLogic* obstacleLogic_;
+    std::shared_ptr<RailLogic>  railLogic_;
+    std::shared_ptr<PlayerLogic>  playerLogic_ ;
+    std::shared_ptr<ObstacleLogic>  obstacleLogic_ ;
+
 
     float speed_;
     float goalSpeed_;
