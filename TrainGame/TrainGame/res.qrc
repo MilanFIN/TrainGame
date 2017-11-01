@@ -4,7 +4,7 @@
         <file>train.png</file>
         <file>leafs.png</file>
         <file>station.png</file>
-        <file>rautatiet.png</file>
+        <file>rautatie.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>asemadata.json</file>

@@ -8,8 +8,9 @@ PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double
     repairCost_(repairCost_)
 {
     QImage kuva(":/kuvat/train.png");
-    setPixmap(QPixmap::fromImage(kuva));
-    setPos(-25, 0);
+    QImage kuvaScaled = kuva.scaled(200,200,Qt::KeepAspectRatio);
+    setPixmap(QPixmap::fromImage(kuvaScaled));
+    setPos(-100, 0);
     //asetetaan raiteiden päälle
     setZValue(2);
 

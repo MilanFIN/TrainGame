@@ -4,7 +4,7 @@ OneSideRailTile::OneSideRailTile(int x, int y)
 {
     QImage kuva(":/kuvat/rail.png");
     setPixmap(QPixmap::fromImage(kuva));
-    setPos(x-15,y);
+    setPos(x-36,y);
     setZValue(-1);
 }
 

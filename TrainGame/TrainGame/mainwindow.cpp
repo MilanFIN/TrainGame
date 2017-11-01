@@ -19,7 +19,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     ui->gameView->setScene(scene_.get());
 
     scene_->setSceneRect(-250, -240, 508, 475);
-    scene_->setBackgroundBrush(QBrush(QColor(0, 255, 0)));
+
 
     ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Pomppuresiina")));
     ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Lättähattujuna")));
@@ -37,7 +37,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
 
 
-    QImage kuva(":/kuvat/rautatiet.png");
+    QImage kuva(":/kuvat/rautatie.png");
     QImage kuvaScaled = kuva.scaled(400,400,Qt::KeepAspectRatio);
     QGraphicsScene* minimapScene = new QGraphicsScene();
     ui->minimapView->setScene(minimapScene);
