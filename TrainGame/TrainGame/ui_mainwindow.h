@@ -52,13 +52,16 @@ public:
     QPushButton *sellButton;
     QLabel *playerTrainsLabel;
     QLabel *buyableTrainsLabel;
-    QPushButton *setTrainButton;
     QListWidget *buyableTrainsListWidget;
-    QListWidget *buyableDetailsListWidget;
-    QListWidget *ownedDetailsListWidget;
-    QListWidget *ownedListWidget;
+    QListWidget *ownedTrainsListWidget;
     QLabel *valitseJunaLabel;
-    QLabel *label_2;
+    QLabel *costsLabelText;
+    QPushButton *confirmButton;
+    QLabel *featuresTextOLabel;
+    QLabel *featuresTextBLabel;
+    QLabel *featuresOLabel;
+    QLabel *featuresBLabel;
+    QLabel *costsLabel;
     QPushButton *gameButton;
     QPushButton *depotButton;
     QPushButton *shopButton;
@@ -221,10 +224,26 @@ public:
         buyableTrainsLabel->setGeometry(QRect(794, 0, 321, 31));
         buyableTrainsLabel->setStyleSheet(QStringLiteral("font: 75 14pt \"Caladea\";"));
         buyableTrainsLabel->setAlignment(Qt::AlignCenter);
-        setTrainButton = new QPushButton(shopPage);
-        setTrainButton->setObjectName(QStringLiteral("setTrainButton"));
-        setTrainButton->setGeometry(QRect(490, 100, 131, 61));
-        setTrainButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
+        buyableTrainsListWidget = new QListWidget(shopPage);
+        buyableTrainsListWidget->setObjectName(QStringLiteral("buyableTrainsListWidget"));
+        buyableTrainsListWidget->setGeometry(QRect(835, 60, 271, 351));
+        ownedTrainsListWidget = new QListWidget(shopPage);
+        ownedTrainsListWidget->setObjectName(QStringLiteral("ownedTrainsListWidget"));
+        ownedTrainsListWidget->setGeometry(QRect(30, 70, 251, 341));
+        valitseJunaLabel = new QLabel(shopPage);
+        valitseJunaLabel->setObjectName(QStringLiteral("valitseJunaLabel"));
+        valitseJunaLabel->setGeometry(QRect(460, 60, 191, 20));
+        costsLabelText = new QLabel(shopPage);
+        costsLabelText->setObjectName(QStringLiteral("costsLabelText"));
+        costsLabelText->setGeometry(QRect(410, 370, 181, 61));
+        QFont font;
+        font.setFamily(QStringLiteral("MS Shell Dlg 2"));
+        font.setPointSize(15);
+        costsLabelText->setFont(font);
+        confirmButton = new QPushButton(shopPage);
+        confirmButton->setObjectName(QStringLiteral("confirmButton"));
+        confirmButton->setGeometry(QRect(490, 120, 131, 51));
+        confirmButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #000080;\n"
 "	border: 1px solid #333333;\n"
 "}\n"
@@ -238,29 +257,26 @@ public:
 "background-color: #0000ff;\n"
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
 "            stop: 0 #0000ff, stop: 1 #0000ff);\n"
-"}"));
-        buyableTrainsListWidget = new QListWidget(shopPage);
-        buyableTrainsListWidget->setObjectName(QStringLiteral("buyableTrainsListWidget"));
-        buyableTrainsListWidget->setGeometry(QRect(785, 60, 321, 231));
-        buyableDetailsListWidget = new QListWidget(shopPage);
-        buyableDetailsListWidget->setObjectName(QStringLiteral("buyableDetailsListWidget"));
-        buyableDetailsListWidget->setGeometry(QRect(810, 310, 256, 192));
-        ownedDetailsListWidget = new QListWidget(shopPage);
-        ownedDetailsListWidget->setObjectName(QStringLiteral("ownedDetailsListWidget"));
-        ownedDetailsListWidget->setGeometry(QRect(30, 310, 256, 192));
-        ownedListWidget = new QListWidget(shopPage);
-        ownedListWidget->setObjectName(QStringLiteral("ownedListWidget"));
-        ownedListWidget->setGeometry(QRect(30, 70, 291, 221));
-        valitseJunaLabel = new QLabel(shopPage);
-        valitseJunaLabel->setObjectName(QStringLiteral("valitseJunaLabel"));
-        valitseJunaLabel->setGeometry(QRect(460, 60, 191, 20));
-        label_2 = new QLabel(shopPage);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(440, 370, 231, 61));
-        QFont font;
-        font.setFamily(QStringLiteral("Microsoft YaHei UI"));
-        font.setPointSize(15);
-        label_2->setFont(font);
+"}\n"
+""));
+        featuresTextOLabel = new QLabel(shopPage);
+        featuresTextOLabel->setObjectName(QStringLiteral("featuresTextOLabel"));
+        featuresTextOLabel->setGeometry(QRect(40, 440, 81, 21));
+        featuresTextBLabel = new QLabel(shopPage);
+        featuresTextBLabel->setObjectName(QStringLiteral("featuresTextBLabel"));
+        featuresTextBLabel->setGeometry(QRect(840, 440, 81, 20));
+        featuresOLabel = new QLabel(shopPage);
+        featuresOLabel->setObjectName(QStringLiteral("featuresOLabel"));
+        featuresOLabel->setGeometry(QRect(134, 440, 171, 20));
+        featuresBLabel = new QLabel(shopPage);
+        featuresBLabel->setObjectName(QStringLiteral("featuresBLabel"));
+        featuresBLabel->setGeometry(QRect(934, 440, 171, 20));
+        costsLabel = new QLabel(shopPage);
+        costsLabel->setObjectName(QStringLiteral("costsLabel"));
+        costsLabel->setGeometry(QRect(590, 380, 131, 41));
+        QFont font1;
+        font1.setPointSize(15);
+        costsLabel->setFont(font1);
         stackedWidget->addWidget(shopPage);
         gameButton = new QPushButton(centralWidget);
         gameButton->setObjectName(QStringLiteral("gameButton"));
@@ -385,10 +401,10 @@ public:
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 10, 101, 20));
-        QFont font1;
-        font1.setBold(true);
-        font1.setWeight(75);
-        label->setFont(font1);
+        QFont font2;
+        font2.setBold(true);
+        font2.setWeight(75);
+        label->setFont(font2);
         label->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -422,9 +438,14 @@ public:
         sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
         playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));
         buyableTrainsLabel->setText(QApplication::translate("MainWindow", "Ostettavat junat", Q_NULLPTR));
-        setTrainButton->setText(QApplication::translate("MainWindow", "Hyv\303\244ksy", Q_NULLPTR));
         valitseJunaLabel->setText(QApplication::translate("MainWindow", "Valitse tai vaihda pelattava juna", Q_NULLPTR));
-        label_2->setText(QApplication::translate("MainWindow", "Saat / Maksaa: 99e", Q_NULLPTR));
+        costsLabelText->setText(QApplication::translate("MainWindow", "Saat / Maksaa:", Q_NULLPTR));
+        confirmButton->setText(QApplication::translate("MainWindow", "Hyv\303\244ksy", Q_NULLPTR));
+        featuresTextOLabel->setText(QApplication::translate("MainWindow", "Ominaisuudet:", Q_NULLPTR));
+        featuresTextBLabel->setText(QApplication::translate("MainWindow", "Ominaisuudet:", Q_NULLPTR));
+        featuresOLabel->setText(QString());
+        featuresBLabel->setText(QString());
+        costsLabel->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
         gameButton->setText(QApplication::translate("MainWindow", "Pelaa", Q_NULLPTR));
         depotButton->setText(QApplication::translate("MainWindow", "Varikko", Q_NULLPTR));
         shopButton->setText(QApplication::translate("MainWindow", "Kauppa", Q_NULLPTR));

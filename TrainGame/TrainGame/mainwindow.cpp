@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QKeyEvent>
-
+#include <QDebug>
 
 
 
@@ -12,15 +12,9 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     scene_(scene)
 {
     ui->setupUi(this);
-    connect(ui->depotButton, &QPushButton::clicked, this, &MainWindow::goToDepot);
-    connect(ui->gameButton, &QPushButton::clicked, this, &MainWindow::goToGame);
-    connect(ui->shopButton, &QPushButton::clicked, this, &MainWindow::goToShop);
+
     connect(ui->gasSlider, &QSlider::valueChanged, this, &MainWindow::changeSpeed);
     connect(ui->directionButton, &QPushButton::clicked, this, &MainWindow::changeDirection);
-    connect(ui->buyButton, &QPushButton::clicked, this, &MainWindow::buyTrain);
-    connect(ui->sellButton, &QPushButton::clicked, this, &MainWindow::sellTrain);
-    connect(ui->setTrainButton, &QPushButton::clicked, this, &MainWindow::setPlayerTrain);
-    connect(ui->fixButton, &QPushButton::clicked, this, &MainWindow::fixTrain);
 
     ui->gameView->setScene(scene_.get());
 
@@ -32,11 +26,8 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Höyryveturi")));
     ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Luotijuna")));
 
-    ui->ownedListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
-    ui->ownedListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
-
-    ui->ownedDetailsListWidget->addItem(new QListWidgetItem(QString("Nopeus: 100, kunto: 100 jne")));
-    ui->buyableDetailsListWidget->addItem(new QListWidgetItem(QString("Nopeus: 100, kunto: 100 jne")));
+    ui->ownedTrainsListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
+    ui->ownedTrainsListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
 
     ui->nextStationsListWidget->addItem(new QListWidgetItem(QString("TURKU")));
     ui->nextStationsListWidget->addItem(new QListWidgetItem(QString("JNE")));
@@ -68,18 +59,18 @@ void MainWindow::keyPressEvent(QKeyEvent *pEvent)
     }
 }
 
-void MainWindow::goToDepot() {
-
+void MainWindow::on_depotButton_clicked()
+{
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::goToGame() {
-
+void MainWindow::on_gameButton_clicked()
+{
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void MainWindow::goToShop() {
-
+void MainWindow::on_shopButton_clicked()
+{
     ui->stackedWidget->setCurrentIndex(2);
 }
 
@@ -140,28 +131,81 @@ void MainWindow::updatePartsToBeRepaired()
 
 }
 
-void MainWindow::buyTrain()
+
+void MainWindow::on_sellButton_clicked()
+{
+    QString myy = "myy: ";
+
+    qInfo() << myy + ui->ownedTrainsListWidget->currentItem()->text();
+}
+
+void MainWindow::on_buyButton_clicked()
+{
+    QString osta = "osta: ";
+
+    qInfo() << osta + ui->buyableTrainsListWidget->currentItem()->text();
+}
+
+void MainWindow::on_fixButton_clicked()
 {
 
 }
 
-void MainWindow::sellTrain()
+void MainWindow::on_confirmButton_clicked()
 {
+    QString kayta = "käytä: ";
 
+    qInfo() << kayta + ui->ownedTrainsListWidget->currentItem()->text();
 }
 
-void MainWindow::fixTrain()
+void MainWindow::on_ownedTrainsListWidget_itemClicked(QListWidgetItem *item)
 {
+    ui->buyableTrainsListWidget->selectionModel()->clear();
+    ui->featuresBLabel->clear();
 
+    if (item->text() == "Pelaajan juna1") {
+
+        ui->featuresOLabel->setText("Nopeus: 99, kunto 100");
+        ui->costsLabel->setText("10");
+    }
+
+    else if (item->text() == "Pelaajan juna2") {
+        ui->featuresOLabel->setText("Nopeus: 33, kunto 0");
+        ui->costsLabel->setText("20");
+
+    }
 }
 
-void MainWindow::setPlayerTrain()
+void MainWindow::on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item)
 {
+    ui->ownedTrainsListWidget->selectionModel()->clear();
+    ui->featuresOLabel->clear();
 
-}
+    if (item->text() == "Lättähattujuna") {
 
+        ui->featuresBLabel->setText("Nopeus: 99, kunto 100");
+        ui->costsLabel->setText("30");
 
-void MainWindow::on_setTrainButton_clicked()
-{
+    }
 
+    else if (item->text() == "Pomppuresiina") {
+
+        ui->featuresBLabel->setText("Nopeus: 66, kunto 100");
+        ui->costsLabel->setText("40");
+
+    }
+
+    else if (item->text() == "Höyryveturi") {
+
+        ui->featuresBLabel->setText("Nopeus: 33, kunto 100");
+        ui->costsLabel->setText("50");
+
+    }
+
+    else if (item->text() == "Luotijuna") {
+
+        ui->featuresBLabel->setText("Nopeus: 1, kunto 100");
+        ui->costsLabel->setText("60");
+
+    }
 }

@@ -327,13 +327,65 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QPushButton" name="setTrainButton">
+     <widget class="QListWidget" name="buyableTrainsListWidget">
+      <property name="geometry">
+       <rect>
+        <x>835</x>
+        <y>60</y>
+        <width>271</width>
+        <height>351</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="ownedTrainsListWidget">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>70</y>
+        <width>251</width>
+        <height>341</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="valitseJunaLabel">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>60</y>
+        <width>191</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Valitse tai vaihda pelattava juna</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="costsLabelText">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>370</y>
+        <width>181</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Saat / Maksaa:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="confirmButton">
       <property name="geometry">
        <rect>
         <x>490</x>
-        <y>100</y>
+        <y>120</y>
         <width>131</width>
-        <height>61</height>
+        <height>51</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -351,82 +403,81 @@ border-radius: 6px;
 background-color: #0000ff;
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, 
             stop: 0 #0000ff, stop: 1 #0000ff);
-}</string>
+}
+</string>
       </property>
       <property name="text">
        <string>Hyväksy</string>
       </property>
      </widget>
-     <widget class="QListWidget" name="buyableTrainsListWidget">
+     <widget class="QLabel" name="featuresTextOLabel">
       <property name="geometry">
        <rect>
-        <x>785</x>
-        <y>60</y>
-        <width>321</width>
-        <height>231</height>
+        <x>40</x>
+        <y>440</y>
+        <width>81</width>
+        <height>21</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QListWidget" name="buyableDetailsListWidget">
-      <property name="geometry">
-       <rect>
-        <x>810</x>
-        <y>310</y>
-        <width>256</width>
-        <height>192</height>
-       </rect>
+      <property name="text">
+       <string>Ominaisuudet:</string>
       </property>
      </widget>
-     <widget class="QListWidget" name="ownedDetailsListWidget">
+     <widget class="QLabel" name="featuresTextBLabel">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>310</y>
-        <width>256</width>
-        <height>192</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="ownedListWidget">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>70</y>
-        <width>291</width>
-        <height>221</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="valitseJunaLabel">
-      <property name="geometry">
-       <rect>
-        <x>460</x>
-        <y>60</y>
-        <width>191</width>
+        <x>840</x>
+        <y>440</y>
+        <width>81</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Valitse tai vaihda pelattava juna</string>
+       <string>Ominaisuudet:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="featuresOLabel">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>370</y>
-        <width>231</width>
-        <height>61</height>
+        <x>134</x>
+        <y>440</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="featuresBLabel">
+      <property name="geometry">
+       <rect>
+        <x>934</x>
+        <y>440</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="costsLabel">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>380</y>
+        <width>131</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Microsoft YaHei UI</family>
         <pointsize>15</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>Saat / Maksaa: 99e</string>
+       <string>0</string>
       </property>
      </widget>
     </widget>

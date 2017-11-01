@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <memory>
 #include <QGraphicsPixmapItem>
+#include <QListWidgetItem>
 
 namespace Ui {
 class MainWindow;
@@ -23,9 +24,9 @@ public:
     //void updateBuyOrSellText(String operation, int count);
 
 private slots:
-    void goToDepot();
-    void goToGame();
-    void goToShop();
+    void on_shopButton_clicked();
+    void on_gameButton_clicked();
+    void on_depotButton_clicked();
 
     void changeSpeed();
     void changeDirection();
@@ -39,12 +40,14 @@ private slots:
     void updateFame();
     void updatePartsToBeRepaired();
 
-    void buyTrain();
-    void sellTrain();
-    void fixTrain();
-    void setPlayerTrain();
+    void on_sellButton_clicked();
+    void on_buyButton_clicked();
+    void on_fixButton_clicked();
+    void on_confirmButton_clicked();
 
-    void on_setTrainButton_clicked();
+    void on_ownedTrainsListWidget_itemClicked(QListWidgetItem *item);
+
+    void on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;
