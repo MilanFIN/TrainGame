@@ -51,7 +51,7 @@ private:
     bool forward_ = true;
     float previousSpeed_;
     int movementSinceLastSpawn;
-    float accel_ = 0.1;
+    float accel_ = 1;
 
 
     //other

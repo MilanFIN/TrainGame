@@ -16,7 +16,6 @@
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -36,7 +35,7 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *depotPage;
     QPushButton *fixButton;
-    QListView *ownedToFixListView;
+    QListWidget *fixListWidget;
     QWidget *gamePage;
     QGraphicsView *gameView;
     QGraphicsView *minimapView;
@@ -100,9 +99,9 @@ public:
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67, \n"
 "            stop: 0 #22c70d, stop: 1 #116a06);\n"
 "}"));
-        ownedToFixListView = new QListView(depotPage);
-        ownedToFixListView->setObjectName(QStringLiteral("ownedToFixListView"));
-        ownedToFixListView->setGeometry(QRect(40, 30, 781, 471));
+        fixListWidget = new QListWidget(depotPage);
+        fixListWidget->setObjectName(QStringLiteral("fixListWidget"));
+        fixListWidget->setGeometry(QRect(30, 50, 811, 441));
         stackedWidget->addWidget(depotPage);
         gamePage = new QWidget();
         gamePage->setObjectName(QStringLiteral("gamePage"));
@@ -114,7 +113,7 @@ public:
         minimapView->setGeometry(QRect(10, 40, 281, 421));
         gasSlider = new QSlider(gamePage);
         gasSlider->setObjectName(QStringLiteral("gasSlider"));
-        gasSlider->setGeometry(QRect(1070, 300, 41, 191));
+        gasSlider->setGeometry(QRect(860, 450, 251, 41));
         gasSlider->setStyleSheet(QLatin1String("QSlider  \n"
 "{  \n"
 "    background-color: #ddd;   \n"
@@ -138,12 +137,12 @@ public:
 "}  \n"
 ""));
         gasSlider->setMinimum(0);
-        gasSlider->setMaximum(99);
+        gasSlider->setMaximum(200);
         gasSlider->setSliderPosition(0);
-        gasSlider->setOrientation(Qt::Vertical);
+        gasSlider->setOrientation(Qt::Horizontal);
         directionButton = new QPushButton(gamePage);
         directionButton->setObjectName(QStringLiteral("directionButton"));
-        directionButton->setGeometry(QRect(1050, 230, 71, 31));
+        directionButton->setGeometry(QRect(870, 410, 71, 31));
         directionButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
@@ -161,20 +160,20 @@ public:
 "}"));
         directionLabel = new QLabel(gamePage);
         directionLabel->setObjectName(QStringLiteral("directionLabel"));
-        directionLabel->setGeometry(QRect(1060, 270, 61, 21));
+        directionLabel->setGeometry(QRect(950, 410, 61, 21));
         directionLabel->setAlignment(Qt::AlignCenter);
         comingLabel = new QLabel(gamePage);
         comingLabel->setObjectName(QStringLiteral("comingLabel"));
-        comingLabel->setGeometry(QRect(860, 80, 55, 16));
+        comingLabel->setGeometry(QRect(950, 0, 81, 16));
         passedLabel = new QLabel(gamePage);
         passedLabel->setObjectName(QStringLiteral("passedLabel"));
-        passedLabel->setGeometry(QRect(960, 80, 55, 16));
+        passedLabel->setGeometry(QRect(960, 200, 71, 16));
         nextStationsListWidget = new QListWidget(gamePage);
         nextStationsListWidget->setObjectName(QStringLiteral("nextStationsListWidget"));
-        nextStationsListWidget->setGeometry(QRect(850, 110, 81, 371));
+        nextStationsListWidget->setGeometry(QRect(860, 20, 261, 171));
         passedStationsListWidget = new QListWidget(gamePage);
         passedStationsListWidget->setObjectName(QStringLiteral("passedStationsListWidget"));
-        passedStationsListWidget->setGeometry(QRect(950, 110, 81, 371));
+        passedStationsListWidget->setGeometry(QRect(860, 220, 261, 171));
         stackedWidget->addWidget(gamePage);
         shopPage = new QWidget();
         shopPage->setObjectName(QStringLiteral("shopPage"));
@@ -420,7 +419,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -433,7 +432,7 @@ public:
         directionButton->setText(QApplication::translate("MainWindow", "Suunta", Q_NULLPTR));
         directionLabel->setText(QApplication::translate("MainWindow", "Eteen", Q_NULLPTR));
         comingLabel->setText(QApplication::translate("MainWindow", "Seuraavalta", Q_NULLPTR));
-        passedLabel->setText(QApplication::translate("MainWindow", "Edelliseltä", Q_NULLPTR));
+        passedLabel->setText(QApplication::translate("MainWindow", "Edelliselt\303\244", Q_NULLPTR));
         buyButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
         sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
         playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));

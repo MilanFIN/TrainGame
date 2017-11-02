@@ -57,13 +57,13 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        <string>Korjaa</string>
       </property>
      </widget>
-     <widget class="QListView" name="ownedToFixListView">
+     <widget class="QListWidget" name="fixListWidget">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>30</y>
-        <width>781</width>
-        <height>471</height>
+        <x>30</x>
+        <y>50</y>
+        <width>811</width>
+        <height>441</height>
        </rect>
       </property>
      </widget>
@@ -92,10 +92,10 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QSlider" name="gasSlider">
       <property name="geometry">
        <rect>
-        <x>1070</x>
-        <y>300</y>
-        <width>41</width>
-        <height>191</height>
+        <x>860</x>
+        <y>450</y>
+        <width>251</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -126,20 +126,20 @@ QSlider::handle:horizontal
        <number>0</number>
       </property>
       <property name="maximum">
-       <number>99</number>
+       <number>200</number>
       </property>
       <property name="sliderPosition">
        <number>0</number>
       </property>
       <property name="orientation">
-       <enum>Qt::Vertical</enum>
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
      <widget class="QPushButton" name="directionButton">
       <property name="geometry">
        <rect>
-        <x>1050</x>
-        <y>230</y>
+        <x>870</x>
+        <y>410</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -168,8 +168,8 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QLabel" name="directionLabel">
       <property name="geometry">
        <rect>
-        <x>1060</x>
-        <y>270</y>
+        <x>950</x>
+        <y>410</y>
         <width>61</width>
         <height>21</height>
        </rect>
@@ -184,8 +184,8 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QLabel" name="comingLabel">
       <property name="geometry">
        <rect>
-        <x>830</x>
-        <y>80</y>
+        <x>950</x>
+        <y>0</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -197,8 +197,8 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QLabel" name="passedLabel">
       <property name="geometry">
        <rect>
-        <x>940</x>
-        <y>80</y>
+        <x>960</x>
+        <y>200</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -210,20 +210,20 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QListWidget" name="nextStationsListWidget">
       <property name="geometry">
        <rect>
-        <x>830</x>
-        <y>110</y>
-        <width>101</width>
-        <height>371</height>
+        <x>860</x>
+        <y>20</y>
+        <width>261</width>
+        <height>171</height>
        </rect>
       </property>
      </widget>
      <widget class="QListWidget" name="passedStationsListWidget">
       <property name="geometry">
        <rect>
-        <x>940</x>
-        <y>110</y>
-        <width>101</width>
-        <height>371</height>
+        <x>860</x>
+        <y>220</y>
+        <width>261</width>
+        <height>171</height>
        </rect>
       </property>
      </widget>
@@ -794,7 +794,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <x>0</x>
      <y>0</y>
      <width>1154</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

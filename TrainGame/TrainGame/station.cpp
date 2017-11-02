@@ -3,8 +3,9 @@
 Station::Station(int y)
 {
     QImage kuva(":/kuvat/station.png");
-    setPixmap(QPixmap::fromImage(kuva));
-    setPos(-100, y);
+    QImage kuvaScaled = kuva.scaled(300,300,Qt::KeepAspectRatio);
+    setPixmap(QPixmap::fromImage(kuvaScaled));
+    setPos(-300, y);
     setZValue(10);
 }
 

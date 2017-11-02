@@ -10,7 +10,7 @@ PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double
     QImage kuva(":/kuvat/train.png");
     QImage kuvaScaled = kuva.scaled(200,200,Qt::KeepAspectRatio);
     setPixmap(QPixmap::fromImage(kuvaScaled));
-    setPos(-100, 0);
+    setPos(-69, 0);
     //asetetaan raiteiden päälle
     setZValue(2);
 

@@ -35,15 +35,10 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     ui->ownedTrainsListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
     ui->ownedTrainsListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
 
+    ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
+    ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
 
 
-    QImage kuva(":/kuvat/rautatie.png");
-    QImage kuvaScaled = kuva.scaled(400,400,Qt::KeepAspectRatio);
-    QGraphicsScene* minimapScene = new QGraphicsScene();
-    ui->minimapView->setScene(minimapScene);
-    QGraphicsPixmapItem* rautatiet = new QGraphicsPixmapItem(QPixmap::fromImage(kuvaScaled));
-    minimapScene->addItem(rautatiet);
-    ui->minimapView->show();
 
 }
 
@@ -142,7 +137,7 @@ void MainWindow::updatePartsToBeRepaired()
 void MainWindow::on_sellButton_clicked()
 {
     QString myy = "myy: ";
-    if (ui->buyableTrainsListWidget->currentItem() != nullptr){
+    if (ui->ownedTrainsListWidget->currentItem() != nullptr){
 
         qInfo() << myy + ui->ownedTrainsListWidget->currentItem()->text();
     }
@@ -158,14 +153,21 @@ void MainWindow::on_buyButton_clicked()
 
 void MainWindow::on_fixButton_clicked()
 {
+    QString korjattava = "korjattu: ";
+    if (ui->fixListWidget->currentItem() != nullptr){
 
+        qInfo() << korjattava + ui->fixListWidget->currentItem()->text();
+    }
 }
 
 void MainWindow::on_confirmButton_clicked()
 {
     QString kayta = "käytä: ";
 
-    qInfo() << kayta + ui->ownedTrainsListWidget->currentItem()->text();
+    if (ui->ownedTrainsListWidget->currentItem() != nullptr){
+        qInfo() << kayta + ui->ownedTrainsListWidget->currentItem()->text();
+
+    }
 }
 
 void MainWindow::on_ownedTrainsListWidget_itemClicked(QListWidgetItem *item)

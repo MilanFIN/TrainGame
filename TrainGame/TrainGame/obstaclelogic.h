@@ -30,7 +30,7 @@ private:
     float goalSpeed_;
     bool forward_ = true;
     float previousSpeed_;
-    float accel_ = 0.1;
+    float accel_ = 1;
 
     //other
     std::shared_ptr<QGraphicsScene> scene_;
