@@ -30,6 +30,8 @@ std::shared_ptr<ObstacleInterface> ObstacleFactory::createObject()
         std::shared_ptr<Boulder> a = std::make_shared<Boulder>(-1000);
         return a;
     } else {
+        std::shared_ptr<Boulder> a = std::make_shared<Boulder>(-1000);
+        return a;
         // TODO: add different obstacle types.
     }
 
