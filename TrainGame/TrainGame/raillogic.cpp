@@ -8,7 +8,8 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275));
     scene_->addItem(railTiles.at(0).get());
 
-    std::shared_ptr<Background> bg = std::make_shared<Background>();
+    bg = std::make_shared<Background>();
+    scene_->addItem(bg.get());
 
     dataReader::READER.loadTracksFromFile(QString(":/data/ratadata.json"), *this);
     dataReader::READER.loadStationsFromFile(QString(":/data/asemadata.json"), *this);

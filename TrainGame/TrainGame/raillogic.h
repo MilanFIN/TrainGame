@@ -51,6 +51,9 @@ signals:
 
 
 private:
+
+    std::shared_ptr<Background> bg;
+
     //movement related
     float speed_ = 0;
     float goalSpeed_;
