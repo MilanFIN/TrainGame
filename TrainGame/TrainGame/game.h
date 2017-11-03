@@ -21,7 +21,11 @@ public:
     void setSpeed(int newSpeed);
     void changeDirection();
     void removeBlockage();
-
+    //tells raillogic to change destination to index
+    void changeDestination(int index);
+    //tells raillogic to change backtrack destination to index
+    void changeBacktrack(int index);
+    void gameTabChosen();
     RailLogic* getRailModel();
 signals:
 

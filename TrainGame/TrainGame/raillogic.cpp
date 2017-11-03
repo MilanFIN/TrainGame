@@ -83,6 +83,8 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     scene->addItem(previousStation_.get());
 
 
+    destinationIndex_ = 0;
+    backtrackIndex_ = 0;
 
 }
 
@@ -211,8 +213,8 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         backtrackTrackCandidates_ = destinationTrackCandidates_;
 
 
-        destinationStationCode_ = destinationStationCandidates_.at(0);//placeholder, go toward the first destination in the list
-        currentTrackCode_ = destinationTrackCandidates_.at(0);//also placeholder,going to the first rail in the destination list
+        destinationStationCode_ = destinationStationCandidates_.at(destinationIndex_);
+        currentTrackCode_ = destinationTrackCandidates_.at(destinationIndex_);
 
         std::cout << "passed " << startStationCode_.toStdString() << " on track " << currentTrackCode_.toStdString() << std::endl;
 
@@ -239,21 +241,31 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
             }
         }
 
-        //delete the station we passed from the scene
+        //delete original destination
         scene_->removeItem(nextStation_.get());
         //add the next station to the scene
         nextStation_ = std::make_shared<Station>(-1000);
         scene_->addItem(nextStation_.get());
 
+        //delete the station we passed from the scene
+        scene_->removeItem(previousStation_.get());
+        //add the next station to the scene
+        previousStation_ = std::make_shared<Station>(300);
+        scene_->addItem(previousStation_.get());
 
 
+        signalStationInfoToUi();
+        destinationIndex_ = 0;
+        backtrackIndex_ = 0;
     }
 
     if (train.get()->collidesWithItem(previousStation_.get())){
 
-        destinationStationCode_ = backtrackStationCandidates_.at(0);//placeholder, go toward the first destination in the list
-        currentTrackCode_ = backtrackTrackCandidates_.at(0);//also placeholder,going to the first rail in the destination list
+        destinationStationCode_ = backtrackStationCandidates_.at(backtrackIndex_);
+        currentTrackCode_ = backtrackTrackCandidates_.at(backtrackIndex_);
 
+
+        std::cout << "asdf:" << backtrackIndex_ << std::endl;
         std::cout << "passed " << startStationCode_.toStdString() << " on track " << currentTrackCode_.toStdString() << std::endl;
 
         //figure out possible directions after reaching destination
@@ -278,6 +290,14 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
                 }
             }
         }
+
+
+
+        //delete original destination
+        scene_->removeItem(nextStation_.get());
+        //add the next station to the scene
+        nextStation_ = std::make_shared<Station>(-1000);
+        scene_->addItem(nextStation_.get());
 
         //delete the station we passed from the scene
         scene_->removeItem(previousStation_.get());
@@ -288,10 +308,11 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
 
 
 
-    }
+        signalStationInfoToUi();
+        destinationIndex_ = 0;
+        backtrackIndex_ = 0;
 
-    emit destinationCandidatesChanged(CombineStationTrackInfo( destinationStationCandidates_, destinationTrackCandidates_));
-    emit backttrackCandidatesChanged(CombineStationTrackInfo(backtrackStationCandidates_, backtrackTrackCandidates_));
+    }
 
 }
 
@@ -309,5 +330,21 @@ QList<QString> RailLogic::CombineStationTrackInfo(QList<QString> &stationCodes, 
     }
 
     return nameList;
+}
+
+void RailLogic::changeBackTrackCandidateIndex(int index)
+{
+    backtrackIndex_ = index;
+}
+
+void RailLogic::signalStationInfoToUi()
+{
+    emit destinationCandidatesChanged(CombineStationTrackInfo( destinationStationCandidates_, destinationTrackCandidates_));
+    emit backttrackCandidatesChanged(CombineStationTrackInfo(backtrackStationCandidates_, backtrackTrackCandidates_));
+}
+
+void RailLogic::changeDestinationCandidateIndex(int index)
+{
+    destinationIndex_ = index;
 }
 
