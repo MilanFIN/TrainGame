@@ -3,6 +3,8 @@
 #include <QKeyEvent>
 #include <QDebug>
 
+#include <iostream>
+
 
 
 MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene, QWidget *parent) :
@@ -21,6 +23,10 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     connect(ui->gasSlider, &QSlider::valueChanged, this, &MainWindow::changeSpeed);
     connect(ui->directionButton, &QPushButton::clicked, this, &MainWindow::changeDirection);
+
+    connect(ui->nextStationsListWidget, &QListWidget::currentItemChanged, this, &MainWindow::changeNextDestination);
+    connect(ui->passedStationsListWidget, &QListWidget::currentItemChanged, this, &MainWindow::changeNextBacktrack);
+
 
     ui->gameView->setScene(scene_.get());
 
@@ -62,6 +68,7 @@ void MainWindow::on_depotButton_clicked()
 void MainWindow::on_gameButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+    game_->gameTabChosen();
 }
 
 void MainWindow::on_shopButton_clicked()
@@ -105,6 +112,21 @@ void MainWindow::updatePassedStations(QList<QString> stations)
     ui->passedStationsListWidget->clear();
     for (auto i = stations.begin(); i != stations.end(); ++i){
         ui->passedStationsListWidget->addItem(*i);
+    }
+}
+
+void MainWindow::changeNextDestination()
+{
+    if (ui->nextStationsListWidget->currentRow() != -1){
+        game_->changeDestination(ui->nextStationsListWidget->currentRow());
+    }
+
+}
+
+void MainWindow::changeNextBacktrack()
+{
+    if (ui->passedStationsListWidget->currentRow() != -1){
+        game_->changeBacktrack(ui->passedStationsListWidget->currentRow());
     }
 }
 

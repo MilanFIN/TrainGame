@@ -39,6 +39,12 @@ public:
     void checkCollisionWithStations(std::shared_ptr<PlayerTrain> train);
     QList<QString> CombineStationTrackInfo(QList<QString> &stationCodes, QList<QString> &trackCodes);
 
+    //methods to change chosen candidates for destination or backtrack destination
+    void changeDestinationCandidateIndex(int index);
+    void changeBackTrackCandidateIndex(int index);
+
+    void signalStationInfoToUi();
+
 signals:
     void destinationCandidatesChanged(QList<QString> stations);
     void backttrackCandidatesChanged(QList<QString> stations);
@@ -85,6 +91,9 @@ private:
     QList<QString> destinationTrackCandidates_; //trackcodes that correspond to the above destinations
     QList<QString> backtrackStationCandidates_; //stationcodes for possible destinations after reversing to previous station
     QList<QString> backtrackTrackCandidates_; //trackcodes for the above
+
+    int destinationIndex_;
+    int backtrackIndex_;
 
 };
 

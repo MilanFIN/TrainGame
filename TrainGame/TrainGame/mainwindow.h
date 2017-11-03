@@ -32,12 +32,23 @@ public slots:
     void on_gameButton_clicked();
     void on_depotButton_clicked();
 
+    //slots for speed slider and direction button
     void changeSpeed();
     void changeDirection();
 
+
     void updateMinimap();
+    //slot for recieving new possible destination candidates
     void updateNextStations(QList<QString> stations);
+    //slot for recieving new possible backtracking candidates
     void updatePassedStations(QList<QString> stations);
+
+    //slot that informs controller that the choise of destination station
+    //has changed
+    void changeNextDestination();
+    void changeNextBacktrack();
+
+
     void updatePlayerTrains();
     void updateBuyableTrains();
     void updateMoney();

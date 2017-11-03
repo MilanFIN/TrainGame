@@ -52,6 +52,21 @@ void Game::removeBlockage()
     obstacleLogic_.get()->removeNearbyObjects(playerLogic_.get()->location());
 }
 
+void Game::changeDestination(int index)
+{
+    railLogic_->changeDestinationCandidateIndex(index);
+}
+
+void Game::changeBacktrack(int index)
+{
+    railLogic_->changeBackTrackCandidateIndex(index);
+}
+
+void Game::gameTabChosen()
+{
+    railLogic_->signalStationInfoToUi();
+}
+
 RailLogic* Game::getRailModel()
 {
     return railLogic_.get();
@@ -61,8 +76,6 @@ void Game::move()
 {
     railLogic_.get()->move();
     obstacleLogic_.get()->move();
-
-
 }
 
 void Game::spawn()
