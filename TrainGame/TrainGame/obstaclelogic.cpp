@@ -1,5 +1,6 @@
 #include "obstaclelogic.h"
 #include "playertrain.h"
+#include "obstaclefactory.h"
 #include <iostream>
 
 ObstacleLogic::ObstacleLogic(std::shared_ptr<QGraphicsScene> scene):
@@ -63,8 +64,12 @@ void ObstacleLogic::changeDirection()
 
 void ObstacleLogic::spawnObstacle()
 {
+
+
+    std::shared_ptr<ObstacleInterface> obstacle = ObstacleFactory::GetInstance()->createObject();
+
     //koko ja etäisyys asetetaan myöhemmin satunnaisesti
-    std::shared_ptr<Boulder> obstacle = std::make_shared<Boulder>(-1000);
+    //std::shared_ptr<Boulder> obstacle = std::make_shared<Boulder>(-1000);
     scene_->addItem(obstacle.get());
     obstacles.push_back(obstacle);
 }

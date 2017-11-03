@@ -38,7 +38,8 @@ SOURCES += \
     datareader.cpp \
     shop.cpp \
     station.cpp \
-    background.cpp
+    background.cpp \
+    obstaclefactory.cpp
 
 
 HEADERS += \
@@ -56,7 +57,8 @@ HEADERS += \
     datareader.h \
     shop.h \
     station.h \
-    background.h
+    background.h \
+    obstaclefactory.h
 
 
 FORMS += \
