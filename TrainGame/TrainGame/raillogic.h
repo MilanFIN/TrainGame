@@ -18,7 +18,7 @@
 #include "station.h"
 #include "traininterface.h"
 #include "playertrain.h"
-
+#include "background.h"
 
 
 

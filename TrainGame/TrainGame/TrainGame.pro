@@ -37,7 +37,8 @@ SOURCES += \
     boulder.cpp \
     datareader.cpp \
     shop.cpp \
-    station.cpp
+    station.cpp \
+    background.cpp
 
 
 HEADERS += \
@@ -54,7 +55,8 @@ HEADERS += \
     boulder.h \
     datareader.h \
     shop.h \
-    station.h
+    station.h \
+    background.h
 
 
 FORMS += \
