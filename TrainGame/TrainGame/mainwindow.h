@@ -11,7 +11,6 @@
 #include <QString>
 #include "raillogic.h"
 
-
 namespace Ui {
 class MainWindow;
 }

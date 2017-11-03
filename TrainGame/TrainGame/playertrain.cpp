@@ -7,10 +7,34 @@ PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double
     speed_(speed),
     repairCost_(repairCost_)
 {
-    QImage kuva(":/kuvat/train.png");
-    QImage kuvaScaled = kuva.scaled(200,200,Qt::KeepAspectRatio);
+    //juna 1 oikeat positiot ja skaalaus
+//    QImage kuva(":/kuvat/train.png");
+//    QImage kuvaScaled = kuva.scaled(200,200,Qt::KeepAspectRatio);
+//    setPixmap(QPixmap::fromImage(kuvaScaled));
+//    setPos(-69, 0);
+
+    //juna 2 oikea positio ja skaalaus
+//    QImage kuva(":/kuvat/train2.png");
+//    QImage kuvaScaled = kuva.scaled(75,200);
+//    setPixmap(QPixmap::fromImage(kuvaScaled));
+//    setPos(-35, 0);
+
+//    QImage kuva(":/kuvat/train3.png");
+//    QImage kuvaScaled = kuva.scaled(90,250,Qt::KeepAspectRatio);
+//    setPixmap(QPixmap::fromImage(kuvaScaled));
+//    setPos(-40, 0);
+
+    QImage kuva(":/kuvat/train4.png");
+    QImage kuvaScaled = kuva.scaled(80,250,Qt::KeepAspectRatio);
     setPixmap(QPixmap::fromImage(kuvaScaled));
-    setPos(-69, 0);
+    setPos(-37, 0);
+
+
+
+
+
+
+
     //asetetaan raiteiden päälle
     setZValue(2);
 

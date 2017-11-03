@@ -5,6 +5,10 @@
         <file>leafs.png</file>
         <file>station.png</file>
         <file>rautatie.png</file>
+        <file>train2.png</file>
+        <file>train3.png</file>
+        <file>train4.png</file>
+        <file>bg.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>asemadata.json</file>
