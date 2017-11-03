@@ -10,5 +10,5 @@ Station::Station(int y)
 }
 
 void Station::move(int speed){
-    setPos(45, y()+speed);
+    setPos(-100, y()+speed);
 }
