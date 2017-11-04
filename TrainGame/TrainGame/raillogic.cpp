@@ -123,12 +123,11 @@ void RailLogic::move()
         (*x).get()->move((int)speed_);
     }
 
-
-
     //tarkistetaan, onko kulkusuunta ehtinyt vaihtua edellisen päiviyksen jälkeen
 
     if ((previousSpeed_ > 0 && speed_ < 0) || (previousSpeed_ < 0 && speed_ > 0)){
         movementSinceLastRailSpawn = 0;
+        movementSinceLastBgSpawn = 0;
     }
 
     movementSinceLastRailSpawn += speed_;
@@ -153,17 +152,20 @@ void RailLogic::move()
         movementSinceLastRailSpawn += 30;
     }
 
-    if (movementSinceLastBgSpawn >= 4000) {
+    if (movementSinceLastBgSpawn >= 3000) {
 
-        std::shared_ptr<Background> newBg = std::make_shared<Background>(-500);
+        std::shared_ptr<Background> newBg = std::make_shared<Background>(-5000);
         scene_->addItem(newBg.get());
         bg.push_back(newBg);
-        movementSinceLastBgSpawn -= 4000;
+        movementSinceLastBgSpawn -= 3000;
     }
 
-    else if (movementSinceLastBgSpawn <= -4000) {
+    else if (movementSinceLastBgSpawn <= -3000) {
 
-
+        std::shared_ptr<Background> newBg = std::make_shared<Background>(5000);
+        scene_->addItem(newBg.get());
+        bg.push_back(newBg);
+        movementSinceLastBgSpawn += 5000;
     }
 
 
@@ -178,9 +180,26 @@ void RailLogic::move()
             scene_->removeItem((*i).get());
             i = railTiles.erase(i);
         }
-        else{
+        else {
             ++i;
         }
+
+    }
+
+    //poistetaan näkyvistä hävinnyt background
+    for (auto x = bg.begin(); x != bg.end();) {
+        if ((*x).get()->y() > 5500) {
+            scene_->removeItem((*x).get());
+            x = bg.erase(x);
+        }
+        else if ((*x).get()->y() < -5500) {
+            scene_->removeItem((*x).get());
+            x = bg.erase(x);
+        }
+        else {
+            ++x;
+        }
+
     }
 
 
