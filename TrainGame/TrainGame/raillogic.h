@@ -52,20 +52,20 @@ signals:
 
 private:
 
-    std::shared_ptr<Background> bg;
-
     //movement related
     float speed_ = 0;
     float goalSpeed_;
     bool forward_ = true;
     float previousSpeed_;
-    int movementSinceLastSpawn;
+    int movementSinceLastRailSpawn;
+    int movementSinceLastBgSpawn;
     float accel_ = 1;
 
 
     //other
     std::shared_ptr<QGraphicsScene> scene_;
     std::vector<std::shared_ptr<RailTileInterface>> railTiles;
+    std::vector<std::shared_ptr<Background>> bg;
 
     std::shared_ptr<Station> nextStation_;
     std::shared_ptr<Station> previousStation_;

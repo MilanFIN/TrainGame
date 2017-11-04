@@ -6,7 +6,7 @@
 class Background : public QGraphicsPixmapItem
 {
 public:
-    Background();
+    Background(int y);
 
     void move(int speed);
 };

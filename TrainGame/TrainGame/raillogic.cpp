@@ -8,15 +8,16 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275));
     scene_->addItem(railTiles.at(0).get());
 
-    bg = std::make_shared<Background>();
-    scene_->addItem(bg.get());
+    bg.push_back(std::make_shared<Background>(-4500));
+    scene_->addItem(bg.at(0).get());
 
     dataReader::READER.loadTracksFromFile(QString(":/data/ratadata.json"), *this);
     dataReader::READER.loadStationsFromFile(QString(":/data/asemadata.json"), *this);
 
     goalSpeed_ = 0;
     previousSpeed_ = 0;
-    movementSinceLastSpawn = 0;
+    movementSinceLastRailSpawn = 0;
+    movementSinceLastBgSpawn = 0;
 
 
     //start from helsinki on track 001 towards pasila
@@ -117,33 +118,52 @@ void RailLogic::move()
         (*i).get()->move((int)speed_);
     }
 
+    //siirretään backgroundia
+    for (auto x = bg.begin(); x != bg.end(); ++x) {
+        (*x).get()->move((int)speed_);
+    }
+
 
 
     //tarkistetaan, onko kulkusuunta ehtinyt vaihtua edellisen päiviyksen jälkeen
 
     if ((previousSpeed_ > 0 && speed_ < 0) || (previousSpeed_ < 0 && speed_ > 0)){
-        movementSinceLastSpawn = 0;
+        movementSinceLastRailSpawn = 0;
     }
 
-    movementSinceLastSpawn += speed_;
+    movementSinceLastRailSpawn += speed_;
+    movementSinceLastBgSpawn += speed_;
     previousSpeed_ = speed_;
 
 
 
 
     //luodaan uusi pätkä, jos on liikuttu tarpeeksi
-    if (movementSinceLastSpawn >= 30){
+    if (movementSinceLastRailSpawn >= 30){
         std::shared_ptr<OneSideRailTile> railTile = std::make_shared<OneSideRailTile>(0,-275);
         scene_->addItem(railTile.get());
         railTiles.push_back(railTile);
-        movementSinceLastSpawn -= 30;
+        movementSinceLastRailSpawn -= 30;
     }
 
-    else if (movementSinceLastSpawn <= -30){
+    else if (movementSinceLastRailSpawn <= -30){
         std::shared_ptr<OneSideRailTile> railTile = std::make_shared<OneSideRailTile>(0,240);
         scene_->addItem(railTile.get());
         railTiles.push_back(railTile);
-        movementSinceLastSpawn += 30;
+        movementSinceLastRailSpawn += 30;
+    }
+
+    if (movementSinceLastBgSpawn >= 4000) {
+
+        std::shared_ptr<Background> newBg = std::make_shared<Background>(-500);
+        scene_->addItem(newBg.get());
+        bg.push_back(newBg);
+        movementSinceLastBgSpawn -= 4000;
+    }
+
+    else if (movementSinceLastBgSpawn <= -4000) {
+
+
     }
 
 
