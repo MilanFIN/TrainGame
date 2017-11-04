@@ -44,8 +44,15 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
     ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
 
-
-
+    QPen pen(Qt::blue, 1);
+    QLineF line(10, 20, 300,300);
+    std::shared_ptr<QGraphicsScene> minimapScene = std::make_shared<QGraphicsScene>();
+    minimapScene->addLine(line,pen);
+    ui->minimapView->setScene(minimapScene.get());
+    minimapScene->addLine(line,pen);
+    ui->minimapView->show();
+    minimapScene->addLine(line,pen);
+    ui->minimapView->setScene(minimapScene.get());
 }
 
 MainWindow::~MainWindow()
