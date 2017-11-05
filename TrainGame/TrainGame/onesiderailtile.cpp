@@ -2,9 +2,10 @@
 
 OneSideRailTile::OneSideRailTile(int x, int y)
 {
-    QImage kuva(":/kuvat/rail.png");
-    setPixmap(QPixmap::fromImage(kuva));
-    setPos(x-36,y);
+    QImage pic(":/kuvat/rail.png");
+    QImage picScaled = pic.scaled(50,80, Qt::KeepAspectRatio);
+    setPixmap(QPixmap::fromImage(picScaled));
+    setPos(x-26,y);
     setZValue(-1);
 }
 

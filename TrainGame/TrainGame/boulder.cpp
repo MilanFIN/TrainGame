@@ -3,9 +3,9 @@
 Boulder::Boulder(int y)
 {
     QImage kuva(":/kuvat/leafs.png");
-    QImage kuvaScaled = kuva.scaled(200,200,Qt::KeepAspectRatio);
+    QImage kuvaScaled = kuva.scaled(100,100,Qt::KeepAspectRatio);
     setPixmap(QPixmap::fromImage(kuvaScaled));
-    setPos(-100, y);
+    setPos(-50, y);
     setZValue(1);
 }
 

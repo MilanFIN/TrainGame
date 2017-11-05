@@ -25,9 +25,9 @@ PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double
 //    setPos(-40, 0);
 
     QImage kuva(":/kuvat/train4.png");
-    QImage kuvaScaled = kuva.scaled(80,250,Qt::KeepAspectRatio);
+    QImage kuvaScaled = kuva.scaled(70,230,Qt::KeepAspectRatio);
     setPixmap(QPixmap::fromImage(kuvaScaled));
-    setPos(-37, 0);
+    setPos(-35, -30);
 
 
 

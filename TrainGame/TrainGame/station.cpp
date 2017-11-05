@@ -3,12 +3,12 @@
 Station::Station(int y)
 {
     QImage kuva(":/kuvat/station.png");
-    QImage kuvaScaled = kuva.scaled(300,300,Qt::KeepAspectRatio);
+    QImage kuvaScaled = kuva.scaled(200,200,Qt::KeepAspectRatio);
     setPixmap(QPixmap::fromImage(kuvaScaled));
-    setPos(0, y);
+    setPos(-70, y);
     setZValue(10);
 }
 
 void Station::move(int speed){
-    setPos(-100, y()+speed);
+    setPos(x(), y()+speed);
 }

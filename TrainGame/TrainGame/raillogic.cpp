@@ -1,6 +1,7 @@
 #include "raillogic.h"
 #include "datareader.h"
 #include <iostream>
+#include <QDebug>
 
 RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
@@ -135,7 +136,7 @@ void RailLogic::move()
     previousSpeed_ = speed_;
 
 
-
+    qInfo() << movementSinceLastBgSpawn;
 
     //luodaan uusi pätkä, jos on liikuttu tarpeeksi
     if (movementSinceLastRailSpawn >= 30){
@@ -152,20 +153,20 @@ void RailLogic::move()
         movementSinceLastRailSpawn += 30;
     }
 
-    if (movementSinceLastBgSpawn >= 3000) {
+    if (movementSinceLastBgSpawn >= 4000) {
 
-        std::shared_ptr<Background> newBg = std::make_shared<Background>(-5000);
+        std::shared_ptr<Background> newBg = std::make_shared<Background>(-5450);
         scene_->addItem(newBg.get());
         bg.push_back(newBg);
-        movementSinceLastBgSpawn -= 3000;
+        movementSinceLastBgSpawn -= 4000;
     }
 
-    else if (movementSinceLastBgSpawn <= -3000) {
+    else if (movementSinceLastBgSpawn <= -4000) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(5000);
         scene_->addItem(newBg.get());
         bg.push_back(newBg);
-        movementSinceLastBgSpawn += 5000;
+        movementSinceLastBgSpawn += 4000;
     }
 
 

@@ -66,6 +66,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
         <height>441</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="gamePage">
@@ -83,7 +88,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
+        <y>70</y>
         <width>281</width>
         <height>421</height>
        </rect>
@@ -227,6 +232,45 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        </rect>
       </property>
      </widget>
+     <widget class="QLabel" name="latestPassedLabel">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>0</y>
+        <width>201</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Viimeisin ohitettu asema:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>30</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>ei ohitettuja asemia</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="shopPage">
      <widget class="QPushButton" name="buyButton">
@@ -292,9 +336,9 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QLabel" name="playerTrainsLabel">
       <property name="geometry">
        <rect>
-        <x>24</x>
-        <y>0</y>
-        <width>301</width>
+        <x>30</x>
+        <y>10</y>
+        <width>251</width>
         <height>31</height>
        </rect>
       </property>
@@ -311,9 +355,9 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QLabel" name="buyableTrainsLabel">
       <property name="geometry">
        <rect>
-        <x>794</x>
-        <y>0</y>
-        <width>321</width>
+        <x>840</x>
+        <y>10</y>
+        <width>261</width>
         <height>31</height>
        </rect>
       </property>
@@ -336,15 +380,25 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
         <height>351</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
      </widget>
      <widget class="QListWidget" name="ownedTrainsListWidget">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>70</y>
+        <y>60</y>
         <width>251</width>
         <height>341</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QLabel" name="valitseJunaLabel">
@@ -352,19 +406,27 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        <rect>
         <x>460</x>
         <y>60</y>
-        <width>191</width>
+        <width>181</width>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Valitse tai vaihda pelattava juna</string>
+       <string>Valitse käytettävä juna</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="costsLabelText">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>370</y>
+        <x>420</x>
+        <y>360</y>
         <width>181</width>
         <height>61</height>
        </rect>
@@ -383,7 +445,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
       <property name="geometry">
        <rect>
         <x>490</x>
-        <y>120</y>
+        <y>100</y>
         <width>131</width>
         <height>51</height>
        </rect>
@@ -465,8 +527,8 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QLabel" name="costsLabel">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>380</y>
+        <x>610</x>
+        <y>370</y>
         <width>131</width>
         <height>41</height>
        </rect>
@@ -765,26 +827,81 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <string>Kauppa</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="fameTextLabel">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>101</width>
+      <width>61</width>
       <height>20</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <weight>75</weight>
-      <bold>true</bold>
+      <pointsize>11</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="text">
-     <string>Fame/raha:</string>
+     <string>fame:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="fameLabel">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>10</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="moneyTextLabel">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>raha:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>10</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
     </property>
    </widget>
   </widget>
