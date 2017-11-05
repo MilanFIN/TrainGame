@@ -6,8 +6,15 @@
 RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
 {
-    railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275));
-    scene_->addItem(railTiles.at(0).get());
+    //railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275));
+    //scene_->addItem(railTiles.at(0).get());
+
+
+    for (int i = -275; i < 280; i +=30){
+        railTiles.push_back(std::make_shared<OneSideRailTile>(0,i));
+        scene_->addItem(railTiles.back().get());
+    }
+
 
     bg.push_back(std::make_shared<Background>(-4500));
     scene_->addItem(bg.at(0).get());
