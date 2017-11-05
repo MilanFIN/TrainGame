@@ -19,6 +19,15 @@ void Shop::addTrain(std::shared_ptr<PlayerTrain> train)
     availableTrains_.push_back(train);
 }
 
+std::shared_ptr<PlayerTrain> Shop::getTrainInfo(QString trainName) const
+{
+    for (std::shared_ptr<PlayerTrain> train : availableTrains_) {
+        if (trainName == train->getName()) {
+            return train;
+        }
+    }
+}
+
 std::vector<std::shared_ptr<PlayerTrain> > Shop::buyableTrains() const
 {
     return availableTrains_;

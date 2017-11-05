@@ -2,14 +2,14 @@
         {
             "name": "Pomppuresiina",
             "shape": 50,
-            "speed": 2.5,
+            "speed": 25,
             "price": 0,
             "repairCost": 50
         },
         {
             "name": "Lättähattu",
             "shape": 100,
-            "speed": 2.9,
+            "speed": 29,
             "price": 500,
             "repairCost": 150
         },

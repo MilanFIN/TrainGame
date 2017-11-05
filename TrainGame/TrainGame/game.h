@@ -26,7 +26,13 @@ public:
     //tells raillogic to change backtrack destination to index
     void changeBacktrack(int index);
     void gameTabChosen();
+    void shopTabChosen();
+    void wantedOwnedTrainInfo(QString trainName);
+    void wantedTrainInfo(QString trainName);
+    int getPlayerCash();
+
     RailLogic* getRailModel();
+    PlayerLogic* getPlayerModel();
 signals:
 
 public slots:

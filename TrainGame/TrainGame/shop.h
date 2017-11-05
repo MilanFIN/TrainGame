@@ -26,6 +26,8 @@ public:
      */
     void addTrain(std::shared_ptr<PlayerTrain> train);
 
+    std::shared_ptr<PlayerTrain> getTrainInfo(QString trainName) const;
+
     /**
      * @brief buyableTrains palauttaa vectorin, joka sisältää ostettavat junat
      * @return vector

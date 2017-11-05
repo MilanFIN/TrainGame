@@ -67,9 +67,35 @@ void Game::gameTabChosen()
     railLogic_->signalStationInfoToUi();
 }
 
+void Game::shopTabChosen()
+{
+    playerLogic_->getAvailableTrainsFromShop();
+    playerLogic_->getOwnedTrains();
+}
+
+void Game::wantedOwnedTrainInfo(QString trainName)
+{
+    playerLogic_->getOwnedTrainInfo(trainName);
+}
+
+void Game::wantedTrainInfo(QString trainName)
+{
+    playerLogic_->getTrainInfo(trainName);
+}
+
+int Game::getPlayerCash()
+{
+    return playerLogic_->getCurrentMoney();
+}
+
 RailLogic* Game::getRailModel()
 {
     return railLogic_.get();
+}
+
+PlayerLogic *Game::getPlayerModel()
+{
+    return playerLogic_.get();
 }
 
 void Game::move()

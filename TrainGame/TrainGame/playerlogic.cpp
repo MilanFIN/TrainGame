@@ -2,6 +2,7 @@
 #include "shop.h"
 #include "datareader.h"
 
+
 PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
 {
@@ -13,6 +14,9 @@ PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
 
     activeTrain_ = playableTrains_.at(0);
     scene_->addItem(activeTrain_.get());
+
+    currentMoney_ = 500;
+    emit playerCashChanged(getCurrentMoney());
 
 
 
@@ -32,4 +36,45 @@ std::shared_ptr<PlayerTrain> PlayerLogic::activeTrain()
 void PlayerLogic::addNewTrain(std::shared_ptr<PlayerTrain> newTrain)
 {
     playableTrains_.push_back(newTrain);
+}
+
+int PlayerLogic::getCurrentMoney()
+{
+    return currentMoney_;
+}
+
+void PlayerLogic::increaseMoney(int amount)
+{
+    currentMoney_ += amount;
+    emit playerCashChanged(currentMoney_);
+}
+
+void PlayerLogic::decreaseMoney(int amount)
+{
+    currentMoney_ -= amount;
+    emit playerCashChanged(currentMoney_);
+}
+
+void PlayerLogic::getOwnedTrainInfo(QString trainName)
+{
+    for (std::shared_ptr<PlayerTrain> train : playableTrains_) {
+        if (trainName == train->getName()) {
+            emit ownedTrainInfo(train);
+        }
+    }
+}
+
+void PlayerLogic::getTrainInfo(QString trainName)
+{
+    emit trainInfo(shop_->getTrainInfo(trainName));
+}
+
+void PlayerLogic::getAvailableTrainsFromShop()
+{
+    emit availableTrains(shop_->buyableTrains());
+}
+
+void PlayerLogic::getOwnedTrains()
+{
+    emit ownedTrains(playableTrains_);
 }

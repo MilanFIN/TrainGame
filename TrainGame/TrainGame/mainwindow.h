@@ -10,6 +10,7 @@
 #include <QList>
 #include <QString>
 #include "raillogic.h"
+#include "playerlogic.h"
 
 namespace Ui {
 class MainWindow;
@@ -47,10 +48,11 @@ public slots:
     void changeNextDestination();
     void changeNextBacktrack();
 
+    void updateTrainFeatures(std::shared_ptr<PlayerTrain> trainInfo);
 
-    void updatePlayerTrains();
-    void updateBuyableTrains();
-    void updateMoney();
+    void updatePlayerTrains(std::vector<std::shared_ptr<PlayerTrain>> ownedTrains);
+    void updateBuyableTrains(std::vector<std::shared_ptr<PlayerTrain> > Trains);
+    void updateMoney(int cash);
     void updateFame();
     void updatePartsToBeRepaired();
 
