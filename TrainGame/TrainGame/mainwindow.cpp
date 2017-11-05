@@ -161,6 +161,7 @@ void MainWindow::updateTrainFeatures(std::shared_ptr<PlayerTrain> trainInfo)
 
 void MainWindow::updatePlayerTrains(std::vector<std::shared_ptr<PlayerTrain> > ownedTrains)
 {
+    ui->ownedTrainsListWidget->clear();
     for (std::shared_ptr<PlayerTrain> owned : ownedTrains) {
         QString name = owned->getName();
         ui->ownedTrainsListWidget->addItem(new QListWidgetItem(name));
@@ -169,6 +170,7 @@ void MainWindow::updatePlayerTrains(std::vector<std::shared_ptr<PlayerTrain> > o
 
 void MainWindow::updateBuyableTrains(std::vector<std::shared_ptr<PlayerTrain>> trains)
 {
+    ui->buyableTrainsListWidget->clear();
     for (std::shared_ptr<PlayerTrain> train : trains) {
         QString trainName = train->getName();
         ui->buyableTrainsListWidget->addItem(new QListWidgetItem(trainName));
