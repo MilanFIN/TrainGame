@@ -109,6 +109,8 @@ void MainWindow::changeDirection()
     }
 }
 
+
+
 void MainWindow::updateMinimap()
 {
 
@@ -204,9 +206,18 @@ void MainWindow::on_sellButton_clicked()
 
 void MainWindow::on_buyButton_clicked()
 {
-    QString osta = "osta: ";
+
     if (ui->buyableTrainsListWidget->currentItem() != nullptr){
-        qInfo() << osta + ui->buyableTrainsListWidget->currentItem()->text();
+        QString TrainName = ui->buyableTrainsListWidget->currentItem()->text();
+        int index = ui->buyableTrainsListWidget->currentRow();
+
+        if(!game_->buyNewTrain(TrainName, index)) {
+            std::cout << "ei tarpeeks massia ostaa junaa" << std::endl;
+        }
+        ui->featuresOLabel->clear();
+        ui->featuresBLabel->clear();
+        ui->costsLabel->clear();
+
     }
 }
 

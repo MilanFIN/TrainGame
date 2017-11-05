@@ -31,14 +31,17 @@ public:
     void wantedTrainInfo(QString trainName);
     int getPlayerCash();
 
+    bool buyNewTrain(QString trainName, int index);
+
     RailLogic* getRailModel();
     PlayerLogic* getPlayerModel();
 signals:
-
+    void shopChanged();
 public slots:
     void move();
     void spawn();
     void checkCollisions();
+    void updateShop();
 private:
 
     std::shared_ptr<RailLogic>  railLogic_;

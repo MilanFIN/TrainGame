@@ -88,6 +88,15 @@ int Game::getPlayerCash()
     return playerLogic_->getCurrentMoney();
 }
 
+bool Game::buyNewTrain(QString trainName, int index)
+{
+    if(!playerLogic_->buyTrain(trainName, index)) {
+        return false;
+    }
+    return true;
+
+}
+
 RailLogic* Game::getRailModel()
 {
     return railLogic_.get();
@@ -115,5 +124,10 @@ void Game::checkCollisions()
     int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
     //check if player has arrived to a station
     railLogic_.get()->checkCollisionWithStations(playerLogic_.get()->activeTrain());
+}
+
+void Game::updateShop()
+{
+    emit shopChanged();
 }
 

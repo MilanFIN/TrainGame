@@ -45,6 +45,8 @@ public:
 
     void getAvailableTrainsFromShop();
     void getOwnedTrains();
+
+    bool buyTrain(QString trainName, int index);
 signals:
     int playerCashChanged(int amount);
     void ownedTrainInfo(std::shared_ptr<PlayerTrain> train);
@@ -61,6 +63,10 @@ private:
     std::shared_ptr<Shop> shop_;
 
     int currentMoney_;
+    int fame_;
+
+
+    void invariant();
 };
 
 #endif // PLAYERLOGIC_H

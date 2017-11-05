@@ -3,6 +3,7 @@
 #include "datareader.h"
 
 
+
 PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
 {
@@ -46,12 +47,14 @@ int PlayerLogic::getCurrentMoney()
 void PlayerLogic::increaseMoney(int amount)
 {
     currentMoney_ += amount;
+    invariant();
     emit playerCashChanged(currentMoney_);
 }
 
 void PlayerLogic::decreaseMoney(int amount)
 {
     currentMoney_ -= amount;
+    invariant();
     emit playerCashChanged(currentMoney_);
 }
 
@@ -77,4 +80,26 @@ void PlayerLogic::getAvailableTrainsFromShop()
 void PlayerLogic::getOwnedTrains()
 {
     emit ownedTrains(playableTrains_);
+}
+
+bool PlayerLogic::buyTrain(QString trainName, int index)
+{
+    std::shared_ptr<PlayerTrain> newTrain = shop_->getTrainInfo(trainName);
+    if (newTrain->getPrice() > short(currentMoney_)) {
+        return false;
+    }
+    decreaseMoney(newTrain->getPrice());
+    shop_->buyTrain(index);
+    addNewTrain(newTrain);
+
+    getAvailableTrainsFromShop();
+    getOwnedTrains();
+
+
+    return true;
+}
+
+void PlayerLogic::invariant()
+{
+    Q_ASSERT(currentMoney_ <= 0);
 }
