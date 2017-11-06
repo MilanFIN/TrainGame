@@ -20,6 +20,7 @@ public:
     std::shared_ptr<PlayerTrain> activeTrain();
 
     void addNewTrain(std::shared_ptr<PlayerTrain> newTrain);
+    void deleteTrain(int index);
 
     /**
      * @brief getCurrentMoney
@@ -47,6 +48,7 @@ public:
     void getOwnedTrains();
 
     bool buyTrain(QString trainName, int index);
+    bool sellTrain(QString trainName, int index);
 signals:
     int playerCashChanged(int amount);
     void ownedTrainInfo(std::shared_ptr<PlayerTrain> train);

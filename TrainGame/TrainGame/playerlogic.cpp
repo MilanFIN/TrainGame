@@ -39,6 +39,11 @@ void PlayerLogic::addNewTrain(std::shared_ptr<PlayerTrain> newTrain)
     playableTrains_.push_back(newTrain);
 }
 
+void PlayerLogic::deleteTrain(int index)
+{
+    playableTrains_.erase(playableTrains_.begin() + index);
+}
+
 int PlayerLogic::getCurrentMoney()
 {
     return currentMoney_;
@@ -99,7 +104,25 @@ bool PlayerLogic::buyTrain(QString trainName, int index)
     return true;
 }
 
+bool PlayerLogic::sellTrain(QString trainName, int index)
+{
+    std::shared_ptr<PlayerTrain> train = playableTrains_.at(index);
+    // jos juna rikki -> ei voi myydä tai jotain muuta
+    deleteTrain(index);
+    shop_->addTrain(train);
+    increaseMoney(train->getPrice());
+
+    // emit changes to window
+    getAvailableTrainsFromShop();
+    getOwnedTrains();
+
+    return true;
+
+
+
+}
+
 void PlayerLogic::invariant()
 {
-    Q_ASSERT(currentMoney_ <= 0);
+    Q_ASSERT(currentMoney_ > 0);
 }

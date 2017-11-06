@@ -192,10 +192,21 @@ void MainWindow::updatePartsToBeRepaired()
 
 void MainWindow::on_sellButton_clicked()
 {
-    QString myy = "myy: ";
+
     if (ui->ownedTrainsListWidget->currentItem() != nullptr){
 
-        qInfo() << myy + ui->ownedTrainsListWidget->currentItem()->text();
+        QString trainName = ui->ownedTrainsListWidget->currentItem()->text();
+        int index = ui->ownedTrainsListWidget->currentRow();
+
+        if (! game_->sellTrain(trainName, index)) {
+            std::cout << "Juna rikki tai jotain muuta." << std::endl;
+        }
+
+        ui->featuresOLabel->clear();
+        ui->featuresBLabel->clear();
+        ui->costsLabel->clear();
+
+
     }
 }
 

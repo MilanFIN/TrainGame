@@ -100,6 +100,15 @@ bool Game::buyNewTrain(QString trainName, int index)
 
 }
 
+bool Game::sellTrain(QString trainName, int index)
+{
+    if(!playerLogic_->sellTrain(trainName, index)) {
+        return false;
+    }
+    return true;
+
+}
+
 RailLogic* Game::getRailModel()
 {
     return railLogic_.get();

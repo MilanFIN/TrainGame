@@ -34,6 +34,7 @@ public:
     int getPlayerCash();
 
     bool buyNewTrain(QString trainName, int index);
+    bool sellTrain(QString trainName, int index);
 
     RailLogic* getRailModel();
     PlayerLogic* getPlayerModel();

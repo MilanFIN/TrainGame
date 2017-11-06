@@ -10,21 +10,21 @@
             "name": "Lättähattu",
             "shape": 100,
             "speed": 29,
-            "price": 500,
+            "price": 100,
             "repairCost": 150
         },
         {
             "name": "Höyryveturi",
             "shape": 100,
             "speed": 40,
-            "price": 2000,
+            "price": 200,
             "repairCost": 500
         },
         {
             "name": "Luotijuna",
             "shape": 50,
             "speed": 60,
-            "price": 10000,
+            "price": 10,
             "repairCost": 5500
         }
 ]
