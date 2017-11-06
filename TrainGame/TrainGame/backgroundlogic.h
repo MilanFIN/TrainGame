@@ -8,6 +8,9 @@
 #include <memory>
 #include <vector>
 
+/**
+ * @brief The BackgroundLogic class handles logic related to moving background
+ */
 class BackgroundLogic : public QObject
 {
 public:
@@ -26,7 +29,8 @@ private:
     bool firstTime_ = true;
     float previousSpeed_;
     float accel_ = 1;
-    int movementSinceLastBgSpawn_;
+    int movementOverall_;
+    int movementAtLastBgCreation_;
 
      std::shared_ptr<QGraphicsScene> scene_;
      std::vector<std::shared_ptr<Background>> bg;

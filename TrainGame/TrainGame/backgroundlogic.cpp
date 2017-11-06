@@ -12,7 +12,8 @@ BackgroundLogic::BackgroundLogic(std::shared_ptr<QGraphicsScene> scene):
 
     goalSpeed_ = 0;
     previousSpeed_ = 0;
-    movementSinceLastBgSpawn_ = 0;
+    movementOverall_ = 0;
+    movementAtLastBgCreation_ = 0;
 }
 
 BackgroundLogic::~BackgroundLogic() {
@@ -43,45 +44,70 @@ void BackgroundLogic::move() {
         (*x).get()->move((int)speed_);
     }
 
-    movementSinceLastBgSpawn_ += speed_;
+    movementOverall_ += speed_;
     previousSpeed_ = speed_;
 
-    qInfo() << movementSinceLastBgSpawn_;
+    qInfo() << movementOverall_;
 
-//    if (movementSinceLastBgSpawn >= 4000) {
+    //because game starts in the middle of background
+    //we must do the first background creation differently
+    if (movementOverall_ >= 1500 && firstTime_ == true && forward_ == true) {
 
-//        std::shared_ptr<Background> newBg = std::make_shared<Background>(-5450);
-//        scene_->addItem(newBg.get());
-//        bg.push_back(newBg);
-//        movementSinceLastBgSpawn -= 4000;
-//    }
-
-    if (movementSinceLastBgSpawn_ >= 1500 && firstTime_ == true && forward_ == true) {
-        std::shared_ptr<Background> newBg = std::make_shared<Background>(-5450);
+        std::shared_ptr<Background> newBg = std::make_shared<Background>(-5980);
         scene_->addItem(newBg.get());
         bg.push_back(newBg);
-        movementSinceLastBgSpawn_ = 0;
         firstTime_ = false;
-
+        movementAtLastBgCreation_ = movementOverall_;
     }
 
+    //because game starts in the middle of background
+    //we must do the first background creation differently
+    else if (movementOverall_ <= -1500 && firstTime_ == true && forward_ == false) {
 
-
-    //poistetaan näkyvistä hävinnyt background
-    for (auto x = bg.begin(); x != bg.end();) {
-        if ((*x).get()->y() > 5500) {
-            scene_->removeItem((*x).get());
-            x = bg.erase(x);
-        }
-        else if ((*x).get()->y() < -5500) {
-            scene_->removeItem((*x).get());
-            x = bg.erase(x);
-        }
-        else {
-            ++x;
-        }
-
+        std::shared_ptr<Background> newBg = std::make_shared<Background>(950);
+        scene_->addItem(newBg.get());
+        bg.push_back(newBg);
+        firstTime_ = false;
+        movementAtLastBgCreation_ = movementOverall_;
     }
+
+    else if (movementOverall_ >= movementAtLastBgCreation_ + 5000
+             && firstTime_ == false && forward_ == true) {
+
+        std::shared_ptr<Background> newBg = std::make_shared<Background>(-5800);
+        scene_->addItem(newBg.get());
+        bg.push_back(newBg);
+        movementAtLastBgCreation_ = movementOverall_;
+
+        //lisätään backgroundien päällekkäisyyttä kun y koordinaatilla ei toiminut kovin varmasti
+        movementOverall_ += 100;
+    }
+
+    else if (movementOverall_ <= movementAtLastBgCreation_ - 5000
+             && firstTime_ == false && forward_ == false) {
+
+        std::shared_ptr<Background> newBg = std::make_shared<Background>(800);
+        scene_->addItem(newBg.get());
+        bg.push_back(newBg);
+        movementAtLastBgCreation_ = movementOverall_;
+        movementOverall_ -= 100;
+    }
+
+//    //poistetaan näkyvistä hävinnyt background
+//    for (auto x = bg.begin(); x != bg.end();) {
+//        if ((*x).get()->y() > 5500) {
+//            scene_->removeItem((*x).get());
+//            x = bg.erase(x);
+//        }
+//        else if ((*x).get()->y() < -5500) {
+//            scene_->removeItem((*x).get());
+//            x = bg.erase(x);
+//        }
+//        else {
+//            ++x;
+//        }
+
+//    }
 }
 
 
