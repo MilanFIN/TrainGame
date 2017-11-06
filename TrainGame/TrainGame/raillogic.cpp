@@ -3,8 +3,10 @@
 #include <iostream>
 #include <QDebug>
 
-RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
-    scene_(scene)
+RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
+                     std::shared_ptr<QGraphicsScene> miniMapScene):
+    scene_(scene),
+    miniMapScene_(miniMapScene)
 {
     //railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275));
     //scene_->addItem(railTiles.at(0).get());
@@ -90,6 +92,18 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
 
     destinationIndex_ = 0;
     backtrackIndex_ = 0;
+
+
+
+    //populate minimap
+    foreach (auto i , stations_){
+        double y = (i.lng-lngCenter_)*yConversionRate_;
+        double x = (i.lat-latCenter_)*xConversionRate_;
+        miniMapScene_->addEllipse(x-10, y-10, 10, 10,
+                    QPen(), QBrush(Qt::SolidPattern));
+    }
+
+
 
 }
 

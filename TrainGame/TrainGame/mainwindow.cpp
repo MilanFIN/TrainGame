@@ -7,11 +7,13 @@
 
 
 
-MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene, QWidget *parent) :
+MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene,
+                       std::shared_ptr<QGraphicsScene> miniMapScene, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     game_(game),
-    scene_(scene)
+    scene_(scene),
+    miniMapScene_(miniMapScene)
 {
     ui->setupUi(this);
 
@@ -37,6 +39,8 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     scene_->setSceneRect(-250, -240, 508, 475);
 
+    ui->minimapView->setScene(miniMapScene_.get());
+    miniMapScene_->setSceneRect(-140, -210, 275, 415);
 
     /*ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Pomppuresiina")));
     ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Lättähattujuna")));
@@ -52,15 +56,6 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     // player's starting cash
     ui->label_4->setNum(game_->getPlayerCash());
 
-    QPen pen(Qt::blue, 1);
-    QLineF line(10, 20, 300,300);
-    std::shared_ptr<QGraphicsScene> minimapScene = std::make_shared<QGraphicsScene>();
-    minimapScene->addLine(line,pen);
-    ui->minimapView->setScene(minimapScene.get());
-    minimapScene->addLine(line,pen);
-    ui->minimapView->show();
-    minimapScene->addLine(line,pen);
-    ui->minimapView->setScene(minimapScene.get());
 }
 
 MainWindow::~MainWindow()

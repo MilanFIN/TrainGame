@@ -15,8 +15,10 @@ int main(int argc, char *argv[])
 
 
     std::shared_ptr<QGraphicsScene> scene = std::make_shared<QGraphicsScene>();
-    std::shared_ptr<Game> game = std::make_shared<Game>(scene);
-    MainWindow w(game, scene);
+    std::shared_ptr<QGraphicsScene> miniMapScene = std::make_shared<QGraphicsScene>();
+
+    std::shared_ptr<Game> game = std::make_shared<Game>(scene, miniMapScene);
+    MainWindow w(game, scene, miniMapScene);
 
 
     w.show();

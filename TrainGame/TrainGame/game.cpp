@@ -2,11 +2,12 @@
 #include <iostream>
 
 
-Game::Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent) : QObject(parent),
+Game::Game(std::shared_ptr<QGraphicsScene> scene,
+           std::shared_ptr<QGraphicsScene> miniMapScene, QObject *parent) : QObject(parent),
   scene_(scene)
 {
 
-    railLogic_ = std::make_shared<RailLogic>(scene);
+    railLogic_ = std::make_shared<RailLogic>(scene, miniMapScene);
     playerLogic_ = std::make_shared<PlayerLogic>(scene);
     obstacleLogic_ = std::make_shared<ObstacleLogic>(scene);
     bgLogic_ = std::make_shared<BackgroundLogic>(scene);

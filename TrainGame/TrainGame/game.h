@@ -18,7 +18,8 @@ class Game : public QObject
 {
     Q_OBJECT
 public:
-    explicit Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent = nullptr);
+    explicit Game(std::shared_ptr<QGraphicsScene> scene,
+                  std::shared_ptr<QGraphicsScene> miniMapScene, QObject *parent = nullptr);
     void setSpeed(int newSpeed);
     void changeDirection();
     void removeBlockage();

@@ -47,7 +47,7 @@ void BackgroundLogic::move() {
     movementOverall_ += speed_;
     previousSpeed_ = speed_;
 
-    qInfo() << movementOverall_;
+    //qInfo() << movementOverall_;
 
     //because game starts in the middle of background
     //we must do the first background creation differently

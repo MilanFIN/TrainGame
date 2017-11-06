@@ -20,7 +20,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene, QWidget *parent = 0);
+    explicit MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene,
+                        std::shared_ptr<QGraphicsScene> miniMapScene, QWidget *parent = 0);
     ~MainWindow();
     void keyPressEvent( QKeyEvent* pEvent );
 
@@ -69,6 +70,7 @@ private:
     Ui::MainWindow *ui;
     std::shared_ptr<Game> game_;
     std::shared_ptr<QGraphicsScene> scene_;
+    std::shared_ptr<QGraphicsScene> miniMapScene_;
 };
 
 #endif // MAINWINDOW_H

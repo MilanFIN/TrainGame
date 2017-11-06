@@ -26,7 +26,8 @@ class RailLogic : public QObject
 {
     Q_OBJECT
 public:
-    explicit RailLogic(std::shared_ptr<QGraphicsScene> scene);
+    explicit RailLogic(std::shared_ptr<QGraphicsScene> scene,
+                       std::shared_ptr<QGraphicsScene> miniMapScene);
     ~RailLogic();
     void move();
     void setSpeed(int newSpeed);
@@ -63,6 +64,7 @@ private:
 
     //other
     std::shared_ptr<QGraphicsScene> scene_;
+    std::shared_ptr<QGraphicsScene> miniMapScene_;
     std::vector<std::shared_ptr<RailTileInterface>> railTiles;
 
     std::shared_ptr<Station> nextStation_;
@@ -77,6 +79,11 @@ private:
         bool passengerTrafic = false;
     };
 
+    double lngCenter_ = 27.21985;
+    double yConversionRate_ = 33.0;//max 34.22;
+
+    double latCenter_ = 63.4086;
+    double xConversionRate_ = 33.0;//max 34.74;
 
     // key : shortcode , value: particular station
     QHash<QString, StationInfo> stations_;
