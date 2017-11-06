@@ -36,6 +36,7 @@ public slots:
     void changeSpeed();
     void changeDirection();
 
+    void updateActiveTrain(QString trainName);
 
     void updateMinimap();
     //slot for recieving new possible destination candidates

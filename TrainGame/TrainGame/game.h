@@ -33,6 +33,8 @@ public:
     void wantedTrainInfo(QString trainName);
     int getPlayerCash();
 
+    void setActiveTrain(int rowIndex);
+
     bool buyNewTrain(QString trainName, int index);
     bool sellTrain(QString trainName, int index);
 

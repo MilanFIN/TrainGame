@@ -91,6 +91,11 @@ int Game::getPlayerCash()
     return playerLogic_->getCurrentMoney();
 }
 
+void Game::setActiveTrain(int rowIndex)
+{
+    playerLogic_->setActiveTrain(rowIndex);
+}
+
 bool Game::buyNewTrain(QString trainName, int index)
 {
     if(!playerLogic_->buyTrain(trainName, index)) {

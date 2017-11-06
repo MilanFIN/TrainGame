@@ -31,6 +31,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     connect(game_->getPlayerModel(), &PlayerLogic::availableTrains, this, &MainWindow::updateBuyableTrains);
     connect(game_->getPlayerModel(), &PlayerLogic::ownedTrains, this, &MainWindow::updatePlayerTrains);
+    connect(game_->getPlayerModel(), &PlayerLogic::activeTrainChanged, this, &MainWindow::updateActiveTrain);
 
     connect(game_->getPlayerModel(), &PlayerLogic::ownedTrainInfo, this, &MainWindow::updateTrainFeatures);
     connect(game_->getPlayerModel(), &PlayerLogic::trainInfo, this, &MainWindow::updateTrainFeatures);
@@ -42,19 +43,15 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     ui->minimapView->setScene(miniMapScene_.get());
     miniMapScene_->setSceneRect(-140, -210, 275, 415);
 
-    /*ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Pomppuresiina")));
-    ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Lättähattujuna")));
-    ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Höyryveturi")));
-    ui->buyableTrainsListWidget->addItem(new QListWidgetItem(QString("Luotijuna")));*/
 
-    /*ui->ownedTrainsListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
-    ui->ownedTrainsListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));*/
 
     ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
     ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
 
     // player's starting cash
     ui->label_4->setNum(game_->getPlayerCash());
+    ui->featuresTextOLabel->setText(QString("Aktiivinen Juna: "));
+    ui->featuresOLabel->setText(game_->getPlayerModel()->activeTrain()->getName());
 
 }
 
@@ -104,6 +101,10 @@ void MainWindow::changeDirection()
     }
 }
 
+void MainWindow::updateActiveTrain(QString trainName)
+{
+    ui->featuresOLabel->setText(trainName);
+}
 
 
 void MainWindow::updateMinimap()
@@ -202,7 +203,7 @@ void MainWindow::on_sellButton_clicked()
             std::cout << "Juna rikki tai jotain muuta." << std::endl;
         }
 
-        ui->featuresOLabel->clear();
+
         ui->featuresBLabel->clear();
         ui->costsLabel->clear();
 
@@ -220,7 +221,7 @@ void MainWindow::on_buyButton_clicked()
         if(!game_->buyNewTrain(TrainName, index)) {
             std::cout << "ei tarpeeks massia ostaa junaa" << std::endl;
         }
-        ui->featuresOLabel->clear();
+
         ui->featuresBLabel->clear();
         ui->costsLabel->clear();
 
@@ -238,10 +239,11 @@ void MainWindow::on_fixButton_clicked()
 
 void MainWindow::on_confirmButton_clicked()
 {
-    QString kayta = "käytä: ";
+    // if empty no nothing
 
     if (ui->ownedTrainsListWidget->currentItem() != nullptr){
-        qInfo() << kayta + ui->ownedTrainsListWidget->currentItem()->text();
+        int rowIndex = ui->ownedTrainsListWidget->currentRow();
+        game_->setActiveTrain(rowIndex);
 
     }
 }
@@ -252,23 +254,13 @@ void MainWindow::on_ownedTrainsListWidget_itemClicked(QListWidgetItem *item)
     ui->featuresBLabel->clear();
     game_->wantedOwnedTrainInfo(item->text());
 
-    /*if (item->text() == "Pelaajan juna1") {
 
-        ui->featuresOLabel->setText("Nopeus: 99, kunto 100");
-        ui->costsLabel->setText("10");
-    }
-
-    else if (item->text() == "Pelaajan juna2") {
-        ui->featuresOLabel->setText("Nopeus: 33, kunto 0");
-        ui->costsLabel->setText("20");
-
-    }*/
 }
 
 void MainWindow::on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item)
 {
     ui->ownedTrainsListWidget->selectionModel()->clear();
-    ui->featuresOLabel->clear();
+    ui->featuresBLabel->clear();
     game_->wantedTrainInfo(item->text());
 
 }

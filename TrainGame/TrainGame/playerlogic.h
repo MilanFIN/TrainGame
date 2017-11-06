@@ -49,12 +49,16 @@ public:
 
     bool buyTrain(QString trainName, int index);
     bool sellTrain(QString trainName, int index);
+
+    void setActiveTrain(int rowIndex);
+
 signals:
     int playerCashChanged(int amount);
     void ownedTrainInfo(std::shared_ptr<PlayerTrain> train);
     void trainInfo(std::shared_ptr<PlayerTrain> train);
     void ownedTrains(std::vector<std::shared_ptr<PlayerTrain>> ownedTrains);
     void availableTrains(std::vector<std::shared_ptr<PlayerTrain>> buyableTrains);
+    void activeTrainChanged(QString trainName);
 
 private:
     std::shared_ptr<QGraphicsScene> scene_;
