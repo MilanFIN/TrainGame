@@ -2,6 +2,7 @@
 #include "datareader.h"
 #include <iostream>
 #include <QDebug>
+#include <QGraphicsEllipseItem>
 
 RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
                      std::shared_ptr<QGraphicsScene> miniMapScene):
@@ -97,14 +98,15 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
 
     //populate minimap
     foreach (auto i , stations_){
-        double y = (i.lng-lngCenter_)*yConversionRate_;
-        double x = (i.lat-latCenter_)*xConversionRate_;
-        miniMapScene_->addEllipse(x-10, y-10, 10, 10,
-                    QPen(), QBrush(Qt::SolidPattern));
+        double x = (i.lng-lngCenter_)*xConversionRate_;
+        double y = (i.lat-latCenter_)*yConversionRate_;
+        miniMapScene_->addEllipse(x, y, 5, 5,
+                   QPen(), QBrush(Qt::SolidPattern));
     }
 
 
-
+    nextStationMapPoint_.setPixmap(QPixmap::fromImage(QImage(":/kuvat/redDot.png")));
+    updateDestinationOnMiniMap();
 }
 
 RailLogic::~RailLogic()
@@ -268,6 +270,8 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         signalStationInfoToUi();
         destinationIndex_ = 0;
         backtrackIndex_ = 0;
+
+        updateDestinationOnMiniMap();
     }
 
     if (train.get()->collidesWithItem(previousStation_.get())){
@@ -323,6 +327,8 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         destinationIndex_ = 0;
         backtrackIndex_ = 0;
 
+        updateDestinationOnMiniMap();
+
     }
 
 }
@@ -352,6 +358,14 @@ void RailLogic::signalStationInfoToUi()
 {
     emit destinationCandidatesChanged(CombineStationTrackInfo( destinationStationCandidates_, destinationTrackCandidates_));
     emit backttrackCandidatesChanged(CombineStationTrackInfo(backtrackStationCandidates_, backtrackTrackCandidates_));
+}
+
+void RailLogic::updateDestinationOnMiniMap()
+{
+    int x = (stations_.value(destinationStationCode_).lng-lngCenter_)*xConversionRate_;
+    int y = (stations_.value(destinationStationCode_).lat-latCenter_)*yConversionRate_;
+    miniMapScene_->addItem(&nextStationMapPoint_);
+    nextStationMapPoint_.setPos(x,y);
 }
 
 void RailLogic::changeDestinationCandidateIndex(int index)

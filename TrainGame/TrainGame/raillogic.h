@@ -5,7 +5,8 @@
 #include <QGraphicsScene>
 #include <memory>
 #include <vector>
-
+#include <QGraphicsPixmapItem>
+#include <QImage>
 
 #include "QList"
 #include "QString"
@@ -46,6 +47,8 @@ public:
 
     void signalStationInfoToUi();
 
+    void updateDestinationOnMiniMap();
+
 signals:
     void destinationCandidatesChanged(QList<QString> stations);
     void backttrackCandidatesChanged(QList<QString> stations);
@@ -80,10 +83,10 @@ private:
     };
 
     double lngCenter_ = 27.21985;
-    double yConversionRate_ = 33.0;//max 34.22;
+    double xConversionRate_ = 22.0;//max 22.86;
 
     double latCenter_ = 63.4086;
-    double xConversionRate_ = 33.0;//max 34.74;
+    double yConversionRate_ = -50.0;//max 51.99;
 
     // key : shortcode , value: particular station
     QHash<QString, StationInfo> stations_;
@@ -102,6 +105,10 @@ private:
 
     int destinationIndex_;
     int backtrackIndex_;
+
+    //point in the minimap for next station
+    QGraphicsPixmapItem nextStationMapPoint_;
+
 
 };
 
