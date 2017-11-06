@@ -9,7 +9,7 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene, QObject *parent) : QObject(par
     railLogic_ = std::make_shared<RailLogic>(scene);
     playerLogic_ = std::make_shared<PlayerLogic>(scene);
     obstacleLogic_ = std::make_shared<ObstacleLogic>(scene);
-
+    bgLogic_ = std::make_shared<BackgroundLogic>(scene);
 
 
 
@@ -38,6 +38,7 @@ void Game::setSpeed(int newSpeed)
 {
     railLogic_.get()->setSpeed(newSpeed);
     obstacleLogic_.get()->setSpeed(newSpeed);
+    bgLogic_.get()->setSpeed(newSpeed);
 
 }
 
@@ -45,6 +46,7 @@ void Game::changeDirection()
 {
     railLogic_.get()->changeDirection();
     obstacleLogic_.get()->changeDirection();
+    bgLogic_.get()->changeDirection();
 }
 
 void Game::removeBlockage()
@@ -111,6 +113,7 @@ void Game::move()
 {
     railLogic_.get()->move();
     obstacleLogic_.get()->move();
+    bgLogic_.get()->move();
 }
 
 void Game::spawn()

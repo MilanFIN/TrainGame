@@ -39,7 +39,8 @@ SOURCES += \
     shop.cpp \
     station.cpp \
     background.cpp \
-    obstaclefactory.cpp
+    obstaclefactory.cpp \
+    backgroundlogic.cpp
 
 
 HEADERS += \
@@ -58,7 +59,8 @@ HEADERS += \
     shop.h \
     station.h \
     background.h \
-    obstaclefactory.h
+    obstaclefactory.h \
+    backgroundlogic.h
 
 
 FORMS += \

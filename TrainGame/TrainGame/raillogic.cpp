@@ -15,17 +15,12 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene):
         scene_->addItem(railTiles.back().get());
     }
 
-
-    bg.push_back(std::make_shared<Background>(-4500));
-    scene_->addItem(bg.at(0).get());
-
     dataReader::READER.loadTracksFromFile(QString(":/data/ratadata.json"), *this);
     dataReader::READER.loadStationsFromFile(QString(":/data/asemadata.json"), *this);
 
     goalSpeed_ = 0;
     previousSpeed_ = 0;
-    movementSinceLastRailSpawn = 0;
-    movementSinceLastBgSpawn = 0;
+    movementSinceLastRailSpawn_ = 0;
 
 
     //start from helsinki on track 001 towards pasila
@@ -126,57 +121,28 @@ void RailLogic::move()
         (*i).get()->move((int)speed_);
     }
 
-    //siirretään backgroundia
-    for (auto x = bg.begin(); x != bg.end(); ++x) {
-        (*x).get()->move((int)speed_);
-    }
-
     //tarkistetaan, onko kulkusuunta ehtinyt vaihtua edellisen päiviyksen jälkeen
-
     if ((previousSpeed_ > 0 && speed_ < 0) || (previousSpeed_ < 0 && speed_ > 0)){
-        movementSinceLastRailSpawn = 0;
-        movementSinceLastBgSpawn = 0;
+        movementSinceLastRailSpawn_ = 0;
     }
 
-    movementSinceLastRailSpawn += speed_;
-    movementSinceLastBgSpawn += speed_;
+    movementSinceLastRailSpawn_ += speed_;
     previousSpeed_ = speed_;
 
-
-    qInfo() << movementSinceLastBgSpawn;
-
     //luodaan uusi pätkä, jos on liikuttu tarpeeksi
-    if (movementSinceLastRailSpawn >= 30){
+    if (movementSinceLastRailSpawn_ >= 30){
         std::shared_ptr<OneSideRailTile> railTile = std::make_shared<OneSideRailTile>(0,-275);
         scene_->addItem(railTile.get());
         railTiles.push_back(railTile);
-        movementSinceLastRailSpawn -= 30;
+        movementSinceLastRailSpawn_ -= 30;
     }
 
-    else if (movementSinceLastRailSpawn <= -30){
+    else if (movementSinceLastRailSpawn_ <= -30){
         std::shared_ptr<OneSideRailTile> railTile = std::make_shared<OneSideRailTile>(0,240);
         scene_->addItem(railTile.get());
         railTiles.push_back(railTile);
-        movementSinceLastRailSpawn += 30;
+        movementSinceLastRailSpawn_ += 30;
     }
-
-    if (movementSinceLastBgSpawn >= 4000) {
-
-        std::shared_ptr<Background> newBg = std::make_shared<Background>(-5450);
-        scene_->addItem(newBg.get());
-        bg.push_back(newBg);
-        movementSinceLastBgSpawn -= 4000;
-    }
-
-    else if (movementSinceLastBgSpawn <= -4000) {
-
-        std::shared_ptr<Background> newBg = std::make_shared<Background>(5000);
-        scene_->addItem(newBg.get());
-        bg.push_back(newBg);
-        movementSinceLastBgSpawn += 4000;
-    }
-
-
 
     //poistetaan näkyvistä hävinneet raiteenpätkät
     for (auto i = railTiles.begin(); i != railTiles.end();){
@@ -193,23 +159,6 @@ void RailLogic::move()
         }
 
     }
-
-    //poistetaan näkyvistä hävinnyt background
-    for (auto x = bg.begin(); x != bg.end();) {
-        if ((*x).get()->y() > 5500) {
-            scene_->removeItem((*x).get());
-            x = bg.erase(x);
-        }
-        else if ((*x).get()->y() < -5500) {
-            scene_->removeItem((*x).get());
-            x = bg.erase(x);
-        }
-        else {
-            ++x;
-        }
-
-    }
-
 
     //siirretään seuraavaa asemaa
     nextStation_->move((int)speed_);

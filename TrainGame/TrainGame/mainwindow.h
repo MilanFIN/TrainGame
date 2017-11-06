@@ -9,8 +9,7 @@
 #include <QListWidgetItem>
 #include <QList>
 #include <QString>
-#include "raillogic.h"
-#include "playerlogic.h"
+
 
 namespace Ui {
 class MainWindow;

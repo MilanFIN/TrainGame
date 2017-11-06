@@ -9,6 +9,7 @@
 #include "raillogic.h"
 #include "playerlogic.h"
 #include "obstaclelogic.h"
+#include "backgroundlogic.h"
 
 
 
@@ -47,6 +48,7 @@ private:
     std::shared_ptr<RailLogic>  railLogic_;
     std::shared_ptr<PlayerLogic>  playerLogic_ ;
     std::shared_ptr<ObstacleLogic>  obstacleLogic_ ;
+    std::shared_ptr<BackgroundLogic> bgLogic_;
 
 
     float speed_;
