@@ -26,6 +26,7 @@ std::shared_ptr<PlayerTrain> Shop::getTrainInfo(QString trainName) const
             return train;
         }
     }
+    return false;
 }
 
 std::vector<std::shared_ptr<PlayerTrain> > Shop::buyableTrains() const

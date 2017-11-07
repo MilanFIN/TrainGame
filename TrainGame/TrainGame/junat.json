@@ -4,28 +4,32 @@
             "shape": 50,
             "speed": 25,
             "price": 0,
-            "repairCost": 50
+            "repairCost": 50,
+            "image": ":/kuvat/train.png"
         },
         {
             "name": "Lättähattu",
             "shape": 100,
             "speed": 29,
             "price": 100,
-            "repairCost": 150
+            "repairCost": 150,
+            "image": ":/kuvat/train4.png"
         },
         {
             "name": "Höyryveturi",
             "shape": 100,
             "speed": 40,
             "price": 200,
-            "repairCost": 500
+            "repairCost": 500,
+            "image": ":/kuvat/train2.png"
         },
         {
             "name": "Luotijuna",
             "shape": 50,
             "speed": 60,
             "price": 10,
-            "repairCost": 5500
+            "repairCost": 5500,
+            "image": ":/kuvat/train3.png"
         }
 ]
 

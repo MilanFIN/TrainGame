@@ -96,6 +96,7 @@ bool PlayerLogic::buyTrain(QString trainName, int index)
     }
     decreaseMoney(newTrain->getPrice());
     shop_->buyTrain(index);
+    newTrain->setOwned();
     addNewTrain(newTrain);
 
     getAvailableTrainsFromShop();
@@ -112,6 +113,7 @@ bool PlayerLogic::sellTrain(QString trainName, int index)
     deleteTrain(index);
     shop_->addTrain(train);
     increaseMoney(train->getPrice());
+    train->setOwned();
 
     // emit changes to window
     getAvailableTrainsFromShop();

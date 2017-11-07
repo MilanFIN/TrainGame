@@ -1,12 +1,13 @@
 #include "playertrain.h"
 
-PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double speed, unsigned short repairCost):
+PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double speed, unsigned short repairCost, QString imagePath):
     name_(name),
     shape_(shape),
     absoluteShape_(shape),
     price_(price),
     speed_(speed),
-    repairCost_(repairCost_)
+    repairCost_(repairCost),
+    trainImage_(imagePath)
 {
     QImage kuva(":/kuvat/train.png");
     QImage kuvaScaled = kuva.scaled(150,150,Qt::KeepAspectRatio);
@@ -107,6 +108,11 @@ void PlayerTrain::setPlayable()
 
 void PlayerTrain::setOwned()
 {
-    isOwned_ = true;
+    if (!isOwned_) {
+        isOwned_ = true;
+    } else {
+        isOwned_ = false;
+    }
+
 }
 

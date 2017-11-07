@@ -122,8 +122,9 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
         unsigned short price = short(obj["price"].toInt());
         unsigned short repairCost = short(obj["repairCost"].toInt());
         unsigned short shape = short(obj["shape"].toInt());
+        QString imagePath = obj["image"].toString();
 
-        std::shared_ptr<PlayerTrain> train = std::make_shared<PlayerTrain>(trainName, shape, price, speed, repairCost);
+        std::shared_ptr<PlayerTrain> train = std::make_shared<PlayerTrain>(trainName, shape, price, speed, repairCost, imagePath);
 
         if (trainName == QString("Pomppuresiina")) {
             logic.addNewTrain(train);
