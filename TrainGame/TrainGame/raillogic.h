@@ -30,23 +30,73 @@ public:
     explicit RailLogic(std::shared_ptr<QGraphicsScene> scene,
                        std::shared_ptr<QGraphicsScene> miniMapScene);
     ~RailLogic();
+    /**
+     * @brief siirtää luokan vastuulla olevia graphicsviewitemejä
+     * @post raiteita on siirretty nopeutta vastaava määrä, ja nopeus on hakeutunut
+     * kiihtyvyyden verran kohdenopeutta kohti
+     */
     void move();
+    /**
+     * @brief tavoitenopeuden setteri
+     * @param uusi tavoitenopeus
+     * @pre -
+     * @post tavoitenopeus on muuttunut
+     */
     void setSpeed(int newSpeed);
+    /**
+     * @brief tavoitesuunnan muuttaja
+     * @pre -
+     * @post tavoitesuunta on muuttunut
+     */
     void changeDirection();
-
     void addTrack(QString trackCode, QList<QString> stations);
     void addStations(QString shortCode, QString fullName, QString type,
                      double lat, double lng, bool passengerStation);
 
+    /**
+     * @brief tarkistaa törmäyksen asemien kanssa
+     * @param pelaajan tämänhetkinen aktiivinen juna
+     * @pre pelaajalle on valittu juna
+     * @post törmäys on tarkistettu, ja raidetta vaihdettu, jos on törmätty
+     */
     void checkCollisionWithStations(std::shared_ptr<PlayerTrain> train);
+    /**
+     * @brief luo parametreistä yhdistetyn version
+     * @param asemien nimet, raiteiden nimet
+     * @pre -
+     * @post yhdistelmä on muodostettu
+     * @return lista asema-raideyhdistelmistä
+     */
     QList<QString> CombineStationTrackInfo(QList<QString> &stationCodes, QList<QString> &trackCodes);
 
     //methods to change chosen candidates for destination or backtrack destination
+    /**
+     * @brief seuraavaa kohdeasemaa muuttava metodi
+     * @param vektorin indeksi
+     * @pre parametri on vektoriin mahtuva indeksi
+     * @post uusi kohde on valittu
+     */
     void changeDestinationCandidateIndex(int index);
+    /**
+     * @brief peruutuksen myötä asettettavaa kohdetta muuttava metodi
+     * @param vektorin indeksi
+     * @pre parametri on vektoriin mahtuva indeksi
+     * @post uusi paluukohde on valittu
+     */
     void changeBackTrackCandidateIndex(int index);
 
+    /**
+     * @brief tiedottaa käyttöliittymälle kohdeasemat
+     * @pre käyttöliittymä on alustettu, ratadata on luettu
+     * @post käyttöliittymälle on lähettetty signaali, jossa on kohdeasemat
+     */
     void signalStationInfoToUi();
 
+    /**
+     * @brief päivittää pelaajan sijainnin minimappiin
+     * @pre minimap on alustettu
+     * @post sijainti on muuttunut kohdeasemaa vastaavaksi
+     */
     void updateDestinationOnMiniMap();
 
 signals:
