@@ -36,6 +36,8 @@ private:
     QString name_;
     bool isPlayable_;
     bool isOwned_;
+    short const absoluteShape_;
+
 
     short shape_;
     unsigned short price_;

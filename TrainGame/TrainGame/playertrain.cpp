@@ -3,6 +3,7 @@
 PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double speed, unsigned short repairCost):
     name_(name),
     shape_(shape),
+    absoluteShape_(shape),
     price_(price),
     speed_(speed),
     repairCost_(repairCost_)
@@ -83,7 +84,7 @@ unsigned short PlayerTrain::takeDamage(int dmgAmount)
     }
 
     //because damage is always minus we use shape = shape + dmgAmount
-    shape_ += dmgAmount;
+    shape_ -= dmgAmount;
     return shape_;
 }
 
