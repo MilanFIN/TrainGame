@@ -53,6 +53,8 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     ui->featuresTextOLabel->setText(QString("Aktiivinen Juna: "));
     ui->featuresOLabel->setText(game_->getPlayerModel()->activeTrain()->getName());
 
+    game_->getPlayerModel()->getOwnedTrains();
+    game_->getPlayerModel()->getAvailableTrainsFromShop();
 }
 
 MainWindow::~MainWindow()

@@ -13,11 +13,8 @@ public:
     QString getName();
 
     double getSpeed() const;
-
     unsigned short getPrice() const;
-
     short getShape() const;
-
     unsigned short getRepairCost() const;
 
     // if train is not owned it cannot be used in game.
@@ -26,10 +23,10 @@ public:
 
 
     unsigned short takeDamage(int dmgAmount);
-
     void setPlayable();
-
     void setOwned();
+
+    void setPixmapToShow(QString name);
 private:
 
 

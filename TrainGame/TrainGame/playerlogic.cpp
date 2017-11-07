@@ -127,7 +127,6 @@ void PlayerLogic::setActiveTrain(int rowIndex)
 {
     try {
         activeTrain_ = playableTrains_.at(rowIndex);
-
         emit activeTrainChanged(activeTrain_->getName());
     }catch (...){
         throw std::runtime_error("Junan asettaminen aktiiviseksi epäonnistui.");

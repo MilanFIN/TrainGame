@@ -8,33 +8,10 @@ PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double
     speed_(speed),
     repairCost_(repairCost_)
 {
-    //juna 1 oikeat positiot ja skaalaus
-//    QImage kuva(":/kuvat/train.png");
-//    QImage kuvaScaled = kuva.scaled(200,200,Qt::KeepAspectRatio);
-//    setPixmap(QPixmap::fromImage(kuvaScaled));
-//    setPos(-69, 0);
-
-    //juna 2 oikea positio ja skaalaus
-//    QImage kuva(":/kuvat/train2.png");
-//    QImage kuvaScaled = kuva.scaled(75,200);
-//    setPixmap(QPixmap::fromImage(kuvaScaled));
-//    setPos(-35, 0);
-
-//    QImage kuva(":/kuvat/train3.png");
-//    QImage kuvaScaled = kuva.scaled(90,250,Qt::KeepAspectRatio);
-//    setPixmap(QPixmap::fromImage(kuvaScaled));
-//    setPos(-40, 0);
-
-    QImage kuva(":/kuvat/train4.png");
-    QImage kuvaScaled = kuva.scaled(70,230,Qt::KeepAspectRatio);
+    QImage kuva(":/kuvat/train.png");
+    QImage kuvaScaled = kuva.scaled(150,150,Qt::KeepAspectRatio);
     setPixmap(QPixmap::fromImage(kuvaScaled));
-    setPos(-35, -30);
-
-
-
-
-
-
+    setPos(-55, -30);
 
     //asetetaan raiteiden päälle
     setZValue(2);
@@ -43,7 +20,42 @@ PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double
     isPlayable_ = true;
 }
 
+void setPixmapToShow(QString name) {
 
+//    if (name == "Lättähattu") {
+
+//        QImage kuva(":/kuvat/train.png");
+//        QImage kuvaScaled = kuva.scaled(150,150,Qt::KeepAspectRatio);
+//        setPixmap(QPixmap::fromImage(kuvaScaled));
+//        setPos(-55, -30);
+
+//     }
+
+//    else if (name == "Luotijuna") {
+
+//        QImage kuva(":/kuvat/train2.png");
+//        QImage kuvaScaled = kuva.scaled(75,200);
+//        setPixmap(QPixmap::fromImage(kuvaScaled));
+//        setPos(-35, 0);
+//    }
+
+//    else if (name == "Pomppuresiina") {
+
+//        QImage kuva(":/kuvat/train3.png");
+//        QImage kuvaScaled = kuva.scaled(90,250,Qt::KeepAspectRatio);
+//        setPixmap(QPixmap::fromImage(kuvaScaled));
+//        setPos(-40, 0);
+//    }
+
+//    else if (name == "Höyryveturi") {
+
+//        QImage kuva(":/kuvat/train4.png");
+//        QImage kuvaScaled = kuva.scaled(70,230,Qt::KeepAspectRatio);
+//        setPixmap(QPixmap::fromImage(kuvaScaled));
+//        setPos(-35, -30);
+//    }
+
+}
 
 QString PlayerTrain::getName()
 {
