@@ -96,14 +96,25 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
 
 
 
-    //populate minimap
+    //populate minimap with stations
     foreach (auto i , stations_){
         double x = (i.lng-lngCenter_)*xConversionRate_;
         double y = (i.lat-latCenter_)*yConversionRate_;
-        miniMapScene_->addEllipse(x, y, 5, 5,
+        miniMapScene_->addEllipse(x-1, y-1, 3, 3,
                    QPen(), QBrush(Qt::SolidPattern));
     }
 
+
+    //populate minimap with railway connections between stations
+    for (auto i = tracks_.begin(); i != tracks_.end(); ++i){
+        for (auto j = (*i).begin(); j != (*i).end()-1; ++j){
+            int x1 = (stations_.value(*j).lng-lngCenter_)*xConversionRate_;
+            int y1 = (stations_.value(*j).lat-latCenter_)*yConversionRate_;
+            int x2 = (stations_.value(*(j+1)).lng-lngCenter_)*xConversionRate_;
+            int y2 = (stations_.value(*(j+1)).lat-latCenter_)*yConversionRate_;
+            miniMapScene_->addLine(x1,y1, x2, y2, QPen(QColor(Qt::blue)));
+        }
+    }
 
     nextStationMapPoint_.setPixmap(QPixmap::fromImage(QImage(":/kuvat/redDot.png")));
     updateDestinationOnMiniMap();
