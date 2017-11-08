@@ -2,7 +2,7 @@
 
 PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double speed, unsigned short repairCost, QString imagePath):
     name_(name),
-    shape_(shape),
+    shape_(shape - 20),
     absoluteShape_(shape),
     price_(price),
     speed_(speed),
@@ -30,6 +30,7 @@ void PlayerTrain::setPixmapToShow()
     setZValue(2);
 
 }
+
 
 QString PlayerTrain::getName()
 {
@@ -61,7 +62,15 @@ bool PlayerTrain::isAbleToPlay() const
     return isPlayable_;
 }
 
+short PlayerTrain::getAbsoluteShape() const
+{
+    return absoluteShape_;
+}
 
+void PlayerTrain::repairTrain()
+{
+    shape_ = absoluteShape_;
+}
 
 unsigned short PlayerTrain::takeDamage(int dmgAmount)
 {
@@ -89,5 +98,9 @@ void PlayerTrain::setOwned()
         isOwned_ = false;
     }
 
+}
+void PlayerTrain::invariant()
+{
+    Q_ASSERT(!isOwned_ && isPlayable_);
 }
 

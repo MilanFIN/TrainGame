@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QKeyEvent>
+#include <QMessageBox>
 #include <QDebug>
 
 #include <iostream>
@@ -35,6 +36,11 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     connect(game_->getPlayerModel(), &PlayerLogic::ownedTrainInfo, this, &MainWindow::updateTrainFeatures);
     connect(game_->getPlayerModel(), &PlayerLogic::trainInfo, this, &MainWindow::updateTrainFeatures);
+
+    connect(game_->getPlayerModel(), &PlayerLogic::showBrokenTrains, this, &MainWindow::updateDepotList);
+
+    connect(game_->getPlayerModel(), &PlayerLogic::trainRepaired, this, &MainWindow::trainRepaired);
+    connect(game_->getPlayerModel(), &PlayerLogic::notEnoughMoney, this, &MainWindow::trainRepairFailure);
 
     ui->gameView->setScene(scene_.get());
 
@@ -72,6 +78,7 @@ void MainWindow::keyPressEvent(QKeyEvent *pEvent)
 void MainWindow::on_depotButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    game_->depotTabChosen();
 }
 
 void MainWindow::on_gameButton_clicked()
@@ -158,6 +165,18 @@ void MainWindow::updateTrainFeatures(std::shared_ptr<PlayerTrain> trainInfo)
 
 }
 
+void MainWindow::updateDepotList(std::vector<std::shared_ptr<PlayerTrain>> brTrains)
+{
+    ui->fixListWidget->clear();
+    if (brTrains.size() != 0) {
+
+        for (std::shared_ptr<PlayerTrain> brokenTrain : brTrains) {
+            ui->fixListWidget->addItem(new QListWidgetItem(brokenTrain->getName()));
+        }
+    }
+
+}
+
 
 void MainWindow::updatePlayerTrains(std::vector<std::shared_ptr<PlayerTrain> > ownedTrains)
 {
@@ -232,11 +251,13 @@ void MainWindow::on_buyButton_clicked()
 
 void MainWindow::on_fixButton_clicked()
 {
-    QString korjattava = "korjattu: ";
-    if (ui->fixListWidget->currentItem() != nullptr){
 
-        qInfo() << korjattava + ui->fixListWidget->currentItem()->text();
+    if (ui->fixListWidget->currentItem() != nullptr) {
+        int rowIndex = ui->fixListWidget->currentRow();
+        game_->repairPlayerTrain(rowIndex);
+
     }
+
 }
 
 void MainWindow::on_confirmButton_clicked()
@@ -259,10 +280,27 @@ void MainWindow::on_ownedTrainsListWidget_itemClicked(QListWidgetItem *item)
 
 }
 
+void MainWindow::on_fixListWidget_itemClicked(QListWidgetItem *item)
+{
+    //TODO: näytä junan optimikunto versus nykykunto.
+    // ja paljonko korjaus maksaa.
+
+}
+
 void MainWindow::on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item)
 {
     ui->ownedTrainsListWidget->selectionModel()->clear();
     ui->featuresBLabel->clear();
     game_->wantedTrainInfo(item->text());
 
+}
+
+void MainWindow::trainRepaired()
+{
+    game_->depotTabChosen();
+}
+
+void MainWindow::trainRepairFailure()
+{
+    QMessageBox::critical(this, "Virhe","ei tarpeeksi rahaa korjata junaa");
 }

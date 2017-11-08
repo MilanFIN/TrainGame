@@ -6,7 +6,8 @@
 
 
 PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
-    scene_(scene)
+    scene_(scene),
+    fame_(100)
 {
     shop_ = std::make_shared<Shop>();
 
@@ -16,8 +17,8 @@ PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
 
     // Todo: kun peli aukeaa haetaan pelaajan aktiivinen juna
     //
-    activeTrain_ = playableTrains_.at(0);
-    scene_->addItem(activeTrain_.get());
+//    activeTrain_ = playableTrains_.at(0);
+//    scene_->addItem(activeTrain_.get());
 
     currentMoney_ = 500;
     emit playerCashChanged(getCurrentMoney());
@@ -153,6 +154,43 @@ void PlayerLogic::removeTrainPixmap(std::shared_ptr<PlayerTrain> trainToRemove)
 void PlayerLogic::setTrainPixmap(std::shared_ptr<PlayerTrain> traintoSet)
 {
     scene_->addItem(activeTrain_.get());
+}
+
+void PlayerLogic::getTrainsToBeRepaired()
+{
+    std::vector<std::shared_ptr<PlayerTrain>> brokenTrains;
+    for (std::shared_ptr<PlayerTrain> train : playableTrains_) {
+        if (train->getShape() < train->getAbsoluteShape()) {
+            brokenTrains.push_back(train);
+        }
+    }
+    emit showBrokenTrains(brokenTrains);
+}
+
+void PlayerLogic::repairTrain(int rowIndex)
+{
+    std::vector<std::shared_ptr<PlayerTrain>> brokenTrains;
+    for (std::shared_ptr<PlayerTrain> train : playableTrains_) {
+        if (train->getShape() < train->getAbsoluteShape()) {
+            brokenTrains.push_back(train);
+        }
+    }
+
+    std::shared_ptr<PlayerTrain> brokeTrain = brokenTrains.at(rowIndex);
+
+
+    if (brokeTrain->getRepairCost() > currentMoney_)
+    {
+        emit notEnoughMoney();
+    }
+    else
+    {
+        decreaseMoney(brokeTrain->getRepairCost());
+        brokeTrain->repairTrain();
+        emit trainRepaired();
+    }
+
+
 }
 
 void PlayerLogic::invariant()

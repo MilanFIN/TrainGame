@@ -29,14 +29,18 @@ public:
     void changeBacktrack(int index);
     void gameTabChosen();
     void shopTabChosen();
+    void depotTabChosen();
     void wantedOwnedTrainInfo(QString trainName);
     void wantedTrainInfo(QString trainName);
     int getPlayerCash();
+
+    void repairPlayerTrain(int rowIndex);
 
     void setActiveTrain(int rowIndex);
 
     bool buyNewTrain(QString trainName, int index);
     bool sellTrain(QString trainName, int index);
+
 
     RailLogic* getRailModel();
     PlayerLogic* getPlayerModel();
