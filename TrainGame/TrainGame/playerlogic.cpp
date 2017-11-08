@@ -14,6 +14,8 @@ PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
 
     //playableTrains_.push_back(std::make_shared<PlayerTrain>());
 
+    // Todo: kun peli aukeaa haetaan pelaajan aktiivinen juna
+    //
     activeTrain_ = playableTrains_.at(0);
     scene_->addItem(activeTrain_.get());
 
@@ -127,13 +129,30 @@ bool PlayerLogic::sellTrain(QString trainName, int index)
 
 void PlayerLogic::setActiveTrain(int rowIndex)
 {
-    try {
-        activeTrain_ = playableTrains_.at(rowIndex);
-        emit activeTrainChanged(activeTrain_->getName());
-    }catch (...){
-        throw std::runtime_error("Junan asettaminen aktiiviseksi epäonnistui.");
-    }
+    // haetaan juna joka aktiiviseksi
+    std::shared_ptr<PlayerTrain> trainActive = playableTrains_.at(rowIndex);
+    removeTrainPixmap(activeTrain_);
 
+
+    // asetetaan juna uusi aktiiviseksi
+    activeTrain_ = trainActive;
+
+    trainActive->setPixmapToShow();
+    setTrainPixmap(activeTrain_);
+    // pelaajajunaan ja asettaa kuvasta pixmap sceneen
+    emit activeTrainChanged(activeTrain_->getName());
+
+
+}
+
+void PlayerLogic::removeTrainPixmap(std::shared_ptr<PlayerTrain> trainToRemove)
+{
+    scene_->removeItem(trainToRemove.get());
+}
+
+void PlayerLogic::setTrainPixmap(std::shared_ptr<PlayerTrain> traintoSet)
+{
+    scene_->addItem(activeTrain_.get());
 }
 
 void PlayerLogic::invariant()

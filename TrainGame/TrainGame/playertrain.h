@@ -26,7 +26,7 @@ public:
     void setPlayable();
     void setOwned();
 
-    void setPixmapToShow(QString name);
+    void setPixmapToShow();
 private:
 
 

@@ -52,6 +52,9 @@ public:
 
     void setActiveTrain(int rowIndex);
 
+    void removeTrainPixmap(std::shared_ptr<PlayerTrain> trainToRemove);
+    void setTrainPixmap(std::shared_ptr<PlayerTrain> traintoSet);
+
 signals:
     int playerCashChanged(int amount);
     void ownedTrainInfo(std::shared_ptr<PlayerTrain> train);
