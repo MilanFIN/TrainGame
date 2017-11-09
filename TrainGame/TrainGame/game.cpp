@@ -76,6 +76,11 @@ void Game::shopTabChosen()
     playerLogic_->getOwnedTrains();
 }
 
+void Game::depotTabChosen()
+{
+    playerLogic_->getTrainsToBeRepaired();
+}
+
 void Game::wantedOwnedTrainInfo(QString trainName)
 {
     playerLogic_->getOwnedTrainInfo(trainName);
@@ -89,6 +94,11 @@ void Game::wantedTrainInfo(QString trainName)
 int Game::getPlayerCash()
 {
     return playerLogic_->getCurrentMoney();
+}
+
+void Game::repairPlayerTrain(int rowIndex)
+{
+    playerLogic_->repairTrain(rowIndex);
 }
 
 void Game::setActiveTrain(int rowIndex)

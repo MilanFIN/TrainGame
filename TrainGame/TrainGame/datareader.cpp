@@ -128,6 +128,7 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
 
         if (trainName == QString("Pomppuresiina")) {
             logic.addNewTrain(train);
+            logic.setActiveTrain(0);
         } else {
             shop->addTrain(train);
         }

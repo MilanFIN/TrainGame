@@ -21,12 +21,14 @@ public:
     bool isAbleToPlay() const;
     bool isOwned() const;
 
+    short getAbsoluteShape() const;
+    void repairTrain();
 
     unsigned short takeDamage(int dmgAmount);
     void setPlayable();
     void setOwned();
 
-    void setPixmapToShow(QString name);
+    void setPixmapToShow();
 private:
 
 
@@ -41,6 +43,8 @@ private:
     unsigned short price_;
     double speed_;
     unsigned short repairCost_;
+
+    void invariant();
 
 };
 

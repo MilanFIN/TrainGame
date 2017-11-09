@@ -52,6 +52,12 @@ public:
 
     void setActiveTrain(int rowIndex);
 
+    void removeTrainPixmap(std::shared_ptr<PlayerTrain> trainToRemove);
+    void setTrainPixmap(std::shared_ptr<PlayerTrain> traintoSet);
+
+    void getTrainsToBeRepaired();
+    void repairTrain(int rowIndex);
+
 signals:
     int playerCashChanged(int amount);
     void ownedTrainInfo(std::shared_ptr<PlayerTrain> train);
@@ -59,6 +65,9 @@ signals:
     void ownedTrains(std::vector<std::shared_ptr<PlayerTrain>> ownedTrains);
     void availableTrains(std::vector<std::shared_ptr<PlayerTrain>> buyableTrains);
     void activeTrainChanged(QString trainName);
+    void showBrokenTrains(std::vector<std::shared_ptr<PlayerTrain>> brTrains);
+    void notEnoughMoney();
+    void trainRepaired();
 
 private:
     std::shared_ptr<QGraphicsScene> scene_;

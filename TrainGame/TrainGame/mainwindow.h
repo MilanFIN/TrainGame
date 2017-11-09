@@ -50,6 +50,7 @@ public slots:
     void changeNextBacktrack();
 
     void updateTrainFeatures(std::shared_ptr<PlayerTrain> trainInfo);
+    void updateDepotList(std::vector<std::shared_ptr<PlayerTrain>> brTrains);
 
     void updatePlayerTrains(std::vector<std::shared_ptr<PlayerTrain>> ownedTrains);
     void updateBuyableTrains(std::vector<std::shared_ptr<PlayerTrain> > Trains);
@@ -63,8 +64,11 @@ public slots:
     void on_confirmButton_clicked();
 
     void on_ownedTrainsListWidget_itemClicked(QListWidgetItem *item);
-
+    void on_fixListWidget_itemClicked(QListWidgetItem *item);
     void on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item);
+
+    void trainRepaired();
+    void trainRepairFailure();
 
 signals:
 private:

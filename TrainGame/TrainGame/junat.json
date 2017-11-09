@@ -20,7 +20,7 @@
             "shape": 100,
             "speed": 40,
             "price": 200,
-            "repairCost": 500,
+            "repairCost": 150,
             "image": ":/kuvat/train2.png"
         },
         {
