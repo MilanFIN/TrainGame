@@ -40,7 +40,9 @@ SOURCES += \
     station.cpp \
     background.cpp \
     obstaclefactory.cpp \
-    backgroundlogic.cpp
+    backgroundlogic.cpp \
+    vrtrainmanager.cpp \
+    vrtrain.cpp
 
 
 HEADERS += \
@@ -60,7 +62,9 @@ HEADERS += \
     station.h \
     background.h \
     obstaclefactory.h \
-    backgroundlogic.h
+    backgroundlogic.h \
+    vrtrainmanager.h \
+    vrtrain.h
 
 
 FORMS += \
