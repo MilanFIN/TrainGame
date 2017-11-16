@@ -9,7 +9,7 @@
 #include <QListWidgetItem>
 #include <QList>
 #include <QString>
-
+#include <httpengine.h>
 
 namespace Ui {
 class MainWindow;
@@ -76,6 +76,8 @@ private:
     std::shared_ptr<Game> game_;
     std::shared_ptr<QGraphicsScene> scene_;
     std::shared_ptr<QGraphicsScene> miniMapScene_;
+
+
 };
 
 #endif // MAINWINDOW_H

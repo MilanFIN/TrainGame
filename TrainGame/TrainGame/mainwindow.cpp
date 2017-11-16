@@ -3,9 +3,9 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 #include <QDebug>
-
+#include "datareader.h"
 #include <iostream>
-
+#include <httpengine.h>
 
 
 MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene,
@@ -61,6 +61,8 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     game_->getPlayerModel()->getOwnedTrains();
     game_->getPlayerModel()->getAvailableTrainsFromShop();
+
+
 }
 
 MainWindow::~MainWindow()
@@ -85,6 +87,9 @@ void MainWindow::on_gameButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
     game_->gameTabChosen();
+
+
+
 }
 
 void MainWindow::on_shopButton_clicked()

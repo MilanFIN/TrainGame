@@ -11,6 +11,11 @@ class VrTrain : public QGraphicsPixmapItem
 public:
     VrTrain(int y);
     void move();
+private:
+    int trainNumber_;
+    QString category_;
+
+
 };
 
 #endif // VRTRAIN_H

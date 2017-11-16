@@ -9,6 +9,7 @@
 #include <iostream>
 #include "shop.h"
 #include "playertrain.h"
+#include "httpengine.h"
 
 dataReader dataReader::READER;
 
@@ -140,6 +141,35 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
     std::cout <<"Kaupassa on näin monta junaa: "<<trains.size() << std::endl;
 
 
+
+}
+
+void dataReader::readHTTPData(std::shared_ptr<HttpEngine> engine)
+{
+    QIODevice *ret = engine->httpData();
+    if (ret == NULL) {
+        ret = engine->httpData();
+    }
+
+    QByteArray res = ret->readAll();
+
+    parseHttpData(res);
+
+}
+
+void dataReader::parseHttpData(QByteArray data)
+{
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &error);
+
+    if (doc.isNull()) {
+        throw std::runtime_error("Failed to parse json " + error.errorString().toStdString());
+    }
+    if (!doc.isArray()) {
+        throw std::runtime_error("Document does not contain array of trainobjects");
+    }
+
+    QJsonArray arr = doc.array();
 
 }
 

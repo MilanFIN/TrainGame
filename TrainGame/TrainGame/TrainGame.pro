@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 CONFIG += c++11
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -42,7 +42,8 @@ SOURCES += \
     obstaclefactory.cpp \
     backgroundlogic.cpp \
     vrtrainmanager.cpp \
-    vrtrain.cpp
+    vrtrain.cpp \
+    httpengine.cpp
 
 
 HEADERS += \
@@ -64,7 +65,8 @@ HEADERS += \
     obstaclefactory.h \
     backgroundlogic.h \
     vrtrainmanager.h \
-    vrtrain.h
+    vrtrain.h \
+    httpengine.h
 
 
 FORMS += \

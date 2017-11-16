@@ -6,13 +6,15 @@
 #include "raillogic.h"
 #include "shop.h"
 #include "playerlogic.h"
+#include "httpengine.h"
 
 
 class dataReader
 {
+
 public:
     /**
-     * @brief READER singleton-olio
+     * @brief READER singleton
      */
     static dataReader READER;
 
@@ -28,6 +30,7 @@ public:
     void loadTrains(const QString &filepath, std::shared_ptr<Shop> shop, PlayerLogic &logic);
 
 
+    void readHTTPData(std::shared_ptr<HttpEngine> engine);
 
 
 private:
@@ -35,7 +38,9 @@ private:
 
     dataReader(dataReader const&) = delete;
     dataReader& operator=(dataReader const&) = delete;
-    static QJsonObject verifyIsObject(const QJsonValue &jsonValue);
+
+    void parseHttpData(QByteArray data);
+
 };
 
 #endif // DATAREADER_H
