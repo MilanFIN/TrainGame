@@ -1,6 +1,6 @@
 #include "vrtrain.h"
 
-VrTrain::VrTrain()
+VrTrain::VrTrain(int y)
 {
 
 }

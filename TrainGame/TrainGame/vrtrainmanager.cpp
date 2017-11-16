@@ -1,6 +1,6 @@
 #include "vrtrainmanager.h"
 
-VrTrainManager::VrTrainManager()
+VrTrainManager::VrTrainManager(std::shared_ptr<QGraphicsScene> scene)
 {
 
 }

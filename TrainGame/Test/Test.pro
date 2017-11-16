@@ -42,8 +42,9 @@ SOURCES += \
         ../TrainGame/station.cpp \
         ../TrainGame/background.cpp \
         ../TrainGame/obstaclefactory.cpp \
-        ../TrainGame/backgroundlogic.cpp
-
+        ../TrainGame/backgroundlogic.cpp \
+        ../TrainGame/vrtrain.cpp \
+        ../TrainGame/vrtrainmanager.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
@@ -64,7 +65,9 @@ HEADERS += \
         ../TrainGame/station.h \
         ../TrainGame/background.h \
         ../TrainGame/obstaclefactory.h \
-        ../TrainGame/backgroundlogic.h
+        ../TrainGame/backgroundlogic.h \
+        ../TrainGame/vrtrain.h \
+        ../TrainGame/vrtrainmanager.h
 
 
 RESOURCES += \

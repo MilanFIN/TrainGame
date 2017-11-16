@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QGraphicsScene>
+#include <memory>
 
 /**
  * @brief Hallitsee VrTrain-olioita
