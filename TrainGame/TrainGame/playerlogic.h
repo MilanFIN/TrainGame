@@ -43,6 +43,7 @@ public:
 
     void getOwnedTrainInfo(QString trainName);
     void getTrainInfo(QString trainName);
+    void getInfoToGarage(QString trainName);
 
     void getAvailableTrainsFromShop();
     void getOwnedTrains();
@@ -68,6 +69,7 @@ signals:
     void showBrokenTrains(std::vector<std::shared_ptr<PlayerTrain>> brTrains);
     void notEnoughMoney();
     void trainRepaired();
+    void brokenTrain(std::shared_ptr<PlayerTrain> brokenTrain);
 
 private:
     std::shared_ptr<QGraphicsScene> scene_;

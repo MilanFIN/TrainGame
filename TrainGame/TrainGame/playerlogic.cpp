@@ -81,6 +81,15 @@ void PlayerLogic::getTrainInfo(QString trainName)
     emit trainInfo(shop_->getTrainInfo(trainName));
 }
 
+void PlayerLogic::getInfoToGarage(QString trainName)
+{
+    for (std::shared_ptr<PlayerTrain> train : playableTrains_) {
+        if (trainName == train->getName()) {
+            emit brokenTrain(train);
+        }
+    }
+}
+
 void PlayerLogic::getAvailableTrainsFromShop()
 {
     emit availableTrains(shop_->buyableTrains());

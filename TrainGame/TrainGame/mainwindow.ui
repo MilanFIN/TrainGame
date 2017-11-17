@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="depotPage">
      <widget class="QPushButton" name="fixButton">
@@ -73,6 +73,105 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        <font>
         <pointsize>15</pointsize>
        </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>50</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nykyinen kunto:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>90</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Optimi kunto:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="currShape">
+      <property name="geometry">
+       <rect>
+        <x>960</x>
+        <y>50</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="optimalShape">
+      <property name="geometry">
+       <rect>
+        <x>961</x>
+        <y>90</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>170</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Korjaus maksaa:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="repairCostLabel">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>170</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -959,7 +1058,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <x>0</x>
      <y>0</y>
      <width>1154</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

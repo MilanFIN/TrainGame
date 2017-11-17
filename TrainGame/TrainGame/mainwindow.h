@@ -72,6 +72,8 @@ public slots:
     void trainRepaired();
     void trainRepairFailure();
 
+    void updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain);
+
 signals:
 private:
     Ui::MainWindow *ui;

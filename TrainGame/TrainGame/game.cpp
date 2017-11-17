@@ -91,6 +91,11 @@ void Game::wantedTrainInfo(QString trainName)
     playerLogic_->getTrainInfo(trainName);
 }
 
+void Game::fixlistTrainInfo(QString trainName)
+{
+    playerLogic_->getInfoToGarage(trainName);
+}
+
 int Game::getPlayerCash()
 {
     return playerLogic_->getCurrentMoney();

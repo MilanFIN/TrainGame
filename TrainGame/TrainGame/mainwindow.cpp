@@ -41,6 +41,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(game_->getPlayerModel(), &PlayerLogic::trainInfo, this, &MainWindow::updateTrainFeatures);
 
     connect(game_->getPlayerModel(), &PlayerLogic::showBrokenTrains, this, &MainWindow::updateDepotList);
+    connect(game_->getPlayerModel(), &PlayerLogic::brokenTrain, this, &MainWindow::updateBrokenTrainInfo);
 
     connect(game_->getPlayerModel(), &PlayerLogic::trainRepaired, this, &MainWindow::trainRepaired);
     connect(game_->getPlayerModel(), &PlayerLogic::notEnoughMoney, this, &MainWindow::trainRepairFailure);
@@ -299,6 +300,13 @@ void MainWindow::on_fixListWidget_itemClicked(QListWidgetItem *item)
     //TODO: näytä junan optimikunto versus nykykunto.
     // ja paljonko korjaus maksaa.
 
+    ui->currShape->clear();
+    ui->optimalShape->clear();
+    ui->repairCostLabel->clear();
+    // tää on vähän paska homma
+    game_->fixlistTrainInfo(item->text());
+
+
 }
 
 void MainWindow::on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item)
@@ -312,9 +320,24 @@ void MainWindow::on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item)
 void MainWindow::trainRepaired()
 {
     game_->depotTabChosen();
+    ui->currShape->clear();
+    ui->optimalShape->clear();
+    ui->repairCostLabel->clear();
 }
 
 void MainWindow::trainRepairFailure()
 {
     QMessageBox::critical(this, "Virhe","ei tarpeeksi rahaa korjata junaa");
+}
+
+void MainWindow::updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain)
+{
+    short absShape = brokenTrain->getAbsoluteShape();
+    short currShape = brokenTrain->getShape();
+    unsigned short cost = brokenTrain->getRepairCost();
+
+
+    ui->currShape->setText(QString::number(currShape));
+    ui->optimalShape->setText(QString::number(absShape));
+    ui->repairCostLabel->setText(QString::number(cost));
 }

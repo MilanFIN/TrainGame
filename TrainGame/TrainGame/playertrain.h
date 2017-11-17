@@ -36,12 +36,14 @@ private:
     QImage trainImage_;
     bool isPlayable_;
     bool isOwned_;
+
     short const absoluteShape_;
-
-
     short shape_;
-    unsigned short price_;
-    double speed_;
+
+
+
+    unsigned short const price_;
+    double const speed_;
     unsigned short repairCost_;
 
     void invariant();

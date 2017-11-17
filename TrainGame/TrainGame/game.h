@@ -32,6 +32,7 @@ public:
     void depotTabChosen();
     void wantedOwnedTrainInfo(QString trainName);
     void wantedTrainInfo(QString trainName);
+    void fixlistTrainInfo(QString trainName);
     int getPlayerCash();
 
     void repairPlayerTrain(int rowIndex);
