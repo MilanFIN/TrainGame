@@ -8,12 +8,26 @@
 #include <QNetworkAccessManager>
 #include <QIODevice>
 
+
+/**
+ * @brief HttpEngine-Luokka suorittaa kyselyn vr:n API:in.
+ */
 class HttpEngine: public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * @brief HttpEngine rakentaja
+     */
     HttpEngine();
+
+    /**
+     * @brief httpData suorittaa http kyselyn vr:n API:in
+     * @return QIODevice* osoitin
+     */
     QIODevice* httpData();
+
+
 private:
     QNetworkAccessManager nam_;
 };

@@ -4,7 +4,9 @@
 #include <memory>
 #include "playertrain.h"
 
-
+/**
+ * @brief Shop class koostuu junista, jota pelaaja voi ostaa
+ */
 
 class Shop
 {
@@ -12,9 +14,10 @@ public:
     Shop();
 
     /**
-     * @brief buyTrain
+     * @brief buyTrain metodi ostaa junan kaupasta
      * @param index jolla löytää junan vectorista
      * @pre pelaajalla riittävästi rahaa ostaa juna
+     * @post ostettu juna on poistunut kaupasta
      * @return shared_ptr ostettu juna
      */
     std::shared_ptr<PlayerTrain> buyTrain(int index);
@@ -26,11 +29,16 @@ public:
      */
     void addTrain(std::shared_ptr<PlayerTrain> train);
 
+    /**
+     * @brief getTrainInfo palauttaa jaetun osoittimen junaan, josta halutaan tietoja.
+     * @param trainName, junan nimi jonka tiedot halutaan.
+     * @return std::shared_ptr<PlayerTrain> train
+     */
     std::shared_ptr<PlayerTrain> getTrainInfo(QString trainName) const;
 
     /**
      * @brief buyableTrains palauttaa vectorin, joka sisältää ostettavat junat
-     * @return vector
+     * @return std::vector<std::shared_ptr<PlayerTrain>> trains
      */
     std::vector<std::shared_ptr<PlayerTrain>> buyableTrains() const;
 
