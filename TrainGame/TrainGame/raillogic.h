@@ -102,6 +102,7 @@ public:
 signals:
     void destinationCandidatesChanged(QList<QString> stations);
     void backttrackCandidatesChanged(QList<QString> stations);
+    void signalDestAndPrevious(QString previous, QString next);
 
 
 private:

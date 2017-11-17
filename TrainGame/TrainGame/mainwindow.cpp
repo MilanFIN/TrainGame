@@ -22,6 +22,9 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(game_->getRailModel(), &RailLogic::destinationCandidatesChanged, this, &MainWindow::updateNextStations);
     connect(game_->getRailModel(), &RailLogic::backttrackCandidatesChanged, this, &MainWindow::updatePassedStations);
 
+    connect(game_->getRailModel(), &RailLogic::signalDestAndPrevious, this, &MainWindow::updatePreviousAndNext);
+
+
     connect(game_->getPlayerModel(), &PlayerLogic::playerCashChanged, this, &MainWindow::updateMoney);
 
     connect(ui->gasSlider, &QSlider::valueChanged, this, &MainWindow::changeSpeed);
@@ -141,6 +144,12 @@ void MainWindow::updatePassedStations(QList<QString> stations)
     for (auto i = stations.begin(); i != stations.end(); ++i){
         ui->passedStationsListWidget->addItem(*i);
     }
+}
+
+void MainWindow::updatePreviousAndNext(QString previous, QString next)
+{
+    ui->nextStation->setText(next);
+    ui->previousStation->setText(previous);
 }
 
 void MainWindow::changeNextDestination()

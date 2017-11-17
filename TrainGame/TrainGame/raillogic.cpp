@@ -369,6 +369,7 @@ void RailLogic::signalStationInfoToUi()
 {
     emit destinationCandidatesChanged(CombineStationTrackInfo( destinationStationCandidates_, destinationTrackCandidates_));
     emit backttrackCandidatesChanged(CombineStationTrackInfo(backtrackStationCandidates_, backtrackTrackCandidates_));
+    emit signalDestAndPrevious(currentTrackCode_ + " " +stations_.value(startStationCode_).fullName, currentTrackCode_ + " " + stations_.value(destinationStationCode_).fullName);
 }
 
 void RailLogic::updateDestinationOnMiniMap()

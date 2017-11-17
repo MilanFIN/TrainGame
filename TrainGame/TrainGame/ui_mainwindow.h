@@ -46,8 +46,10 @@ public:
     QLabel *passedLabel;
     QListWidget *nextStationsListWidget;
     QListWidget *passedStationsListWidget;
-    QLabel *latestPassedLabel;
-    QLabel *label_2;
+    QLabel *nextStationLabel;
+    QLabel *nextStation;
+    QLabel *previousStationLabel;
+    QLabel *previousStation;
     QWidget *shopPage;
     QPushButton *buyButton;
     QPushButton *sellButton;
@@ -179,21 +181,30 @@ public:
         passedLabel->setGeometry(QRect(960, 200, 71, 16));
         nextStationsListWidget = new QListWidget(gamePage);
         nextStationsListWidget->setObjectName(QStringLiteral("nextStationsListWidget"));
-        nextStationsListWidget->setGeometry(QRect(860, 20, 261, 171));
+        nextStationsListWidget->setGeometry(QRect(860, 20, 181, 171));
         passedStationsListWidget = new QListWidget(gamePage);
         passedStationsListWidget->setObjectName(QStringLiteral("passedStationsListWidget"));
-        passedStationsListWidget->setGeometry(QRect(860, 220, 261, 171));
-        latestPassedLabel = new QLabel(gamePage);
-        latestPassedLabel->setObjectName(QStringLiteral("latestPassedLabel"));
-        latestPassedLabel->setGeometry(QRect(50, 0, 201, 16));
+        passedStationsListWidget->setGeometry(QRect(860, 220, 181, 171));
+        nextStationLabel = new QLabel(gamePage);
+        nextStationLabel->setObjectName(QStringLiteral("nextStationLabel"));
+        nextStationLabel->setGeometry(QRect(0, 0, 121, 16));
         QFont font1;
         font1.setPointSize(11);
-        latestPassedLabel->setFont(font1);
-        label_2 = new QLabel(gamePage);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(60, 30, 181, 20));
-        label_2->setFont(font1);
-        label_2->setAlignment(Qt::AlignCenter);
+        nextStationLabel->setFont(font1);
+        nextStation = new QLabel(gamePage);
+        nextStation->setObjectName(QStringLiteral("nextStation"));
+        nextStation->setGeometry(QRect(120, 0, 141, 20));
+        nextStation->setFont(font1);
+        nextStation->setAlignment(Qt::AlignCenter);
+        previousStationLabel = new QLabel(gamePage);
+        previousStationLabel->setObjectName(QStringLiteral("previousStationLabel"));
+        previousStationLabel->setGeometry(QRect(0, 20, 121, 16));
+        previousStationLabel->setFont(font1);
+        previousStation = new QLabel(gamePage);
+        previousStation->setObjectName(QStringLiteral("previousStation"));
+        previousStation->setGeometry(QRect(120, 20, 141, 20));
+        previousStation->setFont(font1);
+        previousStation->setAlignment(Qt::AlignCenter);
         stackedWidget->addWidget(gamePage);
         shopPage = new QWidget();
         shopPage->setObjectName(QStringLiteral("shopPage"));
@@ -449,7 +460,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1154, 25));
+        menuBar->setGeometry(QRect(0, 0, 1154, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -460,7 +471,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -474,8 +485,10 @@ public:
         directionLabel->setText(QApplication::translate("MainWindow", "Eteen", Q_NULLPTR));
         comingLabel->setText(QApplication::translate("MainWindow", "Seuraavalta", Q_NULLPTR));
         passedLabel->setText(QApplication::translate("MainWindow", "Edelliselt\303\244", Q_NULLPTR));
-        latestPassedLabel->setText(QApplication::translate("MainWindow", "Viimeisin ohitettu asema:", Q_NULLPTR));
-        label_2->setText(QApplication::translate("MainWindow", "ei ohitettuja asemia", Q_NULLPTR));
+        nextStationLabel->setText(QApplication::translate("MainWindow", "Seuraava asema:", Q_NULLPTR));
+        nextStation->setText(QApplication::translate("MainWindow", "?", Q_NULLPTR));
+        previousStationLabel->setText(QApplication::translate("MainWindow", "Edellinen asema:", Q_NULLPTR));
+        previousStation->setText(QApplication::translate("MainWindow", "?", Q_NULLPTR));
         buyButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
         sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
         playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));

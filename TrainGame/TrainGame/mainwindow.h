@@ -43,6 +43,8 @@ public slots:
     void updateNextStations(QList<QString> stations);
     //slot for recieving new possible backtracking candidates
     void updatePassedStations(QList<QString> stations);
+    //vastaanottaa seuraavan ja edellisen aseman tiedot
+    void updatePreviousAndNext(QString previous, QString next);
 
     //slot that informs controller that the choise of destination station
     //has changed

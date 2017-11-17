@@ -3,9 +3,9 @@
 
 #include <QObject>
 #include <QUrl>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QNetworkAccessManager>
+//#include <QNetworkRequest> //wtf ei käänny?
+//#include <QNetworkReply>
+//#include <QNetworkAccessManager>
 #include <QIODevice>
 
 class HttpEngine: public QObject
@@ -15,7 +15,7 @@ public:
     HttpEngine();
     QIODevice* httpData();
 private:
-    QNetworkAccessManager nam_;
+    //QNetworkAccessManager nam_;
 };
 
 #endif // HTTPENGINE_H

@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="depotPage">
      <widget class="QPushButton" name="fixButton">
@@ -220,7 +220,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        <rect>
         <x>860</x>
         <y>20</y>
-        <width>261</width>
+        <width>181</width>
         <height>171</height>
        </rect>
       </property>
@@ -230,17 +230,17 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        <rect>
         <x>860</x>
         <y>220</y>
-        <width>261</width>
+        <width>181</width>
         <height>171</height>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="latestPassedLabel">
+     <widget class="QLabel" name="nextStationLabel">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>0</x>
         <y>0</y>
-        <width>201</width>
+        <width>121</width>
         <height>16</height>
        </rect>
       </property>
@@ -250,15 +250,15 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        </font>
       </property>
       <property name="text">
-       <string>Viimeisin ohitettu asema:</string>
+       <string>Seuraava asema:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="nextStation">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>30</y>
-        <width>181</width>
+        <x>120</x>
+        <y>0</y>
+        <width>141</width>
         <height>20</height>
        </rect>
       </property>
@@ -268,7 +268,46 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        </font>
       </property>
       <property name="text">
-       <string>ei ohitettuja asemia</string>
+       <string>?</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="previousStationLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Edellinen asema:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="previousStation">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>20</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>?</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -920,7 +959,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <x>0</x>
      <y>0</y>
      <width>1154</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
