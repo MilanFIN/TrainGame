@@ -10,16 +10,16 @@ HttpEngine::HttpEngine(){}
 QIODevice *HttpEngine::httpData()
 {
     QEventLoop eLoop;
-    //QObject::connect(&nam_, SIGNAL(finished(QNetworkReply*)), &eLoop, SLOT(quit()));
+    QObject::connect(&nam_, SIGNAL(finished(QNetworkReply*)), &eLoop, SLOT(quit()));
 
     QUrl apiUrl(baseUrl);
-    //QNetworkRequest req(apiUrl);
-    //QNetworkReply *reply = nam_.get(req);
+    QNetworkRequest req(apiUrl);
+    QNetworkReply *reply = nam_.get(req);
 
     int code = eLoop.exec();
 
-    if (false){//(reply->error() == QNetworkReply::NoError) {
-        //return reply;
+    if (reply->error() == QNetworkReply::NoError) {
+        return reply;
     } else {
         return NULL;
     }

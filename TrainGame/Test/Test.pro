@@ -6,6 +6,7 @@
 
 QT       += testlib
 QT       += widgets
+QT       += network
 TARGET = tst_testgame
 CONFIG   += console
 CONFIG   -= app_bundle

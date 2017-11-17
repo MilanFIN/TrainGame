@@ -146,7 +146,7 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
 
 void dataReader::readHTTPData(std::shared_ptr<HttpEngine> engine)
 {
-    /*
+
     QIODevice *ret = engine->httpData();
     if (ret == NULL) {
         ret = engine->httpData();
@@ -155,7 +155,7 @@ void dataReader::readHTTPData(std::shared_ptr<HttpEngine> engine)
     QByteArray res = ret->readAll();
 
     parseHttpData(res);
-    */
+
 
 }
 
