@@ -47,8 +47,6 @@ void BackgroundLogic::move() {
     movementOverall_ += speed_;
     previousSpeed_ = speed_;
 
-    //qInfo() << movementOverall_;
-
     //because game starts in the middle of background
     //we must do the first background creation differently
     if (movementOverall_ >= 1500 && firstTime_ == true && forward_ == true) {
@@ -93,21 +91,21 @@ void BackgroundLogic::move() {
         movementOverall_ -= 100;
     }
 
-//    //poistetaan näkyvistä hävinnyt background
-//    for (auto x = bg.begin(); x != bg.end();) {
-//        if ((*x).get()->y() > 5500) {
-//            scene_->removeItem((*x).get());
-//            x = bg.erase(x);
-//        }
-//        else if ((*x).get()->y() < -5500) {
-//            scene_->removeItem((*x).get());
-//            x = bg.erase(x);
-//        }
-//        else {
-//            ++x;
-//        }
+    //poistetaan näkyvistä hävinnyt background
+    for (auto x = bg.begin(); x != bg.end();) {
+        if ((*x).get()->y() > 10000) {
+            scene_->removeItem((*x).get());
+            x = bg.erase(x);
+        }
+        else if ((*x).get()->y() < -10000) {
+            scene_->removeItem((*x).get());
+            x = bg.erase(x);
+        }
+        else {
+            ++x;
+        }
 
-//    }
+    }
 }
 
 

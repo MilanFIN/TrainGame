@@ -31,6 +31,7 @@ private:
     float accel_ = 1;
     int movementOverall_;
     int movementAtLastBgCreation_;
+    int movementSinceLastBgDeletion_;
 
      std::shared_ptr<QGraphicsScene> scene_;
      std::vector<std::shared_ptr<Background>> bg;
