@@ -395,31 +395,6 @@
                     ]
                 },
                 {
-                    "name": "R660",
-                    "sections": [
-                        "660",
-                        "R660c",
-                        "R660bt",
-                        "R660b",
-                        "SpVII",
-                        "R660t",
-                        "R660a"
-                    ]
-                },
-                {
-                    "name": "KE__V661",
-                    "sections": [
-                        "V661",
-                        "R641c",
-                        "R641t",
-                        "R641b",
-                        "641a",
-                        "X",
-                        "T",
-                        "Y"
-                    ]
-                },
-                {
                     "name": "OLLI",
                     "sections": [
                         "641",
@@ -1705,6 +1680,12 @@
                     ]
                 },
                 {
+                    "name": "NÄR",
+                    "sections": [
+                        "NÄR_V611"
+                    ]
+                },
+                {
                     "name": "KSK",
                     "sections": [
                         "KSK_771",
@@ -1728,12 +1709,6 @@
                         "KSK_743",
                         "KSK_742",
                         "KSK_V718"
-                    ]
-                },
-                {
-                    "name": "NÄR",
-                    "sections": [
-                        "NÄR_V611"
                     ]
                 }
             ]
@@ -1977,24 +1952,6 @@
             "trackCode": "531",
             "stations": [
                 {
-                    "name": "KON",
-                    "sections": [
-                        "KON_V821",
-                        "KON_AK_PTO_KON",
-                        "KON_981",
-                        "KON_961",
-                        "KON_931",
-                        "KON_V971",
-                        "KON_934",
-                        "KON_V972",
-                        "KON_951",
-                        "KON_861",
-                        "KON_V962",
-                        "KON_V961",
-                        "KON_841"
-                    ]
-                },
-                {
                     "name": "OL",
                     "sections": [
                         "OL_V330",
@@ -2098,6 +2055,24 @@
                         "PTO_AK_PTO_KON",
                         "PTO_PTOKON",
                         "PTO_V21"
+                    ]
+                },
+                {
+                    "name": "KON",
+                    "sections": [
+                        "KON_V821",
+                        "KON_AK_PTO_KON",
+                        "KON_981",
+                        "KON_961",
+                        "KON_931",
+                        "KON_V971",
+                        "KON_934",
+                        "KON_V972",
+                        "KON_951",
+                        "KON_861",
+                        "KON_V962",
+                        "KON_V961",
+                        "KON_841"
                     ]
                 }
             ]
@@ -2348,6 +2323,22 @@
             "trackCode": "731",
             "stations": [
                 {
+                    "name": "SMJ",
+                    "sections": [
+                        "JNS_V102",
+                        "JNS_ERC",
+                        "JNS_ER625",
+                        "JNS_ERF2",
+                        "JNS_V201",
+                        "JNS_ERT1",
+                        "JNS_ERF1",
+                        "JNS_V401",
+                        "JNS_ER628",
+                        "JNS_V402",
+                        "JNS_ER629"
+                    ]
+                },
+                {
                     "name": "VNJ",
                     "sections": [
                         "VNJ_V718",
@@ -2365,33 +2356,6 @@
                         "VNJ_V717",
                         "VNJ_ER733",
                         "VNJ_EREOP733"
-                    ]
-                },
-                {
-                    "name": "SMJ",
-                    "sections": [
-                        "SMJ_V610",
-                        "SMJ_V611",
-                        "SMJ_AK662/753",
-                        "SMJ_AK651/662",
-                        "SMJ_601",
-                        "SMJ_V622"
-                    ]
-                },
-                {
-                    "name": "JNS",
-                    "sections": [
-                        "JNS_V102",
-                        "JNS_ERC",
-                        "JNS_ER625",
-                        "JNS_ERF2",
-                        "JNS_V201",
-                        "JNS_ERT1",
-                        "JNS_ERF1",
-                        "JNS_V401",
-                        "JNS_ER628",
-                        "JNS_V402",
-                        "JNS_ER629"
                     ]
                 },
                 {
@@ -2413,24 +2377,16 @@
                         "ONT_V873",
                         "ONT_V871"
                     ]
+                },
+                {
+                    "name": "JNS",
+                    "sections": [ ]
                 }
             ]
         },
         {
             "trackCode": "751",
             "stations": [
-                {
-                    "name": "SÄ",
-                    "sections": [
-                        "SA_V1",
-                        "SÄ_AK261/C2",
-                        "SA_ERC",
-                        "SÄ_ERC",
-                        "SA_V2",
-                        "SÄ_V2",
-                        "SÄ_V1"
-                    ]
-                },
                 {
                     "name": "NRL",
                     "sections": [
@@ -2462,6 +2418,18 @@
                         "VSO_V311",
                         "VSO_V312",
                         "VSO_TIEOS"
+                    ]
+                },
+                {
+                    "name": "SÄ",
+                    "sections": [
+                        "SA_V1",
+                        "SÄ_AK261/C2",
+                        "SA_ERC",
+                        "SÄ_ERC",
+                        "SA_V2",
+                        "SÄ_V2",
+                        "SÄ_V1"
                     ]
                 }
             ]
@@ -3875,6 +3843,122 @@
                     ]
                 },
                 {
+                    "name": "VKA",
+                    "sections": [
+                        "VKA_211",
+                        "VKA_218",
+                        "VKA_222",
+                        "VKA_223",
+                        "VKA_224",
+                        "VKA_221",
+                        "VKA_220",
+                        "VKA_219",
+                        "VKA_213",
+                        "VKA_214",
+                        "VKA_215",
+                        "VKA_216",
+                        "VKA_217",
+                        "VKA_212",
+                        "VKA_210",
+                        "VKA_202",
+                        "VKA_206",
+                        "VKA_205",
+                        "VKA_209",
+                        "VKA_204",
+                        "VKA_207",
+                        "VKA_203",
+                        "VKA_208",
+                        "VKA_201",
+                        "VKA_225",
+                        "VKA_227",
+                        "VKA_232",
+                        "VKA_228",
+                        "VKA_229",
+                        "VKA_230",
+                        "VKA_231",
+                        "VKA_226",
+                        "VKA_233"
+                    ]
+                },
+                {
+                    "name": "TPET",
+                    "sections": [
+                        "TPE_V454",
+                        "TPE_V450",
+                        "TPET_890",
+                        "TPET_V898",
+                        "TPET_444",
+                        "TPET_V896",
+                        "TPET_893",
+                        "TPET_V897",
+                        "TPET_894",
+                        "TPET_V824",
+                        "TPET_865",
+                        "TPET_V823",
+                        "TPET_V825",
+                        "TPET_V830",
+                        "TPET_V826",
+                        "TPET_V831",
+                        "TPET_850",
+                        "TPET_V827",
+                        "TPET_845",
+                        "TPET_V832",
+                        "TPET_V828",
+                        "TPET_849",
+                        "TPET_844",
+                        "TPET_V833",
+                        "TPET_V829AB",
+                        "TPET_848",
+                        "TPET_843",
+                        "TPET_V829CD",
+                        "TPET_847",
+                        "TPET_846",
+                        "TPET_842",
+                        "TPET_841",
+                        "TPET_863",
+                        "TPET_873A",
+                        "TPET_V881",
+                        "TPET_864",
+                        "TPET_V886",
+                        "TPET_V880",
+                        "TPET_V854",
+                        "TPET_V852",
+                        "TPET_V843",
+                        "TPET_981",
+                        "TPET_V853",
+                        "TPET_V851",
+                        "TPET_V849AB",
+                        "TPET_V849CD",
+                        "TPET_V842AB",
+                        "TPET_V842CD",
+                        "TPET_V845AB",
+                        "TPET_V845CD",
+                        "TPET_V848CD",
+                        "TPET_V848AB",
+                        "TPET_999",
+                        "TPET_V841",
+                        "TPET_V846",
+                        "TPET_V844",
+                        "TPET_V850",
+                        "TPET_246",
+                        "TPET_245",
+                        "TPET_V200",
+                        "TPET_V840",
+                        "TPET_830",
+                        "TPET_244",
+                        "TPET_V220",
+                        "TPET_243",
+                        "TPET_236",
+                        "TPET_241",
+                        "TPET_V810",
+                        "TPET_201",
+                        "TPET_820",
+                        "TPET_V241",
+                        "TPET_233",
+                        "TPET_723"
+                    ]
+                },
+                {
                     "name": "TPE",
                     "sections": [
                         "771",
@@ -4094,122 +4178,6 @@
                         "TPE_771",
                         "TPE_757",
                         "TPE_758"
-                    ]
-                },
-                {
-                    "name": "TPET",
-                    "sections": [
-                        "TPE_V454",
-                        "TPE_V450",
-                        "TPET_890",
-                        "TPET_V898",
-                        "TPET_444",
-                        "TPET_V896",
-                        "TPET_893",
-                        "TPET_V897",
-                        "TPET_894",
-                        "TPET_V824",
-                        "TPET_865",
-                        "TPET_V823",
-                        "TPET_V825",
-                        "TPET_V830",
-                        "TPET_V826",
-                        "TPET_V831",
-                        "TPET_850",
-                        "TPET_V827",
-                        "TPET_845",
-                        "TPET_V832",
-                        "TPET_V828",
-                        "TPET_849",
-                        "TPET_844",
-                        "TPET_V833",
-                        "TPET_V829AB",
-                        "TPET_848",
-                        "TPET_843",
-                        "TPET_V829CD",
-                        "TPET_847",
-                        "TPET_846",
-                        "TPET_842",
-                        "TPET_841",
-                        "TPET_863",
-                        "TPET_873A",
-                        "TPET_V881",
-                        "TPET_864",
-                        "TPET_V886",
-                        "TPET_V880",
-                        "TPET_V854",
-                        "TPET_V852",
-                        "TPET_V843",
-                        "TPET_981",
-                        "TPET_V853",
-                        "TPET_V851",
-                        "TPET_V849AB",
-                        "TPET_V849CD",
-                        "TPET_V842AB",
-                        "TPET_V842CD",
-                        "TPET_V845AB",
-                        "TPET_V845CD",
-                        "TPET_V848CD",
-                        "TPET_V848AB",
-                        "TPET_999",
-                        "TPET_V841",
-                        "TPET_V846",
-                        "TPET_V844",
-                        "TPET_V850",
-                        "TPET_246",
-                        "TPET_245",
-                        "TPET_V200",
-                        "TPET_V840",
-                        "TPET_830",
-                        "TPET_244",
-                        "TPET_V220",
-                        "TPET_243",
-                        "TPET_236",
-                        "TPET_241",
-                        "TPET_V810",
-                        "TPET_201",
-                        "TPET_820",
-                        "TPET_V241",
-                        "TPET_233",
-                        "TPET_723"
-                    ]
-                },
-                {
-                    "name": "VKA",
-                    "sections": [
-                        "VKA_211",
-                        "VKA_218",
-                        "VKA_222",
-                        "VKA_223",
-                        "VKA_224",
-                        "VKA_221",
-                        "VKA_220",
-                        "VKA_219",
-                        "VKA_213",
-                        "VKA_214",
-                        "VKA_215",
-                        "VKA_216",
-                        "VKA_217",
-                        "VKA_212",
-                        "VKA_210",
-                        "VKA_202",
-                        "VKA_206",
-                        "VKA_205",
-                        "VKA_209",
-                        "VKA_204",
-                        "VKA_207",
-                        "VKA_203",
-                        "VKA_208",
-                        "VKA_201",
-                        "VKA_225",
-                        "VKA_227",
-                        "VKA_232",
-                        "VKA_228",
-                        "VKA_229",
-                        "VKA_230",
-                        "VKA_231",
-                        "VKA_226",
-                        "VKA_233"
                     ]
                 },
                 {
@@ -5943,34 +5911,6 @@
                     ]
                 },
                 {
-                    "name": "JR",
-                    "sections": [
-                        "LHT 073",
-                        "LHT 98",
-                        "LHT 100/1",
-                        "LHT 99/1",
-                        "LHT JR101",
-                        "LHT JR102",
-                        "LHT JR51",
-                        "LHT JR52",
-                        "LHT JR1",
-                        "LHT JR2",
-                        "LHT JR3",
-                        "LHT JR41",
-                        "LHT JR61",
-                        "LHT JR62",
-                        "LHT JR106/1",
-                        "LHT JR105/1",
-                        "LHT JR108/1",
-                        "LHT JR107/1",
-                        "LHT JR109/2",
-                        "LHT JR110/2",
-                        "LHT JR114/1",
-                        "LHT JR113/1",
-                        "LHT JR115/1"
-                    ]
-                },
-                {
                     "name": "KEK",
                     "sections": [
                         "LHT 076",
@@ -6063,6 +6003,34 @@
                         "LHT JR102",
                         "LHT JR51",
                         "LHT JR2"
+                    ]
+                },
+                {
+                    "name": "JR",
+                    "sections": [
+                        "LHT 073",
+                        "LHT 98",
+                        "LHT 100/1",
+                        "LHT 99/1",
+                        "LHT JR101",
+                        "LHT JR102",
+                        "LHT JR51",
+                        "LHT JR52",
+                        "LHT JR1",
+                        "LHT JR2",
+                        "LHT JR3",
+                        "LHT JR41",
+                        "LHT JR61",
+                        "LHT JR62",
+                        "LHT JR106/1",
+                        "LHT JR105/1",
+                        "LHT JR108/1",
+                        "LHT JR107/1",
+                        "LHT JR109/2",
+                        "LHT JR110/2",
+                        "LHT JR114/1",
+                        "LHT JR113/1",
+                        "LHT JR115/1"
                     ]
                 },
                 {
@@ -6276,6 +6244,19 @@
                     ]
                 },
                 {
+                    "name": "MKA",
+                    "sections": [
+                        "NMA 672",
+                        "NMA 671",
+                        "NMA 677",
+                        "NMA 678",
+                        "NMA 680",
+                        "NMA 679",
+                        "NMA 681",
+                        "NMA 682"
+                    ]
+                },
+                {
                     "name": "KA",
                     "sections": [
                         "NMA 669/675",
@@ -6305,19 +6286,6 @@
                         "NMA 7311",
                         "NMA 7321",
                         "NMA NM703"
-                    ]
-                },
-                {
-                    "name": "MKA",
-                    "sections": [
-                        "NMA 672",
-                        "NMA 671",
-                        "NMA 677",
-                        "NMA 678",
-                        "NMA 680",
-                        "NMA 679",
-                        "NMA 681",
-                        "NMA 682"
                     ]
                 },
                 {
@@ -7964,6 +7932,12 @@
             "trackCode": "005",
             "stations": [
                 {
+                    "name": "KVLA",
+                    "sections": [
+                        "KV1 575"
+                    ]
+                },
+                {
                     "name": "KV",
                     "sections": [
                         "KV1 031",
@@ -7992,12 +7966,6 @@
                         "HAR 141",
                         "HAR 146",
                         "SLP 175"
-                    ]
-                },
-                {
-                    "name": "KVLA",
-                    "sections": [
-                        "KV1 575"
                     ]
                 },
                 {
@@ -9734,6 +9702,12 @@
                     ]
                 },
                 {
+                    "name": "HMK",
+                    "sections": [
+                        "HMK_V111"
+                    ]
+                },
+                {
                     "name": "PH",
                     "sections": [
                         "PH_ERAK448271",
@@ -9759,9 +9733,17 @@
                     ]
                 },
                 {
-                    "name": "HMK",
+                    "name": "MY",
                     "sections": [
-                        "HMK_V111"
+                        "MY_V311",
+                        "MY_V312"
+                    ]
+                },
+                {
+                    "name": "IN",
+                    "sections": [
+                        "IN_V411",
+                        "IN_V412"
                     ]
                 },
                 {
@@ -9798,17 +9780,9 @@
                     ]
                 },
                 {
-                    "name": "MY",
+                    "name": "TUU",
                     "sections": [
-                        "MY_V311",
-                        "MY_V312"
-                    ]
-                },
-                {
-                    "name": "IN",
-                    "sections": [
-                        "IN_V411",
-                        "IN_V412"
+                        "TUU_V712"
                     ]
                 },
                 {
@@ -9836,9 +9810,10 @@
                     ]
                 },
                 {
-                    "name": "TUU",
+                    "name": "NII",
                     "sections": [
-                        "TUU_V712"
+                        "NII_V911",
+                        "NII_V912"
                     ]
                 },
                 {
@@ -9846,13 +9821,6 @@
                     "sections": [
                         "SK_861572",
                         "SK_ER552"
-                    ]
-                },
-                {
-                    "name": "NII",
-                    "sections": [
-                        "NII_V911",
-                        "NII_V912"
                     ]
                 }
             ]
@@ -10012,18 +9980,6 @@
                     ]
                 },
                 {
-                    "name": "PM",
-                    "sections": [
-                        "PM_V011A_B",
-                        "PM_ERP092",
-                        "PM_072",
-                        "PM_V399",
-                        "PM_ERT370",
-                        "PM_ERT070",
-                        "PM_V011C_D"
-                    ]
-                },
-                {
                     "name": "VKO",
                     "sections": [
                         "VKO_062151",
@@ -10129,6 +10085,18 @@
                         "NRI_541",
                         "NRI_AK561/092",
                         "NRI_561092"
+                    ]
+                },
+                {
+                    "name": "PM",
+                    "sections": [
+                        "PM_V011A_B",
+                        "PM_ERP092",
+                        "PM_072",
+                        "PM_V399",
+                        "PM_ERT370",
+                        "PM_ERT070",
+                        "PM_V011C_D"
                     ]
                 }
             ]
@@ -10547,7 +10515,7 @@
             "trackCode": "008",
             "stations": [
                 {
-                    "name": "RHA",
+                    "name": "SK",
                     "sections": [
                         "RHA_407",
                         "RHA_408",
@@ -11160,6 +11128,10 @@
                     ]
                 },
                 {
+                    "name": "YV",
+                    "sections": [ ]
+                },
+                {
                     "name": "KGS",
                     "sections": [
                         "KGS_635/638",
@@ -11298,46 +11270,6 @@
                     ]
                 },
                 {
-                    "name": "KML",
-                    "sections": [
-                        "RKI_1",
-                        "KML_756",
-                        "KML_735/736",
-                        "KML_769",
-                        "KML_737/738",
-                        "KML_ER770",
-                        "KML_ERA",
-                        "KML_V791",
-                        "KML_721",
-                        "KML_V1",
-                        "KML_V793",
-                        "KML_V3",
-                        "KML_1",
-                        "KML_722",
-                        "KML_V5",
-                        "KML_3",
-                        "KML_2",
-                        "KML_723",
-                        "KML_771",
-                        "KML_772",
-                        "KML_773",
-                        "KML_783",
-                        "KML_782",
-                        "KML_V4",
-                        "KML_ERB",
-                        "KML_V2",
-                        "KML_781",
-                        "KML_V794",
-                        "KML_V792",
-                        "KML_ER784",
-                        "KML_743/744",
-                        "KML_777",
-                        "KML_745/746",
-                        "KML_786",
-                        "OL_747/748"
-                    ]
-                },
-                {
                     "name": "HVN",
                     "sections": [
                         "HVN_637",
@@ -11389,6 +11321,46 @@
                         "LKA_731/732",
                         "LKA_733/734",
                         "LKA_749"
+                    ]
+                },
+                {
+                    "name": "KML",
+                    "sections": [
+                        "RKI_1",
+                        "KML_756",
+                        "KML_735/736",
+                        "KML_769",
+                        "KML_737/738",
+                        "KML_ER770",
+                        "KML_ERA",
+                        "KML_V791",
+                        "KML_721",
+                        "KML_V1",
+                        "KML_V793",
+                        "KML_V3",
+                        "KML_1",
+                        "KML_722",
+                        "KML_V5",
+                        "KML_3",
+                        "KML_2",
+                        "KML_723",
+                        "KML_771",
+                        "KML_772",
+                        "KML_773",
+                        "KML_783",
+                        "KML_782",
+                        "KML_V4",
+                        "KML_ERB",
+                        "KML_V2",
+                        "KML_781",
+                        "KML_V794",
+                        "KML_V792",
+                        "KML_ER784",
+                        "KML_743/744",
+                        "KML_777",
+                        "KML_745/746",
+                        "KML_786",
+                        "OL_747/748"
                     ]
                 },
                 {
@@ -11916,33 +11888,6 @@
                     ]
                 },
                 {
-                    "name": "HPJ",
-                    "sections": [
-                        "HPJ_V1AB",
-                        "HPJ_BJ",
-                        "HPJ_B",
-                        "HPJ_V1CD",
-                        "HPJ_V3",
-                        "HPJ_1",
-                        "HPJ_V5",
-                        "HPJ_V7",
-                        "HPJ_V9",
-                        "HPJ_2",
-                        "HPJ_3",
-                        "HPJ_4",
-                        "HPJ_V8",
-                        "HPJ_O",
-                        "HPJ_V6",
-                        "HPJ_U",
-                        "HPJ_V4CD",
-                        "HPJ_V4AB",
-                        "HPJ_V2",
-                        "HPJ_C_HPJ",
-                        "HPJ_CJ_HPJ",
-                        "HPJ_561/651"
-                    ]
-                },
-                {
                     "name": "PHÄ",
                     "sections": [
                         "PHÄ_491",
@@ -11977,6 +11922,33 @@
                     ]
                 },
                 {
+                    "name": "HPJ",
+                    "sections": [
+                        "HPJ_V1AB",
+                        "HPJ_BJ",
+                        "HPJ_B",
+                        "HPJ_V1CD",
+                        "HPJ_V3",
+                        "HPJ_1",
+                        "HPJ_V5",
+                        "HPJ_V7",
+                        "HPJ_V9",
+                        "HPJ_2",
+                        "HPJ_3",
+                        "HPJ_4",
+                        "HPJ_V8",
+                        "HPJ_O",
+                        "HPJ_V6",
+                        "HPJ_U",
+                        "HPJ_V4CD",
+                        "HPJ_V4AB",
+                        "HPJ_V2",
+                        "HPJ_C_HPJ",
+                        "HPJ_CJ_HPJ",
+                        "HPJ_561/651"
+                    ]
+                },
+                {
                     "name": "NVL",
                     "sections": [
                         "NVL_631",
@@ -11989,6 +11961,10 @@
                         "NVL_V621",
                         "NVL_661/751"
                     ]
+                },
+                {
+                    "name": "YV",
+                    "sections": [ ]
                 }
             ]
         },
