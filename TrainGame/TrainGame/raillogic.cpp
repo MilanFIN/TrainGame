@@ -392,34 +392,35 @@ void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
     QString destinationStation = destinationStationCandidates_.at(randomNumber);
     QString startStation = destinationStationCode_;
     QString track = destinationTrackCandidates_.at(randomNumber);
-    for (int i = 0; i <= distance; ++i){
+    for (int k = 0; k < distance; ++k){
+        startStation = destinationStation;
+
         QList<QString> destStat;
         QList<QString> destTrack;
         foreach(QList<QString> i, tracks_){
             for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
-                if (*j == destinationStation){
-                    //found a rail that stops at our destination,
+                if (*j == startStation){
+                    //found a rail that stops at our station,
                     //add possible next destination as the next stop on that track
                     destTrack.append(tracks_.key(i));
                     destStat.append(*(j+1));
                 }
             }
-            /*
+
             for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
-                if (*j == destinationStation){
+                if (*j == startStation){
                     //also add the previous stop on that track.
                     destTrack.append(tracks_.key(i));
                     destStat.append(*(j-1));
                 }
             }
-            */
-            randomNumber = qrand() % destStat.size();
-            startStation = destinationStation;
-            track = destTrack.at(randomNumber);
-            destinationStation = destStat.at(randomNumber);
+
             //std::cout << startStation.toStdString() << " " << track.toStdString() << " " << destinationStation.toStdString() << std::endl;
 
         }
+        randomNumber = qrand() % destStat.size();
+        track = destTrack.at(randomNumber);
+        destinationStation = destStat.at(randomNumber);
 
     }
     stations.append(startStation);
