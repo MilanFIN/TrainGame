@@ -168,7 +168,7 @@ void PlayerLogic::setTrainPixmap(std::shared_ptr<PlayerTrain> traintoSet)
 void PlayerLogic::getTrainsToBeRepaired()
 {
     std::vector<std::shared_ptr<PlayerTrain>> brokenTrains;
-    for (std::shared_ptr<PlayerTrain> train : playableTrains_) {
+    foreach (std::shared_ptr<PlayerTrain> train, playableTrains_) {
         if (train->getShape() < train->getAbsoluteShape()) {
             brokenTrains.push_back(train);
         }
@@ -179,7 +179,7 @@ void PlayerLogic::getTrainsToBeRepaired()
 void PlayerLogic::repairTrain(int rowIndex)
 {
     std::vector<std::shared_ptr<PlayerTrain>> brokenTrains;
-    for (std::shared_ptr<PlayerTrain> train : playableTrains_) {
+    foreach (std::shared_ptr<PlayerTrain> train, playableTrains_) {
         if (train->getShape() < train->getAbsoluteShape()) {
             brokenTrains.push_back(train);
         }

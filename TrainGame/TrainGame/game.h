@@ -10,7 +10,7 @@
 #include "playerlogic.h"
 #include "obstaclelogic.h"
 #include "backgroundlogic.h"
-
+#include "vrtrainmanager.h"
 
 
 //sisältää kontrollerin
@@ -58,6 +58,7 @@ private:
     std::shared_ptr<PlayerLogic>  playerLogic_ ;
     std::shared_ptr<ObstacleLogic>  obstacleLogic_ ;
     std::shared_ptr<BackgroundLogic> bgLogic_;
+    std::shared_ptr<VrTrainManager> aiTrainManager_;
 
 
     float speed_;

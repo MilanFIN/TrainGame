@@ -17,8 +17,12 @@ public:
     VrTrainManager(std::shared_ptr<QGraphicsScene> scene);
     void move();
 private:
-    QVector<std::shared_ptr<VrTrain>> aiTrains_;
+
+    // trainNumber, VrTrain-class
+    QHash<QString, VrTrain> aiTrains_;
     std::shared_ptr<HttpEngine> engine_;
+
+
 
 
 };

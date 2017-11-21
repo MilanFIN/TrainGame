@@ -14,6 +14,7 @@ public:
 private:
     int trainNumber_;
     QString category_;
+    QVector<QString> scheduledTime_;
 
 
 };
