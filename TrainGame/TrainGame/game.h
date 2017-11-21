@@ -42,6 +42,7 @@ public:
     bool buyNewTrain(QString trainName, int index);
     bool sellTrain(QString trainName, int index);
 
+    void railChanged();
 
     RailLogic* getRailModel();
     PlayerLogic* getPlayerModel();
@@ -68,6 +69,11 @@ private:
     std::shared_ptr<QGraphicsScene> scene_;
     int movementSinceLastSpawn;
     float accel_ = 0.1;
+
+
+
+    QTimer *obstacleSpawner_ = new QTimer(this);
+
 };
 
 #endif // GAME_H

@@ -105,6 +105,9 @@ public:
      */
     void getRandomStationAndTrack(int distance, QList<QString>& Stations, QString& trackCode);
 
+    QString getCurrentTrack();
+    QString getLastStation();
+    QString getNextStation();
 
 signals:
     void destinationCandidatesChanged(QList<QString> stations);

@@ -428,6 +428,21 @@ void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
     trackCode = track;
 }
 
+QString RailLogic::getCurrentTrack()
+{
+    return currentTrackCode_;
+}
+
+QString RailLogic::getLastStation()
+{
+    return startStationCode_;
+}
+
+QString RailLogic::getNextStation()
+{
+    return destinationStationCode_;
+}
+
 void RailLogic::changeDestinationCandidateIndex(int index)
 {
     destinationIndex_ = index;

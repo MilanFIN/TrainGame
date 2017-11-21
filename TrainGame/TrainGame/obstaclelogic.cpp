@@ -7,7 +7,7 @@ ObstacleLogic::ObstacleLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
 {
     goalSpeed_ = 0;
-
+    inScene_ = false;
 
 }
 
@@ -30,7 +30,11 @@ void ObstacleLogic::move()
         }
     }
 
+    //move obstacle
+    obstacle_.get()->move((int)speed_);
 
+
+    //
     /*
     //move obstacles and remove those too far away
     for (auto i = obstacles.begin(); i != obstacles.end();){
@@ -70,52 +74,70 @@ void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode)
 {
     if (inScene_){
         scene_->removeItem(obstacle_.get());
+        inScene_ = false;
     }
-    std::shared_ptr<ObstacleInterface> obstacle_ = ObstacleFactory::GetInstance()->createObject();
+    obstacle_ = ObstacleFactory::GetInstance()->createObject();
 
-
+    obstacleStartStation_ = stations.at(0);
+    obstacleEndStation_ = stations.at(1);
+    ObstacleTrackCode_ = trackCode;
 }
 
 void ObstacleLogic::removeNearbyObjects(int location)
 {
-/*
-    //poistetaan kaikki esteet, jotka ovat tarpeeksi lähellä pelaajaa
-    for (auto i = obstacles.begin(); i != obstacles.end();){
-        if (abs((*i)->y() - location) < 250){
-            scene_->removeItem((*i).get());
-            i = obstacles.erase(i);
-        }
-        else {
-            ++i;
+    if (inScene_){
+        if (abs(obstacle_.get()->y() - location) < 250){
+            scene_->removeItem(obstacle_.get());
+            inScene_ = false;
         }
     }
-*/
+
 }
 
 int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
 {
-/*
     int damageDone = 0;
-    //check collision between all obstacles and the train
-    for (auto i = obstacles.begin(); i != obstacles.end();){
-        if (train.get()->collidesWithItem((*i).get())) {//doesn work yet
-            scene_->removeItem((*i).get());
-            i = obstacles.erase(i);
+
+    if (inScene_){
+        if (train.get()->collidesWithItem(obstacle_.get())) {//doesn work yet
+            scene_->removeItem(obstacle_.get());
+            inScene_ = false;
 
             damageDone += 1;
-        }
-        else {
-            ++i;
         }
     }
 
     return damageDone;
-    */
-    return 0;
+
 }
 
 int ObstacleLogic::getNextDistance()
 {
     ++nextObstacleDistance_;
     return nextObstacleDistance_ / 10;
+}
+
+void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString track)
+{
+    if ((next == obstacleStartStation_ && previous == obstacleEndStation_)
+            || previous == obstacleStartStation_ && next == obstacleEndStation_){
+        obstacle_.get()->setPos(obstacle_.get()->x(), -300);
+
+        if (!inScene_){
+            scene_->addItem(obstacle_.get());
+
+            inScene_ = true;
+            std::cout << "lisätty" << std::endl;
+        }
+    }
+    else {
+        if (inScene_){
+            scene_->removeItem(obstacle_.get());
+            inScene_ = false;
+            std::cout << "poistettu" << std::endl;
+
+        }
+
+    }
+
 }

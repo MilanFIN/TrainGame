@@ -24,14 +24,15 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene,
     connect(CollisionTimer, SIGNAL(timeout()), this, SLOT(checkCollisions()));
     CollisionTimer->start(300);
 
-    QTimer *obstacleSpawner = new QTimer(this);
-    connect(obstacleSpawner, SIGNAL(timeout()), this, SLOT(spawn()));
-    obstacleSpawner->start(5000);
+    connect(obstacleSpawner_, SIGNAL(timeout()), this, SLOT(spawn()));
+    obstacleSpawner_->start(50);
 
 
     goalSpeed_ = 0;
     previousSpeed_ = 0;
     movementSinceLastSpawn = 0;
+
+
 
 
 }
@@ -130,6 +131,12 @@ bool Game::sellTrain(QString trainName, int index)
 
 }
 
+void Game::railChanged()
+{
+    obstacleLogic_.get()->addObstacleToScene(railLogic_.get()->getNextStation(), railLogic_.get()->getLastStation(), railLogic_.get()->getCurrentTrack());
+
+}
+
 RailLogic* Game::getRailModel()
 {
     return railLogic_.get();
@@ -149,6 +156,9 @@ void Game::move()
 
 void Game::spawn()
 {
+
+    obstacleSpawner_->stop();
+
     int distance = obstacleLogic_.get()->getNextDistance();
     QList<QString> stations;
     QString track;
@@ -165,6 +175,7 @@ void Game::spawn()
 
 void Game::checkCollisions()
 {
+
     //check if obstacles hit the player
     int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
     //check if player has arrived to a station

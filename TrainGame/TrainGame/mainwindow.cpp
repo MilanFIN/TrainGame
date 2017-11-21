@@ -151,6 +151,9 @@ void MainWindow::updatePreviousAndNext(QString previous, QString next)
 {
     ui->nextStation->setText(next);
     ui->previousStation->setText(previous);
+
+    //tell game to do stuff if necessary
+    game_.get()->railChanged();
 }
 
 void MainWindow::changeNextDestination()

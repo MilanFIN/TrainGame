@@ -27,10 +27,10 @@ std::shared_ptr<ObstacleInterface> ObstacleFactory::createObject()
 {
 
     if (qrand() % 2 == 0) {
-        std::shared_ptr<Boulder> a = std::make_shared<Boulder>(-1000);
+        std::shared_ptr<Boulder> a = std::make_shared<Boulder>(0);
         return a;
     } else {
-        std::shared_ptr<Boulder> a = std::make_shared<Boulder>(-1000);
+        std::shared_ptr<Boulder> a = std::make_shared<Boulder>(0);
         return a;
         // TODO: add different obstacle types.
     }

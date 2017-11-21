@@ -67,6 +67,8 @@ public:
      * @return tavoite-etäisyys
      */
     int getNextDistance();
+
+    void addObstacleToScene(QString next, QString previous, QString track);
 private:
 
     //movement related
@@ -81,6 +83,9 @@ private:
     std::shared_ptr<ObstacleInterface> obstacle_;
 
     bool inScene_ = false;
+    QString obstacleStartStation_;//stationcode
+    QString obstacleEndStation_;
+    QString ObstacleTrackCode_;
     int nextObstacleDistance_ = 20;
 };
 
