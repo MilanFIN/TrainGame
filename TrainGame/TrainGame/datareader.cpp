@@ -1,4 +1,7 @@
 #include "datareader.h"
+#include "shop.h"
+#include "playertrain.h"
+#include "httpengine.h"
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -7,9 +10,7 @@
 #include <QMap>
 #include <QList>
 #include <iostream>
-#include "shop.h"
-#include "playertrain.h"
-#include "httpengine.h"
+#include <vrtrain.h>
 
 dataReader dataReader::READER;
 
@@ -144,22 +145,22 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
 
 }
 
-void dataReader::readHTTPData(std::shared_ptr<HttpEngine> engine)
+void dataReader::readHTTPData(std::weak_ptr<HttpEngine> engine, VrTrainManager& manager)
 {
 
-    QIODevice *ret = engine->httpData();
+    QIODevice *ret = engine.lock()->httpData();
     if (ret == NULL) {
-        ret = engine->httpData();
+        ret = engine.lock()->httpData();
     }
 
     QByteArray res = ret->readAll();
 
-    parseHttpData(res);
+    parseHttpData(res, manager);
 
 
 }
 
-void dataReader::parseHttpData(QByteArray data)
+void dataReader::parseHttpData(QByteArray data, VrTrainManager& manager)
 {
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(data, &error);
@@ -172,6 +173,34 @@ void dataReader::parseHttpData(QByteArray data)
     }
 
     QJsonArray arr = doc.array();
+
+    foreach (QJsonValue val, arr) {
+        QJsonObject obj = val.toObject();
+
+        if (obj["trainCategory"].toString() == QString("Long-distance")) {
+
+            QVector<QPair<QString, QString>> timeTable;
+            QString trainNumberID = QString::number(obj["trainNumber"].toInt());
+
+
+            QJsonArray timeTableArr = obj["timeTableRows"].toArray();
+            foreach (QJsonValue value, timeTableArr) {
+
+                QJsonObject objs = value.toObject();
+
+                QString shortCode = objs["stationShortCode"].toString();
+                QString actualTime = objs["actualTime"].toString();
+
+                timeTable.push_back(qMakePair(shortCode, actualTime));
+            }
+            std::shared_ptr<VrTrain> aiTrain = std::make_shared<VrTrain>(trainNumberID, timeTable);
+            manager.addAiTrain(trainNumberID, aiTrain);
+
+        }
+
+
+    }
+    std::cout << "ensimmäinen vrapi haku tehty onnistuneesti" << std::endl;
 
 }
 

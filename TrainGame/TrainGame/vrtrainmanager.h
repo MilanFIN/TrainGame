@@ -15,14 +15,18 @@ class VrTrainManager
 {
 public:
     VrTrainManager(std::shared_ptr<QGraphicsScene> scene);
+    void addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain);
     void move();
-private:
 
-    // trainNumber, VrTrain-class
-    QHash<QString, VrTrain> aiTrains_;
+    QHash<QString, std::shared_ptr<VrTrain>> getAllAiTrains() const;
+private:
+    std::weak_ptr<HttpEngine> getHttpEngine() const;
+
+    // trainNumber, VrTrain-Object
+    QHash<QString, std::shared_ptr<VrTrain>> aiTrains_;
     std::shared_ptr<HttpEngine> engine_;
 
-
+    std::shared_ptr<QGraphicsScene> scene_;
 
 
 };

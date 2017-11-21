@@ -7,7 +7,7 @@
 #include "shop.h"
 #include "playerlogic.h"
 #include "httpengine.h"
-
+#include "vrtrainmanager.h"
 
 class dataReader
 {
@@ -30,7 +30,7 @@ public:
     void loadTrains(const QString &filepath, std::shared_ptr<Shop> shop, PlayerLogic &logic);
 
 
-    void readHTTPData(std::shared_ptr<HttpEngine> engine);
+    void readHTTPData(std::weak_ptr<HttpEngine> engine, VrTrainManager &manager);
 
 
 private:
@@ -39,7 +39,7 @@ private:
     dataReader(dataReader const&) = delete;
     dataReader& operator=(dataReader const&) = delete;
 
-    void parseHttpData(QByteArray data);
+    void parseHttpData(QByteArray data, VrTrainManager &manager);
 
 };
 

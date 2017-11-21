@@ -9,12 +9,15 @@
 class VrTrain : public QGraphicsPixmapItem
 {
 public:
-    VrTrain(int y);
+    VrTrain(QString tNumber, QVector<QPair<QString, QString> > timeTable);
     void move();
+
+    QString getTraiNumber() const;
+    QVector<QPair<QString, QString>> getTimeTable() const;
 private:
-    int trainNumber_;
-    QString category_;
-    QVector<QString> scheduledTime_;
+    QString trainNumber_;
+    // stationshortCode, actualTime
+    QVector<QPair<QString, QString>> scheduledTime_;
 
 
 };
