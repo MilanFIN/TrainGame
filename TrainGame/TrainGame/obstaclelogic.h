@@ -80,6 +80,7 @@ private:
     std::shared_ptr<QGraphicsScene> scene_;
     std::shared_ptr<ObstacleInterface> obstacle_;
 
+    bool inScene_ = false;
     int nextObstacleDistance_ = 20;
 };
 

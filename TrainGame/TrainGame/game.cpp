@@ -149,14 +149,16 @@ void Game::move()
 void Game::spawn()
 {
     int distance = obstacleLogic_.get()->getNextDistance();
-    QList<QString> asd;
-    QString asd2;
-    railLogic_.get()->getRandomStationAndTrack(10,asd , asd2);
-    std::cout << asd2.toStdString() << std::endl;
+    QList<QString> stations;
+    QString track;
+    railLogic_.get()->getRandomStationAndTrack(distance,stations , track);
+    std::cout << track.toStdString() << std::endl;
 
     foreach(QString i, asd){
-        std::cout << i.toStdString() << std::endl;
+        std::cout << i.stations() << std::endl;
     }
+    obstacleLogic_.get()->spawnObstacle(stations, track);
+
     //obstacleLogic_.get()->spawnObstacle();
 }
 

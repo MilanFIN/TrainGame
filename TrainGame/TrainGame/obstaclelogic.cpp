@@ -7,6 +7,8 @@ ObstacleLogic::ObstacleLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
 {
     goalSpeed_ = 0;
+
+
 }
 
 void ObstacleLogic::move()
@@ -66,8 +68,12 @@ void ObstacleLogic::changeDirection()
 
 void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode)
 {
+    if (inScene_){
+        scene_->removeItem(obstacle_.get());
+    }
     std::shared_ptr<ObstacleInterface> obstacle_ = ObstacleFactory::GetInstance()->createObject();
-    //pitää lisätä vielä skeneeen jos tarvis?
+
+
 }
 
 void ObstacleLogic::removeNearbyObjects(int location)
