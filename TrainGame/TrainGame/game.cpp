@@ -11,6 +11,7 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene,
     playerLogic_ = std::make_shared<PlayerLogic>(scene);
     obstacleLogic_ = std::make_shared<ObstacleLogic>(scene);
     bgLogic_ = std::make_shared<BackgroundLogic>(scene);
+    aiTrainManager_ = std::make_shared<VrTrainManager>(scene);
 
 
 

@@ -34,7 +34,7 @@ void dataReader::loadTracksFromFile(const QString &filepath, RailLogic &locig)
     QJsonObject obj = doc.object();
     QJsonArray tracks = obj["tracks"].toArray();
 
-    for (QJsonValue track : tracks) {
+    foreach (QJsonValue track, tracks) {
         // trackCode
         QJsonObject trackObj = track.toObject();
         QString trackCode = trackObj["trackCode"].toString();
@@ -75,7 +75,7 @@ void dataReader::loadStationsFromFile(const QString &filepath, RailLogic& logic)
 
     QJsonArray arr = doc.array();
 
-    for (QJsonValue val : arr) {
+    foreach (QJsonValue val, arr) {
         QJsonObject obj = val.toObject();
         // shortname of station
         QString shortCode = obj["stationShortCode"].toString();
@@ -114,7 +114,7 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
 
     QJsonArray arr = doc.array();
 
-    for (QJsonValue val : arr) {
+    foreach (QJsonValue val, arr) {
         QJsonObject obj = val.toObject();
 
         QString trainName = obj["name"].toString();
