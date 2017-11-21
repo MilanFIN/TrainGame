@@ -151,7 +151,7 @@ void Game::spawn()
     int distance = obstacleLogic_.get()->getNextDistance();
     QList<QString> asd;
     QString asd2;
-    //railLogic_.get()->getRandomStationAndTrack(2,asd , asd2);
+    railLogic_.get()->getRandomStationAndTrack(10,asd , asd2);
     std::cout << asd2.toStdString() << std::endl;
 
     foreach(QString i, asd){
