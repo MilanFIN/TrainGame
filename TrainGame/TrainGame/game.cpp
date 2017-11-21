@@ -155,8 +155,8 @@ void Game::spawn()
     railLogic_.get()->getRandomStationAndTrack(distance,stations , track);
     std::cout << track.toStdString() << std::endl;
 
-    foreach(QString i, asd){
-        std::cout << i.stations() << std::endl;
+    foreach(QString i, stations){
+        std::cout << i.toStdString() << std::endl;
     }
     obstacleLogic_.get()->spawnObstacle(stations, track);
 
