@@ -29,6 +29,7 @@ void ObstacleLogic::move()
     }
 
 
+    /*
     //move obstacles and remove those too far away
     for (auto i = obstacles.begin(); i != obstacles.end();){
         (*i).get()->move((int)speed_);
@@ -40,6 +41,7 @@ void ObstacleLogic::move()
             ++i;
         }
     }
+    */
 
 
 }
@@ -62,21 +64,15 @@ void ObstacleLogic::changeDirection()
 
 
 
-void ObstacleLogic::spawnObstacle()
+void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode)
 {
-
-
-    std::shared_ptr<ObstacleInterface> obstacle = ObstacleFactory::GetInstance()->createObject();
-
-    //koko ja etäisyys asetetaan myöhemmin satunnaisesti
-    //std::shared_ptr<Boulder> obstacle = std::make_shared<Boulder>(-1000);
-    scene_->addItem(obstacle.get());
-    obstacles.push_back(obstacle);
+    std::shared_ptr<ObstacleInterface> obstacle_ = ObstacleFactory::GetInstance()->createObject();
+    //pitää lisätä vielä skeneeen jos tarvis?
 }
 
 void ObstacleLogic::removeNearbyObjects(int location)
 {
-
+/*
     //poistetaan kaikki esteet, jotka ovat tarpeeksi lähellä pelaajaa
     for (auto i = obstacles.begin(); i != obstacles.end();){
         if (abs((*i)->y() - location) < 250){
@@ -87,12 +83,12 @@ void ObstacleLogic::removeNearbyObjects(int location)
             ++i;
         }
     }
-
+*/
 }
 
 int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
 {
-
+/*
     int damageDone = 0;
     //check collision between all obstacles and the train
     for (auto i = obstacles.begin(); i != obstacles.end();){
@@ -108,4 +104,12 @@ int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
     }
 
     return damageDone;
+    */
+    return 0;
+}
+
+int ObstacleLogic::getNextDistance()
+{
+    ++nextObstacleDistance_;
+    return nextObstacleDistance_ / 10;
 }

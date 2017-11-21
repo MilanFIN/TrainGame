@@ -3,12 +3,18 @@
 #include <iostream>
 #include <QDebug>
 #include <QGraphicsEllipseItem>
+#include <QDateTime>
+
 
 RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
                      std::shared_ptr<QGraphicsScene> miniMapScene):
     scene_(scene),
     miniMapScene_(miniMapScene)
 {
+
+    // seed setup
+    qsrand(QDateTime::currentDateTime().toTime_t());
+
     //railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275));
     //scene_->addItem(railTiles.at(0).get());
 
@@ -378,6 +384,47 @@ void RailLogic::updateDestinationOnMiniMap()
     int y = (stations_.value(destinationStationCode_).lat-latCenter_)*yConversionRate_;
     miniMapScene_->addItem(&nextStationMapPoint_);
     nextStationMapPoint_.setPos(x,y);
+}
+
+void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations, QString &trackCode)
+{
+    int randomNumber = qrand() % destinationStationCandidates_.size();
+    QString destinationStation = destinationStationCandidates_.at(randomNumber);
+    QString startStation = destinationStationCode_;
+    QString track = destinationTrackCandidates_.at(randomNumber);
+    for (int i = 0; i <= distance; ++i){
+        QList<QString> destStat;
+        QList<QString> destTrack;
+        foreach(QList<QString> i, tracks_){
+            for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
+                if (*j == destinationStation){
+                    //found a rail that stops at our destination,
+                    //add possible next destination as the next stop on that track
+                    destTrack.append(tracks_.key(i));
+                    destStat.append(*(j+1));
+                }
+            }
+            /*
+            for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
+                if (*j == destinationStation){
+                    //also add the previous stop on that track.
+                    destTrack.append(tracks_.key(i));
+                    destStat.append(*(j-1));
+                }
+            }
+            */
+            randomNumber = qrand() % destStat.size();
+            startStation = destinationStation;
+            track = destTrack.at(randomNumber);
+            destinationStation = destStat.at(randomNumber);
+            //std::cout << startStation.toStdString() << " " << track.toStdString() << " " << destinationStation.toStdString() << std::endl;
+
+        }
+
+    }
+    stations.append(startStation);
+    stations.append(destinationStation);
+    trackCode = track;
 }
 
 void RailLogic::changeDestinationCandidateIndex(int index)

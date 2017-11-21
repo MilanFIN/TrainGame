@@ -98,6 +98,13 @@ public:
      * @post sijainti on muuttunut kohdeasemaa vastaavaksi
      */
     void updateDestinationOnMiniMap();
+    /**
+     * @brief kertoo satunnaisen asemaparin satunnaisella raiteella max distance-päässä pelaajasta
+     * @pre rataverkko luettu, ja pelaajalla on sijainti
+     * @param distance: etäisyys, Stations: viite, johon asemat tallennetaan, trackCode: viite johon raide tallennetaan
+     */
+    void getRandomStationAndTrack(int distance, QList<QString>& Stations, QString& trackCode);
+
 
 signals:
     void destinationCandidatesChanged(QList<QString> stations);

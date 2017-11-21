@@ -45,7 +45,7 @@ public:
      * @pre -
      * @post uusi este lisätty sceneen
      */
-    void spawnObstacle();
+    void spawnObstacle(QList<QString> stations, QString trackCode);
     /**
      * @brief poistaa sijainnin lähellä olevat esteet
      * @param sijainti y-akselilla
@@ -61,6 +61,12 @@ public:
      * @return vastaanotetun vahingon määrä
      */
     int checkCollision(std::shared_ptr<PlayerTrain> train); //returns amount of damage
+    /**
+     * @brief kertoo seuraavan esteen tavoite-etäisyyden
+     * @post tavoite-etäisyys on kasvanut yhdellä
+     * @return tavoite-etäisyys
+     */
+    int getNextDistance();
 private:
 
     //movement related
@@ -72,7 +78,9 @@ private:
 
     //other
     std::shared_ptr<QGraphicsScene> scene_;
-    std::vector<std::shared_ptr<ObstacleInterface>> obstacles;
+    std::shared_ptr<ObstacleInterface> obstacle_;
+
+    int nextObstacleDistance_ = 20;
 };
 
 #endif // OBSTACLELOGIC_H
