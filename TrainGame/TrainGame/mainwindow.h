@@ -57,7 +57,7 @@ public slots:
     void updatePlayerTrains(std::vector<std::shared_ptr<PlayerTrain>> ownedTrains);
     void updateBuyableTrains(std::vector<std::shared_ptr<PlayerTrain> > Trains);
     void updateMoney(int cash);
-    void updateFame();
+    void updateFame(int fame);
     void updatePartsToBeRepaired();
 
     void on_sellButton_clicked();
@@ -73,6 +73,9 @@ public slots:
     void trainRepairFailure();
 
     void updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain);
+
+    void rewardFameAndMoney(int fameReward, int moneyReward);
+
 
 signals:
 private:

@@ -137,6 +137,16 @@ void Game::railChanged()
 
 }
 
+void Game::addMoney(int amount)
+{
+    playerLogic_->increaseMoney(amount);
+}
+
+void Game::addFame(int amount)
+{
+    playerLogic_->addFame(amount);
+}
+
 RailLogic* Game::getRailModel()
 {
     return railLogic_.get();
@@ -145,6 +155,11 @@ RailLogic* Game::getRailModel()
 PlayerLogic *Game::getPlayerModel()
 {
     return playerLogic_.get();
+}
+
+ObstacleLogic *Game::getObstacleModel()
+{
+    return obstacleLogic_.get();
 }
 
 void Game::move()
@@ -178,6 +193,8 @@ void Game::checkCollisions()
 
     //check if obstacles hit the player
     int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
+    //pelaajan aktiiviselle junalle lämää
+    playerLogic_.get()->takeDamage(recievedDamage);
     //check if player has arrived to a station
     railLogic_.get()->checkCollisionWithStations(playerLogic_.get()->activeTrain());
 }

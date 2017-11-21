@@ -41,6 +41,7 @@ public:
      */
     void decreaseMoney(int amount);
 
+    void addFame(int amount);
     void getOwnedTrainInfo(QString trainName);
     void getTrainInfo(QString trainName);
     void getInfoToGarage(QString trainName);
@@ -59,8 +60,11 @@ public:
     void getTrainsToBeRepaired();
     void repairTrain(int rowIndex);
 
+    void takeDamage(int dmg);
+
 signals:
     int playerCashChanged(int amount);
+    void playerFameChanged(int amount);
     void ownedTrainInfo(std::shared_ptr<PlayerTrain> train);
     void trainInfo(std::shared_ptr<PlayerTrain> train);
     void ownedTrains(std::vector<std::shared_ptr<PlayerTrain>> ownedTrains);

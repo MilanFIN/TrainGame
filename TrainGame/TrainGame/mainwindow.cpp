@@ -26,6 +26,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
 
     connect(game_->getPlayerModel(), &PlayerLogic::playerCashChanged, this, &MainWindow::updateMoney);
+    connect(game_->getPlayerModel(), &PlayerLogic::playerFameChanged, this, &MainWindow::updateFame);
 
     connect(ui->gasSlider, &QSlider::valueChanged, this, &MainWindow::changeSpeed);
     connect(ui->directionButton, &QPushButton::clicked, this, &MainWindow::changeDirection);
@@ -45,6 +46,9 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     connect(game_->getPlayerModel(), &PlayerLogic::trainRepaired, this, &MainWindow::trainRepaired);
     connect(game_->getPlayerModel(), &PlayerLogic::notEnoughMoney, this, &MainWindow::trainRepairFailure);
+
+
+    connect(game_->getObstacleModel(), &ObstacleLogic::obstacleRemoved, this, &MainWindow::rewardFameAndMoney);
 
     ui->gameView->setScene(scene_.get());
 
@@ -219,10 +223,11 @@ void MainWindow::updateMoney(int cash)
     ui->label_4->setNum(cash);
 }
 
-void MainWindow::updateFame()
+void MainWindow::updateFame(int fame)
 {
-
+    ui->fameLabel->setNum(fame);
 }
+
 
 void MainWindow::updatePartsToBeRepaired()
 {
@@ -343,4 +348,17 @@ void MainWindow::updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain)
     ui->currShape->setText(QString::number(currShape));
     ui->optimalShape->setText(QString::number(absShape));
     ui->repairCostLabel->setText(QString::number(cost));
+}
+
+void MainWindow::rewardFameAndMoney(int fameReward, int moneyReward)
+{
+    int currentMoney = ui->moneyTextLabel->text().toInt();
+    int currentFame = ui->fameTextLabel->text().toInt();
+
+    int newMoney = currentMoney + moneyReward;
+    int newFame = currentFame + fameReward;
+
+    game_->addMoney(newMoney);
+    game_->addFame(newFame);
+
 }

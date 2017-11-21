@@ -89,6 +89,7 @@ void ObstacleLogic::removeNearbyObjects(int location)
         if (abs(obstacle_.get()->y() - location) < 250){
             scene_->removeItem(obstacle_.get());
             inScene_ = false;
+            emit obstacleRemoved(10, 100);
         }
     }
 
@@ -103,7 +104,9 @@ int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
             scene_->removeItem(obstacle_.get());
             inScene_ = false;
 
-            damageDone += 1;
+            damageDone += 20;
+            //annetaan vaan palkkio, muttei famea koska törmättiin
+            emit obstacleRemoved(0, 100);
         }
     }
 

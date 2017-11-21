@@ -69,6 +69,9 @@ public:
     int getNextDistance();
 
     void addObstacleToScene(QString next, QString previous, QString track);
+
+signals:
+    void obstacleRemoved(int fameReward, int moneyReward);
 private:
 
     //movement related

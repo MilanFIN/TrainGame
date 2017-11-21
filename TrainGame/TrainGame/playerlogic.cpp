@@ -21,7 +21,9 @@ PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
 //    scene_->addItem(activeTrain_.get());
 
     currentMoney_ = 500;
+    fame_ = 0;
     emit playerCashChanged(getCurrentMoney());
+    emit playerFameChanged(fame_);
 
 
 
@@ -65,6 +67,12 @@ void PlayerLogic::decreaseMoney(int amount)
     currentMoney_ -= amount;
     invariant();
     emit playerCashChanged(currentMoney_);
+}
+
+void PlayerLogic::addFame(int amount)
+{
+    fame_ += amount;
+    emit playerFameChanged(fame_);
 }
 
 void PlayerLogic::getOwnedTrainInfo(QString trainName)
@@ -200,6 +208,11 @@ void PlayerLogic::repairTrain(int rowIndex)
     }
 
 
+}
+
+void PlayerLogic::takeDamage(int dmg)
+{
+    activeTrain().get()->takeDamage(dmg);
 }
 
 void PlayerLogic::invariant()

@@ -44,8 +44,12 @@ public:
 
     void railChanged();
 
+    void addMoney(int amount);
+    void addFame(int amount);
+
     RailLogic* getRailModel();
     PlayerLogic* getPlayerModel();
+    ObstacleLogic* getObstacleModel();
 signals:
     void shopChanged();
 public slots:
