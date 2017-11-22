@@ -103,7 +103,7 @@ public:
      * @pre rataverkko luettu, ja pelaajalla on sijainti
      * @param distance: etäisyys, Stations: viite, johon asemat tallennetaan, trackCode: viite johon raide tallennetaan
      */
-    void getRandomStationAndTrack(int distance, QList<QString>& Stations, QString& trackCode);
+    void getRandomStationAndTrack(int distance, QList<QString>& Stations, QString& trackCode, QList<QString>& stationNames);
 
     QString getCurrentTrack();
     QString getLastStation();

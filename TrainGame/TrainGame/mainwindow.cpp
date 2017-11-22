@@ -49,6 +49,8 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
 
     connect(game_->getObstacleModel(), &ObstacleLogic::obstacleRemoved, this, &MainWindow::rewardFameAndMoney);
+    connect(game_->getObstacleModel(), &ObstacleLogic::obstacleCreated, this, &MainWindow::updateObstacleInfo);
+
 
     ui->gameView->setScene(scene_.get());
 
@@ -361,4 +363,11 @@ void MainWindow::rewardFameAndMoney(int fameReward, int moneyReward)
     game_->addMoney(newMoney);
     game_->addFame(newFame);
 
+}
+
+void MainWindow::updateObstacleInfo(QString stations, QString track, QString threatLevel)
+{
+    ui->blockLocation->setText(stations);
+    ui->blockTrack->setText(track);
+    ui->blockThreat->setText(threatLevel);
 }

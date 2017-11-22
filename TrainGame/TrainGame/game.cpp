@@ -177,13 +177,9 @@ void Game::spawn()
     int distance = obstacleLogic_.get()->getNextDistance();
     QList<QString> stations;
     QString track;
-    railLogic_.get()->getRandomStationAndTrack(distance,stations , track);
-    std::cout << track.toStdString() << std::endl;
-
-    foreach(QString i, stations){
-        std::cout << i.toStdString() << std::endl;
-    }
-    obstacleLogic_.get()->spawnObstacle(stations, track);
+    QList<QString> stationNames;
+    railLogic_.get()->getRandomStationAndTrack(distance,stations , track, stationNames);
+    obstacleLogic_.get()->spawnObstacle(stations, track, stationNames);
 
     //obstacleLogic_.get()->spawnObstacle();
 }

@@ -20,14 +20,14 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>60</y>
+      <x>10</x>
+      <y>40</y>
       <width>1131</width>
       <height>511</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="depotPage">
      <widget class="QPushButton" name="fixButton">
@@ -291,8 +291,8 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QLabel" name="comingLabel">
       <property name="geometry">
        <rect>
-        <x>950</x>
-        <y>0</y>
+        <x>840</x>
+        <y>100</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -304,8 +304,8 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QLabel" name="passedLabel">
       <property name="geometry">
        <rect>
-        <x>960</x>
-        <y>200</y>
+        <x>840</x>
+        <y>250</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -317,20 +317,20 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <widget class="QListWidget" name="nextStationsListWidget">
       <property name="geometry">
        <rect>
-        <x>860</x>
-        <y>20</y>
+        <x>840</x>
+        <y>120</y>
         <width>181</width>
-        <height>171</height>
+        <height>131</height>
        </rect>
       </property>
      </widget>
      <widget class="QListWidget" name="passedStationsListWidget">
       <property name="geometry">
        <rect>
-        <x>860</x>
-        <y>220</y>
+        <x>840</x>
+        <y>270</y>
         <width>181</width>
-        <height>171</height>
+        <height>131</height>
        </rect>
       </property>
      </widget>
@@ -410,6 +410,84 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>10</y>
+        <width>101</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Esteen sijainti:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>30</y>
+        <width>64</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Raiteella:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>50</y>
+        <width>91</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vaarallisuus:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="blockLocation">
+      <property name="geometry">
+       <rect>
+        <x>930</x>
+        <y>10</y>
+        <width>211</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>asd</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="blockTrack">
+      <property name="geometry">
+       <rect>
+        <x>930</x>
+        <y>30</y>
+        <width>191</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>asd</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="blockThreat">
+      <property name="geometry">
+       <rect>
+        <x>930</x>
+        <y>50</y>
+        <width>201</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>asd</string>
       </property>
      </widget>
     </widget>
@@ -1058,7 +1136,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <x>0</x>
      <y>0</y>
      <width>1154</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

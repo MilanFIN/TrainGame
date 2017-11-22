@@ -45,7 +45,7 @@ public:
      * @pre -
      * @post uusi este lisätty sceneen
      */
-    void spawnObstacle(QList<QString> stations, QString trackCode);
+    void spawnObstacle(QList<QString> stations, QString trackCode, QList<QString> stationNames);
     /**
      * @brief poistaa sijainnin lähellä olevat esteet
      * @param sijainti y-akselilla
@@ -72,6 +72,7 @@ public:
 
 signals:
     void obstacleRemoved(int fameReward, int moneyReward);
+    void obstacleCreated(QString stations, QString track, QString threatLevel);
 private:
 
     //movement related

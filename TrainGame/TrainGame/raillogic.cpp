@@ -386,7 +386,7 @@ void RailLogic::updateDestinationOnMiniMap()
     nextStationMapPoint_.setPos(x,y);
 }
 
-void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations, QString &trackCode)
+void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations, QString &trackCode, QList<QString> &stationNames)
 {
     int randomNumber = qrand() % destinationStationCandidates_.size();
     QString destinationStation = destinationStationCandidates_.at(randomNumber);
@@ -425,6 +425,9 @@ void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
     }
     stations.append(startStation);
     stations.append(destinationStation);
+    stationNames.append(stations_.value(stations.at(0)).fullName);
+    stationNames.append(stations_.value(stations.at(1)).fullName);
+
     trackCode = track;
 }
 
