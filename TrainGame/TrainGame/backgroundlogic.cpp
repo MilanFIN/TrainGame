@@ -52,7 +52,12 @@ void BackgroundLogic::move() {
     if (movementOverall_ >= 1500 && firstTime_ == true && forward_ == true) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(-5980);
+
+        //qInfo() << "1";
+        //qInfo() << movementOverall_;
         scene_->addItem(newBg.get());
+
+
         bg.push_back(newBg);
         firstTime_ = false;
         movementAtLastBgCreation_ = movementOverall_;
@@ -63,7 +68,12 @@ void BackgroundLogic::move() {
     else if (movementOverall_ <= -1500 && firstTime_ == true && forward_ == false) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(950);
+
+        //qInfo() << "2";
+        //qInfo() << movementOverall_;
         scene_->addItem(newBg.get());
+
+
         bg.push_back(newBg);
         firstTime_ = false;
         movementAtLastBgCreation_ = movementOverall_;
@@ -73,7 +83,12 @@ void BackgroundLogic::move() {
              && firstTime_ == false && forward_ == true) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(-5800);
+
+        //qInfo() << "3";
+        //qInfo() << movementOverall_;
         scene_->addItem(newBg.get());
+
+
         bg.push_back(newBg);
         movementAtLastBgCreation_ = movementOverall_;
 
@@ -85,7 +100,12 @@ void BackgroundLogic::move() {
              && firstTime_ == false && forward_ == false) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(800);
+
+        qInfo() << "4";
+        qInfo() << movementOverall_;
         scene_->addItem(newBg.get());
+
+
         bg.push_back(newBg);
         movementAtLastBgCreation_ = movementOverall_;
         movementOverall_ -= 100;
@@ -95,11 +115,17 @@ void BackgroundLogic::move() {
     for (auto x = bg.begin(); x != bg.end();) {
         if ((*x).get()->y() > 10000) {
             scene_->removeItem((*x).get());
+            //qInfo() << "era bg+";
+            //qInfo() << movementOverall_;
             x = bg.erase(x);
+            //qInfo() << "era bg+";
         }
         else if ((*x).get()->y() < -10000) {
             scene_->removeItem((*x).get());
+            //qInfo() << "era bg-";
+           // qInfo() << movementOverall_;
             x = bg.erase(x);
+            //qInfo() << "era bg-";
         }
         else {
             ++x;

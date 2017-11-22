@@ -156,7 +156,7 @@ void PlayerLogic::setActiveTrain(int rowIndex)
     activeTrain_ = trainActive;
 
     trainActive->setPixmapToShow();
-    setTrainPixmap(activeTrain_);
+    setTrainPixmap();
     // pelaajajunaan ja asettaa kuvasta pixmap sceneen
     emit activeTrainChanged(activeTrain_->getName());
 
@@ -165,10 +165,12 @@ void PlayerLogic::setActiveTrain(int rowIndex)
 
 void PlayerLogic::removeTrainPixmap(std::shared_ptr<PlayerTrain> trainToRemove)
 {
-    scene_->removeItem(trainToRemove.get());
+    if (trainToRemove.get() != NULL) {
+        scene_->removeItem(trainToRemove.get());
+    }
 }
 
-void PlayerLogic::setTrainPixmap(std::shared_ptr<PlayerTrain> traintoSet)
+void PlayerLogic::setTrainPixmap()
 {
     scene_->addItem(activeTrain_.get());
 }

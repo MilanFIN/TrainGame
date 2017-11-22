@@ -55,7 +55,7 @@ public:
     void setActiveTrain(int rowIndex);
 
     void removeTrainPixmap(std::shared_ptr<PlayerTrain> trainToRemove);
-    void setTrainPixmap(std::shared_ptr<PlayerTrain> traintoSet);
+    void setTrainPixmap();
 
     void getTrainsToBeRepaired();
     void repairTrain(int rowIndex);

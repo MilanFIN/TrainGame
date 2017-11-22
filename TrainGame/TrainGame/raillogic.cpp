@@ -21,6 +21,7 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
 
     for (int i = -275; i < 280; i +=30){
         railTiles.push_back(std::make_shared<OneSideRailTile>(0,i));
+
         scene_->addItem(railTiles.back().get());
     }
 
@@ -95,6 +96,7 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
     //spawn the previous station closer by as we just started there
     previousStation_ = std::make_shared<Station>(300);
     scene->addItem(previousStation_.get());
+
 
 
     destinationIndex_ = 0;
@@ -180,6 +182,7 @@ void RailLogic::move()
     //poistetaan näkyvistä hävinneet raiteenpätkät
     for (auto i = railTiles.begin(); i != railTiles.end();){
         if ((*i).get()->y() > 241){
+
             scene_->removeItem((*i).get());
             i = railTiles.erase(i);
         }
@@ -324,7 +327,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         }
 
 
-
         //delete original destination
         scene_->removeItem(nextStation_.get());
         //add the next station to the scene
@@ -336,7 +338,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         //add the next station to the scene
         previousStation_ = std::make_shared<Station>(300);
         scene_->addItem(previousStation_.get());
-
 
 
 
@@ -380,10 +381,16 @@ void RailLogic::signalStationInfoToUi()
 
 void RailLogic::updateDestinationOnMiniMap()
 {
+
+    if (nextStationMapPoint_.x() != 0 && nextStationMapPoint_.y() != 0) {
+        miniMapScene_->removeItem(&nextStationMapPoint_);
+    }
+
     int x = (stations_.value(destinationStationCode_).lng-lngCenter_)*xConversionRate_;
     int y = (stations_.value(destinationStationCode_).lat-latCenter_)*yConversionRate_;
-    miniMapScene_->addItem(&nextStationMapPoint_);
+
     nextStationMapPoint_.setPos(x,y);
+    miniMapScene_->addItem(&nextStationMapPoint_);
 }
 
 void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations, QString &trackCode)
