@@ -78,6 +78,11 @@ void dataReader::loadStationsFromFile(const QString &filepath, RailLogic& logic)
 
     foreach (QJsonValue val, arr) {
         QJsonObject obj = val.toObject();
+//        bool pass = obj["passengerTraffic"].toBool();
+//        if (pass) {
+//            continue;
+//        }
+
         // shortname of station
         QString shortCode = obj["stationShortCode"].toString();
 
@@ -200,7 +205,7 @@ void dataReader::parseHttpData(QByteArray data, VrTrainManager& manager)
 
 
     }
-    std::cout << "ensimmäinen vrapi haku tehty onnistuneesti" << std::endl;
+    std::cout << "vrAPI haku tehty onnistuneesti" << std::endl;
 
 }
 

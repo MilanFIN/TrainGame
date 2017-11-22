@@ -1,7 +1,13 @@
 #include "shop.h"
 #include "datareader.h"
+#include <iostream>
 
 Shop::Shop()
+{
+
+}
+
+Shop::~Shop()
 {
 
 }
@@ -16,12 +22,18 @@ std::shared_ptr<PlayerTrain> Shop::buyTrain(int index)
 
 void Shop::addTrain(std::shared_ptr<PlayerTrain> train)
 {
-    availableTrains_.push_back(train);
+    try {
+        availableTrains_.push_back(train);
+    } catch (std::bad_alloc& ba) {
+        std::cerr << "Shop caugth std::bad_alloc: " << ba.what();
+    }
+
+
 }
 
 std::shared_ptr<PlayerTrain> Shop::getTrainInfo(QString trainName) const
 {
-    for (std::shared_ptr<PlayerTrain> train : availableTrains_) {
+    foreach (std::shared_ptr<PlayerTrain> train, availableTrains_) {
         if (trainName == train->getName()) {
             return train;
         }

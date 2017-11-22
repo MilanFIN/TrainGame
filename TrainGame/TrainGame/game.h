@@ -39,8 +39,8 @@ public:
 
     void setActiveTrain(int rowIndex);
 
-    bool buyNewTrain(QString trainName, int index);
-    bool sellTrain(QString trainName, int index);
+    void buyNewTrain(QString trainName, int index);
+    void sellTrain(int index);
 
     void railChanged();
 

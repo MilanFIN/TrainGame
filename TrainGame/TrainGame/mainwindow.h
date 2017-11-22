@@ -70,13 +70,15 @@ public slots:
     void on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item);
 
     void trainRepaired();
-    void trainRepairFailure();
+    void disableGame();
 
     void updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain);
 
     void rewardFameAndMoney(int fameReward, int moneyReward);
 
     void updateObstacleInfo(QString stations, QString track, QString threatLevel);
+
+    void actionFailed(QString msg);
 
 
 signals:

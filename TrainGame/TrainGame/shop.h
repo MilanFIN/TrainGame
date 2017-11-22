@@ -12,7 +12,7 @@ class Shop
 {
 public:
     Shop();
-
+    ~Shop();
     /**
      * @brief buyTrain metodi ostaa junan kaupasta
      * @param index jolla löytää junan vectorista

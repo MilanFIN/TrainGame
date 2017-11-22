@@ -4,7 +4,7 @@
 
 Game::Game(std::shared_ptr<QGraphicsScene> scene,
            std::shared_ptr<QGraphicsScene> miniMapScene, QObject *parent) : QObject(parent),
-  scene_(scene)
+    scene_(scene)
 {
 
     railLogic_ = std::make_shared<RailLogic>(scene, miniMapScene);
@@ -113,28 +113,19 @@ void Game::setActiveTrain(int rowIndex)
     playerLogic_->setActiveTrain(rowIndex);
 }
 
-bool Game::buyNewTrain(QString trainName, int index)
+void Game::buyNewTrain(QString trainName, int index)
 {
-    if(!playerLogic_->buyTrain(trainName, index)) {
-        return false;
-    }
-    return true;
-
+    playerLogic_->buyTrain(trainName, index);
 }
 
-bool Game::sellTrain(QString trainName, int index)
+void Game::sellTrain(int index)
 {
-    if(!playerLogic_->sellTrain(trainName, index)) {
-        return false;
-    }
-    return true;
-
+    playerLogic_->sellTrain(index);
 }
 
 void Game::railChanged()
 {
     obstacleLogic_.get()->addObstacleToScene(railLogic_.get()->getNextStation(), railLogic_.get()->getLastStation(), railLogic_.get()->getCurrentTrack());
-
 }
 
 void Game::addMoney(int amount)

@@ -45,11 +45,14 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(game_->getPlayerModel(), &PlayerLogic::brokenTrain, this, &MainWindow::updateBrokenTrainInfo);
 
     connect(game_->getPlayerModel(), &PlayerLogic::trainRepaired, this, &MainWindow::trainRepaired);
-    connect(game_->getPlayerModel(), &PlayerLogic::notEnoughMoney, this, &MainWindow::trainRepairFailure);
+    connect(game_->getPlayerModel(), &PlayerLogic::notEnoughMoney, this, &MainWindow::actionFailed);
 
 
     connect(game_->getObstacleModel(), &ObstacleLogic::obstacleRemoved, this, &MainWindow::rewardFameAndMoney);
     connect(game_->getObstacleModel(), &ObstacleLogic::obstacleCreated, this, &MainWindow::updateObstacleInfo);
+
+    connect(game_->getPlayerModel(), &PlayerLogic::notAbleToPlay, this, &MainWindow::disableGame);
+    connect(game_->getPlayerModel(), &PlayerLogic::shopActionFailed, this, &MainWindow::actionFailed);
 
 
     ui->gameView->setScene(scene_.get());
@@ -61,8 +64,8 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
 
 
-    ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
-    ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
+//    ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
+//    ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
 
     // player's starting cash
     ui->label_4->setNum(game_->getPlayerCash());
@@ -242,12 +245,12 @@ void MainWindow::on_sellButton_clicked()
 
     if (ui->ownedTrainsListWidget->currentItem() != nullptr){
 
-        QString trainName = ui->ownedTrainsListWidget->currentItem()->text();
+
         int index = ui->ownedTrainsListWidget->currentRow();
 
-        if (! game_->sellTrain(trainName, index)) {
-            std::cout << "Juna rikki tai jotain muuta." << std::endl;
-        }
+        game_->sellTrain(index);
+
+
 
 
         ui->featuresBLabel->clear();
@@ -264,9 +267,8 @@ void MainWindow::on_buyButton_clicked()
         QString TrainName = ui->buyableTrainsListWidget->currentItem()->text();
         int index = ui->buyableTrainsListWidget->currentRow();
 
-        if(!game_->buyNewTrain(TrainName, index)) {
-            std::cout << "ei tarpeeks massia ostaa junaa" << std::endl;
-        }
+        game_->buyNewTrain(TrainName, index);
+
 
         ui->featuresBLabel->clear();
         ui->costsLabel->clear();
@@ -292,8 +294,10 @@ void MainWindow::on_confirmButton_clicked()
     if (ui->ownedTrainsListWidget->currentItem() != nullptr){
         int rowIndex = ui->ownedTrainsListWidget->currentRow();
         game_->setActiveTrain(rowIndex);
+        ui->gameButton->setDisabled(false);
 
     }
+
 }
 
 void MainWindow::on_ownedTrainsListWidget_itemClicked(QListWidgetItem *item)
@@ -335,10 +339,13 @@ void MainWindow::trainRepaired()
     ui->repairCostLabel->clear();
 }
 
-void MainWindow::trainRepairFailure()
+void MainWindow::disableGame()
 {
-    QMessageBox::critical(this, "Virhe","ei tarpeeksi rahaa korjata junaa");
+    QMessageBox::warning(this, "Ei junaa", "Aktiivista junaa ei ole asetettu, et voi pelata");
+    ui->gameButton->setDisabled(true);
 }
+
+
 
 void MainWindow::updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain)
 {
@@ -370,4 +377,9 @@ void MainWindow::updateObstacleInfo(QString stations, QString track, QString thr
     ui->blockLocation->setText(stations);
     ui->blockTrack->setText(track);
     ui->blockThreat->setText(threatLevel);
+}
+
+void MainWindow::actionFailed(QString msg)
+{
+    QMessageBox::critical(this, "Virhe", msg);
 }
