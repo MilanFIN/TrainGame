@@ -76,6 +76,8 @@ public slots:
 
     void rewardFameAndMoney(int fameReward, int moneyReward);
 
+    void updateObstacleInfo(QString stations, QString track, QString threatLevel);
+
 
 signals:
 private:

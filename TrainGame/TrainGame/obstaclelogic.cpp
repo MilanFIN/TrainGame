@@ -70,7 +70,7 @@ void ObstacleLogic::changeDirection()
 
 
 
-void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode)
+void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode, QList<QString> stationNames)
 {
     if (inScene_){
         scene_->removeItem(obstacle_.get());
@@ -81,6 +81,8 @@ void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode)
     obstacleStartStation_ = stations.at(0);
     obstacleEndStation_ = stations.at(1);
     ObstacleTrackCode_ = trackCode;
+
+    emit obstacleCreated(stationNames.at(0) + " - " + stationNames.at(1), trackCode, "haitta");
 }
 
 void ObstacleLogic::removeNearbyObjects(int location)
@@ -122,15 +124,17 @@ int ObstacleLogic::getNextDistance()
 
 void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString track)
 {
-    if ((next == obstacleStartStation_ && previous == obstacleEndStation_)
-            || previous == obstacleStartStation_ && next == obstacleEndStation_){
-        obstacle_.get()->setPos(obstacle_.get()->x(), -300);
+    if (ObstacleTrackCode_ == track){
+        if ((next == obstacleStartStation_ && previous == obstacleEndStation_)
+                || previous == obstacleStartStation_ && next == obstacleEndStation_){
+            obstacle_.get()->setPos(obstacle_.get()->x(), -300);
 
-        if (!inScene_){
-            scene_->addItem(obstacle_.get());
+            if (!inScene_){
+                scene_->addItem(obstacle_.get());
 
-            inScene_ = true;
-            std::cout << "lisätty" << std::endl;
+                inScene_ = true;
+                std::cout << "lisätty" << std::endl;
+            }
         }
     }
     else {

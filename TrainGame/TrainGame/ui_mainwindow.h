@@ -56,6 +56,12 @@ public:
     QLabel *nextStation;
     QLabel *previousStationLabel;
     QLabel *previousStation;
+    QLabel *label_5;
+    QLabel *label_6;
+    QLabel *label_7;
+    QLabel *blockLocation;
+    QLabel *blockTrack;
+    QLabel *blockThreat;
     QWidget *shopPage;
     QPushButton *buyButton;
     QPushButton *sellButton;
@@ -92,7 +98,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(20, 60, 1131, 511));
+        stackedWidget->setGeometry(QRect(10, 40, 1131, 511));
         depotPage = new QWidget();
         depotPage->setObjectName(QStringLiteral("depotPage"));
         fixButton = new QPushButton(depotPage);
@@ -210,16 +216,16 @@ public:
         directionLabel->setAlignment(Qt::AlignCenter);
         comingLabel = new QLabel(gamePage);
         comingLabel->setObjectName(QStringLiteral("comingLabel"));
-        comingLabel->setGeometry(QRect(950, 0, 81, 16));
+        comingLabel->setGeometry(QRect(840, 100, 81, 16));
         passedLabel = new QLabel(gamePage);
         passedLabel->setObjectName(QStringLiteral("passedLabel"));
-        passedLabel->setGeometry(QRect(960, 200, 71, 16));
+        passedLabel->setGeometry(QRect(840, 250, 71, 16));
         nextStationsListWidget = new QListWidget(gamePage);
         nextStationsListWidget->setObjectName(QStringLiteral("nextStationsListWidget"));
-        nextStationsListWidget->setGeometry(QRect(860, 20, 181, 171));
+        nextStationsListWidget->setGeometry(QRect(840, 120, 181, 131));
         passedStationsListWidget = new QListWidget(gamePage);
         passedStationsListWidget->setObjectName(QStringLiteral("passedStationsListWidget"));
-        passedStationsListWidget->setGeometry(QRect(860, 220, 181, 171));
+        passedStationsListWidget->setGeometry(QRect(840, 270, 181, 131));
         nextStationLabel = new QLabel(gamePage);
         nextStationLabel->setObjectName(QStringLiteral("nextStationLabel"));
         nextStationLabel->setGeometry(QRect(0, 0, 121, 16));
@@ -240,6 +246,24 @@ public:
         previousStation->setGeometry(QRect(120, 20, 141, 20));
         previousStation->setFont(font3);
         previousStation->setAlignment(Qt::AlignCenter);
+        label_5 = new QLabel(gamePage);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(830, 10, 101, 17));
+        label_6 = new QLabel(gamePage);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(830, 30, 64, 17));
+        label_7 = new QLabel(gamePage);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(830, 50, 91, 17));
+        blockLocation = new QLabel(gamePage);
+        blockLocation->setObjectName(QStringLiteral("blockLocation"));
+        blockLocation->setGeometry(QRect(930, 10, 211, 17));
+        blockTrack = new QLabel(gamePage);
+        blockTrack->setObjectName(QStringLiteral("blockTrack"));
+        blockTrack->setGeometry(QRect(930, 30, 191, 17));
+        blockThreat = new QLabel(gamePage);
+        blockThreat->setObjectName(QStringLiteral("blockThreat"));
+        blockThreat->setGeometry(QRect(930, 50, 201, 17));
         stackedWidget->addWidget(gamePage);
         shopPage = new QWidget();
         shopPage->setObjectName(QStringLiteral("shopPage"));
@@ -495,7 +519,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1154, 25));
+        menuBar->setGeometry(QRect(0, 0, 1154, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -506,7 +530,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -530,6 +554,12 @@ public:
         nextStation->setText(QApplication::translate("MainWindow", "?", Q_NULLPTR));
         previousStationLabel->setText(QApplication::translate("MainWindow", "Edellinen asema:", Q_NULLPTR));
         previousStation->setText(QApplication::translate("MainWindow", "?", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainWindow", "Esteen sijainti:", Q_NULLPTR));
+        label_6->setText(QApplication::translate("MainWindow", "Raiteella:", Q_NULLPTR));
+        label_7->setText(QApplication::translate("MainWindow", "Vaarallisuus:", Q_NULLPTR));
+        blockLocation->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
+        blockTrack->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
+        blockThreat->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
         buyButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
         sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
         playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));
