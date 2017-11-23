@@ -34,20 +34,6 @@ void ObstacleLogic::move()
     obstacle_.get()->move((int)speed_);
 
 
-    //
-    /*
-    //move obstacles and remove those too far away
-    for (auto i = obstacles.begin(); i != obstacles.end();){
-        (*i).get()->move((int)speed_);
-        if ((*i).get()->y() > 10000 || (*i).get()->y() < -10000){
-            scene_->removeItem((*i).get());
-            i = obstacles.erase(i);
-        }
-        else {
-            ++i;
-        }
-    }
-    */
 
 
 }
@@ -118,7 +104,11 @@ int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
 
 int ObstacleLogic::getNextDistance()
 {
-    ++nextObstacleDistance_;
+    if (nextObstacleDistance_ <= 50){
+        ++nextObstacleDistance_;
+
+    }
+
     return nextObstacleDistance_ / 10;
 }
 
@@ -159,9 +149,10 @@ void ObstacleLogic::crash()
 {
     if (inScene_){
         scene_->removeItem(obstacle_.get());
-        inScene_== false;
+        std::cout << "törmäys" << std::endl;
+
+        inScene_ = false;
     }
-    std::cout << "törmäys" << std::endl;
     emit obstacleRemoved(-10, 0);
 
 }
