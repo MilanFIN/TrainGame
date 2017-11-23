@@ -189,7 +189,11 @@ void Game::checkCollisions()
     QString prev;
     QString next;
     obstacleLogic_->getObstacleLocation(prev, next);
-    aiTrainManager_->checkCollisions(prev, next);
+    bool crash = aiTrainManager_->checkCollisions(prev, next);
+    //if crash is true, then a vr train has collided with our obstacle
+    if (crash){
+        obstacleLogic_->crash();
+    }
 }
 
 void Game::updateShop()

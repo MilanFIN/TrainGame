@@ -71,6 +71,7 @@ public:
     void addObstacleToScene(QString next, QString previous, QString track);
 
     void getObstacleLocation(QString &prev, QString &next);
+    void crash();
 
 signals:
     void obstacleRemoved(int fameReward, int moneyReward);

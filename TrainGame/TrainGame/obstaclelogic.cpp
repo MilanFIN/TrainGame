@@ -154,3 +154,14 @@ void ObstacleLogic::getObstacleLocation(QString &previous, QString &next)
     previous = obstacleStartStation_;
     next = obstacleEndStation_;
 }
+
+void ObstacleLogic::crash()
+{
+    if (inScene_){
+        scene_->removeItem(obstacle_.get());
+        inScene_== false;
+    }
+    std::cout << "törmäys" << std::endl;
+    emit obstacleRemoved(-10, 0);
+
+}

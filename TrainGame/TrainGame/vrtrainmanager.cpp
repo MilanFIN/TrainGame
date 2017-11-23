@@ -31,42 +31,48 @@ void VrTrainManager::move()
 
 }
 
-void VrTrainManager::checkCollisions(QString prev, QString next)
+bool VrTrainManager::checkCollisions(QString prev, QString next)
 {
     std::regex re{"([^T|Z|.]+)"}; //to get rid of all but time
 
     foreach(std::shared_ptr<VrTrain> train,aiTrains_){
-        QVector<QPair<QString, QString>> timeTable = train->getTimeTable();
-        for (auto pair =timeTable.begin(); pair != timeTable.end()-1 ; ++pair){
-            if ((*pair).first == next && (*(pair+1)).first == prev ||
-                (*pair).first == prev && (*(pair+1)).first == next) {
+        if (train.get()->blackListed() == false){
+            QVector<QPair<QString, QString>> timeTable = train->getTimeTable();
+            for (auto pair =timeTable.begin()+1; pair != timeTable.end() ; ++pair){
+                if ((*pair).first == next && (*(pair-1)).first == prev ||
+                    (*pair).first == prev && (*(pair-1)).first == next) {
 
 
-                std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
-                i++;
-                std::string time = *i;
-                std::string part;
-                std::stringstream stream(time);
-                QVector<int> timeFractures;
-                while( std::getline(stream, part, ':') ){
-                   timeFractures.append(std::stoi(part));
+                    std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
+                    i++;
+                    std::string time = *i;
+                    std::string part;
+                    std::stringstream stream(time);
+                    QVector<int> timeFractures;
+                    while( std::getline(stream, part, ':') ){
+                       timeFractures.append(std::stoi(part));
 
-                }
+                    }
 
-                int hour = QTime::currentTime().hour();
-                int minute = QTime::currentTime().minute();
-                int second = QTime::currentTime().second();
+                    int hour = QTime::currentTime().hour();
+                    int minute = QTime::currentTime().minute();
+                    int second = QTime::currentTime().second();
 
-                //define the first station, whose time is bigger than current
-                if (timeFractures.at(0) >= hour && timeFractures.at(1) >= minute && timeFractures.at(2) >= hour){
-                    std::cout << "collision" << std::endl;
+
+                    if (timeFractures.at(0) >= hour && timeFractures.at(1) >= minute && timeFractures.at(2) >= second){
+                        //collision happened, so blacklist the train and inform controller
+                        train.get()->blackList();
+                        return true;
+                    }
+
                 }
 
             }
 
         }
-
     }
+    //exit(0);
+    return false;
 
 }
 
