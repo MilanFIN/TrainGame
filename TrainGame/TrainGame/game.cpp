@@ -184,6 +184,12 @@ void Game::checkCollisions()
     playerLogic_.get()->takeDamage(recievedDamage);
     //check if player has arrived to a station
     railLogic_.get()->checkCollisionWithStations(playerLogic_.get()->activeTrain());
+
+    //check collisions with vr-trains and the obstacle
+    QString prev;
+    QString next;
+    obstacleLogic_->getObstacleLocation(prev, next);
+    aiTrainManager_->checkCollisions(prev, next);
 }
 
 void Game::updateShop()

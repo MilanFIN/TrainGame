@@ -48,7 +48,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(game_->getPlayerModel(), &PlayerLogic::notEnoughMoney, this, &MainWindow::actionFailed);
 
 
-    connect(game_->getObstacleModel(), &ObstacleLogic::obstacleRemoved, this, &MainWindow::rewardFameAndMoney);
+    connect(game_->getObstacleModel(), &ObstacleLogic::obstacleRemoved, this, &MainWindow::obstacleRemoved);
     connect(game_->getObstacleModel(), &ObstacleLogic::obstacleCreated, this, &MainWindow::updateObstacleInfo);
 
     connect(game_->getPlayerModel(), &PlayerLogic::notAbleToPlay, this, &MainWindow::disableGame);
@@ -359,7 +359,7 @@ void MainWindow::updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain)
     ui->repairCostLabel->setText(QString::number(cost));
 }
 
-void MainWindow::rewardFameAndMoney(int fameReward, int moneyReward)
+void MainWindow::obstacleRemoved(int fameReward, int moneyReward)
 {
     int currentMoney = ui->moneyTextLabel->text().toInt();
     int currentFame = ui->fameTextLabel->text().toInt();
@@ -369,6 +369,10 @@ void MainWindow::rewardFameAndMoney(int fameReward, int moneyReward)
 
     game_->addMoney(newMoney);
     game_->addFame(newFame);
+    //spawn next obstacle
+    std::cout << "asd" <<std::endl;
+    game_->spawn();
+
 
 }
 
@@ -377,6 +381,7 @@ void MainWindow::updateObstacleInfo(QString stations, QString track, QString thr
     ui->blockLocation->setText(stations);
     ui->blockTrack->setText(track);
     ui->blockThreat->setText(threatLevel);
+
 }
 
 void MainWindow::actionFailed(QString msg)

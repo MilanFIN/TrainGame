@@ -74,7 +74,7 @@ public slots:
 
     void updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain);
 
-    void rewardFameAndMoney(int fameReward, int moneyReward);
+    void obstacleRemoved(int fameReward, int moneyReward);
 
     void updateObstacleInfo(QString stations, QString track, QString threatLevel);
 

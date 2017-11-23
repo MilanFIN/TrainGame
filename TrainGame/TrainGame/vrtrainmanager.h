@@ -17,6 +17,7 @@ public:
     VrTrainManager(std::shared_ptr<QGraphicsScene> scene);
     void addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain);
     void move();
+    void checkCollisions(QString prev, QString next);
 
     QHash<QString, std::shared_ptr<VrTrain>> getAllAiTrains() const;
 private:
@@ -27,6 +28,7 @@ private:
     std::shared_ptr<HttpEngine> engine_;
 
     std::shared_ptr<QGraphicsScene> scene_;
+
 
 
 };

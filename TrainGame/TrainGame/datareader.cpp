@@ -194,12 +194,16 @@ void dataReader::parseHttpData(QByteArray data, VrTrainManager& manager)
                 QJsonObject objs = value.toObject();
 
                 QString shortCode = objs["stationShortCode"].toString();
-                QString actualTime = objs["actualTime"].toString();
+                QString actualTime = objs["scheduledTime"].toString();
 
-                timeTable.push_back(qMakePair(shortCode, actualTime));
+                if (actualTime != ""){ //haku sisältää myös tyhjiä aikatauluja, joista pitää päästä eroon
+                    timeTable.push_back(qMakePair(shortCode, actualTime));
+                }
             }
-            std::shared_ptr<VrTrain> aiTrain = std::make_shared<VrTrain>(trainNumberID, timeTable);
-            manager.addAiTrain(trainNumberID, aiTrain);
+            if (timeTable.size() != 0){
+                std::shared_ptr<VrTrain> aiTrain = std::make_shared<VrTrain>(trainNumberID, timeTable);
+                manager.addAiTrain(trainNumberID, aiTrain);
+            }
 
         }
 

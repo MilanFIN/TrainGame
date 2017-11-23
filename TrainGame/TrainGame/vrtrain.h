@@ -14,10 +14,18 @@ public:
 
     QString getTraiNumber() const;
     QVector<QPair<QString, QString>> getTimeTable() const;
+    bool inScene();
+    void setInScene(bool i);
+    bool blackListed();
+    void blackList();
 private:
     QString trainNumber_;
     // stationshortCode, actualTime
     QVector<QPair<QString, QString>> scheduledTime_;
+    bool inverted_;
+    bool inScene_;
+    bool blacklisted_;
+
 
 
 };
