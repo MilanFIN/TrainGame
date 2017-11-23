@@ -204,7 +204,7 @@ void PlayerLogic::playerToShopTransaction(int index, std::shared_ptr<PlayerTrain
     // trains to set active if not notify mainW and disable pelaa button
     if (train == activeTrain()) {
         if (playableTrains_.size() != 0) {
-            activeTrain_ = playableTrains_[0];
+            setActiveTrain(0);
         } else {
             emit notAbleToPlay();
         }
