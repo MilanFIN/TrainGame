@@ -62,7 +62,7 @@ bool VrTrainManager::checkCollisions(QString prev, QString next)
                     std::stringstream nextstream(nextTime);
                     QVector<int> nextTimeFractures;
                     while( std::getline(nextstream, nextPart, ':') ){
-                       nextTimeFractures.append(std::stoi(part));
+                       nextTimeFractures.append(std::stoi(nextPart));
 
                     }
                     int hour = QTime::currentTime().hour();
