@@ -54,12 +54,24 @@ bool VrTrainManager::checkCollisions(QString prev, QString next)
 
                     }
 
+                    std::regex_token_iterator<std::string::iterator> j{(*(pair+1)).second.toStdString().begin(), (*(pair+1)).second.toStdString().end(), re, 1};
+                    j++;
+                    std::string nextTtime = *j;
+                    std::string nextPart;
+                    std::stringstream stream(nextTime);
+                    QVector<int> nextTimeFractures;
+                    while( std::getline(stream, nextPart, ':') ){
+                       nextTimeFractures.append(std::stoi(part));
+
+                    }
                     int hour = QTime::currentTime().hour();
                     int minute = QTime::currentTime().minute();
                     int second = QTime::currentTime().second();
 
 
-                    if (timeFractures.at(0) >= hour && timeFractures.at(1) >= minute && timeFractures.at(2) >= second){
+
+                    if (timeFractures.at(0) >= hour && timeFractures.at(1) >= minute && timeFractures.at(2) >= second
+                            && nextTimeFractures.at(0) <=  hour && nextTimeFractures.at(1) <= minute && nextTimeFractures.at(2) <= second){
                         //collision happened, so blacklist the train and inform controller
                         train.get()->blackList();
                         return true;
@@ -71,7 +83,6 @@ bool VrTrainManager::checkCollisions(QString prev, QString next)
 
         }
     }
-    //exit(0);
     return false;
 
 }
