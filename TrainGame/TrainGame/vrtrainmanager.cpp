@@ -2,6 +2,7 @@
 #include "datareader.h"
 #include <exception>
 #include <iostream>
+#include <sstream>
 #include <QTime>
 #include <regex>
 #include <algorithm>
@@ -56,11 +57,11 @@ bool VrTrainManager::checkCollisions(QString prev, QString next)
 
                     std::regex_token_iterator<std::string::iterator> j{(*(pair+1)).second.toStdString().begin(), (*(pair+1)).second.toStdString().end(), re, 1};
                     j++;
-                    std::string nextTtime = *j;
+                    std::string nextTime = *j;
                     std::string nextPart;
-                    std::stringstream stream(nextTime);
+                    std::stringstream nextstream(nextTime);
                     QVector<int> nextTimeFractures;
-                    while( std::getline(stream, nextPart, ':') ){
+                    while( std::getline(nextstream, nextPart, ':') ){
                        nextTimeFractures.append(std::stoi(part));
 
                     }
