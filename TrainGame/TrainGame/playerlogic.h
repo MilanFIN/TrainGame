@@ -15,6 +15,7 @@ class PlayerLogic: public QObject
 {
     Q_OBJECT
 public:
+    PlayerLogic();
     /**
      * @brief PlayerLogic pelaajan rakentaja
      * @param scene

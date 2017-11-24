@@ -5,6 +5,13 @@
 
 
 
+PlayerLogic::PlayerLogic():
+    currentMoney_(500),
+    fame_(0)
+{
+
+}
+
 PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene),
     currentMoney_(500),

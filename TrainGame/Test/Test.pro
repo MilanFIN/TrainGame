@@ -46,7 +46,7 @@ SOURCES += \
         ../TrainGame/backgroundlogic.cpp \
         ../TrainGame/vrtrain.cpp \
         ../TrainGame/vrtrainmanager.cpp \
-        ../TrainGame/httpengine.cpp \
+        ../TrainGame/httpengine.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
