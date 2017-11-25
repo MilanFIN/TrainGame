@@ -169,8 +169,9 @@ void Game::spawn()
     QList<QString> stations;
     QString track;
     QList<QString> stationNames;
-    railLogic_.get()->getRandomStationAndTrack(distance,stations , track, stationNames);
-    obstacleLogic_.get()->spawnObstacle(stations, track, stationNames);
+    bool harmful;
+    railLogic_.get()->getRandomStationAndTrack(distance,stations , track, stationNames, harmful);
+    obstacleLogic_.get()->spawnObstacle(stations, track, stationNames, harmful);
 
     //obstacleLogic_.get()->spawnObstacle();
 }

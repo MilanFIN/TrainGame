@@ -45,7 +45,7 @@ public:
      * @pre -
      * @post uusi este lisätty sceneen
      */
-    void spawnObstacle(QList<QString> stations, QString trackCode, QList<QString> stationNames);
+    void spawnObstacle(QList<QString> stations, QString trackCode, QList<QString> stationNames, bool harmful);
     /**
      * @brief poistaa sijainnin lähellä olevat esteet
      * @param sijainti y-akselilla
@@ -94,6 +94,8 @@ private:
     QString obstacleEndStation_;
     QString ObstacleTrackCode_;
     int nextObstacleDistance_ = 20;
+    bool harmful_ = false;
+
 };
 
 #endif // OBSTACLELOGIC_H

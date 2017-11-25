@@ -556,7 +556,7 @@ public:
         previousStation->setText(QApplication::translate("MainWindow", "?", Q_NULLPTR));
         label_5->setText(QApplication::translate("MainWindow", "Esteen sijainti:", Q_NULLPTR));
         label_6->setText(QApplication::translate("MainWindow", "Raiteella:", Q_NULLPTR));
-        label_7->setText(QApplication::translate("MainWindow", "Vaarallisuus:", Q_NULLPTR));
+        label_7->setText(QApplication::translate("MainWindow", "Haittataso:", Q_NULLPTR));
         blockLocation->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
         blockTrack->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
         blockThreat->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));

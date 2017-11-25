@@ -56,7 +56,7 @@ void ObstacleLogic::changeDirection()
 
 
 
-void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode, QList<QString> stationNames)
+void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode, QList<QString> stationNames, bool harmful)
 {
     if (inScene_){
         scene_->removeItem(obstacle_.get());
@@ -68,7 +68,16 @@ void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode, QL
     obstacleEndStation_ = stations.at(1);
     ObstacleTrackCode_ = trackCode;
 
-    emit obstacleCreated(stationNames.at(0) + " - " + stationNames.at(1), trackCode, "haitta");
+    harmful_ = harmful;
+    QString msg = "";
+    if (harmful_){
+        msg = "vaarallinen";
+    }
+    else{
+        msg = "vaaraton";
+    }
+
+    emit obstacleCreated(stationNames.at(0) + " - " + stationNames.at(1), trackCode, msg);
 }
 
 void ObstacleLogic::removeNearbyObjects(int location)
@@ -136,6 +145,7 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
         }
 
     }
+
 
 }
 

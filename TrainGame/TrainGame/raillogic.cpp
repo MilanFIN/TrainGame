@@ -108,7 +108,7 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
     foreach (auto i , stations_){
         double x = (i.lng-lngCenter_)*xConversionRate_;
         double y = (i.lat-latCenter_)*yConversionRate_;
-        miniMapScene_->addEllipse(x-1, y-1, 3, 3,
+        miniMapScene_->addEllipse(x-2, y-2, 3, 3,
                    QPen(), QBrush(Qt::SolidPattern));
     }
 
@@ -300,9 +300,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         currentTrackCode_ = backtrackTrackCandidates_.at(backtrackIndex_);
 
 
-        std::cout << "asdf:" << backtrackIndex_ << std::endl;
-        std::cout << "passed " << startStationCode_.toStdString() << " on track " << currentTrackCode_.toStdString() << std::endl;
-
         //figure out possible directions after reaching destination
         destinationStationCandidates_.clear();
         destinationTrackCandidates_.clear();
@@ -393,7 +390,7 @@ void RailLogic::updateDestinationOnMiniMap()
     miniMapScene_->addItem(&nextStationMapPoint_);
 }
 
-void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations, QString &trackCode, QList<QString> &stationNames)
+void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations, QString &trackCode, QList<QString> &stationNames, bool &harmful)
 {
     int randomNumber = qrand() % destinationStationCandidates_.size();
     QString destinationStation = destinationStationCandidates_.at(randomNumber);
@@ -434,8 +431,33 @@ void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
     stations.append(destinationStation);
     stationNames.append(stations_.value(stations.at(0)).fullName);
     stationNames.append(stations_.value(stations.at(1)).fullName);
-
     trackCode = track;
+
+    //find out if there are multiple tracks between the two stations
+    //if so, figure if the obstacle is on one that aitrains go through
+    bool found = false;
+    harmful = false;
+    foreach(QList<QString> i, tracks_){
+        for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
+            if ((*j == stations.at(0) && *(j+1) == stations.at(1) )
+                    || *j == stations.at(1) && *(j+1) == stations.at(0)){
+                //found a track between the stations, figure out what the name of the track is
+                if (tracks_.key(i).toStdString() == trackCode.toStdString()){
+                    harmful = true;
+                }
+                found = true;
+                break;
+
+            }
+        }
+        if (found){
+            break;
+        }
+
+    }
+
+
+
 }
 
 QString RailLogic::getCurrentTrack()

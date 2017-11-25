@@ -448,7 +448,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
        </rect>
       </property>
       <property name="text">
-       <string>Vaarallisuus:</string>
+       <string>Haittataso:</string>
       </property>
      </widget>
      <widget class="QLabel" name="blockLocation">
