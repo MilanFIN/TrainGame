@@ -7,7 +7,7 @@
 QT       += testlib
 QT       += widgets
 QT       += network
-TARGET = tst_testgame
+TARGET = test
 CONFIG   += console
 CONFIG   -= app_bundle
 
@@ -26,7 +26,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        tst_testgame.cpp \
         ../TrainGame/mainwindow.cpp \
         ../TrainGame/game.cpp \
         ../TrainGame/raillogic.cpp \
@@ -46,7 +45,9 @@ SOURCES += \
         ../TrainGame/backgroundlogic.cpp \
         ../TrainGame/vrtrain.cpp \
         ../TrainGame/vrtrainmanager.cpp \
-        ../TrainGame/httpengine.cpp
+        ../TrainGame/httpengine.cpp \
+    testbackground.cpp \
+    main.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
@@ -70,9 +71,7 @@ HEADERS += \
         ../TrainGame/backgroundlogic.h \
         ../TrainGame/vrtrain.h \
         ../TrainGame/vrtrainmanager.h \
-        ../TrainGame/httpengine.h \
-
-
+        ../TrainGame/httpengine.h
 
 RESOURCES += \
         ../TrainGame/res.qrc
