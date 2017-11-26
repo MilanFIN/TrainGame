@@ -2,6 +2,8 @@
 #include "shop.h"
 #include "playertrain.h"
 #include "httpengine.h"
+#include "vrtrain.h"
+#include "ioexception.h"
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -10,7 +12,7 @@
 #include <QMap>
 #include <QList>
 #include <iostream>
-#include <vrtrain.h>
+
 
 dataReader dataReader::READER;
 
@@ -78,10 +80,6 @@ void dataReader::loadStationsFromFile(const QString &filepath, RailLogic& logic)
 
     foreach (QJsonValue val, arr) {
         QJsonObject obj = val.toObject();
-//        bool pass = obj["passengerTraffic"].toBool();
-//        if (pass) {
-//            continue;
-//        }
 
         // shortname of station
         QString shortCode = obj["stationShortCode"].toString();
@@ -143,8 +141,8 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
     }
 
     // todo poista
-    std::vector<std::shared_ptr<PlayerTrain>> trains = shop->buyableTrains();
-    std::cout <<"Kaupassa on näin monta junaa: "<<trains.size() << std::endl;
+//    std::vector<std::shared_ptr<PlayerTrain>> trains = shop->buyableTrains();
+//    std::cout <<"Kaupassa on näin monta junaa: "<<trains.size() << std::endl;
 
 
 
@@ -155,7 +153,7 @@ void dataReader::readHTTPData(std::weak_ptr<HttpEngine> engine, VrTrainManager& 
 
     QIODevice *ret = engine.lock()->httpData();
     if (ret == NULL) {
-        ret = engine.lock()->httpData();
+        throw IoException("NetworkRequest returned NULL");
     }
 
     //tässä kohtaa tulee välillä segmentation fault, silloin kun ei ole nettiyhteyttä?

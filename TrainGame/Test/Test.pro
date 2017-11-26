@@ -46,6 +46,8 @@ SOURCES += \
         ../TrainGame/vrtrain.cpp \
         ../TrainGame/vrtrainmanager.cpp \
         ../TrainGame/httpengine.cpp \
+        ../TrainGame/gameexception.cpp \
+        ../TrainGame/ioexception.cpp \
     testbackground.cpp \
     main.cpp
 
@@ -71,7 +73,9 @@ HEADERS += \
         ../TrainGame/backgroundlogic.h \
         ../TrainGame/vrtrain.h \
         ../TrainGame/vrtrainmanager.h \
-        ../TrainGame/httpengine.h
+        ../TrainGame/httpengine.h \
+        ../TrainGame/gameexception.h \
+        ../TrainGame/ioexception.h
 
 RESOURCES += \
         ../TrainGame/res.qrc

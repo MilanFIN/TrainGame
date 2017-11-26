@@ -26,7 +26,7 @@ public:
      */
     void loadTracksFromFile(const QString &filepath, RailLogic &logic);
     void loadStationsFromFile(const QString &filepath, RailLogic &logic);
-    // Todo: return vectori, jossa junat valmiina.
+
     void loadTrains(const QString &filepath, std::shared_ptr<Shop> shop, PlayerLogic &logic);
 
 

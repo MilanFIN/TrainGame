@@ -1,7 +1,6 @@
 #include "obstaclefactory.h"
 #include <boulder.h>
 #include <memory>
-#include <iostream>
 #include <QDateTime>
 
 std::shared_ptr<ObstacleFactory> ObstacleFactory::_instance = nullptr;

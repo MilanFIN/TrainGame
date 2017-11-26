@@ -27,6 +27,7 @@ signals:
     void message(QString msg);
 private:
     std::weak_ptr<HttpEngine> getHttpEngine() const;
+    void readTrainsFromAPI();
 
     // trainNumber, VrTrain-Object
     QHash<QString, std::shared_ptr<VrTrain>> aiTrains_;

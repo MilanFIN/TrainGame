@@ -43,7 +43,9 @@ SOURCES += \
     backgroundlogic.cpp \
     vrtrainmanager.cpp \
     vrtrain.cpp \
-    httpengine.cpp
+    httpengine.cpp \
+    gameexception.cpp \
+    ioexception.cpp
 
 
 HEADERS += \
@@ -66,7 +68,9 @@ HEADERS += \
     backgroundlogic.h \
     vrtrainmanager.h \
     vrtrain.h \
-    httpengine.h
+    httpengine.h \
+    gameexception.h \
+    ioexception.h
 
 
 FORMS += \

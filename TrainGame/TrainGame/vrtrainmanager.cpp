@@ -1,18 +1,21 @@
 #include "vrtrainmanager.h"
 #include "datareader.h"
+#include "ioexception.h"
 #include <exception>
 #include <iostream>
 #include <sstream>
 #include <QTime>
 #include <regex>
 #include <algorithm>
+#include <iostream>
+
 
 
 VrTrainManager::VrTrainManager(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
 {
     engine_ = std::make_shared<HttpEngine>();
-    dataReader::dataReader::READER.readHTTPData(getHttpEngine(), *this);
+    readTrainsFromAPI();
 
     timeSinceLastMsg = QTime::currentTime().second();
 
@@ -226,5 +229,15 @@ std::weak_ptr<HttpEngine> VrTrainManager::getHttpEngine() const
 {
     std::weak_ptr<HttpEngine> engine = engine_;
     return engine;
+
+}
+
+void VrTrainManager::readTrainsFromAPI()
+{
+    try {
+        dataReader::dataReader::READER.readHTTPData(getHttpEngine(), *this);
+    } catch (IoException &IO) {
+        std::cout<< IO.msg().toStdString();
+    }
 
 }
