@@ -149,10 +149,11 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
 
 }
 
-void ObstacleLogic::getObstacleLocation(QString &previous, QString &next)
+void ObstacleLogic::getObstacleLocation(QString &previous, QString &next, bool &harmful)
 {
     previous = obstacleStartStation_;
     next = obstacleEndStation_;
+    harmful = harmful_;
 }
 
 void ObstacleLogic::crash()

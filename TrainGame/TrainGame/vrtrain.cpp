@@ -7,12 +7,14 @@ VrTrain::VrTrain(QString tNumber, QVector<QPair<QString, QString> > timeTable):
     inScene_ = false;
     inverted_ = false;
     blacklisted_ = false;
+    QImage img(":/kuvat/train5.png");
+    QImage imageScaled = img.scaled(150,150,Qt::KeepAspectRatio);
+    setPixmap(QPixmap::fromImage(imageScaled));
+    setPos(-38, -500);
+
+
 }
 
-void VrTrain::move()
-{
-
-}
 
 QString VrTrain::getTraiNumber() const
 {

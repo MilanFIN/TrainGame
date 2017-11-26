@@ -27,21 +27,21 @@ void VrTrainManager::addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain)
 
 }
 
-void VrTrainManager::move()
-{
 
-}
-
-bool VrTrainManager::checkCollisions(QString prev, QString next)
+bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
 {
+    if (!harmful){
+        return false;
+    }
+
     std::regex re{"([^T|Z|.]+)"}; //to get rid of all but time
 
     foreach(std::shared_ptr<VrTrain> train,aiTrains_){
         if (train.get()->blackListed() == false){
             QVector<QPair<QString, QString>> timeTable = train->getTimeTable();
             for (auto pair =timeTable.begin()+1; pair != timeTable.end() ; ++pair){
-                if ((*pair).first == next && (*(pair-1)).first == prev ||
-                    (*pair).first == prev && (*(pair-1)).first == next) {
+                if (((*pair).first == next && (*(pair-1)).first == prev) ||
+                    ((*pair).first == prev && (*(pair-1)).first == next)) {
 
 
                     std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
@@ -55,7 +55,7 @@ bool VrTrainManager::checkCollisions(QString prev, QString next)
 
                     }
 
-                    std::regex_token_iterator<std::string::iterator> j{(*(pair+1)).second.toStdString().begin(), (*(pair+1)).second.toStdString().end(), re, 1};
+                    std::regex_token_iterator<std::string::iterator> j{(*(pair-1)).second.toStdString().begin(), (*(pair+1)).second.toStdString().end(), re, 1};
                     j++;
                     std::string nextTime = *j;
                     std::string nextPart;
@@ -70,9 +70,11 @@ bool VrTrainManager::checkCollisions(QString prev, QString next)
                     int second = QTime::currentTime().second();
 
 
+                    int prevSec = timeFractures.at(0) * 3600 + timeFractures.at(1)*60 + timeFractures.at(2);
+                    int nextSec = nextTimeFractures.at(0) * 3600 + nextTimeFractures.at(1)*60 + nextTimeFractures.at(2);
+                    int currentSec = hour*3600 + minute * 60 + second;
 
-                    if (timeFractures.at(0) >= hour && timeFractures.at(1) >= minute && timeFractures.at(2) >= second
-                            && nextTimeFractures.at(0) <=  hour && nextTimeFractures.at(1) <= minute && nextTimeFractures.at(2) <= second){
+                    if ((prevSec <= currentSec && nextSec >= currentSec) || (prevSec >= currentSec && nextSec <= currentSec)){
                         //collision happened, so blacklist the train and inform controller
                         train.get()->blackList();
                         return true;
@@ -91,6 +93,108 @@ bool VrTrainManager::checkCollisions(QString prev, QString next)
 QHash<QString, std::shared_ptr<VrTrain> > VrTrainManager::getAllAiTrains() const
 {
     return aiTrains_;
+}
+
+void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool mainRail)
+{
+    std::regex re{"([^T|Z|.]+)"}; //to get rid of all but time
+
+    foreach(std::shared_ptr<VrTrain> train,aiTrains_){
+
+        QVector<QPair<QString, QString>> timeTable = train->getTimeTable();
+        for (auto pair =timeTable.begin()+1; pair != timeTable.end() ; ++pair){
+
+            if (!mainRail){
+                if (train->inScene()){
+                    scene_->removeItem(train.get());
+                    train->setInScene(false);
+                }
+            }
+
+            else if (((*pair).first == next && (*(pair-1)).first == prev) ||
+                ((*pair).first == prev && (*(pair-1)).first == next)) {
+
+
+
+                std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
+                i++;
+                std::string time = *i;
+
+                std::string part;
+                std::stringstream stream(time);
+
+
+                QVector<int> timeFractures;
+                while( std::getline(stream, part, ':') ){
+                   timeFractures.append(std::stoi(part));
+
+                }
+
+
+
+
+                std::regex_token_iterator<std::string::iterator> j{(*(pair-1)).second.toStdString().begin(), (*(pair-1)).second.toStdString().end(), re, 1};
+                j++;
+                std::string nextTime = *j;
+                std::string nextPart;
+                std::stringstream nextstream(nextTime);
+                QVector<int> nextTimeFractures;
+                while( std::getline(nextstream, nextPart, ':') ){
+                   nextTimeFractures.append(std::stoi(nextPart));
+
+                }
+
+
+                int hour = QTime::currentTime().hour();
+                int minute = QTime::currentTime().minute();
+                int second = QTime::currentTime().second();
+
+                int prevSec = timeFractures.at(0) * 3600 + timeFractures.at(1)*60 + timeFractures.at(2);
+                int nextSec = nextTimeFractures.at(0) * 3600 + nextTimeFractures.at(1)*60 + nextTimeFractures.at(2);
+                int currentSec = hour*3600 + minute * 60 + second;
+
+                if ((prevSec <= currentSec && nextSec >= currentSec) || (prevSec >= currentSec && nextSec <= currentSec)){
+
+
+
+                    if (!train->inScene()){
+                        train->setInScene(true);
+                        scene_->addItem(train.get());
+                    }
+
+                    int totalHours = nextTimeFractures.at(0) - timeFractures.at(0);
+                    int totalMinutes = nextTimeFractures.at(1) - timeFractures.at(1);
+                    int totalSeconds = 3600* totalHours + 60*totalMinutes + nextTimeFractures.at(2) - timeFractures.at(2);
+
+                    int realHours = hour - timeFractures.at(0);
+                    int realMinutes = minute - timeFractures.at(1);
+                    int realSeconds = 3600 * realHours + 60*realMinutes + second - timeFractures.at(2);
+
+
+                    double distance = double(realSeconds)/double(totalSeconds);
+                    int y = double(prevY) + (distance*(double(nextY-prevY)));
+
+                    train->setPos(train->x(), y);
+
+                    std::cout << time << " " << y << std::endl;
+
+
+
+                }
+
+
+
+
+            }
+            else if (train->inScene()){
+                scene_->removeItem(train.get());
+                train->setInScene(false);
+
+            }
+
+        }
+
+    }
 }
 
 std::weak_ptr<HttpEngine> VrTrainManager::getHttpEngine() const

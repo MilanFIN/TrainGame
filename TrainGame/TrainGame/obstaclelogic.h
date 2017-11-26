@@ -70,7 +70,7 @@ public:
 
     void addObstacleToScene(QString next, QString previous, QString track);
 
-    void getObstacleLocation(QString &prev, QString &next);
+    void getObstacleLocation(QString &prev, QString &next, bool &harmful);
     void crash();
 
 signals:

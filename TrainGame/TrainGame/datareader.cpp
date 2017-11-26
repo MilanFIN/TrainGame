@@ -158,6 +158,7 @@ void dataReader::readHTTPData(std::weak_ptr<HttpEngine> engine, VrTrainManager& 
         ret = engine.lock()->httpData();
     }
 
+    //tässä kohtaa tulee välillä segmentation fault, silloin kun ei ole nettiyhteyttä?
     QByteArray res = ret->readAll();
 
     parseHttpData(res, manager);

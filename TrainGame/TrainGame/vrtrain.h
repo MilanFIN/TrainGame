@@ -10,7 +10,6 @@ class VrTrain : public QGraphicsPixmapItem
 {
 public:
     VrTrain(QString tNumber, QVector<QPair<QString, QString> > timeTable);
-    void move();
 
     QString getTraiNumber() const;
     QVector<QPair<QString, QString>> getTimeTable() const;

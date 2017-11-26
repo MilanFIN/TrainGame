@@ -16,10 +16,12 @@ class VrTrainManager
 public:
     VrTrainManager(std::shared_ptr<QGraphicsScene> scene);
     void addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain);
-    void move();
-    bool checkCollisions(QString prev, QString next);
+    bool checkCollisions(QString prev, QString next, bool harmful);
 
     QHash<QString, std::shared_ptr<VrTrain>> getAllAiTrains() const;
+
+    void move(QString prev, QString next, int prevY, int nextY, bool mainRail);
+
 private:
     std::weak_ptr<HttpEngine> getHttpEngine() const;
 

@@ -158,6 +158,17 @@ void Game::move()
     railLogic_.get()->move();
     obstacleLogic_.get()->move();
     bgLogic_.get()->move();
+
+    //move aitrains
+
+    QString next;
+    QString prev;
+    bool mainRail;
+    int nextY;
+    int prevY;
+
+    railLogic_->getCurrentLocation(prev, next, prevY, nextY, mainRail);
+    aiTrainManager_->move(prev, next, prevY, nextY, mainRail);
 }
 
 void Game::spawn()
@@ -189,8 +200,9 @@ void Game::checkCollisions()
     //check collisions with vr-trains and the obstacle
     QString prev;
     QString next;
-    obstacleLogic_->getObstacleLocation(prev, next);
-    bool crash = aiTrainManager_->checkCollisions(prev, next);
+    bool harmful;
+    obstacleLogic_->getObstacleLocation(prev, next, harmful);
+    bool crash = aiTrainManager_->checkCollisions(prev, next, harmful);
     //if crash is true, then a vr train has collided with our obstacle
     if (crash){
         obstacleLogic_->crash();

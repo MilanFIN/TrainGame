@@ -475,6 +475,36 @@ QString RailLogic::getNextStation()
     return destinationStationCode_;
 }
 
+void RailLogic::getCurrentLocation(QString &prev, QString &next, int &prevY, int &nextY, bool &mainRail)
+{
+    prev = startStationCode_;
+    next = destinationStationCode_;
+    prevY = previousStation_->y();
+    nextY = nextStation_->y();
+
+    mainRail = false;
+    bool found = false;
+    foreach(QList<QString> i, tracks_){
+        for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
+            if ((*j == startStationCode_ && *(j+1) == destinationStationCode_ )
+                    || *j == destinationStationCode_ && *(j+1) == startStationCode_){
+                //found a track between the stations, figure out, if the track is
+                if (tracks_.key(i).toStdString() == currentTrackCode_.toStdString()){
+                    mainRail = true;
+                }
+                found = true;
+                break;
+
+            }
+        }
+        if (found){
+            break;
+        }
+
+    }
+
+}
+
 void RailLogic::changeDestinationCandidateIndex(int index)
 {
     destinationIndex_ = index;

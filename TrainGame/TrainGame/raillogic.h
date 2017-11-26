@@ -109,6 +109,8 @@ public:
     QString getLastStation();
     QString getNextStation();
 
+    void getCurrentLocation(QString &prev, QString &next, int &prevY, int &nextY, bool &mainRail);
+
 signals:
     void destinationCandidatesChanged(QList<QString> stations);
     void backttrackCandidatesChanged(QList<QString> stations);
