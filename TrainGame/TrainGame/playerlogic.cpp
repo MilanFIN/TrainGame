@@ -213,6 +213,7 @@ void PlayerLogic::playerToShopTransaction(int index, std::shared_ptr<PlayerTrain
         if (playableTrains_.size() != 0) {
             setActiveTrain(0);
         } else {
+            removeTrainPixmap(activeTrain_);
             activeTrain_ = nullptr;
             emit notAbleToPlay();
         }
