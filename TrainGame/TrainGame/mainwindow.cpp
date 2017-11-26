@@ -57,7 +57,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(game_->getAiTrainModel(), &VrTrainManager::message, this, &MainWindow::updateMessageLabel);
 
 
-    connect(clearTimer, SIGNAL(timeout()), this, SLOT(clearMessage()));
+    connect(clearTimer_, SIGNAL(timeout()), this, SLOT(clearMessage()));
 
 
     ui->gameView->setScene(scene_.get());
@@ -397,9 +397,11 @@ void MainWindow::actionFailed(QString msg)
 void MainWindow::updateMessageLabel(QString msg)
 {
     ui->notificationLabel->setText(msg);
+    clearTimer_->start(5000);
 }
 
 void MainWindow::clearMessage()
 {
+    clearTimer_->stop();
     ui->notificationLabel->setText("");
 }

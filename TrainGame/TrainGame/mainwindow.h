@@ -92,7 +92,7 @@ private:
     std::shared_ptr<QGraphicsScene> scene_;
     std::shared_ptr<QGraphicsScene> miniMapScene_;
 
-    QTimer *clearTimer = new QTimer(this);
+    QTimer *clearTimer_ = new QTimer(this);
 
 
 };
