@@ -69,17 +69,20 @@ void Game::changeBacktrack(int index)
 
 void Game::gameTabChosen()
 {
+    runGame_ = true;
     railLogic_->signalStationInfoToUi();
 }
 
 void Game::shopTabChosen()
 {
+    runGame_ = false;
     playerLogic_->getAvailableTrainsFromShop();
     playerLogic_->getOwnedTrains();
 }
 
 void Game::depotTabChosen()
 {
+    runGame_ = false;
     playerLogic_->getTrainsToBeRepaired();
 }
 
@@ -194,6 +197,9 @@ void Game::spawn()
 void Game::checkCollisions()
 {
 
+    if (!runGame_){
+        return;
+    }
     //check if obstacles hit the player
     int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
     //pelaajan aktiiviselle junalle lämää

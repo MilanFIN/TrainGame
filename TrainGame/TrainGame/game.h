@@ -79,6 +79,9 @@ private:
 
     QTimer *obstacleSpawner_ = new QTimer(this);
 
+
+    bool runGame_ = false;
+
 };
 
 #endif // GAME_H
