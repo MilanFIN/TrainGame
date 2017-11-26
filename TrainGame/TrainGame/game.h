@@ -50,6 +50,7 @@ public:
     RailLogic* getRailModel();
     PlayerLogic* getPlayerModel();
     ObstacleLogic* getObstacleModel();
+    VrTrainManager* getAiTrainModel();
 signals:
     void shopChanged();
 public slots:

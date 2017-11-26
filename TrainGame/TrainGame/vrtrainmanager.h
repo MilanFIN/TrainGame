@@ -11,8 +11,9 @@
 /**
  * @brief Hallitsee VrTrain-olioita
  */
-class VrTrainManager
+class VrTrainManager : public QObject
 {
+    Q_OBJECT
 public:
     VrTrainManager(std::shared_ptr<QGraphicsScene> scene);
     void addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain);
@@ -22,6 +23,8 @@ public:
 
     void move(QString prev, QString next, int prevY, int nextY, bool mainRail);
 
+signals:
+    void message(QString msg);
 private:
     std::weak_ptr<HttpEngine> getHttpEngine() const;
 
@@ -30,6 +33,8 @@ private:
     std::shared_ptr<HttpEngine> engine_;
 
     std::shared_ptr<QGraphicsScene> scene_;
+
+    int timeSinceLastMsg;
 
 
 

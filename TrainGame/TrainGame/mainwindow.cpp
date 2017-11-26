@@ -54,6 +54,11 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(game_->getPlayerModel(), &PlayerLogic::notAbleToPlay, this, &MainWindow::disableGame);
     connect(game_->getPlayerModel(), &PlayerLogic::shopActionFailed, this, &MainWindow::actionFailed);
 
+    connect(game_->getAiTrainModel(), &VrTrainManager::message, this, &MainWindow::updateMessageLabel);
+
+
+    connect(clearTimer, SIGNAL(timeout()), this, SLOT(clearMessage()));
+
 
     ui->gameView->setScene(scene_.get());
 
@@ -387,4 +392,14 @@ void MainWindow::updateObstacleInfo(QString stations, QString track, QString thr
 void MainWindow::actionFailed(QString msg)
 {
     QMessageBox::critical(this, "Virhe", msg);
+}
+
+void MainWindow::updateMessageLabel(QString msg)
+{
+    ui->notificationLabel->setText(msg);
+}
+
+void MainWindow::clearMessage()
+{
+    ui->notificationLabel->setText("");
 }

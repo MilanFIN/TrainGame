@@ -153,6 +153,10 @@ ObstacleLogic *Game::getObstacleModel()
     return obstacleLogic_.get();
 }
 
+VrTrainManager *Game::getAiTrainModel(){
+    return aiTrainManager_.get();
+}
+
 void Game::move()
 {
     railLogic_.get()->move();

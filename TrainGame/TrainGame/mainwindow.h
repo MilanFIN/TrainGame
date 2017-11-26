@@ -10,6 +10,7 @@
 #include <QList>
 #include <QString>
 #include <httpengine.h>
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -80,6 +81,9 @@ public slots:
 
     void actionFailed(QString msg);
 
+    void updateMessageLabel(QString msg);
+
+    void clearMessage();
 
 signals:
 private:
@@ -87,6 +91,8 @@ private:
     std::shared_ptr<Game> game_;
     std::shared_ptr<QGraphicsScene> scene_;
     std::shared_ptr<QGraphicsScene> miniMapScene_;
+
+    QTimer *clearTimer = new QTimer(this);
 
 
 };

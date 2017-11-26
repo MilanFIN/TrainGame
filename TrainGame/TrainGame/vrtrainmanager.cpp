@@ -13,6 +13,9 @@ VrTrainManager::VrTrainManager(std::shared_ptr<QGraphicsScene> scene):
 {
     engine_ = std::make_shared<HttpEngine>();
     dataReader::dataReader::READER.readHTTPData(getHttpEngine(), *this);
+
+    timeSinceLastMsg = QTime::currentTime().second();
+
 }
 
 void VrTrainManager::addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain)
@@ -55,7 +58,7 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
 
                     }
 
-                    std::regex_token_iterator<std::string::iterator> j{(*(pair-1)).second.toStdString().begin(), (*(pair+1)).second.toStdString().end(), re, 1};
+                    std::regex_token_iterator<std::string::iterator> j{(*(pair-1)).second.toStdString().begin(), (*(pair-1)).second.toStdString().end(), re, 1};
                     j++;
                     std::string nextTime = *j;
                     std::string nextPart;
@@ -77,6 +80,12 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
                     if ((prevSec <= currentSec && nextSec >= currentSec) || (prevSec >= currentSec && nextSec <= currentSec)){
                         //collision happened, so blacklist the train and inform controller
                         train.get()->blackList();
+
+                        timeSinceLastMsg = QTime::currentTime().second();
+                        emit message("Juna törmäsi esteeseen, uuden esteen sijainti kerrottu");
+
+
+
                         return true;
                     }
 
@@ -192,7 +201,9 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
 
                     std::cout << time << " " << y << std::endl;
 
-
+                    if (abs(timeSinceLastMsg - QTime::currentTime().second()) >= 5){
+                        emit message("Raiteellasi on toinen juna");
+                    }
 
                 }
 

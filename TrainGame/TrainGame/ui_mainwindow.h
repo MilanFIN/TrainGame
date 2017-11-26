@@ -62,6 +62,8 @@ public:
     QLabel *blockLocation;
     QLabel *blockTrack;
     QLabel *blockThreat;
+    QLabel *label_8;
+    QLabel *notificationLabel;
     QWidget *shopPage;
     QPushButton *buyButton;
     QPushButton *sellButton;
@@ -264,6 +266,12 @@ public:
         blockThreat = new QLabel(gamePage);
         blockThreat->setObjectName(QStringLiteral("blockThreat"));
         blockThreat->setGeometry(QRect(930, 50, 201, 17));
+        label_8 = new QLabel(gamePage);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(830, 80, 121, 17));
+        notificationLabel = new QLabel(gamePage);
+        notificationLabel->setObjectName(QStringLiteral("notificationLabel"));
+        notificationLabel->setGeometry(QRect(950, 80, 181, 16));
         stackedWidget->addWidget(gamePage);
         shopPage = new QWidget();
         shopPage->setObjectName(QStringLiteral("shopPage"));
@@ -560,6 +568,8 @@ public:
         blockLocation->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
         blockTrack->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
         blockThreat->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
+        label_8->setText(QApplication::translate("MainWindow", "Viimeisin ilmoitus:", Q_NULLPTR));
+        notificationLabel->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
         buyButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
         sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
         playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));
