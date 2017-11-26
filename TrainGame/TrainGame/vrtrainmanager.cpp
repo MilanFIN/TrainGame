@@ -171,8 +171,22 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                     int realSeconds = 3600 * realHours + 60*realMinutes + second - timeFractures.at(2);
 
 
-                    double distance = double(realSeconds)/double(totalSeconds);
-                    int y = double(prevY) + (distance*(double(nextY-prevY)));
+                    double distance = 0;
+                    if (totalSeconds != 0){
+                         distance = double(realSeconds)/double(totalSeconds);
+                    }
+                    int y;
+
+
+                    if ((*pair).first == next && (*(pair-1)).first == prev){
+                        y = double(prevY) + (distance*(double(nextY-prevY)));
+                    }
+                    else {
+                        y = double(nextY) - (distance*(double(nextY-prevY)));
+                    }
+
+
+
 
                     train->setPos(train->x(), y);
 
