@@ -9,7 +9,7 @@ class TestBackground : public QObject
 {
     Q_OBJECT
 
-private Q_SLOTS:
+private slots:
 
     void testBackground();
     void testMove();
@@ -27,9 +27,6 @@ void TestBackground::testMove()
 {
 
     std::shared_ptr<Background> bg = std::make_shared<Background>(50);
-
-    Q_ASSERT(bg->x() == -250);
-    Q_ASSERT(bg->y() == 50);
 
     bg->move(10);
     Q_ASSERT(bg->x() == -250);

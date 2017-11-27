@@ -10,7 +10,6 @@ public:
 
     void move(int speed);
 
-
 };
 
 #endif // BOULDER_H

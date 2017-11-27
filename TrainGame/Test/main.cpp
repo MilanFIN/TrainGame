@@ -1,4 +1,5 @@
 #include "testbackground.cpp"
+#include "testboulder.cpp"
 #include "mainwindow.h"
 #include "game.h"
 
@@ -21,9 +22,11 @@ int main(int argc, char *argv[])
 
     w.show();
 
-    TestBackground testBackground;
+    std::shared_ptr<TestBackground> testBackground = std::make_shared<TestBackground>();
+    std::shared_ptr<TestBoulder> testBoulder = std::make_shared<TestBoulder>();
 
-    QTest::qExec(&testBackground, argc, argv);
+    QTest::qExec(testBackground.get(), argc, argv);
+    QTest::qExec(testBoulder.get(), argc, argv);
 
     return a.exec();
 }

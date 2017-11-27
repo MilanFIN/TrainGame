@@ -49,7 +49,8 @@ SOURCES += \
         ../TrainGame/gameexception.cpp \
         ../TrainGame/ioexception.cpp \
     testbackground.cpp \
-    main.cpp
+    main.cpp \
+    testboulder.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
