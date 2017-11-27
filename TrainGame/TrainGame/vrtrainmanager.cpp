@@ -234,10 +234,8 @@ std::weak_ptr<HttpEngine> VrTrainManager::getHttpEngine() const
 
 void VrTrainManager::readTrainsFromAPI()
 {
-    try {
-        dataReader::dataReader::READER.readHTTPData(getHttpEngine(), *this);
-    } catch (IoException &IO) {
-        std::cout<< IO.msg().toStdString();
-    }
+
+    dataReader::dataReader::READER.readHTTPData(getHttpEngine(), *this);
+
 
 }
