@@ -162,6 +162,11 @@ VrTrainManager *Game::getAiTrainModel(){
 
 void Game::move()
 {
+
+    if (!runGame_){
+        return;
+    }
+
     railLogic_.get()->move();
     obstacleLogic_.get()->move();
     bgLogic_.get()->move();
