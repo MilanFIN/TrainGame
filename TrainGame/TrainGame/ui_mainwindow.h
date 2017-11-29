@@ -85,7 +85,7 @@ public:
     QLabel *fameTextLabel;
     QLabel *fameLabel;
     QLabel *moneyTextLabel;
-    QLabel *label_4;
+    QLabel *moneyLabel;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -520,14 +520,14 @@ public:
         moneyTextLabel->setObjectName(QStringLiteral("moneyTextLabel"));
         moneyTextLabel->setGeometry(QRect(160, 10, 41, 21));
         moneyTextLabel->setFont(font3);
-        label_4 = new QLabel(centralWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(210, 10, 91, 21));
-        label_4->setFont(font4);
+        moneyLabel = new QLabel(centralWidget);
+        moneyLabel->setObjectName(QStringLiteral("moneyLabel"));
+        moneyLabel->setGeometry(QRect(210, 10, 91, 21));
+        moneyLabel->setFont(font4);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1154, 22));
+        menuBar->setGeometry(QRect(0, 0, 1154, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -588,7 +588,7 @@ public:
         fameTextLabel->setText(QApplication::translate("MainWindow", "fame:", Q_NULLPTR));
         fameLabel->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
         moneyTextLabel->setText(QApplication::translate("MainWindow", "raha:", Q_NULLPTR));
-        label_4->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
+        moneyLabel->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
     } // retranslateUi
 
 };

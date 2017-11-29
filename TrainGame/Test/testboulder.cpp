@@ -30,6 +30,11 @@ void TestBoulder::testMove() {
     boulder->move(50);
     Q_ASSERT(boulder->x() == -50);
     Q_ASSERT(boulder->y() == 100);
+
+    boulder->move(-30);
+    Q_ASSERT(boulder->x() == -50);
+    Q_ASSERT(boulder->y() == 70);
+
 }
 
 #include "testboulder.moc"

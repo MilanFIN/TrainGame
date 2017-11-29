@@ -73,7 +73,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 //    ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
 
     // player's starting cash
-    ui->label_4->setNum(game_->getPlayerCash());
+    ui->moneyLabel->setNum(game_->getPlayerMoney());
     ui->featuresTextOLabel->setText(QString("Aktiivinen Juna: "));
     ui->featuresOLabel->setText(game_->getPlayerModel()->activeTrain()->getName());
 
@@ -230,7 +230,7 @@ void MainWindow::updateBuyableTrains(std::vector<std::shared_ptr<PlayerTrain>> t
 
 void MainWindow::updateMoney(int cash)
 {
-    ui->label_4->setNum(cash);
+    ui->moneyLabel->setNum(cash);
 }
 
 void MainWindow::updateFame(int fame)

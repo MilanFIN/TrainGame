@@ -32,6 +32,10 @@ void TestBackground::testMove()
     Q_ASSERT(bg->x() == -250);
     Q_ASSERT(bg->y() == 60);
 
+    bg->move(-20);
+    Q_ASSERT(bg->x() == -250);
+    Q_ASSERT(bg->y() == 40);
+
 }
 
 #include "testbackground.moc"

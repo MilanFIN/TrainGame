@@ -13,8 +13,6 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene,
     bgLogic_ = std::make_shared<BackgroundLogic>(scene);
     aiTrainManager_ = std::make_shared<VrTrainManager>(scene);
 
-
-
     QTimer *moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
     moveTimer->start(66);
@@ -27,13 +25,9 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene,
     connect(obstacleSpawner_, SIGNAL(timeout()), this, SLOT(spawn()));
     obstacleSpawner_->start(50);
 
-
     goalSpeed_ = 0;
     previousSpeed_ = 0;
     movementSinceLastSpawn = 0;
-
-
-
 
 }
 
@@ -101,7 +95,7 @@ void Game::fixlistTrainInfo(QString trainName)
     playerLogic_->getInfoToGarage(trainName);
 }
 
-int Game::getPlayerCash()
+int Game::getPlayerMoney()
 {
     return playerLogic_->getCurrentMoney();
 }

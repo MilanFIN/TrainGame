@@ -33,7 +33,7 @@ public:
     void wantedOwnedTrainInfo(QString trainName);
     void wantedTrainInfo(QString trainName);
     void fixlistTrainInfo(QString trainName);
-    int getPlayerCash();
+    int getPlayerMoney();
 
     void repairPlayerTrain(int rowIndex);
 

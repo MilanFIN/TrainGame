@@ -1137,7 +1137,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <string>raha:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="moneyLabel">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -1162,7 +1162,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.67,
      <x>0</x>
      <y>0</y>
      <width>1154</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
