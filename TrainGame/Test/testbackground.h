@@ -11,7 +11,6 @@
 class TestBackground : public QObject
 {
     Q_OBJECT
-
 private slots:
 
     void testBackground();

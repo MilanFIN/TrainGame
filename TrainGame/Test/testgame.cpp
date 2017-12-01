@@ -2,8 +2,13 @@
 
 TestGame::TestGame(std::shared_ptr<QGraphicsScene> scene, std::shared_ptr<QGraphicsScene> miniMapScene)
 {
-    game_ = std::make_shared<Game>(scene, miniMapScene);
-    Q_ASSERT(game_ != NULL);
+    scene_ = scene;
+    miniMapScene_ = miniMapScene;
+}
+
+void TestGame::initTestCase()
+{
+    game_ = std::make_shared<Game>(scene_, miniMapScene_);
 }
 
 void TestGame::testGameConstructor()

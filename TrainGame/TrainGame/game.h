@@ -34,16 +34,11 @@ public:
     void wantedTrainInfo(QString trainName);
     void fixlistTrainInfo(QString trainName);
     int getPlayerMoney();
-
     void repairPlayerTrain(int rowIndex);
-
     void setActiveTrain(int rowIndex);
-
     void buyNewTrain(QString trainName, int index);
     void sellTrain(int index);
-
     void railChanged();
-
     void addMoney(int amount);
     void addFame(int amount);
 
@@ -51,21 +46,16 @@ public:
     PlayerLogic* getPlayerModel();
     ObstacleLogic* getObstacleModel();
     VrTrainManager* getAiTrainModel();
-signals:
-    void shopChanged();
 public slots:
     void move();
     void spawn();
     void checkCollisions();
-    void updateShop();
 private:
-
     std::shared_ptr<RailLogic>  railLogic_;
     std::shared_ptr<PlayerLogic>  playerLogic_ ;
     std::shared_ptr<ObstacleLogic>  obstacleLogic_ ;
     std::shared_ptr<BackgroundLogic> bgLogic_;
     std::shared_ptr<VrTrainManager> aiTrainManager_;
-
 
     float speed_;
     float goalSpeed_;
@@ -74,14 +64,8 @@ private:
     std::shared_ptr<QGraphicsScene> scene_;
     int movementSinceLastSpawn;
     float accel_ = 0.1;
-
-
-
     QTimer *obstacleSpawner_ = new QTimer(this);
-
-
     bool runGame_ = false;
-
 };
 
 #endif // GAME_H

@@ -49,7 +49,10 @@ SOURCES += \
         ../TrainGame/ioexception.cpp \
     main.cpp \
     testbackground.cpp \
-    testgame.cpp
+    testgame.cpp \
+    testboulder.cpp \
+    testplayerlogic.cpp \
+    testshop.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
@@ -77,7 +80,10 @@ HEADERS += \
         ../TrainGame/gameexception.h \
         ../TrainGame/ioexception.h \
     testbackground.h \
-    testgame.h
+    testgame.h \
+    testboulder.h \
+    testplayerlogic.h \
+    testshop.h
 
 RESOURCES += \
         ../TrainGame/res.qrc

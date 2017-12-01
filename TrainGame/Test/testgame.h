@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QtTest/QtTest>
 #include <QTest>
+#include <QSignalSpy>
 
 #include <memory>
 
@@ -17,13 +18,15 @@ public:
 
 private slots:
 
+    void initTestCase();
     void testGameConstructor();
     void testMoney();
 
 private:
 
     std::shared_ptr<Game> game_ = NULL;
-
+    std::shared_ptr<QGraphicsScene> scene_ = NULL;
+    std::shared_ptr<QGraphicsScene> miniMapScene_ = NULL;
 };
 
 #endif // TESTGAME_H

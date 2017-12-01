@@ -17,7 +17,6 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene,
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
     moveTimer->start(66);
 
-
     QTimer *CollisionTimer = new QTimer(this);
     connect(CollisionTimer, SIGNAL(timeout()), this, SLOT(checkCollisions()));
     CollisionTimer->start(300);
@@ -216,10 +215,5 @@ void Game::checkCollisions()
     if (crash){
         obstacleLogic_->crash();
     }
-}
-
-void Game::updateShop()
-{
-    emit shopChanged();
 }
 
