@@ -13,5 +13,6 @@ MinGW
 * [C++](http://www.cplusplus.com/)
 * [Qt](https://www1.qt.io/fi/)
 * [JSON](http://www.json.org/)
+* [GIMP](https://www.gimp.org/)
 * [GitLab CI](https://about.gitlab.com/features/gitlab-ci-cd/)
 
