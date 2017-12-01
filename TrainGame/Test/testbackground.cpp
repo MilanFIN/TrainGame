@@ -1,19 +1,4 @@
-#include "background.h"
-#include <QObject>
-#include <QtTest/QtTest>
-#include <QTest>
-
-#include <memory>
-
-class TestBackground : public QObject
-{
-    Q_OBJECT
-
-private slots:
-
-    void testBackground();
-    void testMove();
-};
+#include "testbackground.h"
 
 void TestBackground::testBackground()
 {
@@ -37,5 +22,3 @@ void TestBackground::testMove()
     Q_ASSERT(bg->y() == 40);
 
 }
-
-#include "testbackground.moc"

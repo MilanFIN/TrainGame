@@ -1,7 +1,7 @@
-#include "testbackground.cpp"
-#include "testboulder.cpp"
-//#include "testgame.cpp"
-#include "testshop.cpp"
+#include "testbackground.h"
+//#include "testboulder.h"
+#include "testgame.h"
+//#include "testshop.h"
 #include "mainwindow.h"
 #include "game.h"
 
@@ -25,14 +25,14 @@ int main(int argc, char *argv[])
     w.show();
 
     std::shared_ptr<TestBackground> testBackground = std::make_shared<TestBackground>();
-    std::shared_ptr<TestBoulder> testBoulder = std::make_shared<TestBoulder>();
-    //std::shared_ptr<TestGame> testGame = std::make_shared<TestGame>(scene, miniMapScene);
-    std::shared_ptr<TestShop> testShop = std::make_shared<TestShop>();
+//    std::shared_ptr<TestBoulder> testBoulder = std::make_shared<TestBoulder>();
+    std::shared_ptr<TestGame> testGame = std::make_shared<TestGame>(scene, miniMapScene);
+//    std::shared_ptr<TestShop> testShop = std::make_shared<TestShop>();
 
     QTest::qExec(testBackground.get(), argc, argv);
-    QTest::qExec(testBoulder.get(), argc, argv);
-    //QTest::qExec(testGame.get(), argc, argv);
-    QTest::qExec(testShop.get(), argc, argv);
+//    QTest::qExec(testBoulder.get(), argc, argv);
+    QTest::qExec(testGame.get(), argc, argv);
+//    QTest::qExec(testShop.get(), argc, argv);
 
     return a.exec();
 }

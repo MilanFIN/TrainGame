@@ -1,27 +1,4 @@
-#include "game.h"
-#include <QObject>
-#include <QtTest/QtTest>
-#include <QTest>
-
-#include <memory>
-
-class TestGame : public QObject
-{
-    Q_OBJECT
-
-public:
-    TestGame(std::shared_ptr<QGraphicsScene> scene, std::shared_ptr<QGraphicsScene> miniMapScene);
-
-private slots:
-
-    void testGameConstructor();
-    void testMoney();
-
-private:
-
-    std::shared_ptr<Game> game_ = NULL;
-
-};
+#include "testgame.h"
 
 TestGame::TestGame(std::shared_ptr<QGraphicsScene> scene, std::shared_ptr<QGraphicsScene> miniMapScene)
 {
@@ -44,7 +21,4 @@ void TestGame::testMoney()
     game_->addMoney(50);
     Q_ASSERT(game_->getPlayerMoney() == 550);
 }
-
-
-//#include "testgame.moc"
 

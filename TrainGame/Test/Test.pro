@@ -47,12 +47,9 @@ SOURCES += \
         ../TrainGame/httpengine.cpp \
         ../TrainGame/gameexception.cpp \
         ../TrainGame/ioexception.cpp \
-    testbackground.cpp \
     main.cpp \
-    testboulder.cpp \
-    testgame.cpp \
-    testshop.cpp \
-    testplayerlogic.cpp
+    testbackground.cpp \
+    testgame.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
@@ -78,7 +75,9 @@ HEADERS += \
         ../TrainGame/vrtrainmanager.h \
         ../TrainGame/httpengine.h \
         ../TrainGame/gameexception.h \
-        ../TrainGame/ioexception.h
+        ../TrainGame/ioexception.h \
+    testbackground.h \
+    testgame.h
 
 RESOURCES += \
         ../TrainGame/res.qrc
