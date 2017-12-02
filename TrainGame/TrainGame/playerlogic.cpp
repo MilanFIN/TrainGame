@@ -9,7 +9,9 @@ PlayerLogic::PlayerLogic():
     currentMoney_(500),
     fame_(0)
 {
+//    shop_ = std::make_shared<Shop>();
 
+//    dataReader::READER.loadTrains(":/data/junat.json", shop_, *this);
 }
 
 PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
