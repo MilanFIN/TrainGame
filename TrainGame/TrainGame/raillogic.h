@@ -112,6 +112,8 @@ public:
 
     void getCurrentLocation(QString &prev, QString &next, int &prevY, int &nextY, bool &mainRail);
 
+    int getNextDistance();
+
 signals:
     void destinationCandidatesChanged(QList<QString> stations);
     void backttrackCandidatesChanged(QList<QString> stations);
@@ -151,6 +153,9 @@ private:
 
     double latCenter_ = 63.4086;
     double yConversionRate_ = -50.0;//max 51.99;
+
+    double distanceConversionRate_ = 20000.0;
+
 
     // key : shortcode , value: particular station
     QHash<QString, StationInfo> stations_;

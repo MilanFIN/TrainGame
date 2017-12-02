@@ -9,7 +9,9 @@ public:
     Boulder(int y);
 
     void move(int speed);
-
+    int getDamage();
+private:
+    int damage_ = 50;
 };
 
 #endif // BOULDER_H

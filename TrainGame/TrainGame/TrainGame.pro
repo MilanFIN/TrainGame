@@ -45,7 +45,8 @@ SOURCES += \
     vrtrain.cpp \
     httpengine.cpp \
     gameexception.cpp \
-    ioexception.cpp
+    ioexception.cpp \
+    leafpile.cpp
 
 
 HEADERS += \
@@ -70,7 +71,8 @@ HEADERS += \
     vrtrain.h \
     httpengine.h \
     gameexception.h \
-    ioexception.h
+    ioexception.h \
+    leafpile.h
 
 
 FORMS += \

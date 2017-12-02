@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QGraphicsEllipseItem>
 #include <QDateTime>
+#include <math.h>
 
 
 RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
@@ -89,12 +90,13 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
 
 
 
+    int distance = getNextDistance();
     //spawn the next station to the game scene
-    nextStation_ = std::make_shared<Station>(-1000);
+    nextStation_ = std::make_shared<Station>(-distance);
     scene->addItem(nextStation_.get());
 
     //spawn the previous station closer by as we just started there
-    previousStation_ = std::make_shared<Station>(300);
+    previousStation_ = std::make_shared<Station>(150);
     scene->addItem(previousStation_.get());
 
 
@@ -280,13 +282,14 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         //delete original destination
         scene_->removeItem(nextStation_.get());
         //add the next station to the scene
-        nextStation_ = std::make_shared<Station>(-1000);
+        int distance = getNextDistance();
+        nextStation_ = std::make_shared<Station>(-distance);
         scene_->addItem(nextStation_.get());
 
         //delete the station we passed from the scene
         scene_->removeItem(previousStation_.get());
         //add the next station to the scene
-        previousStation_ = std::make_shared<Station>(300);
+        previousStation_ = std::make_shared<Station>(150);
         scene_->addItem(previousStation_.get());
 
 
@@ -406,7 +409,6 @@ void RailLogic::updateObstacleOnMiniMap(QString prev, QString next)
     int y = ((stations_.value(prev).lat-latCenter_) +(stations_.value(next).lat-latCenter_))/2 * yConversionRate_;
 
 
-    std::cout << x << std::endl;
     obstacleMapPoint_.setPos(x-5, y-5);
 }
 
@@ -523,6 +525,21 @@ void RailLogic::getCurrentLocation(QString &prev, QString &next, int &prevY, int
 
     }
 
+}
+
+int RailLogic::getNextDistance()
+{
+    double xdist = ((stations_.value(startStationCode_).lng) -(stations_.value(destinationStationCode_).lng))*distanceConversionRate_;
+    double ydist = ((stations_.value(startStationCode_).lat) -(stations_.value(destinationStationCode_).lat))*distanceConversionRate_;
+    double dist = sqrt(xdist*xdist + ydist*ydist);
+    //rajoitteet etäisyydelle, jottei tule järjettömiä välimatkoja
+    if (dist < 500.0){
+        dist = 500.0;
+    }
+    else if (dist > 5000.0){
+        dist = 5000.0;
+    }
+    return (int)dist;
 }
 
 void RailLogic::changeDestinationCandidateIndex(int index)

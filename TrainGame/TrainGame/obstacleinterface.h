@@ -9,6 +9,7 @@ public:
     ObstacleInterface() = default;
     virtual ~ObstacleInterface() = default;
     virtual void move(int speed) = 0;
+    virtual int getDamage() = 0;
 };
 
 #endif // OBSTACLEINTERFACE_H
