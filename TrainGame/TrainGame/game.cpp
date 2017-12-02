@@ -196,6 +196,9 @@ void Game::spawn()
     railLogic_.get()->getRandomStationAndTrack(distance,stations , track, stationNames, harmful);
     obstacleLogic_.get()->spawnObstacle(stations, track, stationNames, harmful);
 
+
+    railLogic_->updateObstacleOnMiniMap(stations.at(0), stations.at(1));
+
 }
 
 void Game::checkCollisions()

@@ -124,8 +124,11 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
         }
     }
 
-    nextStationMapPoint_.setPixmap(QPixmap::fromImage(QImage(":/kuvat/redDot.png")));
+    currentLocationMapPoint.setPixmap(QPixmap::fromImage(QImage(":/kuvat/redDot.png")));
+    obstacleMapPoint_.setPixmap(QPixmap::fromImage(QImage(":/kuvat/greenDot.png")));
     updateDestinationOnMiniMap();
+
+
 }
 
 RailLogic::~RailLogic()
@@ -379,15 +382,32 @@ void RailLogic::signalStationInfoToUi()
 void RailLogic::updateDestinationOnMiniMap()
 {
 
-    if (nextStationMapPoint_.x() != 0 && nextStationMapPoint_.y() != 0) {
-        miniMapScene_->removeItem(&nextStationMapPoint_);
+    if (!locMapPoint_) {
+        miniMapScene_->addItem(&currentLocationMapPoint);
+        locMapPoint_ = true;
     }
 
-    int x = (stations_.value(destinationStationCode_).lng-lngCenter_)*xConversionRate_;
-    int y = (stations_.value(destinationStationCode_).lat-latCenter_)*yConversionRate_;
 
-    nextStationMapPoint_.setPos(x,y);
-    miniMapScene_->addItem(&nextStationMapPoint_);
+    int x = (stations_.value(startStationCode_).lng-lngCenter_)*xConversionRate_;
+    int y = (stations_.value(startStationCode_).lat-latCenter_)*yConversionRate_;
+
+    currentLocationMapPoint.setPos(x-5, y-5);
+}
+
+void RailLogic::updateObstacleOnMiniMap(QString prev, QString next)
+{
+    if (!obsMapPoint_) {
+        miniMapScene_->addItem(&obstacleMapPoint_);
+        obsMapPoint_ = true;
+
+
+    }
+    int x = ((stations_.value(prev).lng-lngCenter_) +(stations_.value(next).lng-lngCenter_))/2 * xConversionRate_;
+    int y = ((stations_.value(prev).lat-latCenter_) +(stations_.value(next).lat-latCenter_))/2 * yConversionRate_;
+
+
+    std::cout << x << std::endl;
+    obstacleMapPoint_.setPos(x-5, y-5);
 }
 
 void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations, QString &trackCode, QList<QString> &stationNames, bool &harmful)

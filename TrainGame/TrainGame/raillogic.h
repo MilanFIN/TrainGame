@@ -103,6 +103,7 @@ public:
      * @pre rataverkko luettu, ja pelaajalla on sijainti
      * @param distance: etäisyys, Stations: viite, johon asemat tallennetaan, trackCode: viite johon raide tallennetaan
      */
+    void updateObstacleOnMiniMap(QString prev, QString next);
     void getRandomStationAndTrack(int distance, QList<QString>& Stations, QString& trackCode, QList<QString>& stationNames, bool &harmful);
 
     QString getCurrentTrack();
@@ -170,8 +171,11 @@ private:
     int backtrackIndex_;
 
     //point in the minimap for next station
-    QGraphicsPixmapItem nextStationMapPoint_;
-
+    QGraphicsPixmapItem currentLocationMapPoint;
+    //point in the minimap for the obstacle
+    QGraphicsPixmapItem obstacleMapPoint_;
+    bool locMapPoint_ = false;
+    bool obsMapPoint_ = false;
 
 };
 
