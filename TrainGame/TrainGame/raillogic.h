@@ -35,7 +35,7 @@ public:
      * @post raiteita on siirretty nopeutta vastaava määrä, ja nopeus on hakeutunut
      * kiihtyvyyden verran kohdenopeutta kohti
      */
-    void move();
+    void move(double multiplier);
     /**
      * @brief tavoitenopeuden setteri
      * @param uusi tavoitenopeus
@@ -125,7 +125,7 @@ private:
     bool forward_ = true;
     float previousSpeed_;
     int movementSinceLastRailSpawn_;
-    float accel_ = 1;
+    float accel_ = 0.1;
 
 
     //other

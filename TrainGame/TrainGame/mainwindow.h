@@ -11,6 +11,9 @@
 #include <QString>
 #include <httpengine.h>
 #include <QTimer>
+#include "playertrain.h"
+#include "obstaclelogic.h"
+#include "raillogic.h"
 
 namespace Ui {
 class MainWindow;

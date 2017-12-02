@@ -31,6 +31,11 @@ void PlayerTrain::setPixmapToShow()
 
 }
 
+double PlayerTrain::getSpeed()
+{
+    return speed_;
+}
+
 
 QString PlayerTrain::getName()
 {
@@ -77,8 +82,11 @@ unsigned short PlayerTrain::takeDamage(int dmgAmount)
     if (shape_ - dmgAmount <= 0) {
         isPlayable_ = false;
         shape_ = 0;
-
+        emit message("Junasi on vaurioitunut täysin, korjaa se!");
+        return shape_;
     }
+
+
 
     //because damage is always minus we use shape = shape + dmgAmount
     shape_ -= dmgAmount;

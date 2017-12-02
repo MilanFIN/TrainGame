@@ -63,7 +63,7 @@ private:
     float previousSpeed_;
     std::shared_ptr<QGraphicsScene> scene_;
     int movementSinceLastSpawn;
-    float accel_ = 0.1;
+    //float accel_ = 0.03;
     QTimer *obstacleSpawner_ = new QTimer(this);
     bool runGame_ = false;
 };

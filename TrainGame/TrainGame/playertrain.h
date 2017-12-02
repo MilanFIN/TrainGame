@@ -4,8 +4,10 @@
 #include <QGraphicsPixmapItem>
 #include "traininterface.h"
 
+
 class PlayerTrain: public TrainInterface
 {
+    Q_OBJECT
 public:
     PlayerTrain(QString name, short shape, unsigned short price, double speed, unsigned short repairCost, QString imagePath);
 
@@ -29,6 +31,12 @@ public:
     void setOwned();
 
     void setPixmapToShow();
+
+    double getSpeed();
+
+signals:
+    void message(QString msg);
+
 private:
 
 

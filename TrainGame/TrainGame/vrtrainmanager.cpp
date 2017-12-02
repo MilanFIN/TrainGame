@@ -102,6 +102,20 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
 
 }
 
+int VrTrainManager::checkPlayerCollision(std::shared_ptr<PlayerTrain> player)
+{
+    foreach(std::shared_ptr<VrTrain> train,aiTrains_){
+        if (train->collidesWithItem(player.get())){
+            train->blackList();
+            train->setInScene(false);
+            scene_->removeItem(train.get());
+            //collision happened, so return damage done to the player
+            return 50;
+        }
+    }
+    return 0;
+}
+
 QHash<QString, std::shared_ptr<VrTrain> > VrTrainManager::getAllAiTrains() const
 {
     return aiTrains_;
@@ -115,7 +129,9 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
 
         QVector<QPair<QString, QString>> timeTable = train->getTimeTable();
         for (auto pair =timeTable.begin()+1; pair != timeTable.end() ; ++pair){
-
+            if (train->blackListed()){
+                break;
+            }
             if (!mainRail){
                 if (train->inScene()){
                     scene_->removeItem(train.get());

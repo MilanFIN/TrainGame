@@ -133,7 +133,7 @@ RailLogic::~RailLogic()
 
 }
 
-void RailLogic::move()
+void RailLogic::move(double multiplier)
 {
     if (forward_){
         if (speed_ > goalSpeed_){
@@ -153,7 +153,7 @@ void RailLogic::move()
     }
     //siirretään raiteenpätkiä
     for (auto i = railTiles.begin(); i != railTiles.end(); ++i){
-        (*i).get()->move((int)speed_);
+        (*i).get()->move((int)(multiplier*speed_));
     }
 
     //tarkistetaan, onko kulkusuunta ehtinyt vaihtua edellisen päiviyksen jälkeen
@@ -161,8 +161,8 @@ void RailLogic::move()
         movementSinceLastRailSpawn_ = 0;
     }
 
-    movementSinceLastRailSpawn_ += speed_;
-    previousSpeed_ = speed_;
+    movementSinceLastRailSpawn_ += multiplier*speed_;
+    previousSpeed_ = multiplier*speed_;
 
     //luodaan uusi pätkä, jos on liikuttu tarpeeksi
     if (movementSinceLastRailSpawn_ >= 30){
@@ -197,8 +197,8 @@ void RailLogic::move()
     }
 
     //siirretään seuraavaa asemaa
-    nextStation_->move((int)speed_);
-    previousStation_->move((int)speed_);
+    nextStation_->move((int)(multiplier*speed_));
+    previousStation_->move((int)(multiplier*speed_));
 
 }
 

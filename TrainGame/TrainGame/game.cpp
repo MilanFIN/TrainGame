@@ -19,7 +19,7 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene,
 
     QTimer *CollisionTimer = new QTimer(this);
     connect(CollisionTimer, SIGNAL(timeout()), this, SLOT(checkCollisions()));
-    CollisionTimer->start(300);
+    CollisionTimer->start(66);
 
     connect(obstacleSpawner_, SIGNAL(timeout()), this, SLOT(spawn()));
     obstacleSpawner_->start(50);
@@ -160,10 +160,6 @@ void Game::move()
         return;
     }
 
-    railLogic_.get()->move();
-    obstacleLogic_.get()->move();
-    bgLogic_.get()->move();
-
     //move aitrains
 
     QString next;
@@ -174,6 +170,17 @@ void Game::move()
 
     railLogic_->getCurrentLocation(prev, next, prevY, nextY, mainRail);
     aiTrainManager_->move(prev, next, prevY, nextY, mainRail);
+
+    if (playerLogic_->activeTrain()->getAbsoluteShape() <= 0){
+        return;
+    }
+
+    double speedMultiplier = playerLogic_->activeTrain()->getSpeed();
+
+    railLogic_.get()->move(speedMultiplier);
+    obstacleLogic_.get()->move(speedMultiplier);
+    bgLogic_.get()->move(speedMultiplier);
+
 }
 
 void Game::spawn()
@@ -201,6 +208,9 @@ void Game::checkCollisions()
     int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
     //pelaajan aktiiviselle junalle lämää
     playerLogic_.get()->takeDamage(recievedDamage);
+    recievedDamage = aiTrainManager_->checkPlayerCollision(playerLogic_.get()->activeTrain());
+    playerLogic_.get()->takeDamage(recievedDamage);
+
     //check if player has arrived to a station
     railLogic_.get()->checkCollisionWithStations(playerLogic_.get()->activeTrain());
 

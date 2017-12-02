@@ -17,7 +17,7 @@ public:
     BackgroundLogic(std::shared_ptr<QGraphicsScene> scene);
     ~BackgroundLogic();
 
-    void move();
+    void move(double multiplier);
     void setSpeed(int newSpeed);
     void changeDirection();
 
@@ -28,7 +28,7 @@ private:
     bool forward_ = true;
     bool firstTime_ = true;
     float previousSpeed_;
-    float accel_ = 1;
+    float accel_ = 0.1;
     int movementOverall_;
     int movementAtLastBgCreation_;
     int movementSinceLastBgDeletion_;

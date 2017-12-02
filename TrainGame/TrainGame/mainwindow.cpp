@@ -55,6 +55,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(game_->getPlayerModel(), &PlayerLogic::shopActionFailed, this, &MainWindow::actionFailed);
 
     connect(game_->getAiTrainModel(), &VrTrainManager::message, this, &MainWindow::updateMessageLabel);
+    connect(game_->getPlayerModel()->activeTrain().get(), &PlayerTrain::message, this, &MainWindow::updateMessageLabel);
 
 
     connect(clearTimer_, SIGNAL(timeout()), this, SLOT(clearMessage()));
@@ -118,7 +119,8 @@ void MainWindow::on_shopButton_clicked()
 
 void MainWindow::changeSpeed()
 {
-    game_->setSpeed(ui->gasSlider->value()/10);
+    game_->setSpeed(ui->gasSlider->value());
+
 }
 
 void MainWindow::changeDirection()

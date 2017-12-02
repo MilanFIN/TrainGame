@@ -2,9 +2,11 @@
 #define TRAININTERFACE_H
 
 #include <QGraphicsPixmapItem>
+#include <QObject>
 
-class TrainInterface : public QGraphicsPixmapItem
+class TrainInterface : public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
 public:
     TrainInterface() = default;
     virtual ~TrainInterface() = default;

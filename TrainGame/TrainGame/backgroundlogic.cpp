@@ -20,7 +20,7 @@ BackgroundLogic::~BackgroundLogic() {
 
 }
 
-void BackgroundLogic::move() {
+void BackgroundLogic::move(double multiplier) {
 
     if (forward_){
         if (speed_ > goalSpeed_){
@@ -41,11 +41,11 @@ void BackgroundLogic::move() {
 
     //siirretään backgroundia
     for (auto x = bg.begin(); x != bg.end(); ++x) {
-        (*x).get()->move((int)speed_);
+        (*x).get()->move((int)(multiplier*speed_));
     }
 
-    movementOverall_ += speed_;
-    previousSpeed_ = speed_;
+    movementOverall_ += multiplier*speed_;
+    previousSpeed_ = multiplier*speed_;
 
     //because game starts in the middle of background
     //we must do the first background creation differently

@@ -11,7 +11,7 @@ ObstacleLogic::ObstacleLogic(std::shared_ptr<QGraphicsScene> scene):
 
 }
 
-void ObstacleLogic::move()
+void ObstacleLogic::move(double multiplier)
 {
     if (forward_){
         if (speed_ > goalSpeed_){
@@ -31,7 +31,7 @@ void ObstacleLogic::move()
     }
 
     //move obstacle
-    obstacle_.get()->move((int)speed_);
+    obstacle_.get()->move((int)(multiplier*speed_));
 }
 
 void ObstacleLogic::setSpeed(int newSpeed)

@@ -26,7 +26,7 @@ public:
      * @pre -
      * @post esteet on siirrettty
      */
-    void move();
+    void move(double multiplier);
     /**
      * @brief asettaa esteiden tavoitesiirtonopeuden
      * @param uusi tavoitenopeus
@@ -83,7 +83,7 @@ private:
     float goalSpeed_;
     bool forward_ = true;
     float previousSpeed_;
-    float accel_ = 1;
+    float accel_ = 0.1;
 
     //other
     std::shared_ptr<QGraphicsScene> scene_;

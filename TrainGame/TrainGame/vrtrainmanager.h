@@ -7,6 +7,7 @@
 #include <memory>
 #include "httpengine.h"
 #include "vrtrain.h"
+#include "playertrain.h"
 
 /**
  * @brief Hallitsee VrTrain-olioita
@@ -18,6 +19,7 @@ public:
     VrTrainManager(std::shared_ptr<QGraphicsScene> scene);
     void addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain);
     bool checkCollisions(QString prev, QString next, bool harmful);
+    int checkPlayerCollision(std::shared_ptr<PlayerTrain> player);
 
     QHash<QString, std::shared_ptr<VrTrain>> getAllAiTrains() const;
 
