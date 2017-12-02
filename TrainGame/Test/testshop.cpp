@@ -1,21 +1,35 @@
 #include "testshop.h"
 
+TestShop::TestShop(std::shared_ptr<QGraphicsScene> scene)
+{
+    scene_ = scene;
+    playerLogic_ = std::make_shared<PlayerLogic>(scene);
+}
+
+void TestShop::initTestCase()
+{
+    shop_ = std::make_shared<Shop>();
+}
+
 void TestShop::testBuyableTrains()
 {
     std::shared_ptr<Shop> shop = std::make_shared<Shop>();
     std::vector<std::shared_ptr<PlayerTrain>> vec = shop->buyableTrains();
 
-    for (std::shared_ptr<PlayerTrain> item : vec) {
+    //Q_ASSERT(vec.size() != 0);
 
-        //testataan että junat on oikeanlaisia
+    std::string latta = "Lättähattu";
+    std::string hoyry = "Höyryveturi";
+    std::string luoti = "Luotijuna";
+    QString qlatta = QString::fromStdString(latta);
+    QString qhoyry = QString::fromStdString(hoyry);
+    QString qluoti = QString::fromStdString(luoti);
 
-        //jotain tälläistä
-        //std::string str = "Hello world";
-        //QString qstr = QString::fromStdString(str);
+//    for (std::shared_ptr<PlayerTrain> item : vec) {
 
-        //Q_ASSERT(item->getName() != "Lättähattujuna");
+//        Q_ASSERT(item->getName().compare(qlatta));
 
-    }
+//    }
 
 }
 

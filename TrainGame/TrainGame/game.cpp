@@ -189,7 +189,6 @@ void Game::spawn()
     railLogic_.get()->getRandomStationAndTrack(distance,stations , track, stationNames, harmful);
     obstacleLogic_.get()->spawnObstacle(stations, track, stationNames, harmful);
 
-    //obstacleLogic_.get()->spawnObstacle();
 }
 
 void Game::checkCollisions()

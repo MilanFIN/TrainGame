@@ -19,7 +19,7 @@ public:
 private slots:
 
     void initTestCase();
-    void testGameConstructor();
+    void testConstructor();
     void testMoney();
 
 private:

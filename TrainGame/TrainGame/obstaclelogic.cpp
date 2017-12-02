@@ -32,10 +32,6 @@ void ObstacleLogic::move()
 
     //move obstacle
     obstacle_.get()->move((int)speed_);
-
-
-
-
 }
 
 void ObstacleLogic::setSpeed(int newSpeed)
@@ -89,7 +85,6 @@ void ObstacleLogic::removeNearbyObjects(int location)
             emit obstacleRemoved(10, 100);
         }
     }
-
 }
 
 int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
@@ -145,8 +140,6 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
         }
 
     }
-
-
 }
 
 void ObstacleLogic::getObstacleLocation(QString &previous, QString &next, bool &harmful)

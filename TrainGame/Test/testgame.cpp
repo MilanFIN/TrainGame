@@ -11,7 +11,7 @@ void TestGame::initTestCase()
     game_ = std::make_shared<Game>(scene_, miniMapScene_);
 }
 
-void TestGame::testGameConstructor()
+void TestGame::testConstructor()
 {
     Q_ASSERT(game_->getPlayerModel() != NULL);
     Q_ASSERT(game_->getObstacleModel() != NULL);
