@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QGraphicsEllipseItem>
 #include <QDateTime>
+#include <math.h>
 
 
 RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
@@ -89,12 +90,13 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
 
 
 
+    int distance = getNextDistance();
     //spawn the next station to the game scene
-    nextStation_ = std::make_shared<Station>(-1000);
+    nextStation_ = std::make_shared<Station>(-distance);
     scene->addItem(nextStation_.get());
 
     //spawn the previous station closer by as we just started there
-    previousStation_ = std::make_shared<Station>(300);
+    previousStation_ = std::make_shared<Station>(150);
     scene->addItem(previousStation_.get());
 
 
@@ -124,8 +126,11 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
         }
     }
 
-    nextStationMapPoint_.setPixmap(QPixmap::fromImage(QImage(":/kuvat/redDot.png")));
+    currentLocationMapPoint.setPixmap(QPixmap::fromImage(QImage(":/kuvat/redDot.png")));
+    obstacleMapPoint_.setPixmap(QPixmap::fromImage(QImage(":/kuvat/greenDot.png")));
     updateDestinationOnMiniMap();
+
+
 }
 
 RailLogic::~RailLogic()
@@ -277,13 +282,14 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         //delete original destination
         scene_->removeItem(nextStation_.get());
         //add the next station to the scene
-        nextStation_ = std::make_shared<Station>(-1000);
+        int distance = getNextDistance();
+        nextStation_ = std::make_shared<Station>(-distance);
         scene_->addItem(nextStation_.get());
 
         //delete the station we passed from the scene
         scene_->removeItem(previousStation_.get());
         //add the next station to the scene
-        previousStation_ = std::make_shared<Station>(300);
+        previousStation_ = std::make_shared<Station>(150);
         scene_->addItem(previousStation_.get());
 
 
@@ -379,15 +385,31 @@ void RailLogic::signalStationInfoToUi()
 void RailLogic::updateDestinationOnMiniMap()
 {
 
-    if (nextStationMapPoint_.x() != 0 && nextStationMapPoint_.y() != 0) {
-        miniMapScene_->removeItem(&nextStationMapPoint_);
+    if (!locMapPoint_) {
+        miniMapScene_->addItem(&currentLocationMapPoint);
+        locMapPoint_ = true;
     }
 
-    int x = (stations_.value(destinationStationCode_).lng-lngCenter_)*xConversionRate_;
-    int y = (stations_.value(destinationStationCode_).lat-latCenter_)*yConversionRate_;
 
-    nextStationMapPoint_.setPos(x,y);
-    miniMapScene_->addItem(&nextStationMapPoint_);
+    int x = (stations_.value(startStationCode_).lng-lngCenter_)*xConversionRate_;
+    int y = (stations_.value(startStationCode_).lat-latCenter_)*yConversionRate_;
+
+    currentLocationMapPoint.setPos(x-5, y-5);
+}
+
+void RailLogic::updateObstacleOnMiniMap(QString prev, QString next)
+{
+    if (!obsMapPoint_) {
+        miniMapScene_->addItem(&obstacleMapPoint_);
+        obsMapPoint_ = true;
+
+
+    }
+    int x = ((stations_.value(prev).lng-lngCenter_) +(stations_.value(next).lng-lngCenter_))/2 * xConversionRate_;
+    int y = ((stations_.value(prev).lat-latCenter_) +(stations_.value(next).lat-latCenter_))/2 * yConversionRate_;
+
+
+    obstacleMapPoint_.setPos(x-5, y-5);
 }
 
 void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations, QString &trackCode, QList<QString> &stationNames, bool &harmful)
@@ -503,6 +525,21 @@ void RailLogic::getCurrentLocation(QString &prev, QString &next, int &prevY, int
 
     }
 
+}
+
+int RailLogic::getNextDistance()
+{
+    double xdist = ((stations_.value(startStationCode_).lng) -(stations_.value(destinationStationCode_).lng))*distanceConversionRate_;
+    double ydist = ((stations_.value(startStationCode_).lat) -(stations_.value(destinationStationCode_).lat))*distanceConversionRate_;
+    double dist = sqrt(xdist*xdist + ydist*ydist);
+    //rajoitteet etäisyydelle, jottei tule järjettömiä välimatkoja
+    if (dist < 500.0){
+        dist = 500.0;
+    }
+    else if (dist > 5000.0){
+        dist = 5000.0;
+    }
+    return (int)dist;
 }
 
 void RailLogic::changeDestinationCandidateIndex(int index)

@@ -96,7 +96,7 @@ int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
             scene_->removeItem(obstacle_.get());
             inScene_ = false;
 
-            damageDone += 20;
+            damageDone += obstacle_.get()->getDamage();
             //annetaan vaan palkkio, muttei famea koska törmättiin
             emit obstacleRemoved(0, 100);
         }
