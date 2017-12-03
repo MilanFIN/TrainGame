@@ -11,24 +11,26 @@ image: alpine-qt:latest
 # cachetetaan build-vaiheessa luodut (testi)binäärit, jotta ne siirtyvät eri vaiheiden välillä.
 cache:
     paths:
-      - /TrainGame/Test/tst_testgame
+      - /TrainGame/Test/debug/testgame.o
 stages: 
   - build
   - test
 
-buildTrainGame:
+build:
+  only: 
+    - none
   stage: build
   
   script:
     - cd TrainGame/Test
-    - qmake
+    - qmake Test.pro
     - make
     
 testGame:
+  only: 
+    - none
   stage: test
-  
   script:
-    - cd TrainGame/Test
-    - ./tst_testgame
+    - ./testgame
 
 # Tarkempi kuvaus GitLab CI:n konfigurointiin https://docs.gitlab.com/ce/ci/yaml/
