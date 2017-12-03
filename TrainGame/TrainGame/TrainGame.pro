@@ -46,7 +46,8 @@ SOURCES += \
     httpengine.cpp \
     gameexception.cpp \
     ioexception.cpp \
-    leafpile.cpp
+    leafpile.cpp \
+    pathfinder.cpp
 
 
 HEADERS += \
@@ -72,7 +73,8 @@ HEADERS += \
     httpengine.h \
     gameexception.h \
     ioexception.h \
-    leafpile.h
+    leafpile.h \
+    pathfinder.h
 
 
 FORMS += \

@@ -64,6 +64,8 @@ public:
     QLabel *blockThreat;
     QLabel *label_8;
     QLabel *notificationLabel;
+    QLabel *label_4;
+    QLabel *naviLabel;
     QWidget *shopPage;
     QPushButton *buyButton;
     QPushButton *sellButton;
@@ -167,7 +169,7 @@ public:
         minimapView->setGeometry(QRect(10, 70, 281, 421));
         gasSlider = new QSlider(gamePage);
         gasSlider->setObjectName(QStringLiteral("gasSlider"));
-        gasSlider->setGeometry(QRect(860, 450, 251, 41));
+        gasSlider->setGeometry(QRect(860, 470, 251, 41));
         gasSlider->setStyleSheet(QLatin1String("QSlider  \n"
 "{  \n"
 "    background-color: #ddd;   \n"
@@ -196,7 +198,7 @@ public:
         gasSlider->setOrientation(Qt::Horizontal);
         directionButton = new QPushButton(gamePage);
         directionButton->setObjectName(QStringLiteral("directionButton"));
-        directionButton->setGeometry(QRect(870, 410, 71, 31));
+        directionButton->setGeometry(QRect(860, 430, 71, 31));
         directionButton->setStyleSheet(QLatin1String("QPushButton:pressed {\n"
 "	background-color: #222222;\n"
 "	border: 1px solid #333333;\n"
@@ -214,20 +216,20 @@ public:
 "}"));
         directionLabel = new QLabel(gamePage);
         directionLabel->setObjectName(QStringLiteral("directionLabel"));
-        directionLabel->setGeometry(QRect(950, 410, 61, 21));
+        directionLabel->setGeometry(QRect(940, 430, 61, 21));
         directionLabel->setAlignment(Qt::AlignCenter);
         comingLabel = new QLabel(gamePage);
         comingLabel->setObjectName(QStringLiteral("comingLabel"));
-        comingLabel->setGeometry(QRect(840, 100, 81, 16));
+        comingLabel->setGeometry(QRect(840, 130, 81, 16));
         passedLabel = new QLabel(gamePage);
         passedLabel->setObjectName(QStringLiteral("passedLabel"));
-        passedLabel->setGeometry(QRect(840, 250, 71, 16));
+        passedLabel->setGeometry(QRect(840, 280, 71, 16));
         nextStationsListWidget = new QListWidget(gamePage);
         nextStationsListWidget->setObjectName(QStringLiteral("nextStationsListWidget"));
-        nextStationsListWidget->setGeometry(QRect(840, 120, 181, 131));
+        nextStationsListWidget->setGeometry(QRect(840, 150, 181, 131));
         passedStationsListWidget = new QListWidget(gamePage);
         passedStationsListWidget->setObjectName(QStringLiteral("passedStationsListWidget"));
-        passedStationsListWidget->setGeometry(QRect(840, 270, 181, 131));
+        passedStationsListWidget->setGeometry(QRect(840, 300, 181, 131));
         nextStationLabel = new QLabel(gamePage);
         nextStationLabel->setObjectName(QStringLiteral("nextStationLabel"));
         nextStationLabel->setGeometry(QRect(0, 0, 121, 16));
@@ -272,6 +274,12 @@ public:
         notificationLabel = new QLabel(gamePage);
         notificationLabel->setObjectName(QStringLiteral("notificationLabel"));
         notificationLabel->setGeometry(QRect(950, 80, 181, 16));
+        label_4 = new QLabel(gamePage);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(830, 100, 31, 17));
+        naviLabel = new QLabel(gamePage);
+        naviLabel->setObjectName(QStringLiteral("naviLabel"));
+        naviLabel->setGeometry(QRect(870, 100, 271, 20));
         stackedWidget->addWidget(gamePage);
         shopPage = new QWidget();
         shopPage->setObjectName(QStringLiteral("shopPage"));
@@ -570,6 +578,8 @@ public:
         blockThreat->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
         label_8->setText(QApplication::translate("MainWindow", "Viimeisin ilmoitus:", Q_NULLPTR));
         notificationLabel->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MainWindow", "Navi: ", Q_NULLPTR));
+        naviLabel->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
         buyButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
         sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
         playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));

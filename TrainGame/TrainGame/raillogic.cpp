@@ -1,5 +1,6 @@
 #include "raillogic.h"
 #include "datareader.h"
+#include "pathfinder.h"
 #include <iostream>
 #include <QDebug>
 #include <QGraphicsEllipseItem>
@@ -540,6 +541,18 @@ int RailLogic::getNextDistance()
         dist = 5000.0;
     }
     return (int)dist;
+}
+
+void RailLogic::updateNavi(QString next, QString prev)
+{
+    QString result;
+    bool found = PathFinder::PATHFINDER.nextStationCode(result, tracks_, destinationStationCandidates_, prev, next);
+    if (found) {
+        emit naviInfoUpdate("Valitse seuraavaksi " + stations_.value(result).fullName);
+    }
+    else {
+        emit naviInfoUpdate("Olet liian kaukana reittiarviota varten");
+    }
 }
 
 void RailLogic::changeDestinationCandidateIndex(int index)

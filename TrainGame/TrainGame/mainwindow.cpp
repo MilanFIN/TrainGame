@@ -25,6 +25,8 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(game_->getRailModel(), &RailLogic::signalDestAndPrevious, this, &MainWindow::updatePreviousAndNext);
 
 
+    connect(game_->getRailModel(), &RailLogic::naviInfoUpdate, this, &MainWindow::updateNaviToUi);
+
     connect(game_->getPlayerModel(), &PlayerLogic::playerCashChanged, this, &MainWindow::updateMoney);
     connect(game_->getPlayerModel(), &PlayerLogic::playerFameChanged, this, &MainWindow::updateFame);
 
@@ -56,6 +58,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     connect(game_->getAiTrainModel(), &VrTrainManager::message, this, &MainWindow::updateMessageLabel);
     connect(game_->getPlayerModel()->activeTrain().get(), &PlayerTrain::message, this, &MainWindow::updateMessageLabel);
+
 
 
     connect(clearTimer_, SIGNAL(timeout()), this, SLOT(clearMessage()));
@@ -152,6 +155,7 @@ void MainWindow::updateNextStations(QList<QString> stations)
     for (auto i = stations.begin(); i != stations.end(); ++i){
         ui->nextStationsListWidget->addItem(*i);
     }
+    game_->updateNavi();
 
 }
 
@@ -257,9 +261,6 @@ void MainWindow::on_sellButton_clicked()
 
         game_->sellTrain(index);
 
-
-
-
         ui->featuresBLabel->clear();
         ui->costsLabel->clear();
 
@@ -275,7 +276,6 @@ void MainWindow::on_buyButton_clicked()
         int index = ui->buyableTrainsListWidget->currentRow();
 
         game_->buyNewTrain(TrainName, index);
-
 
         ui->featuresBLabel->clear();
         ui->costsLabel->clear();
@@ -406,4 +406,9 @@ void MainWindow::clearMessage()
 {
     clearTimer_->stop();
     ui->notificationLabel->setText("");
+}
+
+void MainWindow::updateNaviToUi(QString info)
+{
+    ui->naviLabel->setText(info);
 }

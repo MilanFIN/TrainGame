@@ -134,6 +134,15 @@ void Game::addFame(int amount)
     playerLogic_->addFame(amount);
 }
 
+void Game::updateNavi()
+{
+    QString prev;
+    QString next;
+    bool harm;
+    obstacleLogic_->getObstacleLocation(prev, next, harm);
+    railLogic_->updateNavi(next, prev);
+}
+
 RailLogic* Game::getRailModel()
 {
     return railLogic_.get();
@@ -171,7 +180,7 @@ void Game::move()
     railLogic_->getCurrentLocation(prev, next, prevY, nextY, mainRail);
     aiTrainManager_->move(prev, next, prevY, nextY, mainRail);
 
-    if (playerLogic_->activeTrain()->getAbsoluteShape() <= 0){
+    if (playerLogic_->activeTrain()->getShape() <= 0){
         return;
     }
 
@@ -199,6 +208,7 @@ void Game::spawn()
 
     railLogic_->updateObstacleOnMiniMap(stations.at(0), stations.at(1));
 
+    railLogic_->updateNavi(stations.at(0), stations.at(1));
 }
 
 void Game::checkCollisions()

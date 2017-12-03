@@ -41,6 +41,7 @@ public:
     void railChanged();
     void addMoney(int amount);
     void addFame(int amount);
+    void updateNavi();
 
     RailLogic* getRailModel();
     PlayerLogic* getPlayerModel();

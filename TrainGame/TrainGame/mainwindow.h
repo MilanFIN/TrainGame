@@ -88,6 +88,8 @@ public slots:
 
     void clearMessage();
 
+    void updateNaviToUi(QString info);
+
 signals:
 private:
     Ui::MainWindow *ui;

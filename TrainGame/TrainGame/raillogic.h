@@ -114,10 +114,12 @@ public:
 
     int getNextDistance();
 
+    void updateNavi(QString next, QString prev);
 signals:
     void destinationCandidatesChanged(QList<QString> stations);
     void backttrackCandidatesChanged(QList<QString> stations);
     void signalDestAndPrevious(QString previous, QString next);
+    void naviInfoUpdate(QString info);
 
 
 private:

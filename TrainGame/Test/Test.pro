@@ -48,6 +48,7 @@ SOURCES += \
         ../TrainGame/gameexception.cpp \
         ../TrainGame/ioexception.cpp \
         ../TrainGame/leafpile.cpp \
+        ../TrainGame/pathfinder.cpp \
     main.cpp \
     testbackground.cpp \
     testgame.cpp \
@@ -81,6 +82,7 @@ HEADERS += \
         ../TrainGame/gameexception.h \
         ../TrainGame/ioexception.h \
         ../TrainGame/leafpile.h \
+        ../TrainGame/pathfinder.h \
     testbackground.h \
     testgame.h \
     testboulder.h \
