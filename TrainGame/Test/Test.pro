@@ -52,7 +52,6 @@ SOURCES += \
     testgame.cpp \
     testboulder.cpp \
     testplayerlogic.cpp \
-    testshop.cpp \
     testbackgroundlogic.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
@@ -84,7 +83,6 @@ HEADERS += \
     testgame.h \
     testboulder.h \
     testplayerlogic.h \
-    testshop.h \
     testbackgroundlogic.h
 
 RESOURCES += \
