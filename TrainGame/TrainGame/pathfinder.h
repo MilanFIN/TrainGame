@@ -2,6 +2,7 @@
 #define PATHFINDER_H
 
 #include <QList>
+#include <QMap>
 #include <QString>
 
 class PathFinder
