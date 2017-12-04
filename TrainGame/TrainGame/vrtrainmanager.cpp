@@ -105,12 +105,15 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
 int VrTrainManager::checkPlayerCollision(std::shared_ptr<PlayerTrain> player)
 {
     foreach(std::shared_ptr<VrTrain> train,aiTrains_){
-        if (train->collidesWithItem(player.get())){
-            train->blackList();
-            train->setInScene(false);
-            scene_->removeItem(train.get());
-            //collision happened, so return damage done to the player
-            return 50;
+        if (!train->blackListed() && train->inScene()){
+            if (train->collidesWithItem(player.get())){
+                train->blackList();
+                train->setInScene(false);
+                scene_->removeItem(train.get());
+                std::cout << "asd2" << std::endl;
+                //collision happened, so return damage done to the player
+                return 50;
+            }
         }
     }
     return 0;
