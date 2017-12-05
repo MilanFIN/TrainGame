@@ -50,6 +50,7 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
                     ((*pair).first == prev && (*(pair-1)).first == next)) {
 
 
+                    bool canContinue = true;
                     std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
                     i++;
                     std::string time = *i;
@@ -57,10 +58,16 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
                     std::stringstream stream(time);
                     QVector<int> timeFractures;
                     while( std::getline(stream, part, ':') ){
+                       if ( !isdigit(part[0])){
+                               canContinue = false;
+                               break;
+                       }
                        timeFractures.append(std::stoi(part));
 
                     }
-
+                    if (!canContinue){
+                        break;
+                    }
                     std::regex_token_iterator<std::string::iterator> j{(*(pair-1)).second.toStdString().begin(), (*(pair-1)).second.toStdString().end(), re, 1};
                     j++;
                     std::string nextTime = *j;
@@ -68,8 +75,15 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
                     std::stringstream nextstream(nextTime);
                     QVector<int> nextTimeFractures;
                     while( std::getline(nextstream, nextPart, ':') ){
+                        if ( !isdigit(nextPart[0])){
+                                canContinue = false;
+                                break;
+                        }
                        nextTimeFractures.append(std::stoi(nextPart));
 
+                    }
+                    if (!canContinue){
+                        break;
                     }
                     int hour = QTime::currentTime().hour();
                     int minute = QTime::currentTime().minute();
@@ -146,7 +160,7 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                 ((*pair).first == prev && (*(pair-1)).first == next)) {
 
 
-
+                bool canContinue = true;
                 std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
                 i++;
                 std::string time = *i;
@@ -157,12 +171,16 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
 
                 QVector<int> timeFractures;
                 while( std::getline(stream, part, ':') ){
+                    if ( !isdigit(part[0])){
+                            canContinue = false;
+                            break;
+                    }
                    timeFractures.append(std::stoi(part));
 
                 }
-
-
-
+                if (!canContinue){
+                    break;
+                }
 
                 std::regex_token_iterator<std::string::iterator> j{(*(pair-1)).second.toStdString().begin(), (*(pair-1)).second.toStdString().end(), re, 1};
                 j++;
@@ -171,10 +189,17 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                 std::stringstream nextstream(nextTime);
                 QVector<int> nextTimeFractures;
                 while( std::getline(nextstream, nextPart, ':') ){
+                    if ( !isdigit(nextPart[0])){
+                            canContinue = false;
+                            break;
+                    }
                    nextTimeFractures.append(std::stoi(nextPart));
 
                 }
 
+                if (!canContinue){
+                    break;
+                }
 
                 int hour = QTime::currentTime().hour();
                 int minute = QTime::currentTime().minute();
