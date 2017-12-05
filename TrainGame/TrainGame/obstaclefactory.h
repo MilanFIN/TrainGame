@@ -4,6 +4,9 @@
 #include <obstacleinterface.h>
 
 
+/**
+ * @brief ObstacleFactory is used for creating random obstacles
+ */
 class ObstacleFactory: public std::enable_shared_from_this<ObstacleFactory>
 {
 public:

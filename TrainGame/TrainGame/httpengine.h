@@ -10,20 +10,20 @@
 
 
 /**
- * @brief HttpEngine-Luokka suorittaa kyselyn vr:n API:in.
+ * @brief HttpEngine-object executes a HTTP: query to VR's API.
  */
 class HttpEngine: public QObject
 {
     Q_OBJECT
 public:
     /**
-     * @brief HttpEngine rakentaja
+     * @brief HttpEngine construcotr
      */
     HttpEngine();
 
     /**
-     * @brief httpData suorittaa http kyselyn vr:n API:in
-     * @return QIODevice* osoitin
+     * @brief httpData executes the query
+     * @return QIODevice* pointer
      */
     QIODevice* httpData();
 

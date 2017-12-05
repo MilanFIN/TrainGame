@@ -21,7 +21,9 @@
 #include "playertrain.h"
 #include "background.h"
 
-
+/**
+ * @brief The RailLogic class defines the object that handles most railway network related stuff
+ */
 
 class RailLogic : public QObject
 {
@@ -31,89 +33,130 @@ public:
                        std::shared_ptr<QGraphicsScene> miniMapScene);
     ~RailLogic();
     /**
-     * @brief siirtää luokan vastuulla olevia graphicsviewitemejä
-     * @post raiteita on siirretty nopeutta vastaava määrä, ja nopeus on hakeutunut
-     * kiihtyvyyden verran kohdenopeutta kohti
+     * @brief move moves items handled by this class
+     * @param multiplier multiplier for the speed
+     * @post items moved
      */
     void move(double multiplier);
     /**
-     * @brief tavoitenopeuden setteri
-     * @param uusi tavoitenopeus
-     * @pre -
-     * @post tavoitenopeus on muuttunut
+     * @brief setSpeed sets a new goalspeed
+     * @param newSpeed the goalspeed
+     * @post the goalspeed has changed
      */
     void setSpeed(int newSpeed);
     /**
-     * @brief tavoitesuunnan muuttaja
-     * @pre -
-     * @post tavoitesuunta on muuttunut
+     * @brief changeDirection changes the goal direction
+     * @post the goal direction is different than previously
      */
     void changeDirection();
+    /**
+     * @brief addTrack adds a new track to the object
+     * @param trackCode code of the track
+     * @param stations all stations along the track
+     */
     void addTrack(QString trackCode, QList<QString> stations);
+    /**
+     * @brief addStations adds a new station to the object
+     * @param shortCode stationcode
+     * @param fullName name of the station
+     * @param type type of the station
+     * @param lat latitude as in the geographic coordinate
+     * @param lng longitude as in the geographic coordinate
+     * @param passengerStation info if the station handles passenger traffic(not really relevant for this)
+     */
     void addStations(QString shortCode, QString fullName, QString type,
                      double lat, double lng, bool passengerStation);
 
     /**
-     * @brief tarkistaa törmäyksen asemien kanssa
-     * @param pelaajan tämänhetkinen aktiivinen juna
-     * @pre pelaajalle on valittu juna
-     * @post törmäys on tarkistettu, ja raidetta vaihdettu, jos on törmätty
+     * @brief checkCollisionWithStations checks if the train collides with stations
+     * @param train player's active train
+     * @post if collided, then the track has been updated
      */
     void checkCollisionWithStations(std::shared_ptr<PlayerTrain> train);
     /**
-     * @brief luo parametreistä yhdistetyn version
-     * @param asemien nimet, raiteiden nimet
-     * @pre -
-     * @post yhdistelmä on muodostettu
-     * @return lista asema-raideyhdistelmistä
+     * @brief CombineStationTrackInfo makes a neat format of the station information
+     * @param stationCodes list of stations
+     * @param trackCodes list of tracks
+     * @return list of the neatly combined infos made from the parameters
      */
     QList<QString> CombineStationTrackInfo(QList<QString> &stationCodes, QList<QString> &trackCodes);
 
-    //methods to change chosen candidates for destination or backtrack destination
     /**
-     * @brief seuraavaa kohdeasemaa muuttava metodi
-     * @param vektorin indeksi
-     * @pre parametri on vektoriin mahtuva indeksi
-     * @post uusi kohde on valittu
+     * @brief changeDestinationCandidateIndex changes the next destination
+     * @param index index of the destination station
+     * @pre the index must be in range of the possible choises
+     * @post the new destination has been set
      */
     void changeDestinationCandidateIndex(int index);
     /**
-     * @brief peruutuksen myötä asettettavaa kohdetta muuttava metodi
-     * @param vektorin indeksi
-     * @pre parametri on vektoriin mahtuva indeksi
-     * @post uusi paluukohde on valittu
+     * @brief changeBackTrackCandidateIndex sets the new destination if we reversed back to the previous station
+     * @param index index of the destination
+     * @pre destination index is in the possible choises of destinations
+     * @post the backtracking destination has been changed
      */
     void changeBackTrackCandidateIndex(int index);
-
     /**
-     * @brief tiedottaa käyttöliittymälle kohdeasemat
-     * @pre käyttöliittymä on alustettu, ratadata on luettu
-     * @post käyttöliittymälle on lähettetty signaali, jossa on kohdeasemat
+     * @brief signalStationInfoToUi signals previous and next station's info to the ui
+     * @pre the necessary slots to handle the upcoming signals have been defined and connected
      */
     void signalStationInfoToUi();
-
     /**
-     * @brief päivittää pelaajan sijainnin minimappiin
-     * @pre minimap on alustettu
-     * @post sijainti on muuttunut kohdeasemaa vastaavaksi
+     * @brief updateDestinationOnMiniMap updates the last station to the minimap
+     * @post red dot on the minimap has changed it's location
      */
     void updateDestinationOnMiniMap();
     /**
-     * @brief kertoo satunnaisen asemaparin satunnaisella raiteella max distance-päässä pelaajasta
-     * @pre rataverkko luettu, ja pelaajalla on sijainti
-     * @param distance: etäisyys, Stations: viite, johon asemat tallennetaan, trackCode: viite johon raide tallennetaan
+     * @brief updateObstacleOnMiniMap updates the obstacle's location on the minimap
+     * @param prev prevous station to the obstacle (stationcode)
+     * @param next next station from the obstacle (stationcode)
+     * @post the green dot has been placed in between prev and next
      */
     void updateObstacleOnMiniMap(QString prev, QString next);
+    /**
+     * @brief getRandomStationAndTrack gets a random station pair at a maximum distance
+     * @param distance max distance in amount of stations
+     * @param Stations list of 2 elements, the two stations that were chosen
+     * @param trackCode the trackcode of the chosen track
+     * @param stationNames list of 2, names of the stations chosen
+     * @param harmful boolean value if the location is in danger of collision from aitrains
+     */
     void getRandomStationAndTrack(int distance, QList<QString>& Stations, QString& trackCode, QList<QString>& stationNames, bool &harmful);
 
+    /**
+     * @brief getCurrentTrack returns current track
+     * @return current track's trackcode
+     */
     QString getCurrentTrack();
+    /**
+     * @brief getLastStation gets the previous station
+     * @return previous station's stationcode
+     */
     QString getLastStation();
+    /**
+     * @brief getNextStation gets the next station
+     * @return next stations stationcode
+     */
     QString getNextStation();
 
+    /**
+     * @brief getCurrentLocation sets the current location into the parameters
+     * @param prev previous stationcode
+     * @param next next stationcode
+     * @param prevY previous station's location in y axis
+     * @param nextY next stations location in y axis
+     * @param mainRail info if the train is in a track that has aitrain traffic
+     */
     void getCurrentLocation(QString &prev, QString &next, int &prevY, int &nextY, bool &mainRail);
-
+    /**
+     * @brief getNextDistance gets the distance of the next station in y axis based on coordinate data
+     * @return int y distance
+     */
     int getNextDistance();
-
+    /**
+     * @brief updateNavi updates ui with the best route towards the obstacle
+     * @param next 1st station near the obstacle (stationcode)
+     * @param prev 2nd station near the obstacle (stationcode)
+     */
     void updateNavi(QString next, QString prev);
 signals:
     void destinationCandidatesChanged(QList<QString> stations);

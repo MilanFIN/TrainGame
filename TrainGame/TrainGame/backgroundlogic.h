@@ -17,8 +17,26 @@ public:
     BackgroundLogic(std::shared_ptr<QGraphicsScene> scene);
     ~BackgroundLogic();
 
+    /**
+     * @brief Handles moving the background
+     * @param double multiplier: speed multiplier unique of the train being used by the player
+     * @pre scene has been set to a qgraphicsview widget
+     * @post the background has been moved the amount of speed*multiplier,
+     *  new image has been added if necessary
+     */
     void move(double multiplier);
+    /**
+     * @brief Sets the speed of the movement for the background
+     * @param int newSpeed: New speed for the background
+     * @pre -
+     * @post new goalspeed has been set
+     */
     void setSpeed(int newSpeed);
+    /**
+     * @brief Changes the direction the background is moved
+     * @pre -
+     * @post Direction is the opposite of previous state
+     */
     void changeDirection();
 
 private:
