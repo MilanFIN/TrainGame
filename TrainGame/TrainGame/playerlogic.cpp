@@ -103,7 +103,14 @@ void PlayerLogic::getOwnedTrains()
 
 void PlayerLogic::buyTrain(QString trainName, int index)
 {
+
     std::weak_ptr<PlayerTrain> newTrain = shop_->getTrainInfo(trainName);
+    if (newTrain.lock() == NULL) {
+        QString msg = QString("BuyTrain kutsuttiin virheellisesti!");
+        emit shopActionFailed(msg);
+        return;
+    }
+
     if (newTrain.lock()->getPrice() > short(currentMoney_)) {
         QString msg = QString("Pelaajalla liian vähän rahaa ostaa juna.");
         emit shopActionFailed(msg);
