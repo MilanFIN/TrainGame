@@ -1,34 +1,34 @@
 [
         {
-            "name": "Pomppuresiina",
-            "shape": 50,
-            "speed": 2,
-            "price": 0,
-            "repairCost": 50,
-            "image": ":/kuvat/train.png"
-        },
-        {
-            "name": "Lättähattu",
+            "name": "Panssariveturi",
             "shape": 100,
-            "speed": 2,
-            "price": 100,
+            "speed": 1,
+            "price": 300,
             "repairCost": 150,
             "image": ":/kuvat/train4.png"
         },
         {
-            "name": "Höyryveturi",
+            "name": "Höyryjuna",
             "shape": 100,
             "speed": 1,
-            "price": 200,
+            "price": 100,
             "repairCost": 150,
+            "image": ":/kuvat/train.png"
+        },
+        {
+            "name": "Salamajuna",
+            "shape": 100,
+            "speed": 2,
+            "price": 300,
+            "repairCost": 250,
             "image": ":/kuvat/train2.png"
         },
         {
             "name": "Luotijuna",
-            "shape": 50,
+            "shape": 100,
             "speed": 3,
-            "price": 10,
-            "repairCost": 5500,
+            "price": 400,
+            "repairCost": 300,
             "image": ":/kuvat/train3.png"
         }
 ]
