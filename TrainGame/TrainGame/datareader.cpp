@@ -118,6 +118,7 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
 
     QJsonArray arr = doc.array();
 
+    bool first = true;
     foreach (QJsonValue val, arr) {
         QJsonObject obj = val.toObject();
 
@@ -131,9 +132,10 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
 
         std::shared_ptr<PlayerTrain> train = std::make_shared<PlayerTrain>(trainName, shape, price, speed, repairCost, imagePath);
 
-        if (trainName == QString("Pomppuresiina")) {
+        if (first){//if (trainName == QString("Pomppuresiina")) {
             logic.addNewTrain(train);
             logic.setActiveTrain(0);
+            first = false;
         } else {
             shop->addTrain(train);
         }
