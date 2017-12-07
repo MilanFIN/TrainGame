@@ -168,7 +168,7 @@ VrTrainManager *Game::getAiTrainModel(){
 
 void Game::move()
 {
-    if (playerLogic_->getFame() <= -100) {
+    if (playerLogic_->getFame() <= -110) {
         moveTimer->stop();
         emit endGameSignal();
     }

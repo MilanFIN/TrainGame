@@ -25,10 +25,10 @@ void VrTrainManager::addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain)
 {
     try {
        aiTrains_.insert(id, aiTrain);
+
     }catch (std::bad_alloc& ba) {
         // out of memory
         Q_ASSERT("bad_alloc caught");
-
     }
 
 }
@@ -244,12 +244,15 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
 
 
                     train->setPos(train->x(), y);
+                    train->setZValue(100);
+                    train->setVisible(true);
 
-                    std::cout << time << " " << y << std::endl;
+                    std::cout << time << " " << train->y() << " " << train->x() << " "<< train->isVisible() <<  std::endl;
 
                     if (abs(timeSinceLastMsg - QTime::currentTime().second()) >= 5){
                         emit message("Raiteellasi on toinen juna");
                     }
+                    break;
 
                 }
 
