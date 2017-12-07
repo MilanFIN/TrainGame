@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Ohjeet</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: 	#a32020;</string>
@@ -84,7 +84,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Valtion junaliikenteen yksityistämisen myötä nyt myös huoltojunien toimintaa on yksityistetty ennestään tuntemattomille yrityksille. Pelaajan tehtävänä on vastata yhdestä tällaisesta yrityksestä. Yrityksen tavoitteena on kerätä mahdollisimman suuri suosio , eli kerryttää &amp;quot;Fame&amp;quot; -pisteitä.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rataverkossa liikkuminen&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rataverkossa liikkuakseen pelaaja voi valita aseman, jonne haluaa suunnata seuraavalta asemalta Saman voi tehdä silloinkin, jos peruuttaa lähtöasemalleen. Kohteen valinta tehdään Pelaa-välilehden oikean reunan listoista. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pelin alussa pelaajan juna aloittaa satunnaisesti yhdestä useammasta ennaltamääritellystä asemasta. Rataverkossa liikkuakseen pelaaja voi valita aseman, jonne haluaa suunnata seuraavalta asemalta Saman voi tehdä silloinkin, jos peruuttaa lähtöasemalleen. Kohteen valinta tehdään Pelaa-välilehden oikean reunan listoista. &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Esteiden poistaminen&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pelaajan tehtävänä on poistaa rataverkossa esiintyviä esteitä. Kohdatessaan esteen pelaaja voi poistaa sen klikkaamalla pelinäkymää, jossa este on näkyvissä silloin, kun este on pelaajan ajaman huoltojunan lähellä. &lt;/p&gt;

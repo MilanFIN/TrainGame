@@ -35,21 +35,28 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
     movementSinceLastRailSpawn_ = 0;
 
 
-    int goal = qrand() % tracks_.keys().size();
+    //predefined start tracks
+    QList<QString> startTracks = {"008",
+                                  "009",
+                                  "066",
+                                  "142",
+                                  "441",
+                                  "521",
+                                  "531",
+                                  "731",};
 
-    int currentIter = 0;
+
+    int index = qrand() % startTracks.size();
+    QString trackCode = startTracks.at(index);
+    /*
     foreach(QList<QString> i, tracks_){
-        if (currentIter == goal){
-            currentTrackCode_ = tracks_.key(i);
-            break;
-        }
-        ++currentIter;
+        std::cout << tracks_.key(i).toStdString()  << " " << i.size()<< std::endl;
     }
+    */
 
-
-    if (tracks_.value(currentTrackCode_).size() >= 2){
-        startStationCode_ = tracks_.value(currentTrackCode_).at(0);
-        destinationStationCode_ = tracks_.value(currentTrackCode_).at(1);
+    if (tracks_.value(trackCode).size() >= 2){
+        startStationCode_ = tracks_.value(trackCode).at(0);
+        destinationStationCode_ = tracks_.value(trackCode).at(1);
 
     }
     else{
