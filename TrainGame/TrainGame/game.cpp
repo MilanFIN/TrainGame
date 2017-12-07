@@ -245,6 +245,7 @@ void Game::checkCollisions()
     if (crash){
         obstacleLogic_->crash();
         emit decreaseFame(-100);
+        playerLogic_->addFame(-100);
     }
 }
 
