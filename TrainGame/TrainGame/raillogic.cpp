@@ -35,10 +35,30 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
     movementSinceLastRailSpawn_ = 0;
 
 
-    //start from helsinki on track 001 towards pasila
-    startStationCode_ = "HKI";
-    currentTrackCode_ = "001";
-    destinationStationCode_ = "PSL";
+    int goal = qrand() % tracks_.keys().size();
+
+    int currentIter = 0;
+    foreach(QList<QString> i, tracks_){
+        if (currentIter == goal){
+            currentTrackCode_ = tracks_.key(i);
+            break;
+        }
+        ++currentIter;
+    }
+
+
+    if (tracks_.value(currentTrackCode_).size() >= 2){
+        startStationCode_ = tracks_.value(currentTrackCode_).at(0);
+        destinationStationCode_ = tracks_.value(currentTrackCode_).at(1);
+
+    }
+    else{
+        //failsafe mode if messed up above
+        startStationCode_ = "HKI";
+        currentTrackCode_ = "001";
+        destinationStationCode_ = "PSL";
+    }
+
 
 
     //figure out where can go from pasila
