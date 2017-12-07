@@ -105,18 +105,21 @@ void MainWindow::on_depotButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
     game_->depotTabChosen();
+    ui->gasSlider->setValue(0);
 }
 
 void MainWindow::on_gameButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
     game_->gameTabChosen();
+    ui->gasSlider->setValue(0);
 }
 
 void MainWindow::on_shopButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
     game_->shopTabChosen();
+    ui->gasSlider->setValue(0);
 }
 
 void MainWindow::changeSpeed()
