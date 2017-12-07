@@ -229,7 +229,12 @@ void Game::checkCollisions()
     int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
     //pelaajan aktiiviselle junalle lämää
     playerLogic_.get()->takeDamage(recievedDamage);
+    recievedDamage = 0;
     recievedDamage = aiTrainManager_->checkPlayerCollision(playerLogic_.get()->activeTrain());
+    if (recievedDamage != 0){
+        emit decreaseFame(-100);
+        playerLogic_->addFame(-100);
+    }
     playerLogic_.get()->takeDamage(recievedDamage);
 
     //check if player has arrived to a station
@@ -244,8 +249,6 @@ void Game::checkCollisions()
     //if crash is true, then a vr train has collided with our obstacle
     if (crash){
         obstacleLogic_->crash();
-        emit decreaseFame(-100);
-        playerLogic_->addFame(-100);
     }
 }
 

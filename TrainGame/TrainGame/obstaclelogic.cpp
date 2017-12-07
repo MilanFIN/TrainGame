@@ -98,7 +98,7 @@ int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
 
             damageDone += obstacle_.get()->getDamage();
             //annetaan vaan palkkio, muttei famea koska törmättiin
-            emit obstacleRemoved(-10, 5);
+            emit obstacleRemoved(-10, 0);
         }
     }
 
@@ -157,6 +157,6 @@ void ObstacleLogic::crash()
 
         inScene_ = false;
     }
-    emit obstacleRemoved(-10, -50);
+    emit obstacleRemoved(-20, -50);
 
 }
