@@ -81,6 +81,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     game_->getPlayerModel()->getOwnedTrains();
     game_->getPlayerModel()->getAvailableTrainsFromShop();
+    ui->stackedWidget->setCurrentIndex(0);
 
 
 }
