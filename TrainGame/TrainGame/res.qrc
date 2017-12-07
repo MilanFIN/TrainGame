@@ -12,6 +12,7 @@
         <file>redDot.png</file>
         <file>train5.png</file>
         <file>greenDot.png</file>
+        <file>brick.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>asemadata.json</file>

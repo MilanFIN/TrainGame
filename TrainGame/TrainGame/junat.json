@@ -1,23 +1,23 @@
 [
         {
-            "name": "Panssariveturi",
-            "shape": 100,
-            "speed": 1,
-            "price": 300,
-            "repairCost": 150,
-            "image": ":/kuvat/train4.png"
-        },
-        {
             "name": "Höyryjuna",
-            "shape": 100,
+            "shape": 50,
             "speed": 1,
             "price": 100,
             "repairCost": 150,
             "image": ":/kuvat/train.png"
         },
         {
+            "name": "Panssariveturi",
+            "shape": 1000,
+            "speed": 0.5,
+            "price": 300,
+            "repairCost": 1050,
+            "image": ":/kuvat/train4.png"
+        },
+        {
             "name": "Salamajuna",
-            "shape": 100,
+            "shape": 150,
             "speed": 2,
             "price": 300,
             "repairCost": 250,

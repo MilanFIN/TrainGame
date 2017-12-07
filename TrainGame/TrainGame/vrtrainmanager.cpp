@@ -124,7 +124,6 @@ int VrTrainManager::checkPlayerCollision(std::shared_ptr<PlayerTrain> player)
                 train->blackList();
                 train->setInScene(false);
                 scene_->removeItem(train.get());
-                std::cout << "asd2" << std::endl;
                 //collision happened, so return damage done to the player
                 return 50;
             }

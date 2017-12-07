@@ -82,7 +82,7 @@ void ObstacleLogic::removeNearbyObjects(int location)
         if (abs(obstacle_.get()->y() - location) < 250){
             scene_->removeItem(obstacle_.get());
             inScene_ = false;
-            emit obstacleRemoved(10, 100);
+            emit obstacleRemoved(10, 50);
         }
     }
 }
@@ -98,7 +98,7 @@ int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
 
             damageDone += obstacle_.get()->getDamage();
             //annetaan vaan palkkio, muttei famea koska törmättiin
-            emit obstacleRemoved(0, 100);
+            emit obstacleRemoved(-10, 5);
         }
     }
 
@@ -127,7 +127,7 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
                 scene_->addItem(obstacle_.get());
 
                 inScene_ = true;
-                std::cout << "lisätty" << std::endl;
+
             }
         }
     }
@@ -135,7 +135,7 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
         if (inScene_){
             scene_->removeItem(obstacle_.get());
             inScene_ = false;
-            std::cout << "poistettu" << std::endl;
+
 
         }
 
@@ -157,6 +157,6 @@ void ObstacleLogic::crash()
 
         inScene_ = false;
     }
-    emit obstacleRemoved(-10, 0);
+    emit obstacleRemoved(-10, -50);
 
 }

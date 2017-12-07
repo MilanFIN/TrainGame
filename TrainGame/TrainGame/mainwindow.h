@@ -14,6 +14,7 @@
 #include "playertrain.h"
 #include "obstaclelogic.h"
 #include "raillogic.h"
+#include "endgame.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,7 +43,7 @@ public slots:
 
     void updateActiveTrain(QString trainName);
 
-    void updateMinimap();
+
     //slot for recieving new possible destination candidates
     void updateNextStations(QList<QString> stations);
     //slot for recieving new possible backtracking candidates
@@ -62,7 +63,6 @@ public slots:
     void updateBuyableTrains(std::vector<std::shared_ptr<PlayerTrain> > Trains);
     void updateMoney(int cash);
     void updateFame(int fame);
-    void updatePartsToBeRepaired();
 
     void on_sellButton_clicked();
     void on_buyButton_clicked();
@@ -89,6 +89,9 @@ public slots:
     void clearMessage();
 
     void updateNaviToUi(QString info);
+    void endGameWindow();
+
+
 
 signals:
 private:

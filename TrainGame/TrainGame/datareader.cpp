@@ -183,7 +183,8 @@ void dataReader::parseHttpData(QByteArray data, VrTrainManager& manager)
     foreach (QJsonValue val, arr) {
         QJsonObject obj = val.toObject();
 
-        if (obj["trainCategory"].toString() == QString("Long-distance")) {
+        if ( (obj["trainCategory"].toString() == QString("Long-distance") )
+             || ( obj["trainsCategory"].toString() == QString("Cargo")) ) {
 
             QVector<QPair<QString, QString>> timeTable;
             QString trainNumberID = QString::number(obj["trainNumber"].toInt());

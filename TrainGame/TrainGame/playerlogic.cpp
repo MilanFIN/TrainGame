@@ -6,17 +6,14 @@
 
 
 PlayerLogic::PlayerLogic():
-    currentMoney_(500),
+    currentMoney_(300),
     fame_(0)
 {
-//    shop_ = std::make_shared<Shop>();
-
-//    dataReader::READER.loadTrains(":/data/junat.json", shop_, *this);
 }
 
 PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene),
-    currentMoney_(500),
+    currentMoney_(300),
     fame_(0)
 {
     shop_ = std::make_shared<Shop>();
@@ -66,6 +63,11 @@ void PlayerLogic::addFame(int amount)
 {
     fame_ += amount;
     emit playerFameChanged(fame_);
+}
+
+int PlayerLogic::getFame() const
+{
+    return fame_;
 }
 
 void PlayerLogic::getOwnedTrainInfo(QString trainName)

@@ -13,6 +13,7 @@
 #include "vrtrainmanager.h"
 
 
+
 /**
  * @brief Game controller (in an mvc model)
  */
@@ -176,6 +177,9 @@ public slots:
      * @post damage and penalties happened if necessary
      */
     void checkCollisions();
+signals:
+    void endGameSignal();
+
 private:
     std::shared_ptr<RailLogic>  railLogic_;
     std::shared_ptr<PlayerLogic>  playerLogic_ ;
@@ -191,7 +195,9 @@ private:
     int movementSinceLastSpawn;
     //float accel_ = 0.03;
     QTimer *obstacleSpawner_ = new QTimer(this);
+    QTimer *moveTimer = new QTimer(this);
     bool runGame_ = false;
+
 };
 
 #endif // GAME_H

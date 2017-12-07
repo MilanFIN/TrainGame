@@ -2,7 +2,7 @@
 
 PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double speed, unsigned short repairCost, QString imagePath):
     name_(name),
-    shape_(shape - 20),
+    shape_(shape),
     absoluteShape_(shape),
     price_(price),
     speed_(speed),

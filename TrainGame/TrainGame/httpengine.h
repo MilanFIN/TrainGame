@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QUrl>
-#include <QNetworkRequest> //wtf ei käänny?
+#include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 #include <QIODevice>

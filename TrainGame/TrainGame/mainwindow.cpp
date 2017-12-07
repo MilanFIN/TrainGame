@@ -1,11 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "datareader.h"
+#include "endgame.h"
 #include <QKeyEvent>
 #include <QMessageBox>
 #include <QDebug>
-#include "datareader.h"
 #include <iostream>
-#include <httpengine.h>
+
 
 
 MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene,
@@ -59,9 +60,11 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     connect(game_->getAiTrainModel(), &VrTrainManager::message, this, &MainWindow::updateMessageLabel);
     connect(game_->getPlayerModel()->activeTrain().get(), &PlayerTrain::message, this, &MainWindow::updateMessageLabel);
 
-
+    connect(game_.get(), &Game::endGameSignal, this, &MainWindow::endGameWindow);
 
     connect(clearTimer_, SIGNAL(timeout()), this, SLOT(clearMessage()));
+
+
 
 
     ui->gameView->setScene(scene_.get());
@@ -71,10 +74,6 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     ui->minimapView->setScene(miniMapScene_.get());
     miniMapScene_->setSceneRect(-140, -210, 275, 415);
 
-
-
-//    ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna1")));
-//    ui->fixListWidget->addItem(new QListWidgetItem(QString("Pelaajan juna2")));
 
     // player's starting cash
     ui->moneyLabel->setNum(game_->getPlayerMoney());
@@ -109,9 +108,6 @@ void MainWindow::on_gameButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
     game_->gameTabChosen();
-
-
-
 }
 
 void MainWindow::on_shopButton_clicked()
@@ -141,12 +137,6 @@ void MainWindow::changeDirection()
 void MainWindow::updateActiveTrain(QString trainName)
 {
     ui->featuresOLabel->setText(trainName);
-}
-
-
-void MainWindow::updateMinimap()
-{
-
 }
 
 void MainWindow::updateNextStations(QList<QString> stations)
@@ -244,11 +234,6 @@ void MainWindow::updateFame(int fame)
     ui->fameLabel->setNum(fame);
 }
 
-
-void MainWindow::updatePartsToBeRepaired()
-{
-
-}
 
 
 void MainWindow::on_sellButton_clicked()
@@ -377,7 +362,6 @@ void MainWindow::obstacleRemoved(int fameReward, int moneyReward)
     game_->addMoney(newMoney);
     game_->addFame(newFame);
     //spawn next obstacle
-    std::cout << "asd" <<std::endl;
     game_->spawn();
 
 
@@ -412,3 +396,12 @@ void MainWindow::updateNaviToUi(QString info)
 {
     ui->naviLabel->setText(info);
 }
+
+void MainWindow::endGameWindow()
+{
+    endGame w;
+
+    w.exec();
+    this->close();
+}
+

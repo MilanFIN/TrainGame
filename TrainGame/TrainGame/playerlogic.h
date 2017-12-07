@@ -67,6 +67,12 @@ public:
     void addFame(int amount);
 
     /**
+     * @brief getFame returns fame
+     * @return fame_
+     */
+    int getFame() const;
+
+    /**
      * @brief getOwnedTrainInfo returns info on an owned train
      * @param trainName train that the info is wanted on
      */
