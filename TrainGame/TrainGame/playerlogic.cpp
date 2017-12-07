@@ -265,5 +265,5 @@ void PlayerLogic::updateUI()
 
 void PlayerLogic::invariant()
 {
-    Q_ASSERT(currentMoney_ > 0);
+    Q_ASSERT(currentMoney_ >= 0);
 }
