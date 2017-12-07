@@ -28,7 +28,7 @@ public:
     explicit MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScene> scene,
                         std::shared_ptr<QGraphicsScene> miniMapScene, QWidget *parent = 0);
     ~MainWindow();
-    void keyPressEvent( QKeyEvent* pEvent );
+    void mousePressEvent(QMouseEvent *Mevent);
 
     //void updateBuyOrSellText(String operation, int count);
 

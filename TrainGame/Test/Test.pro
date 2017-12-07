@@ -50,6 +50,7 @@ SOURCES += \
         ../TrainGame/leafpile.cpp \
         ../TrainGame/pathfinder.cpp \
         ../TrainGame/endgame.cpp \
+        ../TrainGame/startwindow.cpp \
     main.cpp \
     testbackground.cpp \
     testgame.cpp \
@@ -85,6 +86,7 @@ HEADERS += \
         ../TrainGame/leafpile.h \
         ../TrainGame/pathfinder.h \
         ../TrainGame/endgame.h \
+        ../TrainGame/startwindow.h \
     testbackground.h \
     testgame.h \
     testboulder.h \

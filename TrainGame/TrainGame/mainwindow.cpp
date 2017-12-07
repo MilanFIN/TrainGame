@@ -64,8 +64,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     connect(clearTimer_, SIGNAL(timeout()), this, SLOT(clearMessage()));
 
-    connect(game_.get(), &Game::decreaseFame, this, updateFame);
-
+    connect(game_.get(), &Game::decreaseFame, this, &MainWindow::updateFame);
 
     ui->gameView->setScene(scene_.get());
 
@@ -91,9 +90,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *pEvent)
+
+void MainWindow::mousePressEvent(QMouseEvent *Mevent)
 {
-    if (pEvent->key() == Qt::Key_Space){
+    //figure out if we clicked the gameview graphcics view are
+    QPoint clickLocation = ui->gameView->mapFromParent(Mevent->pos());
+    if (ui->gameView->rect().contains(clickLocation)){
+        //try to remove an obstacle
         game_->removeBlockage();
     }
 }

@@ -48,7 +48,8 @@ SOURCES += \
     ioexception.cpp \
     leafpile.cpp \
     pathfinder.cpp \
-    endgame.cpp
+    endgame.cpp \
+    startwindow.cpp
 
 
 HEADERS += \
@@ -76,12 +77,14 @@ HEADERS += \
     ioexception.h \
     leafpile.h \
     pathfinder.h \
-    endgame.h
+    endgame.h \
+    startwindow.h
 
 
 FORMS += \
         mainwindow.ui \
-    endgame.ui
+    endgame.ui \
+    startwindow.ui
 
 RESOURCES += \
     res.qrc

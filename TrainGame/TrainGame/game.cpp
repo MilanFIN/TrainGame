@@ -64,6 +64,7 @@ void Game::gameTabChosen()
 {
     runGame_ = true;
     railLogic_->signalStationInfoToUi();
+    setSpeed(0);
 }
 
 void Game::shopTabChosen()
@@ -71,12 +72,15 @@ void Game::shopTabChosen()
     runGame_ = false;
     playerLogic_->getAvailableTrainsFromShop();
     playerLogic_->getOwnedTrains();
+    setSpeed(0);
 }
 
 void Game::depotTabChosen()
 {
     runGame_ = false;
     playerLogic_->getTrainsToBeRepaired();
+    setSpeed(0);
+
 }
 
 void Game::wantedOwnedTrainInfo(QString trainName)
