@@ -363,12 +363,12 @@ void MainWindow::obstacleRemoved(int fameReward, int moneyReward)
 
     int newMoney = currentMoney + moneyReward;
     if (newMoney < 0){
-        newMoney = 0;
+        moneyReward = 0 - currentMoney;
     }
     int newFame = currentFame + fameReward;
 
-    game_->addMoney(newMoney);
-    game_->addFame(newFame);
+    game_->addMoney(moneyReward);
+    game_->addFame(fameReward);
     //spawn next obstacle
     game_->spawn();
 
