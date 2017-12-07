@@ -356,10 +356,15 @@ void MainWindow::updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain)
 
 void MainWindow::obstacleRemoved(int fameReward, int moneyReward)
 {
-    int currentMoney = ui->moneyTextLabel->text().toInt();
+    int currentMoney = game_->getPlayerMoney();
     int currentFame = ui->fameTextLabel->text().toInt();
 
+
+
     int newMoney = currentMoney + moneyReward;
+    if (newMoney < 0){
+        newMoney = 0;
+    }
     int newFame = currentFame + fameReward;
 
     game_->addMoney(newMoney);
