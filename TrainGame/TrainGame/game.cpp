@@ -240,6 +240,7 @@ void Game::checkCollisions()
     //if crash is true, then a vr train has collided with our obstacle
     if (crash){
         obstacleLogic_->crash();
+        emit decreaseFame(-100);
     }
 }
 

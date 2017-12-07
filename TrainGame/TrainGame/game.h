@@ -179,6 +179,7 @@ public slots:
     void checkCollisions();
 signals:
     void endGameSignal();
+    void decreaseFame(int amount);
 
 private:
     std::shared_ptr<RailLogic>  railLogic_;

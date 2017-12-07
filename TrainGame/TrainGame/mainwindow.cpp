@@ -64,7 +64,7 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 
     connect(clearTimer_, SIGNAL(timeout()), this, SLOT(clearMessage()));
 
-
+    connect(game_.get(), &Game::decreaseFame, this, updateFame);
 
 
     ui->gameView->setScene(scene_.get());
