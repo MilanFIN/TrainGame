@@ -502,8 +502,8 @@ int RailLogic::getNextDistance()
     if (dist < 500.0){
         dist = 500.0;
     }
-    else if (dist > 5000.0){
-        dist = 5000.0;
+    else if (dist > 2500.0){
+        dist = 2500.0;
     }
     return (int)dist;
 }
