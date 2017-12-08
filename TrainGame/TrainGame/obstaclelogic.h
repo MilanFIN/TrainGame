@@ -45,12 +45,15 @@ public:
     void changeDirection();
     /**
      * @brief creates a new obstacle with obstaclefactory
-     * @param stations: the two stations the obstacle will appear between, trackcode: track obstacle will appear on,
-     *  stationNames: names of the two stations, bool harmful: information on if the obstacle is in danger of aitraincollision
+     * @param stations: the two stations the obstacle will
+     * appear between, trackcode: track obstacle will appear on,
+     *  stationNames: names of the two stations, bool harmful:
+     * information on if the obstacle is in danger of aitraincollision
      * @pre -
      * @post new obstacle has been created
      */
-    void spawnObstacle(QList<QString> stations, QString trackCode, QList<QString> stationNames, bool harmful);
+    void spawnObstacle(QList<QString> stations, QString trackCode,
+                       QList<QString> stationNames, bool harmful);
     /**
      * @brief removes obstacles nearby the player
      * @param location: player's location in y axis
@@ -67,7 +70,8 @@ public:
      */
     int checkCollision(std::shared_ptr<PlayerTrain> train); //returns amount of damage
     /**
-     * @brief defines the maximum amount of distance in stations that the next obstacle should be created on
+     * @brief defines the maximum amount of distance in
+     * stations that the next obstacle should be created on
      * @post maximum distance has been grown by 0.1 for the next call
      * @return goal distance for the new obstacle
      */
@@ -78,9 +82,11 @@ public:
      */
     void addObstacleToScene(QString next, QString previous, QString track);
     /**
-     * @brief returns obstacle's location and danger level as new values to the parameters
+     * @brief returns obstacle's location and danger level as new
+     * values to the parameters
      * @post info returned
-     * @param prev, next: stations the obstacle is between, harmful: danger level of the obstacle
+     * @param prev, next: stations the obstacle is between, harmful: danger
+     * level of the obstacle
      */
     void getObstacleLocation(QString &prev, QString &next, bool &harmful);
     /**

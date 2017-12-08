@@ -16,7 +16,8 @@ public:
     /**
      * @brief buyTrain buys a train from the shop
      * @param index of the train in the shop
-     * @pre player has money for the train and the index is in range of buyable trains
+     * @pre player has money for the train and the
+     * index is in range of buyable trains
      * @post the train that was bought has been removed from the shop
      * @return shared_ptr to the bought train
      */

@@ -1,6 +1,7 @@
 #include "playertrain.h"
 
-PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double speed, unsigned short repairCost, QString imagePath):
+PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price,
+                         double speed, unsigned short repairCost, QString imagePath):
     name_(name),
     shape_(shape),
     price_(price),
@@ -16,7 +17,8 @@ PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double
 void PlayerTrain::setPixmapToShow()
 {
 
-    QImage imageScaled = trainImage_.scaled(150,150,Qt::KeepAspectRatio);
+    QImage imageScaled = trainImage_
+            .scaled(150,150,Qt::KeepAspectRatio);
     setPixmap(QPixmap::fromImage(imageScaled));
     setPos(-55, -30);
     setZValue(2);

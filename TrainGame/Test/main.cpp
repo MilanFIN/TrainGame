@@ -26,10 +26,12 @@ int main(int argc, char *argv[])
     w.show();
 
     std::shared_ptr<TestBackground> testBackground = std::make_shared<TestBackground>();
-    std::shared_ptr<TestBackgroundLogic> testBackgroundLogic = std::make_shared<TestBackgroundLogic>(scene);
+    std::shared_ptr<TestBackgroundLogic> testBackgroundLogic
+            = std::make_shared<TestBackgroundLogic>(scene);
     std::shared_ptr<TestBoulder> testBoulder = std::make_shared<TestBoulder>();
     std::shared_ptr<TestGame> testGame = std::make_shared<TestGame>(scene, miniMapScene);
-    std::shared_ptr<TestPlayerLogic> testPlayerLogic = std::make_shared<TestPlayerLogic>(scene);
+    std::shared_ptr<TestPlayerLogic> testPlayerLogic
+            = std::make_shared<TestPlayerLogic>(scene);
 
     QTest::qExec(testBackground.get(), argc, argv);
     QTest::qExec(testBackgroundLogic.get(), argc, argv);

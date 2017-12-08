@@ -142,7 +142,8 @@ public:
     void setTrainPixmap();
 
     /**
-     * @brief getTrainsToBeRepaired returns all trains in need of repair as a signal
+     * @brief getTrainsToBeRepaired returns all
+     *  trains in need of repair as a signal
      * @pre a slot for the signal has been connected
      * @post repairable trains signaled
      */

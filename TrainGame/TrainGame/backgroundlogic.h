@@ -19,7 +19,8 @@ public:
 
     /**
      * @brief Handles moving the background
-     * @param double multiplier: speed multiplier unique of the train being used by the player
+     * @param double multiplier: speed multiplier unique of the
+     * train being used by the player
      * @pre scene has been set to a qgraphicsview widget
      * @post the background has been moved the amount of speed*multiplier,
      *  new image has been added if necessary

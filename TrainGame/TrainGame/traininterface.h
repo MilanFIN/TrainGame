@@ -5,7 +5,8 @@
 #include <QObject>
 
 /**
- * @brief The TrainInterface class defines an interface for handling player's trains
+ * @brief The TrainInterface class defines
+ *  an interface for handling player's trains
  */
 class TrainInterface : public QObject, public QGraphicsPixmapItem
 {

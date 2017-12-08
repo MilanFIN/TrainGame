@@ -2,7 +2,8 @@
 
 
 Game::Game(std::shared_ptr<QGraphicsScene> scene,
-           std::shared_ptr<QGraphicsScene> miniMapScene, QObject *parent) : QObject(parent),
+           std::shared_ptr<QGraphicsScene> miniMapScene,
+           QObject *parent) : QObject(parent),
     scene_(scene)
 {
 
@@ -123,7 +124,10 @@ void Game::sellTrain(int index)
 
 void Game::railChanged()
 {
-    obstacleLogic_.get()->addObstacleToScene(railLogic_.get()->getNextStation(), railLogic_.get()->getLastStation(), railLogic_.get()->getCurrentTrack());
+    obstacleLogic_.get()->
+            addObstacleToScene(railLogic_.get()->getNextStation(),
+                               railLogic_.get()->getLastStation(),
+                               railLogic_.get()->getCurrentTrack());
 }
 
 void Game::addMoney(int amount)
@@ -207,8 +211,11 @@ void Game::spawn()
     QString track;
     QList<QString> stationNames;
     bool harmful;
-    railLogic_.get()->getRandomStationAndTrack(distance,stations , track, stationNames, harmful);
-    obstacleLogic_.get()->spawnObstacle(stations, track, stationNames, harmful);
+    railLogic_.get()->getRandomStationAndTrack(distance, stations,
+                                               track, stationNames, harmful);
+
+    obstacleLogic_.get()->spawnObstacle(stations,
+                                        track, stationNames, harmful);
 
     railLogic_->updateObstacleOnMiniMap(stations.at(0), stations.at(1));
 
@@ -222,12 +229,14 @@ void Game::checkCollisions()
         return;
     }
     //check if obstacles hit the player
-    int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
+    int recievedDamage = obstacleLogic_.get()->
+            checkCollision(playerLogic_.get()->activeTrain());
 
     // players activeTraing takes damage
     playerLogic_.get()->takeDamage(recievedDamage);
     recievedDamage = 0;
-    recievedDamage = aiTrainManager_->checkPlayerCollision(playerLogic_.get()->activeTrain());
+    recievedDamage = aiTrainManager_->
+            checkPlayerCollision(playerLogic_.get()->activeTrain());
     if (recievedDamage != 0){
         emit decreaseFame(-100);
         playerLogic_->addFame(-100);

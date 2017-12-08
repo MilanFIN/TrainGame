@@ -50,7 +50,10 @@ void ObstacleLogic::changeDirection()
     goalSpeed_ = -goalSpeed_;
 }
 
-void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode, QList<QString> stationNames, bool harmful)
+void ObstacleLogic::spawnObstacle(QList<QString> stations,
+                                  QString trackCode,
+                                  QList<QString> stationNames,
+                                  bool harmful)
 {
     if (inScene_){
         scene_->removeItem(obstacle_.get());
@@ -71,7 +74,8 @@ void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode, QL
         msg = "vaaraton";
     }
 
-    emit obstacleCreated(stationNames.at(0) + " - " + stationNames.at(1), trackCode, msg);
+    emit obstacleCreated(stationNames.at(0) + " - "
+                         + stationNames.at(1), trackCode, msg);
 }
 
 void ObstacleLogic::removeNearbyObjects(int location)
@@ -113,11 +117,14 @@ int ObstacleLogic::getNextDistance()
     return nextObstacleDistance_ / 10;
 }
 
-void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString track)
+void ObstacleLogic::addObstacleToScene(QString next,
+                                       QString previous,
+                                       QString track)
 {
     if (ObstacleTrackCode_ == track){
         if ((next == obstacleStartStation_ && previous == obstacleEndStation_)
-                || (previous == obstacleStartStation_ && next == obstacleEndStation_)){
+                || (previous == obstacleStartStation_
+                    && next == obstacleEndStation_)) {
             obstacle_.get()->setPos(obstacle_.get()->x(), -300);
 
             if (!inScene_){
@@ -135,7 +142,8 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
     }
 }
 
-void ObstacleLogic::getObstacleLocation(QString &previous, QString &next, bool &harmful)
+void ObstacleLogic::getObstacleLocation(QString &previous,
+                                        QString &next, bool &harmful)
 {
     previous = obstacleStartStation_;
     next = obstacleEndStation_;

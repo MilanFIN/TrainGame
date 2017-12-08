@@ -14,7 +14,8 @@ class TestGame : public QObject
     Q_OBJECT
 
 public:
-    TestGame(std::shared_ptr<QGraphicsScene> scene, std::shared_ptr<QGraphicsScene> miniMapScene);
+    TestGame(std::shared_ptr<QGraphicsScene> scene,
+             std::shared_ptr<QGraphicsScene> miniMapScene);
 
 private slots:
 

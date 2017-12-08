@@ -45,7 +45,9 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
                     ((*pair).first == prev && (*(pair-1)).first == next)) {
 
                     bool canContinue = true;
-                    std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
+                    std::regex_token_iterator<std::string::iterator>
+                            i{(*pair).second.toStdString().begin(),
+                                (*pair).second.toStdString().end(), re, 1};
                     i++;
                     std::string time = *i;
                     std::string part;
@@ -62,7 +64,9 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
                     if (!canContinue){
                         break;
                     }
-                    std::regex_token_iterator<std::string::iterator> j{(*(pair-1)).second.toStdString().begin(), (*(pair-1)).second.toStdString().end(), re, 1};
+                    std::regex_token_iterator<std::string::iterator>
+                            j{(*(pair-1)).second.toStdString().begin(),
+                                (*(pair-1)).second.toStdString().end(), re, 1};
                     j++;
                     std::string nextTime = *j;
                     std::string nextPart;
@@ -83,11 +87,14 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
                     int minute = QTime::currentTime().minute();
                     int second = QTime::currentTime().second();
 
-                    int prevSec = timeFractures.at(0) * 3600 + timeFractures.at(1)*60 + timeFractures.at(2);
-                    int nextSec = nextTimeFractures.at(0) * 3600 + nextTimeFractures.at(1)*60 + nextTimeFractures.at(2);
+                    int prevSec = timeFractures.at(0) * 3600 +
+                            timeFractures.at(1)*60 + timeFractures.at(2);
+                    int nextSec = nextTimeFractures.at(0) * 3600 +
+                            nextTimeFractures.at(1)*60 + nextTimeFractures.at(2);
                     int currentSec = hour*3600 + minute * 60 + second;
 
-                    if ((prevSec <= currentSec && nextSec >= currentSec) || (prevSec >= currentSec && nextSec <= currentSec)){
+                    if ((prevSec <= currentSec && nextSec >= currentSec)
+                            || (prevSec >= currentSec && nextSec <= currentSec)){
                         //collision happened, so blacklist the train and inform controller
                         train.get()->blackList();
 
@@ -146,7 +153,9 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                 ((*pair).first == prev && (*(pair-1)).first == next)) {
 
                 bool canContinue = true;
-                std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
+                std::regex_token_iterator<std::string::iterator>
+                        i{(*pair).second.toStdString().begin(),
+                            (*pair).second.toStdString().end(), re, 1};
                 i++;
                 std::string time = *i;
                 std::string part;
@@ -165,7 +174,9 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                     break;
                 }
 
-                std::regex_token_iterator<std::string::iterator> j{(*(pair-1)).second.toStdString().begin(), (*(pair-1)).second.toStdString().end(), re, 1};
+                std::regex_token_iterator<std::string::iterator>
+                        j{(*(pair-1)).second.toStdString().begin(),
+                            (*(pair-1)).second.toStdString().end(), re, 1};
                 j++;
                 std::string nextTime = *j;
                 std::string nextPart;
@@ -187,11 +198,14 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                 int minute = QTime::currentTime().minute();
                 int second = QTime::currentTime().second();
 
-                int prevSec = timeFractures.at(0) * 3600 + timeFractures.at(1)*60 + timeFractures.at(2);
-                int nextSec = nextTimeFractures.at(0) * 3600 + nextTimeFractures.at(1)*60 + nextTimeFractures.at(2);
+                int prevSec = timeFractures.at(0) * 3600 +
+                        timeFractures.at(1)*60 + timeFractures.at(2);
+                int nextSec = nextTimeFractures.at(0) * 3600 +
+                        nextTimeFractures.at(1)*60 + nextTimeFractures.at(2);
                 int currentSec = hour*3600 + minute * 60 + second;
 
-                if ((prevSec <= currentSec && nextSec >= currentSec) || (prevSec >= currentSec && nextSec <= currentSec)){
+                if ((prevSec <= currentSec && nextSec >= currentSec) ||
+                        (prevSec >= currentSec && nextSec <= currentSec)){
 
                     if (!train->inScene()){
                         train->setInScene(true);
@@ -200,7 +214,8 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
 
                     int totalHours = nextTimeFractures.at(0) - timeFractures.at(0);
                     int totalMinutes = nextTimeFractures.at(1) - timeFractures.at(1);
-                    int totalSeconds = 3600* totalHours + 60*totalMinutes + nextTimeFractures.at(2) - timeFractures.at(2);
+                    int totalSeconds = 3600* totalHours + 60*totalMinutes +
+                            nextTimeFractures.at(2) - timeFractures.at(2);
 
                     int realHours = hour - timeFractures.at(0);
                     int realMinutes = minute - timeFractures.at(1);

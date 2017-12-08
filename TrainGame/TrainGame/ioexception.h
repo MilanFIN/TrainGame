@@ -4,7 +4,8 @@
 #include "gameexception.h"
 
 /**
- * @brief IoException class inherited from GameException. Descbribes exception for IO
+ * @brief IoException class inherited from
+ * GameException. Descbribes exception for IO
  */
 class IoException : public GameException
 {

@@ -126,8 +126,10 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
         }
     }
 
-    currentLocationMapPoint.setPixmap(QPixmap::fromImage(QImage(":/kuvat/redDot.png")));
-    obstacleMapPoint_.setPixmap(QPixmap::fromImage(QImage(":/kuvat/greenDot.png")));
+    currentLocationMapPoint.
+            setPixmap(QPixmap::fromImage(QImage(":/kuvat/redDot.png")));
+    obstacleMapPoint_.
+            setPixmap(QPixmap::fromImage(QImage(":/kuvat/greenDot.png")));
     updateDestinationOnMiniMap();
 }
 
@@ -168,14 +170,16 @@ void RailLogic::move(double multiplier)
 
     // create new tiles if train has moved enough
     if (movementSinceLastRailSpawn_ >= 30){
-        std::shared_ptr<OneSideRailTile> railTile = std::make_shared<OneSideRailTile>(0,-275);
+        std::shared_ptr<OneSideRailTile> railTile =
+                std::make_shared<OneSideRailTile>(0,-275);
         scene_->addItem(railTile.get());
         railTiles.push_back(railTile);
         movementSinceLastRailSpawn_ -= 30;
     }
 
     else if (movementSinceLastRailSpawn_ <= -30){
-        std::shared_ptr<OneSideRailTile> railTile = std::make_shared<OneSideRailTile>(0,240);
+        std::shared_ptr<OneSideRailTile> railTile =
+                std::make_shared<OneSideRailTile>(0,240);
         scene_->addItem(railTile.get());
         railTiles.push_back(railTile);
         movementSinceLastRailSpawn_ += 30;
@@ -333,7 +337,8 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
     }
 }
 
-QList<QString> RailLogic::CombineStationTrackInfo(QList<QString> &stationCodes, QList<QString> &trackCodes)
+QList<QString> RailLogic::CombineStationTrackInfo(QList<QString> &stationCodes,
+                                                  QList<QString> &trackCodes)
 {
     QList<QString> tempList;
     QList<QString> nameList;
@@ -355,9 +360,16 @@ void RailLogic::changeBackTrackCandidateIndex(int index)
 
 void RailLogic::signalStationInfoToUi()
 {
-    emit destinationCandidatesChanged(CombineStationTrackInfo( destinationStationCandidates_, destinationTrackCandidates_));
-    emit backttrackCandidatesChanged(CombineStationTrackInfo(backtrackStationCandidates_, backtrackTrackCandidates_));
-    emit signalDestAndPrevious(currentTrackCode_ + " " +stations_.value(startStationCode_).fullName, currentTrackCode_ + " " + stations_.value(destinationStationCode_).fullName);
+    emit destinationCandidatesChanged(CombineStationTrackInfo(
+                                          destinationStationCandidates_,
+                                          destinationTrackCandidates_));
+    emit backttrackCandidatesChanged(CombineStationTrackInfo(
+                                         backtrackStationCandidates_,
+                                         backtrackTrackCandidates_));
+    emit signalDestAndPrevious(currentTrackCode_ + " "
+                               +stations_.value(startStationCode_)
+                               .fullName, currentTrackCode_ + " " +
+                               stations_.value(destinationStationCode_).fullName);
 }
 
 void RailLogic::updateDestinationOnMiniMap()
@@ -381,14 +393,18 @@ void RailLogic::updateObstacleOnMiniMap(QString prev, QString next)
 
 
     }
-    int x = ((stations_.value(prev).lng-lngCenter_) +(stations_.value(next).lng-lngCenter_))/2 * xConversionRate_;
-    int y = ((stations_.value(prev).lat-latCenter_) +(stations_.value(next).lat-latCenter_))/2 * yConversionRate_;
+    int x = ((stations_.value(prev).lng-lngCenter_)
+             + (stations_.value(next).lng-lngCenter_))/2 * xConversionRate_;
+    int y = ((stations_.value(prev).lat-latCenter_)
+             + (stations_.value(next).lat-latCenter_))/2 * yConversionRate_;
 
 
     obstacleMapPoint_.setPos(x-5, y-5);
 }
 
-void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations, QString &trackCode, QList<QString> &stationNames, bool &harmful)
+void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
+                                         QString &trackCode,
+                                         QList<QString> &stationNames, bool &harmful)
 {
     int randomNumber = qrand() % destinationStationCandidates_.size();
     QString destinationStation = destinationStationCandidates_.at(randomNumber);
@@ -437,7 +453,8 @@ void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
         for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
             if ((*j == stations.at(0) && *(j+1) == stations.at(1) )
                     || (*j == stations.at(1) && *(j+1) == stations.at(0))){
-                //found a track between the stations, figure out what the name of the track is
+                //found a track between the stations,
+                //figure out what the name of the track is
                 if (tracks_.key(i).toStdString() == trackCode.toStdString()){
                     harmful = true;
                 }
@@ -466,7 +483,8 @@ QString RailLogic::getNextStation()
     return destinationStationCode_;
 }
 
-void RailLogic::getCurrentLocation(QString &prev, QString &next, int &prevY, int &nextY, bool &mainRail)
+void RailLogic::getCurrentLocation(QString &prev, QString &next,
+                                   int &prevY, int &nextY, bool &mainRail)
 {
     prev = startStationCode_;
     next = destinationStationCode_;
@@ -478,7 +496,8 @@ void RailLogic::getCurrentLocation(QString &prev, QString &next, int &prevY, int
     foreach(QList<QString> i, tracks_){
         for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
             if ((*j == startStationCode_ && *(j+1) == destinationStationCode_ )
-                    || (*j == destinationStationCode_ && *(j+1) == startStationCode_)){
+                    || (*j == destinationStationCode_
+                        && *(j+1) == startStationCode_)){
                 //found a track between the stations, figure out, if the track is
                 if (tracks_.key(i).toStdString() == currentTrackCode_.toStdString()){
                     mainRail = true;
@@ -495,8 +514,12 @@ void RailLogic::getCurrentLocation(QString &prev, QString &next, int &prevY, int
 
 int RailLogic::getNextDistance()
 {
-    double xdist = ((stations_.value(startStationCode_).lng) -(stations_.value(destinationStationCode_).lng))*distanceConversionRate_;
-    double ydist = ((stations_.value(startStationCode_).lat) -(stations_.value(destinationStationCode_).lat))*distanceConversionRate_;
+    double xdist = ((stations_.value(startStationCode_).lng) -
+                    (stations_.value(destinationStationCode_).
+                     lng))*distanceConversionRate_;
+    double ydist = ((stations_.value(startStationCode_).lat) -
+                    (stations_.value(destinationStationCode_).lat))*
+                     distanceConversionRate_;
     double dist = sqrt(xdist*xdist + ydist*ydist);
     //rajoitteet etäisyydelle, jottei tule järjettömiä välimatkoja
     if (dist < 500.0){
@@ -511,7 +534,10 @@ int RailLogic::getNextDistance()
 void RailLogic::updateNavi(QString next, QString prev)
 {
     QString result;
-    bool found = PathFinder::PATHFINDER.nextStationCode(result, tracks_, destinationStationCandidates_, prev, next);
+    bool found = PathFinder::PATHFINDER.nextStationCode(result,
+                                                        tracks_,
+                                                        destinationStationCandidates_,
+                                                        prev, next);
     if (found) {
         emit naviInfoUpdate("Valitse seuraavaksi " + stations_.value(result).fullName);
     }

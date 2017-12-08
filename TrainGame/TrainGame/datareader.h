@@ -36,7 +36,8 @@ public:
      * @brief Reads data on playable trains from file
      * @param filepath path to traindata. shop is the shop trains will be added to
      */
-    void loadTrains(const QString &filepath, std::shared_ptr<Shop> shop, PlayerLogic &logic);
+    void loadTrains(const QString &filepath,
+                    std::shared_ptr<Shop> shop, PlayerLogic &logic);
 
     /**
      * @brief Reads VR's traindata via http.

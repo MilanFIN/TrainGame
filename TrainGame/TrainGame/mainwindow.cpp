@@ -19,34 +19,62 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
 {
     ui->setupUi(this);
 
-    connect(game_->getRailModel(), &RailLogic::destinationCandidatesChanged, this, &MainWindow::updateNextStations);
-    connect(game_->getRailModel(), &RailLogic::backttrackCandidatesChanged, this, &MainWindow::updatePassedStations);
-    connect(game_->getRailModel(), &RailLogic::signalDestAndPrevious, this, &MainWindow::updatePreviousAndNext);
-    connect(game_->getRailModel(), &RailLogic::naviInfoUpdate, this, &MainWindow::updateNaviToUi);
-    connect(game_->getPlayerModel(), &PlayerLogic::playerCashChanged, this, &MainWindow::updateMoney);
-    connect(game_->getPlayerModel(), &PlayerLogic::playerFameChanged, this, &MainWindow::updateFame);
-    connect(ui->gasSlider, &QSlider::valueChanged, this, &MainWindow::changeSpeed);
-    connect(ui->directionButton, &QPushButton::clicked, this, &MainWindow::changeDirection);
-    connect(ui->nextStationsListWidget, &QListWidget::currentItemChanged, this, &MainWindow::changeNextDestination);
-    connect(ui->passedStationsListWidget, &QListWidget::currentItemChanged, this, &MainWindow::changeNextBacktrack);
-    connect(game_->getPlayerModel(), &PlayerLogic::availableTrains, this, &MainWindow::updateBuyableTrains);
-    connect(game_->getPlayerModel(), &PlayerLogic::ownedTrains, this, &MainWindow::updatePlayerTrains);
-    connect(game_->getPlayerModel(), &PlayerLogic::activeTrainChanged, this, &MainWindow::updateActiveTrain);
-    connect(game_->getPlayerModel(), &PlayerLogic::ownedTrainInfo, this, &MainWindow::updateTrainFeatures);
-    connect(game_->getPlayerModel(), &PlayerLogic::trainInfo, this, &MainWindow::updateTrainFeatures);
-    connect(game_->getPlayerModel(), &PlayerLogic::showBrokenTrains, this, &MainWindow::updateDepotList);
-    connect(game_->getPlayerModel(), &PlayerLogic::brokenTrain, this, &MainWindow::updateBrokenTrainInfo);
-    connect(game_->getPlayerModel(), &PlayerLogic::trainRepaired, this, &MainWindow::trainRepaired);
-    connect(game_->getPlayerModel(), &PlayerLogic::notEnoughMoney, this, &MainWindow::actionFailed);
-    connect(game_->getObstacleModel(), &ObstacleLogic::obstacleRemoved, this, &MainWindow::obstacleRemoved);
-    connect(game_->getObstacleModel(), &ObstacleLogic::obstacleCreated, this, &MainWindow::updateObstacleInfo);
-    connect(game_->getPlayerModel(), &PlayerLogic::notAbleToPlay, this, &MainWindow::disableGame);
-    connect(game_->getPlayerModel(), &PlayerLogic::shopActionFailed, this, &MainWindow::actionFailed);
-    connect(game_->getAiTrainModel(), &VrTrainManager::message, this, &MainWindow::updateMessageLabel);
-    connect(game_->getPlayerModel()->activeTrain().get(), &PlayerTrain::message, this, &MainWindow::updateMessageLabel);
-    connect(game_.get(), &Game::endGameSignal, this, &MainWindow::endGameWindow);
-    connect(clearTimer_, SIGNAL(timeout()), this, SLOT(clearMessage()));
-    connect(game_.get(), &Game::decreaseFame, this, &MainWindow::updateFame);
+    connect(game_->getRailModel(), &RailLogic::destinationCandidatesChanged,
+            this, &MainWindow::updateNextStations);
+    connect(game_->getRailModel(), &RailLogic::backttrackCandidatesChanged,
+            this, &MainWindow::updatePassedStations);
+    connect(game_->getRailModel(), &RailLogic::signalDestAndPrevious,
+            this, &MainWindow::updatePreviousAndNext);
+    connect(game_->getRailModel(), &RailLogic::naviInfoUpdate,
+            this, &MainWindow::updateNaviToUi);
+    connect(game_->getPlayerModel(), &PlayerLogic::playerCashChanged,
+            this, &MainWindow::updateMoney);
+    connect(game_->getPlayerModel(), &PlayerLogic::playerFameChanged,
+            this, &MainWindow::updateFame);
+    connect(ui->gasSlider, &QSlider::valueChanged,
+            this, &MainWindow::changeSpeed);
+    connect(ui->directionButton, &QPushButton::clicked,
+            this, &MainWindow::changeDirection);
+    connect(ui->nextStationsListWidget, &QListWidget::currentItemChanged,
+            this, &MainWindow::changeNextDestination);
+    connect(ui->passedStationsListWidget, &QListWidget::currentItemChanged,
+            this, &MainWindow::changeNextBacktrack);
+    connect(game_->getPlayerModel(), &PlayerLogic::availableTrains,
+            this, &MainWindow::updateBuyableTrains);
+    connect(game_->getPlayerModel(), &PlayerLogic::ownedTrains,
+            this, &MainWindow::updatePlayerTrains);
+    connect(game_->getPlayerModel(), &PlayerLogic::activeTrainChanged,
+            this, &MainWindow::updateActiveTrain);
+    connect(game_->getPlayerModel(), &PlayerLogic::ownedTrainInfo,
+            this, &MainWindow::updateTrainFeatures);
+    connect(game_->getPlayerModel(), &PlayerLogic::trainInfo,
+            this, &MainWindow::updateTrainFeatures);
+    connect(game_->getPlayerModel(), &PlayerLogic::showBrokenTrains,
+            this, &MainWindow::updateDepotList);
+    connect(game_->getPlayerModel(), &PlayerLogic::brokenTrain,
+            this, &MainWindow::updateBrokenTrainInfo);
+    connect(game_->getPlayerModel(), &PlayerLogic::trainRepaired,
+            this, &MainWindow::trainRepaired);
+    connect(game_->getPlayerModel(), &PlayerLogic::notEnoughMoney,
+            this, &MainWindow::actionFailed);
+    connect(game_->getObstacleModel(), &ObstacleLogic::obstacleRemoved,
+            this, &MainWindow::obstacleRemoved);
+    connect(game_->getObstacleModel(), &ObstacleLogic::obstacleCreated,
+            this, &MainWindow::updateObstacleInfo);
+    connect(game_->getPlayerModel(), &PlayerLogic::notAbleToPlay,
+            this, &MainWindow::disableGame);
+    connect(game_->getPlayerModel(), &PlayerLogic::shopActionFailed,
+            this, &MainWindow::actionFailed);
+    connect(game_->getAiTrainModel(), &VrTrainManager::message,
+            this, &MainWindow::updateMessageLabel);
+    connect(game_->getPlayerModel()->activeTrain().get(), &PlayerTrain::message,
+            this, &MainWindow::updateMessageLabel);
+    connect(game_.get(), &Game::endGameSignal,
+            this, &MainWindow::endGameWindow);
+    connect(clearTimer_, SIGNAL(timeout()),
+            this, SLOT(clearMessage()));
+    connect(game_.get(), &Game::decreaseFame,
+            this, &MainWindow::updateFame);
 
     ui->gameView->setScene(scene_.get());
 
@@ -58,7 +86,8 @@ MainWindow::MainWindow(std::shared_ptr<Game> game, std::shared_ptr<QGraphicsScen
     // player's starting cash
     ui->moneyLabel->setNum(game_->getPlayerMoney());
     ui->featuresTextOLabel->setText(QString("Aktiivinen Juna: "));
-    ui->featuresOLabel->setText(game_->getPlayerModel()->activeTrain()->getName());
+    ui->featuresOLabel->setText(game_->getPlayerModel()->
+                                activeTrain()->getName());
 
     game_->getPlayerModel()->getOwnedTrains();
     game_->getPlayerModel()->getAvailableTrainsFromShop();
@@ -168,7 +197,7 @@ void MainWindow::changeNextBacktrack()
 void MainWindow::updateTrainFeatures(std::shared_ptr<PlayerTrain> trainInfo)
 {
     ui->featuresBLabel->setText("Nopeus: " + QString::number(trainInfo->getSpeed())
-                                + ", Kunto: " + QString::number(trainInfo->getShape()));
+                             + ", Kunto: " + QString::number(trainInfo->getShape()));
     ui->costsLabel->setText(QString::number(trainInfo->getPrice()));
 
 }
@@ -185,7 +214,7 @@ void MainWindow::updateDepotList(std::vector<std::shared_ptr<PlayerTrain>> brTra
 }
 
 
-void MainWindow::updatePlayerTrains(std::vector<std::shared_ptr<PlayerTrain> > ownedTrains)
+void MainWindow::updatePlayerTrains(std::vector<std::shared_ptr<PlayerTrain>> ownedTrains)
 {
     ui->ownedTrainsListWidget->clear();
     for (std::shared_ptr<PlayerTrain> owned : ownedTrains) {
@@ -292,7 +321,8 @@ void MainWindow::trainRepaired()
 
 void MainWindow::disableGame()
 {
-    QMessageBox::warning(this, "Ei junaa", "Aktiivista junaa ei ole asetettu, et voi pelata");
+    QMessageBox::warning(this, "Ei junaa",
+                         "Aktiivista junaa ei ole asetettu, et voi pelata");
     ui->gameButton->setDisabled(true);
 }
 
@@ -322,7 +352,8 @@ void MainWindow::obstacleRemoved(int fameReward, int moneyReward)
 
 }
 
-void MainWindow::updateObstacleInfo(QString stations, QString track, QString threatLevel)
+void MainWindow::updateObstacleInfo(QString stations,
+                                    QString track, QString threatLevel)
 {
     ui->blockLocation->setText(stations);
     ui->blockTrack->setText(track);

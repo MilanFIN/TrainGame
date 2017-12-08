@@ -1,6 +1,7 @@
 #include "testgame.h"
 
-TestGame::TestGame(std::shared_ptr<QGraphicsScene> scene, std::shared_ptr<QGraphicsScene> miniMapScene)
+TestGame::TestGame(std::shared_ptr<QGraphicsScene> scene,
+                   std::shared_ptr<QGraphicsScene> miniMapScene)
 {
     scene_ = scene;
     miniMapScene_ = miniMapScene;

@@ -19,14 +19,16 @@ void dataReader::loadTracksFromFile(const QString &filepath, RailLogic &locig)
 {
     QFile file(filepath);
     if (!file.open(QFile::ReadOnly)) {
-        throw std::runtime_error("Can't open file " + filepath.toStdString() + ". Check filepath");
+        throw std::runtime_error("Can't open file "
+                                 + filepath.toStdString() + ". Check filepath");
     }
 
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll(), &error);
 
     if (doc.isNull()) {
-        throw std::runtime_error("Failed to parse json" + error.errorString().toStdString());
+        throw std::runtime_error("Failed to parse json"
+                                 + error.errorString().toStdString());
     }
     if (!doc.isObject()) {
         throw std::runtime_error("ratadata to contain json object");
@@ -67,7 +69,8 @@ void dataReader::loadStationsFromFile(const QString &filepath, RailLogic& logic)
     QJsonDocument doc = QJsonDocument::fromJson(f.readAll(), &error);
 
     if (doc.isNull()) {
-        throw std::runtime_error("Failed to parse json" + error.errorString().toStdString());
+        throw std::runtime_error("Failed to parse json"
+                                 + error.errorString().toStdString());
     }
     if (!doc.isArray()) {
         throw std::runtime_error("Document does not contain array of stations");
@@ -95,7 +98,8 @@ void dataReader::loadStationsFromFile(const QString &filepath, RailLogic& logic)
     f.close();
 }
 
-void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop, PlayerLogic &logic)
+void dataReader::loadTrains(const QString &filepath,
+                            std::shared_ptr<Shop> shop, PlayerLogic &logic)
 {
     QFile f(filepath);
 
@@ -107,7 +111,8 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
     QJsonDocument doc = QJsonDocument::fromJson(f.readAll(), &error);
 
     if (doc.isNull()) {
-        throw std::runtime_error("Failed to parse json" + error.errorString().toStdString());
+        throw std::runtime_error("Failed to parse json"
+                                 + error.errorString().toStdString());
     }
     if (!doc.isArray()) {
         throw std::runtime_error("Document does not contain array of trainobjects");
@@ -127,7 +132,10 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
         unsigned short shape = short(obj["shape"].toInt());
         QString imagePath = obj["image"].toString();
 
-        std::shared_ptr<PlayerTrain> train = std::make_shared<PlayerTrain>(trainName, shape, price, speed, repairCost, imagePath);
+        std::shared_ptr<PlayerTrain> train
+                = std::make_shared<PlayerTrain>(trainName, shape,
+                                                price, speed,
+                                                repairCost, imagePath);
 
         if (first){
             logic.addNewTrain(train);
@@ -139,7 +147,8 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
     }
 }
 
-void dataReader::readHTTPData(std::weak_ptr<HttpEngine> engine, VrTrainManager& manager)
+void dataReader::readHTTPData(std::weak_ptr<HttpEngine> engine,
+                              VrTrainManager& manager)
 {
 
     QIODevice *ret = engine.lock()->httpData();
@@ -160,7 +169,8 @@ void dataReader::parseHttpData(QByteArray data, VrTrainManager& manager)
     QJsonDocument doc = QJsonDocument::fromJson(data, &error);
 
     if (doc.isNull()) {
-        throw std::runtime_error("Failed to parse json " + error.errorString().toStdString());
+        throw std::runtime_error("Failed to parse json "
+                                 + error.errorString().toStdString());
     }
     if (!doc.isArray()) {
         throw std::runtime_error("Document does not contain array of trainobjects");
@@ -192,7 +202,8 @@ void dataReader::parseHttpData(QByteArray data, VrTrainManager& manager)
                 }
             }
             if (timeTable.size() != 0){
-                std::shared_ptr<VrTrain> aiTrain = std::make_shared<VrTrain>(trainNumberID, timeTable);
+                std::shared_ptr<VrTrain> aiTrain
+                        = std::make_shared<VrTrain>(trainNumberID, timeTable);
                 manager.addAiTrain(trainNumberID, aiTrain);
             }
         }

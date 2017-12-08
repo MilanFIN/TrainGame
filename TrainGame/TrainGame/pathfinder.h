@@ -6,7 +6,8 @@
 #include <QString>
 
 /**
- * @brief The PathFinder defines a singleton for getting a route between two locations
+ * @brief The PathFinder defines a singleton
+ * for getting a route between two locations
  */
 class PathFinder
 {
@@ -15,7 +16,8 @@ public:
 
     ~PathFinder() = default;
     /**
-     * @brief nextStationCode returns if a route has been found and the route in parameters if so
+     * @brief nextStationCode returns if a route has been found
+     * and the route in parameters if so
      * @param result the next station to be chosen to follow the route
      * @param trackData trackdata to be used on the pathfinding
      * @param destinations possible directions of which one has to be picked
@@ -24,7 +26,9 @@ public:
      * @pre trackdata includes useful data
      * @return info, if a route was found
      */
-    bool nextStationCode(QString& result, QMap<QString, QList<QString>>& trackData, QList<QString>& destinations, QString prev, QString next);
+    bool nextStationCode(QString& result, QMap<QString,
+                         QList<QString>>& trackData, QList<QString>& destinations,
+                         QString prev, QString next);
 
 private:
     PathFinder();
@@ -32,7 +36,8 @@ private:
     PathFinder(PathFinder const&) = delete;
     PathFinder& operator=(PathFinder const&) = delete;
 
-    int generateDistance(QString startPoint, QMap<QString, QList<QString>>& trackData, QString& prev, QString& next, int covered);
+    int generateDistance(QString startPoint, QMap<QString, QList<QString>>&
+                         trackData, QString& prev, QString& next, int covered);
 };
 
 #endif // PATHFINDER_H

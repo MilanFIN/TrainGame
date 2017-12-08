@@ -18,7 +18,7 @@
         {
             "name": "Salamajuna",
             "shape": 150,
-            "speed": 2,
+            "speed": 1.7,
             "price": 300,
             "repairCost": 250,
             "image": ":/kuvat/train2.png"
@@ -26,7 +26,7 @@
         {
             "name": "Luotijuna",
             "shape": 100,
-            "speed": 3,
+            "speed": 2.3,
             "price": 400,
             "repairCost": 300,
             "image": ":/kuvat/train3.png"

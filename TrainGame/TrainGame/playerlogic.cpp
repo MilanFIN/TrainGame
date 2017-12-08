@@ -192,7 +192,8 @@ void PlayerLogic::takeDamage(int dmg)
     activeTrain().get()->takeDamage(dmg);
 }
 
-void PlayerLogic::playerToShopTransaction(int index, std::shared_ptr<PlayerTrain> train)
+void PlayerLogic::playerToShopTransaction(int index,
+                                          std::shared_ptr<PlayerTrain> train)
 {
     deleteTrain(index);
 

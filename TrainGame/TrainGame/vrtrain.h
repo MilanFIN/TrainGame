@@ -12,7 +12,8 @@ public:
     /**
      * @brief VrTrain constructor
      * @param tNumber id of the train
-     * @param timeTable vector of pairs of stations and departure times in a speficic form
+     * @param timeTable vector of pairs of stations and
+     *  departure times in a speficic form
      */
     VrTrain(QString tNumber, QVector<QPair<QString, QString> > timeTable);
 
@@ -23,7 +24,8 @@ public:
     QString getTraiNumber() const;
     /**
      * @brief getTimeTable gets the timetable
-     * @return QVector<QPair<QString, QString>> first qstring is a stationcode, second the departure time in some weird format
+     * @return QVector<QPair<QString, QString>>
+     * first qstring is a stationcode, second the departure time in some weird format
      */
     QVector<QPair<QString, QString>> getTimeTable() const;
     /**

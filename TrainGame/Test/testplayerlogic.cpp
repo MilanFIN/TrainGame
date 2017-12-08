@@ -16,7 +16,8 @@ void TestPlayerLogic::defaultConstrcutor()
 {
     std::shared_ptr<PlayerLogic> player = std::make_shared<PlayerLogic>();
 
-    QSignalSpy spy(player.get(), SIGNAL(ownedTrains(std::vector<std::shared_ptr<PlayerTrain>>)));
+    QSignalSpy spy(player.get(),
+                   SIGNAL(ownedTrains(std::vector<std::shared_ptr<PlayerTrain>>)));
 
     player->getOwnedTrains();
     QCOMPARE(spy.count(), 1);
@@ -45,7 +46,8 @@ void TestPlayerLogic::buyTrain()
     QList<QVariant> args = spy.takeFirst();
     QVERIFY(args.at(0).type() == QVariant::String);
 
-    QSignalSpy spyy(player.get(), SIGNAL(availableTrains(std::vector<std::shared_ptr<PlayerTrain> >)));
+    QSignalSpy spyy(player.get(),
+                    SIGNAL(availableTrains(std::vector<std::shared_ptr<PlayerTrain> >)));
     //legal action
     player->buyTrain(trainName, i);
     QCOMPARE(spy.count(), 1);

@@ -17,7 +17,8 @@ public:
      */
     virtual void move(int speed) = 0;
     /**
-     * @brief abstract method to get the damage to be done to the player by the obstacle
+     * @brief abstract method to get the damage
+     *  to be done to the player by the obstacle
      * @return damage done to player
      */
     virtual int getDamage() = 0;

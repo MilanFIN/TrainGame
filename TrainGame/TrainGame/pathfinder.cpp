@@ -3,7 +3,10 @@
 
 PathFinder PathFinder::PATHFINDER;
 
-bool PathFinder::nextStationCode(QString &result, QMap<QString, QList<QString> > &trackData, QList<QString> &destinations, QString prev, QString next)
+bool PathFinder::nextStationCode(QString &result, QMap<QString,
+                                 QList<QString> > &trackData,
+                                 QList<QString> &destinations,
+                                 QString prev, QString next)
 {
     QList<int> intResults;
     foreach(QString dest, destinations){
@@ -27,7 +30,9 @@ bool PathFinder::nextStationCode(QString &result, QMap<QString, QList<QString> >
 
 }
 
-int PathFinder::generateDistance(QString startPoint, QMap<QString, QList<QString> > &trackData, QString &prev, QString &next, int covered)
+int PathFinder::generateDistance(QString startPoint,
+                                 QMap<QString, QList<QString> > &trackData,
+                                 QString &prev, QString &next, int covered)
 {
     if (startPoint == prev || startPoint == next){
         return covered;
@@ -40,12 +45,15 @@ int PathFinder::generateDistance(QString startPoint, QMap<QString, QList<QString
         foreach(QList<QString> i, trackData){
             for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
                 if (*j == startPoint){
-                    distances.append(generateDistance((*(j+1)), trackData, prev, next, covered +1));
+                    distances.append(generateDistance((*(j+1)),
+                                                      trackData, prev,
+                                                      next, covered +1));
                 }
             }
             for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
                 if (*j == startPoint){
-                    distances.append(generateDistance((*(j-1)), trackData, prev, next, covered +1));
+                    distances.append(generateDistance((*(j-1)), trackData,
+                                                      prev, next, covered +1));
                 }
             }
         }

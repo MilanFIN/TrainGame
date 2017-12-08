@@ -57,7 +57,8 @@ void BackgroundLogic::move(double multiplier) {
 
     //because game starts in the middle of background
     //we must do the first background creation differently
-    else if (movementOverall_ <= -1500 && firstTime_ == true && forward_ == false) {
+    else if (movementOverall_ <= -1500 &&
+             firstTime_ == true && forward_ == false) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(950);
 

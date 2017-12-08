@@ -20,7 +20,8 @@
 #include "background.h"
 
 /**
- * @brief The RailLogic class defines the object that handles most railway network related stuff
+ * @brief The RailLogic class defines the
+ *  object that handles most railway network related stuff
  */
 
 class RailLogic : public QObject
@@ -60,7 +61,8 @@ public:
      * @param type type of the station
      * @param lat latitude as in the geographic coordinate
      * @param lng longitude as in the geographic coordinate
-     * @param passengerStation info if the station handles passenger traffic(not really relevant for this)
+     * @param passengerStation info if the station
+     * handles passenger traffic(not really relevant for this)
      */
     void addStations(QString shortCode, QString fullName, QString type,
                      double lat, double lng, bool passengerStation);
@@ -87,15 +89,18 @@ public:
      */
     void changeDestinationCandidateIndex(int index);
     /**
-     * @brief changeBackTrackCandidateIndex sets the new destination if we reversed back to the previous station
+     * @brief changeBackTrackCandidateIndex sets the new
+     *  destination if we reversed back to the previous station
      * @param index index of the destination
      * @pre destination index is in the possible choises of destinations
      * @post the backtracking destination has been changed
      */
     void changeBackTrackCandidateIndex(int index);
     /**
-     * @brief signalStationInfoToUi signals previous and next station's info to the ui
-     * @pre the necessary slots to handle the upcoming signals have been defined and connected
+     * @brief signalStationInfoToUi signals previous and
+     * next station's info to the ui
+     * @pre the necessary slots to handle the upcoming
+     *  signals have been defined and connected
      */
     void signalStationInfoToUi();
     /**
@@ -111,14 +116,16 @@ public:
      */
     void updateObstacleOnMiniMap(QString prev, QString next);
     /**
-     * @brief getRandomStationAndTrack gets a random station pair at a maximum distance
+     * @brief getRandomStationAndTrack gets a random
+     * station pair at a maximum distance
      * @param distance max distance in amount of stations
      * @param Stations list of 2 elements, the two stations that were chosen
      * @param trackCode the trackcode of the chosen track
      * @param stationNames list of 2, names of the stations chosen
      * @param harmful boolean value if the location is in danger of collision from aitrains
      */
-    void getRandomStationAndTrack(int distance, QList<QString>& Stations, QString& trackCode, QList<QString>& stationNames, bool &harmful);
+    void getRandomStationAndTrack(int distance, QList<QString>& Stations, QString& trackCode,
+                                  QList<QString>& stationNames, bool &harmful);
 
     /**
      * @brief getCurrentTrack returns current track
@@ -144,9 +151,11 @@ public:
      * @param nextY next stations location in y axis
      * @param mainRail info if the train is in a track that has aitrain traffic
      */
-    void getCurrentLocation(QString &prev, QString &next, int &prevY, int &nextY, bool &mainRail);
+    void getCurrentLocation(QString &prev, QString &next, int
+                            &prevY, int &nextY, bool &mainRail);
     /**
-     * @brief getNextDistance gets the distance of the next station in y axis based on coordinate data
+     * @brief getNextDistance gets the distance of the next station
+     *  in y axis based on coordinate data
      * @return int y distance
      */
     int getNextDistance();
@@ -198,17 +207,23 @@ private:
     // key : shortcode , value: particular station
     QHash<QString, StationInfo> stations_;
 
-    // key: trackcode , value: Qlist of tracks(shortcodes) under current trackcode
+    // key: trackcode , value: Qlist of
+    //tracks(shortcodes) under current trackcode
     QMap<QString, QList<QString>> tracks_;
 
     //variables to store location in the railway system during gameplay
     QString startStationCode_; //previous station
     QString destinationStationCode_; //next station on the track
     QString currentTrackCode_; //current track
-    QList<QString> destinationStationCandidates_; //stationcodes for possible destinations after the current one is reached
-    QList<QString> destinationTrackCandidates_; //trackcodes that correspond to the above destinations
-    QList<QString> backtrackStationCandidates_; //stationcodes for possible destinations after reversing to previous station
-    QList<QString> backtrackTrackCandidates_; //trackcodes for the above
+
+    //stationcodes for possible destinations after the current one is reached
+    QList<QString> destinationStationCandidates_;
+    //trackcodes that correspond to the above destinations
+    QList<QString> destinationTrackCandidates_;
+    //stationcodes for possible destinations after reversing to previous station
+    QList<QString> backtrackStationCandidates_;
+    //trackcodes for the above
+    QList<QString> backtrackTrackCandidates_;
 
     int destinationIndex_;
     int backtrackIndex_;

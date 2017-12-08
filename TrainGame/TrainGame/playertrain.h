@@ -20,7 +20,8 @@ public:
      * @param repairCost cost of repairing the train to full health
      * @param imagePath path to the image of the train
      */
-    PlayerTrain(QString name, short shape, unsigned short price, double speed, unsigned short repairCost, QString imagePath);
+    PlayerTrain(QString name, short shape, unsigned short price,
+                double speed, unsigned short repairCost, QString imagePath);
 
     /**
      * @brief getName returns the name of the train
