@@ -3,16 +3,15 @@
 
 #include <QObject>
 #include <QGraphicsScene>
-#include <memory>
-#include <vector>
 #include <QGraphicsPixmapItem>
 #include <QImage>
+#include <QList>
+#include <QString>
+#include <QMap>
+#include <QHash>
 
-#include "QList"
-#include "QString"
-#include "QMap"
-#include "QHash"
-
+#include <memory>
+#include <vector>
 
 #include "railtileinterface.h"
 #include "onesiderailtile.h"

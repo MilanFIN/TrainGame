@@ -277,26 +277,22 @@ void MainWindow::on_buyButton_clicked()
 
 void MainWindow::on_fixButton_clicked()
 {
-
-    if (ui->fixListWidget->currentItem() != nullptr) {
+    if (ui->fixListWidget->currentItem() != nullptr)
+    {
         int rowIndex = ui->fixListWidget->currentRow();
         game_->repairPlayerTrain(rowIndex);
-
     }
-
 }
 
 void MainWindow::on_confirmButton_clicked()
 {
-    // if empty no nothing
-
-    if (ui->ownedTrainsListWidget->currentItem() != nullptr){
+    // if empty do nothing
+    if (ui->ownedTrainsListWidget->currentItem() != nullptr)
+    {
         int rowIndex = ui->ownedTrainsListWidget->currentRow();
         game_->setActiveTrain(rowIndex);
         ui->gameButton->setDisabled(false);
-
     }
-
 }
 
 void MainWindow::on_ownedTrainsListWidget_itemClicked(QListWidgetItem *item)
@@ -304,26 +300,18 @@ void MainWindow::on_ownedTrainsListWidget_itemClicked(QListWidgetItem *item)
     ui->buyableTrainsListWidget->selectionModel()->clear();
     ui->featuresBLabel->clear();
     game_->wantedOwnedTrainInfo(item->text());
-
-
 }
 
 void MainWindow::on_fixListWidget_itemClicked(QListWidgetItem *item)
-{
-    //TODO: näytä junan optimikunto versus nykykunto.
-    // ja paljonko korjaus maksaa.
-
+{   
     ui->currShape->clear();
     ui->optimalShape->clear();
     ui->repairCostLabel->clear();
-    // tää on vähän paska homma
     game_->fixlistTrainInfo(item->text());
-
-
 }
 
 void MainWindow::on_buyableTrainsListWidget_itemClicked(QListWidgetItem *item)
-{
+{   
     ui->ownedTrainsListWidget->selectionModel()->clear();
     ui->featuresBLabel->clear();
     game_->wantedTrainInfo(item->text());
@@ -345,7 +333,6 @@ void MainWindow::disableGame()
 }
 
 
-
 void MainWindow::updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain)
 {
     short absShape = brokenTrain->getAbsoluteShape();
@@ -364,7 +351,6 @@ void MainWindow::obstacleRemoved(int fameReward, int moneyReward)
     int currentFame = ui->fameTextLabel->text().toInt();
 
 
-
     int newMoney = currentMoney + moneyReward;
     if (newMoney < 0){
         moneyReward = 0 - currentMoney;
@@ -375,7 +361,6 @@ void MainWindow::obstacleRemoved(int fameReward, int moneyReward)
     game_->addFame(fameReward);
     //spawn next obstacle
     game_->spawn();
-
 
 }
 

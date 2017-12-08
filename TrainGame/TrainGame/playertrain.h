@@ -107,18 +107,15 @@ private:
 
 
     QString name_;
-    QImage trainImage_;
-    bool isPlayable_;
-    bool isOwned_;
-
-    short const absoluteShape_;
     short shape_;
-
-
-
     unsigned short const price_;
     double const speed_;
     unsigned short repairCost_;
+    QImage trainImage_;
+    short const absoluteShape_;
+
+    bool isPlayable_;
+    bool isOwned_;
 
     void invariant();
 

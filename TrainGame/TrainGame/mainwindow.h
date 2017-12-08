@@ -2,15 +2,17 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "game.h"
 #include <QGraphicsScene>
-#include <memory>
+#include <QTimer>
 #include <QGraphicsPixmapItem>
 #include <QListWidgetItem>
 #include <QList>
 #include <QString>
-#include <httpengine.h>
-#include <QTimer>
+
+#include <memory>
+
+#include "httpengine.h"
+#include "game.h"
 #include "playertrain.h"
 #include "obstaclelogic.h"
 #include "raillogic.h"

@@ -4,12 +4,10 @@
 
 Shop::Shop()
 {
-
 }
 
 Shop::~Shop()
 {
-
 }
 
 std::shared_ptr<PlayerTrain> Shop::buyTrain(int index)

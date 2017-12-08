@@ -3,20 +3,12 @@
 PlayerTrain::PlayerTrain(QString name, short shape, unsigned short price, double speed, unsigned short repairCost, QString imagePath):
     name_(name),
     shape_(shape),
-    absoluteShape_(shape),
     price_(price),
     speed_(speed),
     repairCost_(repairCost),
-    trainImage_(imagePath)
+    trainImage_(imagePath),
+    absoluteShape_(shape)
 {
-//    QImage kuva(":/kuvat/train.png");
-//    QImage kuvaScaled = kuva.scaled(150,150,Qt::KeepAspectRatio);
-//    setPixmap(QPixmap::fromImage(kuvaScaled));
-//    setPos(-55, -30);
-
-//    //asetetaan raiteiden päälle
-//    setZValue(2);
-
     isOwned_ = false;
     isPlayable_ = true;
 }
@@ -85,8 +77,6 @@ unsigned short PlayerTrain::takeDamage(int dmgAmount)
         emit message("Junasi on vaurioitunut täysin, korjaa se!");
         return shape_;
     }
-
-
 
     //because damage is always minus we use shape = shape + dmgAmount
     shape_ -= dmgAmount;

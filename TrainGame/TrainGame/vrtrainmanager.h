@@ -4,7 +4,9 @@
 #include <QObject>
 #include <QGraphicsScene>
 #include <QVector>
+
 #include <memory>
+
 #include "httpengine.h"
 #include "vrtrain.h"
 #include "playertrain.h"

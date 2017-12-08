@@ -7,6 +7,9 @@ namespace Ui {
 class endGame;
 }
 
+/**
+ * @brief The endGame class dialog informs player when player lose
+ */
 class endGame : public QDialog
 {
     Q_OBJECT

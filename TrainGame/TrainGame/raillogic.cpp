@@ -1,7 +1,6 @@
 #include "raillogic.h"
 #include "datareader.h"
 #include "pathfinder.h"
-#include <iostream>
 #include <QDebug>
 #include <QGraphicsEllipseItem>
 #include <QDateTime>
@@ -16,10 +15,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
 
     // seed setup
     qsrand(QDateTime::currentDateTime().toTime_t());
-
-    //railTiles.push_back(std::make_shared<OneSideRailTile>(0,-275));
-    //scene_->addItem(railTiles.at(0).get());
-
 
     for (int i = -275; i < 280; i +=30){
         railTiles.push_back(std::make_shared<OneSideRailTile>(0,i));
@@ -48,11 +43,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
 
     int index = qrand() % startTracks.size();
     QString trackCode = startTracks.at(index);
-    /*
-    foreach(QList<QString> i, tracks_){
-        std::cout << tracks_.key(i).toStdString()  << " " << i.size()<< std::endl;
-    }
-    */
 
     if (tracks_.value(trackCode).size() >= 2){
         startStationCode_ = tracks_.value(trackCode).at(0);
@@ -139,7 +129,7 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
         double x = (i.lng-lngCenter_)*xConversionRate_;
         double y = (i.lat-latCenter_)*yConversionRate_;
         miniMapScene_->addEllipse(x-2, y-2, 3, 3,
-                   QPen(), QBrush(Qt::SolidPattern));
+                                  QPen(), QBrush(Qt::SolidPattern));
     }
 
 
@@ -184,12 +174,13 @@ void RailLogic::move(double multiplier)
             speed_ -= accel_;
         }
     }
-    //siirretään raiteenpätkiä
+
+    // move railtiles
     for (auto i = railTiles.begin(); i != railTiles.end(); ++i){
         (*i).get()->move((int)(multiplier*speed_));
     }
 
-    //tarkistetaan, onko kulkusuunta ehtinyt vaihtua edellisen päiviyksen jälkeen
+    // check if moving direction has changed since last frame update
     if ((previousSpeed_ > 0 && speed_ < 0) || (previousSpeed_ < 0 && speed_ > 0)){
         movementSinceLastRailSpawn_ = 0;
     }
@@ -197,7 +188,7 @@ void RailLogic::move(double multiplier)
     movementSinceLastRailSpawn_ += multiplier*speed_;
     previousSpeed_ = multiplier*speed_;
 
-    //luodaan uusi pätkä, jos on liikuttu tarpeeksi
+    // create new tiles if train has moved enough
     if (movementSinceLastRailSpawn_ >= 30){
         std::shared_ptr<OneSideRailTile> railTile = std::make_shared<OneSideRailTile>(0,-275);
         scene_->addItem(railTile.get());
@@ -212,7 +203,7 @@ void RailLogic::move(double multiplier)
         movementSinceLastRailSpawn_ += 30;
     }
 
-    //poistetaan näkyvistä hävinneet raiteenpätkät
+    // delete disappeared railtiles
     for (auto i = railTiles.begin(); i != railTiles.end();){
         if ((*i).get()->y() > 241){
 
@@ -229,7 +220,7 @@ void RailLogic::move(double multiplier)
 
     }
 
-    //siirretään seuraavaa asemaa
+    // move next station
     nextStation_->move((int)(multiplier*speed_));
     previousStation_->move((int)(multiplier*speed_));
 
@@ -254,7 +245,6 @@ void RailLogic::changeDirection()
 void RailLogic::addTrack(QString trackCode, QList<QString> stations)
 {
     tracks_.insert(trackCode, stations);
-
 }
 
 void RailLogic::addStations(QString shortCode, QString fullName, QString type,
@@ -281,8 +271,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
 
         destinationStationCode_ = destinationStationCandidates_.at(destinationIndex_);
         currentTrackCode_ = destinationTrackCandidates_.at(destinationIndex_);
-
-        std::cout << "passed " << startStationCode_.toStdString() << " on track " << currentTrackCode_.toStdString() << std::endl;
 
         //figure out possible directions after reaching destination
         destinationStationCandidates_.clear();
@@ -469,8 +457,6 @@ void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
                 }
             }
 
-            //std::cout << startStation.toStdString() << " " << track.toStdString() << " " << destinationStation.toStdString() << std::endl;
-
         }
         randomNumber = qrand() % destStat.size();
         track = destTrack.at(randomNumber);
@@ -490,7 +476,7 @@ void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
     foreach(QList<QString> i, tracks_){
         for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
             if ((*j == stations.at(0) && *(j+1) == stations.at(1) )
-                    || *j == stations.at(1) && *(j+1) == stations.at(0)){
+                    || (*j == stations.at(1) && *(j+1) == stations.at(0))){
                 //found a track between the stations, figure out what the name of the track is
                 if (tracks_.key(i).toStdString() == trackCode.toStdString()){
                     harmful = true;
@@ -505,8 +491,6 @@ void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
         }
 
     }
-
-
 
 }
 
@@ -537,7 +521,7 @@ void RailLogic::getCurrentLocation(QString &prev, QString &next, int &prevY, int
     foreach(QList<QString> i, tracks_){
         for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
             if ((*j == startStationCode_ && *(j+1) == destinationStationCode_ )
-                    || *j == destinationStationCode_ && *(j+1) == startStationCode_){
+                    || (*j == destinationStationCode_ && *(j+1) == startStationCode_)){
                 //found a track between the stations, figure out, if the track is
                 if (tracks_.key(i).toStdString() == currentTrackCode_.toStdString()){
                     mainRail = true;

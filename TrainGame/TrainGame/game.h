@@ -3,9 +3,11 @@
 
 #include <QObject>
 #include <QGraphicsScene>
+#include <QTimer>
+
 #include <memory>
 #include <vector>
-#include <QTimer>
+
 #include "raillogic.h"
 #include "playerlogic.h"
 #include "obstaclelogic.h"

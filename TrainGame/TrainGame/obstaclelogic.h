@@ -2,14 +2,17 @@
 #define OBSTACLELOGIC_H
 
 #include <QGraphicsScene>
+#include <QObject>
+
 #include <memory>
 #include <vector>
-#include <QObject>
 
 #include "obstacleinterface.h"
 #include "boulder.h"
 #include "traininterface.h"
 #include "playertrain.h"
+
+
 /**
  * @brief The ObstacleLogic is responsible for handling obstacles
 
@@ -108,7 +111,8 @@ private:
     std::shared_ptr<ObstacleInterface> obstacle_;
 
     bool inScene_ = false;
-    QString obstacleStartStation_;//stationcode
+    //stationcode
+    QString obstacleStartStation_;
     QString obstacleEndStation_;
     QString ObstacleTrackCode_;
     int nextObstacleDistance_ = 20;

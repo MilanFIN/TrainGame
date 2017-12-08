@@ -32,7 +32,7 @@
    <string>TrainGame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">		background-color: 	#a32020;</string>
+   <string notr="true">		background-color: 	#792e18;</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QStackedWidget" name="stackedWidget">

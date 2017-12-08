@@ -5,7 +5,7 @@
 
 
 /**
- * @brief ObstacleFactory is used for creating random obstacles
+ * @brief ObstacleFactory singleton-Class is used for creating random obstacles
  */
 class ObstacleFactory: public std::enable_shared_from_this<ObstacleFactory>
 {

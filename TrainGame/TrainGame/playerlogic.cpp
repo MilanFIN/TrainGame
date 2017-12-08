@@ -1,7 +1,6 @@
 #include "playerlogic.h"
 #include "shop.h"
 #include "datareader.h"
-#include <iostream>
 
 
 
@@ -18,15 +17,8 @@ PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
 {
     shop_ = std::make_shared<Shop>();
 
+    //read trains from JSON
     dataReader::READER.loadTrains(":/data/junat.json", shop_, *this);
-
-    //playableTrains_.push_back(std::make_shared<PlayerTrain>());
-
-    // Todo: kun peli aukeaa haetaan pelaajan aktiivinen juna
-    //
-//    activeTrain_ = playableTrains_.at(0);
-//    scene_->addItem(activeTrain_.get());
-
 
     emit playerCashChanged(getCurrentMoney());
     emit playerFameChanged(fame_);
@@ -143,17 +135,15 @@ void PlayerLogic::sellTrain(int index)
 
 void PlayerLogic::setActiveTrain(int rowIndex)
 {
-    // haetaan juna joka aktiiviseksi
+    // finds train that will be set active
     std::weak_ptr<PlayerTrain> trainActive = playableTrains_.at(rowIndex);
     removeTrainPixmap(activeTrain_);
 
-
-    // asetetaan juna uusi aktiiviseksi
+    // set train active and new pixmap
     activeTrain_ = trainActive.lock();
-
     trainActive.lock()->setPixmapToShow();
     setTrainPixmap();
-    // pelaajajunaan ja asettaa kuvasta pixmap sceneen
+
     emit activeTrainChanged(activeTrain_->getName());
 
 
@@ -218,7 +208,7 @@ void PlayerLogic::playerToShopTransaction(int index, std::shared_ptr<PlayerTrain
 {
     deleteTrain(index);
 
-    // if player sells active train, check if p has any
+    // if player sells activeTrain, check if p has any
     // trains to set active if not notify mainW and disable pelaa button
     if (train == activeTrain()) {
         if (playableTrains_.size() != 0) {

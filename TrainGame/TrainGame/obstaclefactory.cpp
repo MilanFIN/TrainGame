@@ -1,6 +1,6 @@
 #include "obstaclefactory.h"
-#include <boulder.h>
-#include <leafpile.h>
+#include "boulder.h"
+#include "leafpile.h"
 #include <memory>
 #include <QDateTime>
 
@@ -32,8 +32,6 @@ std::shared_ptr<ObstacleInterface> ObstacleFactory::createObject()
     } else {
         std::shared_ptr<LeafPile> a = std::make_shared<LeafPile>(0);
         return a;
-        // TODO: add different obstacle types.
     }
-
 
 }

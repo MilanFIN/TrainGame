@@ -1,7 +1,7 @@
 #include "obstaclelogic.h"
 #include "playertrain.h"
 #include "obstaclefactory.h"
-#include <iostream>
+
 
 ObstacleLogic::ObstacleLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
@@ -92,12 +92,13 @@ int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
     int damageDone = 0;
 
     if (inScene_){
-        if (train.get()->collidesWithItem(obstacle_.get())) {//doesn work yet
+        if (train.get()->collidesWithItem(obstacle_.get())) {
             scene_->removeItem(obstacle_.get());
             inScene_ = false;
 
             damageDone += obstacle_.get()->getDamage();
-            //annetaan vaan palkkio, muttei famea koska törmättiin
+            // give money to player cuz obstacle got removed by collision
+            // no fame cuz collision
             emit obstacleRemoved(-10, 0);
         }
     }
@@ -120,7 +121,7 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
 {
     if (ObstacleTrackCode_ == track){
         if ((next == obstacleStartStation_ && previous == obstacleEndStation_)
-                || previous == obstacleStartStation_ && next == obstacleEndStation_){
+                || (previous == obstacleStartStation_ && next == obstacleEndStation_)){
             obstacle_.get()->setPos(obstacle_.get()->x(), -300);
 
             if (!inScene_){
@@ -135,7 +136,6 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
         if (inScene_){
             scene_->removeItem(obstacle_.get());
             inScene_ = false;
-
 
         }
 
@@ -153,7 +153,6 @@ void ObstacleLogic::crash()
 {
     if (inScene_){
         scene_->removeItem(obstacle_.get());
-        std::cout << "törmäys" << std::endl;
 
         inScene_ = false;
     }

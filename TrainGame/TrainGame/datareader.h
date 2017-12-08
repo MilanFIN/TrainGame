@@ -3,6 +3,7 @@
 #include <QString>
 #include <QJsonObject>
 #include <memory>
+
 #include "raillogic.h"
 #include "shop.h"
 #include "playerlogic.h"

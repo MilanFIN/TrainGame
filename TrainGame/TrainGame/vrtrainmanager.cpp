@@ -1,10 +1,10 @@
 #include "vrtrainmanager.h"
 #include "datareader.h"
 #include "ioexception.h"
+#include <QTime>
 #include <exception>
 #include <iostream>
 #include <sstream>
-#include <QTime>
 #include <regex>
 #include <algorithm>
 #include <iostream>
@@ -100,8 +100,6 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
 
                         timeSinceLastMsg = QTime::currentTime().second();
                         emit message("Juna törmäsi esteeseen, uuden esteen sijainti kerrottu");
-
-
 
                         return true;
                     }
@@ -255,8 +253,6 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                     break;
 
                 }
-
-
 
 
             }

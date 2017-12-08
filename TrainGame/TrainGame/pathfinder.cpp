@@ -1,5 +1,4 @@
 #include "pathfinder.h"
-#include <iostream>
 
 
 PathFinder PathFinder::PATHFINDER;
@@ -19,7 +18,7 @@ bool PathFinder::nextStationCode(QString &result, QMap<QString, QList<QString> >
         }
     }
     if (minResult == 99){
-        return false; //ei löytynyt lainkaan reittiä
+        return false;
     }
     else{
         result = destinations.at(resultIndex);
@@ -34,14 +33,13 @@ int PathFinder::generateDistance(QString startPoint, QMap<QString, QList<QString
         return covered;
     }
     else if (covered >= 5){
-        return 99; //ei löytynyt tältä reitiltä
+        return 99;
     }
     else{
         QList<int> distances;
         foreach(QList<QString> i, trackData){
             for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
                 if (*j == startPoint){
-                    //löytyi asemalta lähtevä raide
                     distances.append(generateDistance((*(j+1)), trackData, prev, next, covered +1));
 
 
@@ -49,12 +47,11 @@ int PathFinder::generateDistance(QString startPoint, QMap<QString, QList<QString
             }
             for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
                 if (*j == startPoint){
-                    //löytyi asemalta lähtevä raide toiseen suuntaan
                     distances.append(generateDistance((*(j-1)), trackData, prev, next, covered +1));
                 }
             }
         }
-        //etsitään pienin löytynyt etäisyys
+        // find smallest found distance
         int result = 99;
         foreach (int distance, distances) {
             if (distance < result){

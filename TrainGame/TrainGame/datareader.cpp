@@ -11,7 +11,7 @@
 #include <QJsonValue>
 #include <QMap>
 #include <QList>
-#include <iostream>
+
 
 
 dataReader dataReader::READER;
@@ -51,7 +51,7 @@ void dataReader::loadTracksFromFile(const QString &filepath, RailLogic &locig)
             QString stationName = stationObj["name"].toString();
             stationList.push_back(stationName);
         }
-    locig.addTrack(trackCode, stationList);
+        locig.addTrack(trackCode, stationList);
 
     }
     file.close();
@@ -132,7 +132,7 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
 
         std::shared_ptr<PlayerTrain> train = std::make_shared<PlayerTrain>(trainName, shape, price, speed, repairCost, imagePath);
 
-        if (first){//if (trainName == QString("Pomppuresiina")) {
+        if (first){
             logic.addNewTrain(train);
             logic.setActiveTrain(0);
             first = false;
@@ -142,23 +142,17 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
 
     }
 
-    // todo poista
-//    std::vector<std::shared_ptr<PlayerTrain>> trains = shop->buyableTrains();
-//    std::cout <<"Kaupassa on näin monta junaa: "<<trains.size() << std::endl;
-
-
-
 }
 
 void dataReader::readHTTPData(std::weak_ptr<HttpEngine> engine, VrTrainManager& manager)
 {
 
     QIODevice *ret = engine.lock()->httpData();
+    // Whole game depends on API-info, throw exception, controlled closing
     if (ret == NULL) {
         throw IoException("NetworkRequest returned NULL");
     }
 
-    //tässä kohtaa tulee välillä segmentation fault, silloin kun ei ole nettiyhteyttä?
     QByteArray res = ret->readAll();
 
     parseHttpData(res, manager);
@@ -198,7 +192,8 @@ void dataReader::parseHttpData(QByteArray data, VrTrainManager& manager)
                 QString shortCode = objs["stationShortCode"].toString();
                 QString actualTime = objs["scheduledTime"].toString();
 
-                if (actualTime != ""){ //haku sisältää myös tyhjiä aikatauluja, joista pitää päästä eroon
+                // APIdata also contains empty schedules. Get rid of them
+                if (actualTime != ""){
                     timeTable.push_back(qMakePair(shortCode, actualTime));
                 }
             }
@@ -209,9 +204,7 @@ void dataReader::parseHttpData(QByteArray data, VrTrainManager& manager)
 
         }
 
-
     }
-    std::cout << "vrAPI haku tehty onnistuneesti" << std::endl;
 
 }
 

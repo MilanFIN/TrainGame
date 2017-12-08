@@ -2,7 +2,6 @@
 
 Boulder::Boulder(int y)
 {
-    //joku pls tekee uuden kuvan tälle
     QImage kuva(":/kuvat/brick.png");
     QImage kuvaScaled = kuva.scaled(100,100,Qt::KeepAspectRatio);
     setPixmap(QPixmap::fromImage(kuvaScaled));

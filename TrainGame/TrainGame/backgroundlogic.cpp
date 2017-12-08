@@ -1,8 +1,5 @@
 #include "backgroundlogic.h"
 
-#include <iostream>
-#include <QDebug>
-
 
 BackgroundLogic::BackgroundLogic(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
@@ -39,7 +36,7 @@ void BackgroundLogic::move(double multiplier) {
         }
     }
 
-    //siirretään backgroundia
+    //moves background
     for (auto x = bg.begin(); x != bg.end(); ++x) {
         (*x).get()->move((int)(multiplier*speed_));
     }
@@ -53,8 +50,7 @@ void BackgroundLogic::move(double multiplier) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(-5980);
 
-        //qInfo() << "1";
-        //qInfo() << movementOverall_;
+
         scene_->addItem(newBg.get());
 
 
@@ -69,8 +65,6 @@ void BackgroundLogic::move(double multiplier) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(950);
 
-        //qInfo() << "2";
-        //qInfo() << movementOverall_;
         scene_->addItem(newBg.get());
 
 
@@ -84,15 +78,12 @@ void BackgroundLogic::move(double multiplier) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(-5800);
 
-        //qInfo() << "3";
-        //qInfo() << movementOverall_;
         scene_->addItem(newBg.get());
-
 
         bg.push_back(newBg);
         movementAtLastBgCreation_ = movementOverall_;
 
-        //lisätään backgroundien päällekkäisyyttä kun y koordinaatilla ei toiminut kovin varmasti
+        // add BGimages overlap value
         movementOverall_ += 100;
     }
 
@@ -101,31 +92,23 @@ void BackgroundLogic::move(double multiplier) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(800);
 
-        qInfo() << "4";
-        qInfo() << movementOverall_;
         scene_->addItem(newBg.get());
-
 
         bg.push_back(newBg);
         movementAtLastBgCreation_ = movementOverall_;
         movementOverall_ -= 100;
     }
 
-    //poistetaan näkyvistä hävinnyt background
+    //delete disappeared background
     for (auto x = bg.begin(); x != bg.end();) {
         if ((*x).get()->y() > 10000) {
             scene_->removeItem((*x).get());
-            //qInfo() << "era bg+";
-            //qInfo() << movementOverall_;
             x = bg.erase(x);
-            //qInfo() << "era bg+";
+
         }
         else if ((*x).get()->y() < -10000) {
             scene_->removeItem((*x).get());
-            //qInfo() << "era bg-";
-           // qInfo() << movementOverall_;
             x = bg.erase(x);
-            //qInfo() << "era bg-";
         }
         else {
             ++x;

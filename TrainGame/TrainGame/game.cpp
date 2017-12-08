@@ -1,5 +1,4 @@
 #include "game.h"
-#include <iostream>
 
 
 Game::Game(std::shared_ptr<QGraphicsScene> scene,
@@ -227,7 +226,7 @@ void Game::checkCollisions()
     }
     //check if obstacles hit the player
     int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
-    //pelaajan aktiiviselle junalle lämää
+    // players activeTraing takes damage
     playerLogic_.get()->takeDamage(recievedDamage);
     recievedDamage = 0;
     recievedDamage = aiTrainManager_->checkPlayerCollision(playerLogic_.get()->activeTrain());
