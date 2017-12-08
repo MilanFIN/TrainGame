@@ -21,4 +21,3 @@ void TestBoulder::testMove() {
     Q_ASSERT(boulder->y() == 70);
 
 }
-

@@ -21,9 +21,9 @@ int main(int argc, char *argv[])
     std::shared_ptr<QGraphicsScene> miniMapScene = std::make_shared<QGraphicsScene>();
 
     std::shared_ptr<Game> game = std::make_shared<Game>(scene, miniMapScene);
-//    MainWindow w(game, scene, miniMapScene);
+    MainWindow w(game, scene, miniMapScene);
 
-//    w.show();
+    w.show();
 
     std::shared_ptr<TestBackground> testBackground = std::make_shared<TestBackground>();
     std::shared_ptr<TestBackgroundLogic> testBackgroundLogic = std::make_shared<TestBackgroundLogic>(scene);
@@ -37,6 +37,5 @@ int main(int argc, char *argv[])
     QTest::qExec(testGame.get(), argc, argv);
     QTest::qExec(testPlayerLogic.get(), argc, argv);
 
-
-    //return a.exec();
+    return a.exec();
 }

@@ -15,7 +15,6 @@ public:
      */
     explicit GameException(const QString& msg);
 
-
     virtual ~GameException() = default;
 
     /**

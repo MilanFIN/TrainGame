@@ -10,7 +10,6 @@ ObstacleFactory::ObstacleFactory()
 {
     // seed setup
     qsrand(QDateTime::currentDateTime().toTime_t());
-
 }
 
 ObstacleFactory::~ObstacleFactory(){}
@@ -33,5 +32,4 @@ std::shared_ptr<ObstacleInterface> ObstacleFactory::createObject()
         std::shared_ptr<LeafPile> a = std::make_shared<LeafPile>(0);
         return a;
     }
-
 }

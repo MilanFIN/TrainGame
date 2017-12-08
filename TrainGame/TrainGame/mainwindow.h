@@ -8,7 +8,6 @@
 #include <QListWidgetItem>
 #include <QList>
 #include <QString>
-
 #include <memory>
 
 #include "httpengine.h"
@@ -45,7 +44,6 @@ public slots:
 
     void updateActiveTrain(QString trainName);
 
-
     //slot for recieving new possible destination candidates
     void updateNextStations(QList<QString> stations);
     //slot for recieving new possible backtracking candidates
@@ -79,21 +77,13 @@ public slots:
     void disableGame();
 
     void updateBrokenTrainInfo(std::shared_ptr<PlayerTrain> brokenTrain);
-
     void obstacleRemoved(int fameReward, int moneyReward);
-
     void updateObstacleInfo(QString stations, QString track, QString threatLevel);
-
     void actionFailed(QString msg);
-
     void updateMessageLabel(QString msg);
-
     void clearMessage();
-
     void updateNaviToUi(QString info);
     void endGameWindow();
-
-
 
 signals:
 private:
@@ -103,8 +93,6 @@ private:
     std::shared_ptr<QGraphicsScene> miniMapScene_;
 
     QTimer *clearTimer_ = new QTimer(this);
-
-
 };
 
 #endif // MAINWINDOW_H

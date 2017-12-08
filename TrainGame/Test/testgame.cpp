@@ -22,8 +22,8 @@ void TestGame::testConstructor()
 
 void TestGame::testMoney()
 {
-    Q_ASSERT(game_->getPlayerMoney() == 500);
+    Q_ASSERT(game_->getPlayerMoney() == 300);
     game_->addMoney(50);
-    Q_ASSERT(game_->getPlayerMoney() == 550);
+    Q_ASSERT(game_->getPlayerMoney() == 350);
 }
 

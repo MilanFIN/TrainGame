@@ -9,7 +9,6 @@
 #include <QString>
 #include <QMap>
 #include <QHash>
-
 #include <memory>
 #include <vector>
 
@@ -163,7 +162,6 @@ signals:
     void signalDestAndPrevious(QString previous, QString next);
     void naviInfoUpdate(QString info);
 
-
 private:
 
     //movement related
@@ -173,7 +171,6 @@ private:
     float previousSpeed_;
     int movementSinceLastRailSpawn_;
     float accel_ = 0.1;
-
 
     //other
     std::shared_ptr<QGraphicsScene> scene_;
@@ -194,12 +191,9 @@ private:
 
     double lngCenter_ = 27.21985;
     double xConversionRate_ = 22.0;//max 22.86;
-
     double latCenter_ = 63.4086;
     double yConversionRate_ = -50.0;//max 51.99;
-
     double distanceConversionRate_ = 20000.0;
-
 
     // key : shortcode , value: particular station
     QHash<QString, StationInfo> stations_;
@@ -225,7 +219,6 @@ private:
     QGraphicsPixmapItem obstacleMapPoint_;
     bool locMapPoint_ = false;
     bool obsMapPoint_ = false;
-
 };
 
 #endif // RAILLOGIC_H

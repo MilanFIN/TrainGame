@@ -18,13 +18,10 @@ void TestPlayerLogic::defaultConstrcutor()
 
     QSignalSpy spy(player.get(), SIGNAL(ownedTrains(std::vector<std::shared_ptr<PlayerTrain>>)));
 
-
     player->getOwnedTrains();
-
     QCOMPARE(spy.count(), 1);
 
-
-    QVERIFY2(player->getCurrentMoney() == 500, "Player default money");
+    QVERIFY2(player->getCurrentMoney() == 300, "Player default money");
     QVERIFY2(player->activeTrain() == nullptr, "Default activetrain is not empty shared_ptr");
 }
 
@@ -52,11 +49,4 @@ void TestPlayerLogic::buyTrain()
     //legal action
     player->buyTrain(trainName, i);
     QCOMPARE(spy.count(), 1);
-
-
-
-
-
-
-
 }

@@ -9,8 +9,6 @@
 #include <algorithm>
 #include <iostream>
 
-
-
 VrTrainManager::VrTrainManager(std::shared_ptr<QGraphicsScene> scene):
     scene_(scene)
 {
@@ -18,7 +16,6 @@ VrTrainManager::VrTrainManager(std::shared_ptr<QGraphicsScene> scene):
     readTrainsFromAPI();
 
     timeSinceLastMsg = QTime::currentTime().second();
-
 }
 
 void VrTrainManager::addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain)
@@ -30,9 +27,7 @@ void VrTrainManager::addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain)
         // out of memory
         Q_ASSERT("bad_alloc caught");
     }
-
 }
-
 
 bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
 {
@@ -48,7 +43,6 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
             for (auto pair =timeTable.begin()+1; pair != timeTable.end() ; ++pair){
                 if (((*pair).first == next && (*(pair-1)).first == prev) ||
                     ((*pair).first == prev && (*(pair-1)).first == next)) {
-
 
                     bool canContinue = true;
                     std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
@@ -89,7 +83,6 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
                     int minute = QTime::currentTime().minute();
                     int second = QTime::currentTime().second();
 
-
                     int prevSec = timeFractures.at(0) * 3600 + timeFractures.at(1)*60 + timeFractures.at(2);
                     int nextSec = nextTimeFractures.at(0) * 3600 + nextTimeFractures.at(1)*60 + nextTimeFractures.at(2);
                     int currentSec = hour*3600 + minute * 60 + second;
@@ -103,15 +96,11 @@ bool VrTrainManager::checkCollisions(QString prev, QString next, bool harmful)
 
                         return true;
                     }
-
                 }
-
             }
-
         }
     }
     return false;
-
 }
 
 int VrTrainManager::checkPlayerCollision(std::shared_ptr<PlayerTrain> player)
@@ -156,15 +145,12 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
             else if (((*pair).first == next && (*(pair-1)).first == prev) ||
                 ((*pair).first == prev && (*(pair-1)).first == next)) {
 
-
                 bool canContinue = true;
                 std::regex_token_iterator<std::string::iterator> i{(*pair).second.toStdString().begin(), (*pair).second.toStdString().end(), re, 1};
                 i++;
                 std::string time = *i;
-
                 std::string part;
                 std::stringstream stream(time);
-
 
                 QVector<int> timeFractures;
                 while( std::getline(stream, part, ':') ){
@@ -191,7 +177,6 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                             break;
                     }
                    nextTimeFractures.append(std::stoi(nextPart));
-
                 }
 
                 if (!canContinue){
@@ -208,8 +193,6 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
 
                 if ((prevSec <= currentSec && nextSec >= currentSec) || (prevSec >= currentSec && nextSec <= currentSec)){
 
-
-
                     if (!train->inScene()){
                         train->setInScene(true);
                         scene_->addItem(train.get());
@@ -222,7 +205,6 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                     int realHours = hour - timeFractures.at(0);
                     int realMinutes = minute - timeFractures.at(1);
                     int realSeconds = 3600 * realHours + 60*realMinutes + second - timeFractures.at(2);
-
 
                     double distance = 0;
                     if (totalSeconds != 0){
@@ -238,32 +220,21 @@ void VrTrainManager::move(QString prev, QString next, int prevY, int nextY, bool
                         y = double(nextY) - (distance*(double(nextY-prevY)));
                     }
 
-
-
-
                     train->setPos(train->x(), y);
                     train->setZValue(100);
                     train->setVisible(true);
-
-                    std::cout << time << " " << train->y() << " " << train->x() << " "<< train->isVisible() <<  std::endl;
 
                     if (abs(timeSinceLastMsg - QTime::currentTime().second()) >= 5){
                         emit message("Raiteellasi on toinen juna");
                     }
                     break;
-
                 }
-
-
             }
             else if (train->inScene()){
                 scene_->removeItem(train.get());
                 train->setInScene(false);
-
             }
-
         }
-
     }
 }
 
@@ -271,13 +242,9 @@ std::weak_ptr<HttpEngine> VrTrainManager::getHttpEngine() const
 {
     std::weak_ptr<HttpEngine> engine = engine_;
     return engine;
-
 }
 
 void VrTrainManager::readTrainsFromAPI()
 {
-
     dataReader::dataReader::READER.readHTTPData(getHttpEngine(), *this);
-
-
 }

@@ -12,7 +12,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
     scene_(scene),
     miniMapScene_(miniMapScene)
 {
-
     // seed setup
     qsrand(QDateTime::currentDateTime().toTime_t());
 
@@ -29,7 +28,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
     previousSpeed_ = 0;
     movementSinceLastRailSpawn_ = 0;
 
-
     //predefined start tracks
     QList<QString> startTracks = {"008",
                                   "009",
@@ -40,7 +38,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
                                   "531",
                                   "731",};
 
-
     int index = qrand() % startTracks.size();
     QString trackCode = startTracks.at(index);
 
@@ -49,14 +46,13 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
         destinationStationCode_ = tracks_.value(trackCode).at(1);
 
     }
-    else{
+
+    else {
         //failsafe mode if messed up above
         startStationCode_ = "HKI";
         currentTrackCode_ = "001";
         destinationStationCode_ = "PSL";
     }
-
-
 
     //figure out where can go from pasila
     destinationStationCandidates_.clear();
@@ -68,8 +64,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
                 //add possible next destination as the next stop on that track
                 destinationTrackCandidates_.append(tracks_.key(i));
                 destinationStationCandidates_.append(*(j+1));
-
-
             }
         }
         for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
@@ -81,7 +75,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
         }
     }
 
-
     //figure out where we can go if we reversed back to helsinki
     backtrackStationCandidates_.clear();
     backtrackTrackCandidates_.clear();
@@ -92,8 +85,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
                 //add possible next backtrack point as the next stop on that track
                 backtrackTrackCandidates_.append(tracks_.key(i));
                 backtrackStationCandidates_.append(*(j+1));
-
-
             }
         }
         for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
@@ -105,9 +96,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
         }
     }
 
-
-
-
     int distance = getNextDistance();
     //spawn the next station to the game scene
     nextStation_ = std::make_shared<Station>(-distance);
@@ -116,13 +104,8 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
     //spawn the previous station closer by as we just started there
     previousStation_ = std::make_shared<Station>(150);
     scene->addItem(previousStation_.get());
-
-
-
     destinationIndex_ = 0;
     backtrackIndex_ = 0;
-
-
 
     //populate minimap with stations
     foreach (auto i , stations_){
@@ -131,7 +114,6 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
         miniMapScene_->addEllipse(x-2, y-2, 3, 3,
                                   QPen(), QBrush(Qt::SolidPattern));
     }
-
 
     //populate minimap with railway connections between stations
     for (auto i = tracks_.begin(); i != tracks_.end(); ++i){
@@ -147,14 +129,10 @@ RailLogic::RailLogic(std::shared_ptr<QGraphicsScene> scene,
     currentLocationMapPoint.setPixmap(QPixmap::fromImage(QImage(":/kuvat/redDot.png")));
     obstacleMapPoint_.setPixmap(QPixmap::fromImage(QImage(":/kuvat/greenDot.png")));
     updateDestinationOnMiniMap();
-
-
 }
 
 RailLogic::~RailLogic()
-{
-
-}
+{ }
 
 void RailLogic::move(double multiplier)
 {
@@ -217,13 +195,11 @@ void RailLogic::move(double multiplier)
         else {
             ++i;
         }
-
     }
 
     // move next station
     nextStation_->move((int)(multiplier*speed_));
     previousStation_->move((int)(multiplier*speed_));
-
 }
 
 void RailLogic::setSpeed(int newSpeed)
@@ -256,7 +232,6 @@ void RailLogic::addStations(QString shortCode, QString fullName, QString type,
     stationInfo.lat = lat;
     stationInfo.lng = lng;
     stationInfo.passengerTrafic = passengerStation;
-
     stations_.insert(shortCode, stationInfo);
 }
 
@@ -267,7 +242,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         //destination options are now the ones for backtracking
         backtrackStationCandidates_ = destinationStationCandidates_;
         backtrackTrackCandidates_ = destinationTrackCandidates_;
-
 
         destinationStationCode_ = destinationStationCandidates_.at(destinationIndex_);
         currentTrackCode_ = destinationTrackCandidates_.at(destinationIndex_);
@@ -282,8 +256,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
                     //add possible next destination as the next stop on that track
                     destinationTrackCandidates_.append(tracks_.key(i));
                     destinationStationCandidates_.append(*(j+1));
-
-
                 }
             }
             for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
@@ -308,7 +280,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         previousStation_ = std::make_shared<Station>(150);
         scene_->addItem(previousStation_.get());
 
-
         signalStationInfoToUi();
         destinationIndex_ = 0;
         backtrackIndex_ = 0;
@@ -321,7 +292,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         destinationStationCode_ = backtrackStationCandidates_.at(backtrackIndex_);
         currentTrackCode_ = backtrackTrackCandidates_.at(backtrackIndex_);
 
-
         //figure out possible directions after reaching destination
         destinationStationCandidates_.clear();
         destinationTrackCandidates_.clear();
@@ -332,8 +302,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
                     //add possible next destination as the next stop on that track
                     destinationTrackCandidates_.append(tracks_.key(i));
                     destinationStationCandidates_.append(*(j+1));
-
-
                 }
             }
             for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){
@@ -344,7 +312,6 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
                 }
             }
         }
-
 
         //delete original destination
         scene_->removeItem(nextStation_.get());
@@ -358,16 +325,12 @@ void RailLogic::checkCollisionWithStations(std::shared_ptr<PlayerTrain> train)
         previousStation_ = std::make_shared<Station>(300);
         scene_->addItem(previousStation_.get());
 
-
-
         signalStationInfoToUi();
         destinationIndex_ = 0;
         backtrackIndex_ = 0;
 
         updateDestinationOnMiniMap();
-
     }
-
 }
 
 QList<QString> RailLogic::CombineStationTrackInfo(QList<QString> &stationCodes, QList<QString> &trackCodes)
@@ -382,7 +345,6 @@ QList<QString> RailLogic::CombineStationTrackInfo(QList<QString> &stationCodes, 
     for (int i = 0; i < trackCodes.size(); ++i){
         nameList.append(trackCodes.at(i) + ", " + tempList.at(i));
     }
-
     return nameList;
 }
 
@@ -400,12 +362,10 @@ void RailLogic::signalStationInfoToUi()
 
 void RailLogic::updateDestinationOnMiniMap()
 {
-
     if (!locMapPoint_) {
         miniMapScene_->addItem(&currentLocationMapPoint);
         locMapPoint_ = true;
     }
-
 
     int x = (stations_.value(startStationCode_).lng-lngCenter_)*xConversionRate_;
     int y = (stations_.value(startStationCode_).lat-latCenter_)*yConversionRate_;
@@ -483,15 +443,12 @@ void RailLogic::getRandomStationAndTrack(int distance, QList<QString> &stations,
                 }
                 found = true;
                 break;
-
             }
         }
         if (found){
             break;
         }
-
     }
-
 }
 
 QString RailLogic::getCurrentTrack()
@@ -528,15 +485,12 @@ void RailLogic::getCurrentLocation(QString &prev, QString &next, int &prevY, int
                 }
                 found = true;
                 break;
-
             }
         }
         if (found){
             break;
         }
-
     }
-
 }
 
 int RailLogic::getNextDistance()
@@ -570,4 +524,3 @@ void RailLogic::changeDestinationCandidateIndex(int index)
 {
     destinationIndex_ = index;
 }
-

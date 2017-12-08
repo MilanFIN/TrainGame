@@ -1,7 +1,6 @@
 #ifndef TESTPLAYERLOGIC_H
 #define TESTPLAYERLOGIC_H
 
-
 #include "playerlogic.h"
 #include <QObject>
 

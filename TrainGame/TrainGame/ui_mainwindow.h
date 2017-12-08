@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.9.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -213,7 +213,7 @@ public:
 "}  \n"
 ""));
         gasSlider->setMinimum(0);
-        gasSlider->setMaximum(10);
+        gasSlider->setMaximum(8);
         gasSlider->setSliderPosition(0);
         gasSlider->setOrientation(Qt::Horizontal);
         directionButton = new QPushButton(gamePage);
@@ -651,51 +651,51 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "TrainGame", 0));
-        fixButton->setText(QApplication::translate("MainWindow", "Korjaa", 0));
-        label->setText(QApplication::translate("MainWindow", "Nykyinen kunto:", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Optimi kunto:", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "TrainGame", Q_NULLPTR));
+        fixButton->setText(QApplication::translate("MainWindow", "Korjaa", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "Nykyinen kunto:", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainWindow", "Optimi kunto:", Q_NULLPTR));
         currShape->setText(QString());
         optimalShape->setText(QString());
-        label_3->setText(QApplication::translate("MainWindow", "Korjaus maksaa:", 0));
+        label_3->setText(QApplication::translate("MainWindow", "Korjaus maksaa:", Q_NULLPTR));
         repairCostLabel->setText(QString());
-        directionButton->setText(QApplication::translate("MainWindow", "Suunta", 0));
-        directionLabel->setText(QApplication::translate("MainWindow", "Eteen", 0));
-        comingLabel->setText(QApplication::translate("MainWindow", "Seuraavalta", 0));
-        passedLabel->setText(QApplication::translate("MainWindow", "Edelliselt\303\244", 0));
-        nextStationLabel->setText(QApplication::translate("MainWindow", "Seuraava asema:", 0));
-        nextStation->setText(QApplication::translate("MainWindow", "?", 0));
-        previousStationLabel->setText(QApplication::translate("MainWindow", "Edellinen asema:", 0));
-        previousStation->setText(QApplication::translate("MainWindow", "?", 0));
-        label_5->setText(QApplication::translate("MainWindow", "Esteen sijainti:", 0));
-        label_6->setText(QApplication::translate("MainWindow", "Raiteella:", 0));
-        label_7->setText(QApplication::translate("MainWindow", "Haittataso:", 0));
-        blockLocation->setText(QApplication::translate("MainWindow", "asd", 0));
-        blockTrack->setText(QApplication::translate("MainWindow", "asd", 0));
-        blockThreat->setText(QApplication::translate("MainWindow", "asd", 0));
-        label_8->setText(QApplication::translate("MainWindow", "Viimeisin ilmoitus:", 0));
-        notificationLabel->setText(QApplication::translate("MainWindow", "-", 0));
-        label_4->setText(QApplication::translate("MainWindow", "Navi: ", 0));
-        naviLabel->setText(QApplication::translate("MainWindow", "-", 0));
-        buyButton->setText(QApplication::translate("MainWindow", "Osta", 0));
-        sellButton->setText(QApplication::translate("MainWindow", "Myy", 0));
-        playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", 0));
-        buyableTrainsLabel->setText(QApplication::translate("MainWindow", "Ostettavat junat", 0));
-        valitseJunaLabel->setText(QApplication::translate("MainWindow", "Valitse k\303\244ytett\303\244v\303\244 juna", 0));
-        costsLabelText->setText(QApplication::translate("MainWindow", "Saat / Maksaa:", 0));
-        confirmButton->setText(QApplication::translate("MainWindow", "Aseta aktiiviseksi", 0));
-        featuresTextOLabel->setText(QApplication::translate("MainWindow", "Aktiivinen Juna:", 0));
-        featuresTextBLabel->setText(QApplication::translate("MainWindow", "Ominaisuudet:", 0));
+        directionButton->setText(QApplication::translate("MainWindow", "Suunta", Q_NULLPTR));
+        directionLabel->setText(QApplication::translate("MainWindow", "Eteen", Q_NULLPTR));
+        comingLabel->setText(QApplication::translate("MainWindow", "Seuraavalta", Q_NULLPTR));
+        passedLabel->setText(QApplication::translate("MainWindow", "Edelliselt\303\244", Q_NULLPTR));
+        nextStationLabel->setText(QApplication::translate("MainWindow", "Seuraava asema:", Q_NULLPTR));
+        nextStation->setText(QApplication::translate("MainWindow", "?", Q_NULLPTR));
+        previousStationLabel->setText(QApplication::translate("MainWindow", "Edellinen asema:", Q_NULLPTR));
+        previousStation->setText(QApplication::translate("MainWindow", "?", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainWindow", "Esteen sijainti:", Q_NULLPTR));
+        label_6->setText(QApplication::translate("MainWindow", "Raiteella:", Q_NULLPTR));
+        label_7->setText(QApplication::translate("MainWindow", "Haittataso:", Q_NULLPTR));
+        blockLocation->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
+        blockTrack->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
+        blockThreat->setText(QApplication::translate("MainWindow", "asd", Q_NULLPTR));
+        label_8->setText(QApplication::translate("MainWindow", "Viimeisin ilmoitus:", Q_NULLPTR));
+        notificationLabel->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MainWindow", "Navi: ", Q_NULLPTR));
+        naviLabel->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
+        buyButton->setText(QApplication::translate("MainWindow", "Osta", Q_NULLPTR));
+        sellButton->setText(QApplication::translate("MainWindow", "Myy", Q_NULLPTR));
+        playerTrainsLabel->setText(QApplication::translate("MainWindow", "Omat huoltojunat", Q_NULLPTR));
+        buyableTrainsLabel->setText(QApplication::translate("MainWindow", "Ostettavat junat", Q_NULLPTR));
+        valitseJunaLabel->setText(QApplication::translate("MainWindow", "Valitse k\303\244ytett\303\244v\303\244 juna", Q_NULLPTR));
+        costsLabelText->setText(QApplication::translate("MainWindow", "Saat / Maksaa:", Q_NULLPTR));
+        confirmButton->setText(QApplication::translate("MainWindow", "Aseta aktiiviseksi", Q_NULLPTR));
+        featuresTextOLabel->setText(QApplication::translate("MainWindow", "Aktiivinen Juna:", Q_NULLPTR));
+        featuresTextBLabel->setText(QApplication::translate("MainWindow", "Ominaisuudet:", Q_NULLPTR));
         featuresOLabel->setText(QString());
         featuresBLabel->setText(QString());
-        costsLabel->setText(QApplication::translate("MainWindow", "0", 0));
-        gameButton->setText(QApplication::translate("MainWindow", "Pelaa", 0));
-        depotButton->setText(QApplication::translate("MainWindow", "Varikko", 0));
-        shopButton->setText(QApplication::translate("MainWindow", "Kauppa", 0));
-        fameTextLabel->setText(QApplication::translate("MainWindow", "fame:", 0));
-        fameLabel->setText(QApplication::translate("MainWindow", "0", 0));
-        moneyTextLabel->setText(QApplication::translate("MainWindow", "raha:", 0));
-        moneyLabel->setText(QApplication::translate("MainWindow", "0", 0));
+        costsLabel->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
+        gameButton->setText(QApplication::translate("MainWindow", "Pelaa", Q_NULLPTR));
+        depotButton->setText(QApplication::translate("MainWindow", "Varikko", Q_NULLPTR));
+        shopButton->setText(QApplication::translate("MainWindow", "Kauppa", Q_NULLPTR));
+        fameTextLabel->setText(QApplication::translate("MainWindow", "fame:", Q_NULLPTR));
+        fameLabel->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
+        moneyTextLabel->setText(QApplication::translate("MainWindow", "raha:", Q_NULLPTR));
+        moneyLabel->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
     } // retranslateUi
 
 };

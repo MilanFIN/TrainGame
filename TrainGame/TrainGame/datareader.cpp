@@ -13,7 +13,6 @@
 #include <QList>
 
 
-
 dataReader dataReader::READER;
 
 void dataReader::loadTracksFromFile(const QString &filepath, RailLogic &locig)
@@ -32,7 +31,6 @@ void dataReader::loadTracksFromFile(const QString &filepath, RailLogic &locig)
     if (!doc.isObject()) {
         throw std::runtime_error("ratadata to contain json object");
     }
-
 
     QJsonObject obj = doc.object();
     QJsonArray tracks = obj["tracks"].toArray();
@@ -74,7 +72,6 @@ void dataReader::loadStationsFromFile(const QString &filepath, RailLogic& logic)
     if (!doc.isArray()) {
         throw std::runtime_error("Document does not contain array of stations");
     }
-
 
     QJsonArray arr = doc.array();
 
@@ -139,9 +136,7 @@ void dataReader::loadTrains(const QString &filepath, std::shared_ptr<Shop> shop,
         } else {
             shop->addTrain(train);
         }
-
     }
-
 }
 
 void dataReader::readHTTPData(std::weak_ptr<HttpEngine> engine, VrTrainManager& manager)
@@ -156,7 +151,6 @@ void dataReader::readHTTPData(std::weak_ptr<HttpEngine> engine, VrTrainManager& 
     QByteArray res = ret->readAll();
 
     parseHttpData(res, manager);
-
 
 }
 
@@ -201,11 +195,8 @@ void dataReader::parseHttpData(QByteArray data, VrTrainManager& manager)
                 std::shared_ptr<VrTrain> aiTrain = std::make_shared<VrTrain>(trainNumberID, timeTable);
                 manager.addAiTrain(trainNumberID, aiTrain);
             }
-
         }
-
     }
-
 }
 
 dataReader::dataReader(){}

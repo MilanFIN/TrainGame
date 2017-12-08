@@ -53,9 +53,6 @@ private:
     bool inverted_;
     bool inScene_;
     bool blacklisted_;
-
-
-
 };
 
 #endif // VRTRAIN_H

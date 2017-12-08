@@ -284,7 +284,7 @@ QSlider::handle:horizontal
        <number>0</number>
       </property>
       <property name="maximum">
-       <number>10</number>
+       <number>8</number>
       </property>
       <property name="sliderPosition">
        <number>0</number>

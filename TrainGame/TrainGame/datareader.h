@@ -44,7 +44,6 @@ public:
      */
     void readHTTPData(std::weak_ptr<HttpEngine> engine, VrTrainManager &manager);
 
-
 private:
     dataReader();
 
@@ -52,7 +51,6 @@ private:
     dataReader& operator=(dataReader const&) = delete;
 
     void parseHttpData(QByteArray data, VrTrainManager &manager);
-
 };
 
 #endif // DATAREADER_H

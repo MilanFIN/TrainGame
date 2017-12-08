@@ -41,8 +41,6 @@ int PathFinder::generateDistance(QString startPoint, QMap<QString, QList<QString
             for (QList<QString>::iterator j = i.begin(); j != i.end()-1;++j){
                 if (*j == startPoint){
                     distances.append(generateDistance((*(j+1)), trackData, prev, next, covered +1));
-
-
                 }
             }
             for (QList<QString>::iterator j = i.begin()+1; j != i.end();++j){

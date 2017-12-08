@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QGraphicsScene>
 #include <QVector>
-
 #include <memory>
 
 #include "httpengine.h"
@@ -23,6 +22,7 @@ public:
      * @param scene scene that the vrtrain objecs are to be added into
      */
     VrTrainManager(std::shared_ptr<QGraphicsScene> scene);
+
     /**
      * @brief addAiTrain adds a vrtrain object to be managed
      * @param id id of the train
@@ -30,6 +30,7 @@ public:
      * @post the aiTrain object has been added to the ones being handled by this class
      */
     void addAiTrain(QString id, std::shared_ptr<VrTrain> aiTrain);
+
     /**
      * @brief checkCollisions checks collisions between an obstacle and the vrtrains
      * @param prev a station next to the obstacle (stationcode)
@@ -39,6 +40,7 @@ public:
      * @post the collided vrtrain has been blacklisted
      */
     bool checkCollisions(QString prev, QString next, bool harmful);
+
     /**
      * @brief checkPlayerCollision checks collisions between vrtrains and the player's train
      * @param player player's active train
@@ -52,6 +54,7 @@ public:
      * @return all vrtrains
      */
     QHash<QString, std::shared_ptr<VrTrain>> getAllAiTrains() const;
+
     /**
      * @brief move moves the vrtrain objects in regard to their timetables
      * @param prev last station the player passed (stationcode)
@@ -77,9 +80,6 @@ private:
     std::shared_ptr<QGraphicsScene> scene_;
 
     int timeSinceLastMsg;
-
-
-
 };
 
 #endif // VRTRAINMANAGER_H

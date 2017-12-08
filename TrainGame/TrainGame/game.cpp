@@ -12,7 +12,6 @@ Game::Game(std::shared_ptr<QGraphicsScene> scene,
     bgLogic_ = std::make_shared<BackgroundLogic>(scene);
     aiTrainManager_ = std::make_shared<VrTrainManager>(scene);
 
-
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
     moveTimer->start(66);
 
@@ -177,7 +176,6 @@ void Game::move()
     }
 
     //move aitrains
-
     QString next;
     QString prev;
     bool mainRail;
@@ -212,7 +210,6 @@ void Game::spawn()
     railLogic_.get()->getRandomStationAndTrack(distance,stations , track, stationNames, harmful);
     obstacleLogic_.get()->spawnObstacle(stations, track, stationNames, harmful);
 
-
     railLogic_->updateObstacleOnMiniMap(stations.at(0), stations.at(1));
 
     railLogic_->updateNavi(stations.at(0), stations.at(1));
@@ -226,6 +223,7 @@ void Game::checkCollisions()
     }
     //check if obstacles hit the player
     int recievedDamage = obstacleLogic_.get()->checkCollision(playerLogic_.get()->activeTrain());
+
     // players activeTraing takes damage
     playerLogic_.get()->takeDamage(recievedDamage);
     recievedDamage = 0;

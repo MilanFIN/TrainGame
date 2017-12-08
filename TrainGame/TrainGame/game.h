@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QGraphicsScene>
 #include <QTimer>
-
 #include <memory>
 #include <vector>
 
@@ -13,8 +12,6 @@
 #include "obstaclelogic.h"
 #include "backgroundlogic.h"
 #include "vrtrainmanager.h"
-
-
 
 /**
  * @brief Game controller (in an mvc model)

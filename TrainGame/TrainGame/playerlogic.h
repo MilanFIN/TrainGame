@@ -1,7 +1,6 @@
 #ifndef PLAYERLOGIC_H
 #define PLAYERLOGIC_H
 
-
 #include <memory>
 #include <QGraphicsScene>
 #include <vector>
@@ -19,6 +18,7 @@ class PlayerLogic: public QObject
     Q_OBJECT
 public:
     PlayerLogic();
+
     /**
      * @brief PlayerLogic constructor
      * @param scene is the qgraphcisscene the logic interacts with
@@ -57,7 +57,6 @@ public:
      * @return the player's money amount in int
      */
     int getCurrentMoney();
-
 
     /**
      * @brief addFame adds karma that the player has
@@ -195,12 +194,7 @@ private:
 
     int currentMoney_;
     int fame_;
-
-
-
-
     void decreaseMoney(int amount);
-
     void playerToShopTransaction(int index, std::shared_ptr<PlayerTrain> train);
     void shopToPlayerTransaction(int index);
     void updateUI();

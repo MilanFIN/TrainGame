@@ -3,7 +3,6 @@
 
 #include <QGraphicsScene>
 #include <QObject>
-
 #include <memory>
 #include <vector>
 
@@ -12,12 +11,9 @@
 #include "traininterface.h"
 #include "playertrain.h"
 
-
 /**
  * @brief The ObstacleLogic is responsible for handling obstacles
-
  */
-
 class ObstacleLogic: public QObject
 {
     Q_OBJECT
@@ -117,7 +113,6 @@ private:
     QString ObstacleTrackCode_;
     int nextObstacleDistance_ = 20;
     bool harmful_ = false;
-
 };
 
 #endif // OBSTACLELOGIC_H

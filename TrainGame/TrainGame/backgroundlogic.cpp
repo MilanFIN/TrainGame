@@ -49,11 +49,7 @@ void BackgroundLogic::move(double multiplier) {
     if (movementOverall_ >= 1500 && firstTime_ == true && forward_ == true) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(-5980);
-
-
         scene_->addItem(newBg.get());
-
-
         bg.push_back(newBg);
         firstTime_ = false;
         movementAtLastBgCreation_ = movementOverall_;
@@ -66,8 +62,6 @@ void BackgroundLogic::move(double multiplier) {
         std::shared_ptr<Background> newBg = std::make_shared<Background>(950);
 
         scene_->addItem(newBg.get());
-
-
         bg.push_back(newBg);
         firstTime_ = false;
         movementAtLastBgCreation_ = movementOverall_;
@@ -91,7 +85,6 @@ void BackgroundLogic::move(double multiplier) {
              && firstTime_ == false && forward_ == false) {
 
         std::shared_ptr<Background> newBg = std::make_shared<Background>(800);
-
         scene_->addItem(newBg.get());
 
         bg.push_back(newBg);
@@ -113,11 +106,8 @@ void BackgroundLogic::move(double multiplier) {
         else {
             ++x;
         }
-
     }
 }
-
-
 
 void BackgroundLogic::setSpeed(int newSpeed)
 {

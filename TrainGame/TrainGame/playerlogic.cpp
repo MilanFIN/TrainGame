@@ -2,8 +2,6 @@
 #include "shop.h"
 #include "datareader.h"
 
-
-
 PlayerLogic::PlayerLogic():
     currentMoney_(300),
     fame_(0)
@@ -22,8 +20,6 @@ PlayerLogic::PlayerLogic(std::shared_ptr<QGraphicsScene> scene):
 
     emit playerCashChanged(getCurrentMoney());
     emit playerFameChanged(fame_);
-
-
 }
 
 int PlayerLogic::location()
@@ -124,13 +120,9 @@ void PlayerLogic::sellTrain(int index)
         emit shopActionFailed(msg);
         return;
     }
-
-
-
     playerToShopTransaction(index, train.lock());
 
     updateUI();
-
 }
 
 void PlayerLogic::setActiveTrain(int rowIndex)
@@ -145,8 +137,6 @@ void PlayerLogic::setActiveTrain(int rowIndex)
     setTrainPixmap();
 
     emit activeTrainChanged(activeTrain_->getName());
-
-
 }
 
 void PlayerLogic::removeTrainPixmap(std::weak_ptr<PlayerTrain> trainToRemove)
@@ -195,8 +185,6 @@ void PlayerLogic::repairTrain(int rowIndex)
         brokeTrain.lock()->repairTrain();
         emit trainRepaired();
     }
-
-
 }
 
 void PlayerLogic::takeDamage(int dmg)
@@ -245,7 +233,6 @@ void PlayerLogic::decreaseMoney(int amount)
     invariant();
     emit playerCashChanged(currentMoney_);
 }
-
 
 void PlayerLogic::updateUI()
 {

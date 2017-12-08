@@ -25,8 +25,6 @@ void Shop::addTrain(std::shared_ptr<PlayerTrain> train)
     } catch (std::bad_alloc& ba) {
         std::cerr << "Shop caugth std::bad_alloc: " << ba.what();
     }
-
-
 }
 
 std::shared_ptr<PlayerTrain> Shop::getTrainInfo(QString trainName) const

@@ -8,7 +8,6 @@
 #include <QNetworkAccessManager>
 #include <QIODevice>
 
-
 /**
  * @brief HttpEngine-object executes a HTTP: query to VR's API.
  */
@@ -26,7 +25,6 @@ public:
      * @return QIODevice* pointer
      */
     QIODevice* httpData();
-
 
 private:
     QNetworkAccessManager nam_;

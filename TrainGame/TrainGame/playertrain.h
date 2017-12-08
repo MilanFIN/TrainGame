@@ -104,8 +104,6 @@ signals:
     void message(QString msg);
 
 private:
-
-
     QString name_;
     short shape_;
     unsigned short const price_;

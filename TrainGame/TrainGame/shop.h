@@ -43,7 +43,6 @@ public:
      */
     std::vector<std::shared_ptr<PlayerTrain>> buyableTrains() const;
 
-
 private:
 
     std::vector<std::shared_ptr<PlayerTrain>> availableTrains_;

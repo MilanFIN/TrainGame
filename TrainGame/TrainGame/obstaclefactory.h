@@ -3,7 +3,6 @@
 #include <memory>
 #include <obstacleinterface.h>
 
-
 /**
  * @brief ObstacleFactory singleton-Class is used for creating random obstacles
  */
@@ -29,9 +28,6 @@ private:
 
     static std::shared_ptr<ObstacleFactory> _instance;
     ObstacleFactory();
-
 };
-
-
 
 #endif // OBSTACLEFACTORY_H

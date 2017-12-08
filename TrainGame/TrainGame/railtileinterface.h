@@ -3,7 +3,6 @@
 
 #include <QGraphicsItem>
 
-
 /**
  * @brief The RailTileInterface class defines an interface for railtiles
  */

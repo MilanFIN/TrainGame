@@ -11,9 +11,7 @@ VrTrain::VrTrain(QString tNumber, QVector<QPair<QString, QString> > timeTable):
     QImage imageScaled = img.scaled(150,150,Qt::KeepAspectRatio);
     setPixmap(QPixmap::fromImage(imageScaled));
     setPos(-38, -500);
-
 }
-
 
 QString VrTrain::getTraiNumber() const
 {

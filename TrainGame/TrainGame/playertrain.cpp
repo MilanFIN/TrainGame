@@ -20,14 +20,12 @@ void PlayerTrain::setPixmapToShow()
     setPixmap(QPixmap::fromImage(imageScaled));
     setPos(-55, -30);
     setZValue(2);
-
 }
 
 double PlayerTrain::getSpeed()
 {
     return speed_;
 }
-
 
 QString PlayerTrain::getName()
 {
@@ -101,4 +99,3 @@ void PlayerTrain::invariant()
 {
     Q_ASSERT(!isOwned_ && isPlayable_);
 }
-

@@ -26,6 +26,3 @@ void TestBackgroundLogic::testConstructor()
 
     Q_ASSERT(itemInScene == true);
 }
-
-
-

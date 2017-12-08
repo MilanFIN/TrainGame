@@ -50,8 +50,6 @@ void ObstacleLogic::changeDirection()
     goalSpeed_ = -goalSpeed_;
 }
 
-
-
 void ObstacleLogic::spawnObstacle(QList<QString> stations, QString trackCode, QList<QString> stationNames, bool harmful)
 {
     if (inScene_){
@@ -104,14 +102,12 @@ int ObstacleLogic::checkCollision(std::shared_ptr<PlayerTrain> train)
     }
 
     return damageDone;
-
 }
 
 int ObstacleLogic::getNextDistance()
 {
     if (nextObstacleDistance_ <= 50){
         ++nextObstacleDistance_;
-
     }
 
     return nextObstacleDistance_ / 10;
@@ -128,7 +124,6 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
                 scene_->addItem(obstacle_.get());
 
                 inScene_ = true;
-
             }
         }
     }
@@ -136,9 +131,7 @@ void ObstacleLogic::addObstacleToScene(QString next, QString previous, QString t
         if (inScene_){
             scene_->removeItem(obstacle_.get());
             inScene_ = false;
-
         }
-
     }
 }
 
@@ -153,7 +146,6 @@ void ObstacleLogic::crash()
 {
     if (inScene_){
         scene_->removeItem(obstacle_.get());
-
         inScene_ = false;
     }
     emit obstacleRemoved(-20, -50);
