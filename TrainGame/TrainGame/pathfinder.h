@@ -36,8 +36,21 @@ private:
     PathFinder(PathFinder const&) = delete;
     PathFinder& operator=(PathFinder const&) = delete;
 
+    /**
+     * @brief generateDistance returns a distance to the prev-next pair via sta
+     *        rtpoint, recursive
+     * @param startPoint the station we want to go through first
+     * @param trackData should contain tracks and stations on those tracks
+     * @param prev 1st station of the place we want to end up in
+     * @param next 2nd station of the place we want to end up in
+     * @param covered amount of stations passed
+     * @param previousStation the station we passed on last iteration,
+     *        use "" at first call
+     * @return total distance to the target via startpoint
+     */
     int generateDistance(QString startPoint, QMap<QString, QList<QString>>&
-                         trackData, QString& prev, QString& next, int covered);
+                         trackData, QString& prev, QString& next, int covered,
+                         QString previousStation);
 };
 
 #endif // PATHFINDER_H
